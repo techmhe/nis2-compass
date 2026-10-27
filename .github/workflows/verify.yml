@@ -1,0 +1,73 @@
+# Same gate the agent runs locally. Runs on every push and pull request.
+name: verify
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    # The job runs in a container. That pins the toolchain and lets the job
+    # reach the database by its service name, so no database port is published
+    # on the runner.
+    container: node:22-bookworm
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: nis2
+          POSTGRES_DB: nis2_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+    env:
+      NIS2_TEST_DATABASE_URL: postgresql+psycopg://nis2@postgres:5432/nis2_test
+      # The Python the Dockerfile ships. Without a pin uv takes the newest
+      # release, for which several dependencies have no wheels yet.
+      UV_PYTHON: "3.14"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0          # the test-tamper check diffs against main
+      - uses: astral-sh/setup-uv@v5
+      - run: uv sync --frozen
+        working-directory: backend
+      # The extensions scripts/dev-db.sh creates locally. Done with the
+      # backend's own driver because the job image has no psql.
+      - name: Test database extensions
+        working-directory: backend
+        run: |
+          .venv/bin/python - <<'EOF'
+          import time
+
+          import psycopg
+
+          for attempt in range(30):
+              try:
+                  conn = psycopg.connect("postgresql://nis2@postgres:5432/nis2_test", autocommit=True)
+                  break
+              except psycopg.OperationalError:
+                  time.sleep(2)
+          else:
+              raise SystemExit("PostgreSQL service did not come up")
+          with conn:
+              for ext in ("vector", "pg_trgm", "unaccent"):
+                  conn.execute(f"CREATE EXTENSION IF NOT EXISTS {ext}")
+          EOF
+      - run: uv tool install pip-audit
+      - run: npm ci
+        working-directory: frontend
+      # A pull request build is checked out detached, so the test-tamper check
+      # cannot see the branch whose plan names the changed tests. Give the
+      # checkout its branch name, but only for branches of this repository,
+      # whose authors can push here anyway. A fork stays detached: every
+      # changed test fails there. So does a head branch called main, the one
+      # name for which verify.sh skips the check.
+      - name: Name the pull request branch
+        if: >-
+          github.event_name == 'pull_request'
+          && github.event.pull_request.head.repo.full_name == github.repository
+          && github.head_ref != 'main'
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: git switch -c "$HEAD_REF"
+      - run: .claude/verify.sh

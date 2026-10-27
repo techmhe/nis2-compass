@@ -1,0 +1,972 @@
+{
+  "code": "IR2024/2690",
+  "title": "Commission Implementing Regulation (EU) 2024/2690 of 17 October 2024 laying down rules for the application of Directive (EU) 2022/2555 as regards technical and methodological requirements of cybersecurity risk-management measures and further specification of the cases in which an incident is considered to be significant with regard to DNS service providers, TLD name registries, cloud computing service providers, data centre service providers, content delivery network providers, managed service providers, managed security service providers, providers of online market places, of online search engines and of social networking services platforms, and trust service providers",
+  "short_title": "NIS2 Implementing Regulation (EU) 2024/2690",
+  "kind": "eu_regulation",
+  "jurisdiction": "EU",
+  "language": "en",
+  "version_date": "2024-10-18",
+  "source_url": "https://eur-lex.europa.eu/eli/reg_impl/2024/2690/oj",
+  "status_note": "Adopted 17 October 2024, published OJ 18 October 2024, in force 7 November 2024 (Art. 16); directly binding only for the entity types listed in Art. 1 (DNS, TLD, cloud, data centre, CDN, MSP/MSSP, online marketplaces, search engines, social networks, trust service providers). For all other entities the Annex is the de facto reference: § 30(3) BSIG gives it precedence for the listed types, and the Dutch Cyberbeveiligingsbesluit (Art. 4–18) mirrors its structure. ENISA published non-binding Technical Implementation Guidance (v1.0, 26 June 2025).",
+  "license_note": "Text from EUR-Lex / Publications Office (OJ L, 2024/2690, 18.10.2024). Reuse authorised per Commission Decision 2011/833/EU; only the Official Journal version is authentic. Annex requirement texts intentionally omitted here (headings only).",
+  "provisions": [
+    {
+      "key": "1",
+      "ref": "Art. 1",
+      "heading": "Subject matter",
+      "text": "This Regulation, with regard to DNS service providers, TLD name registries, cloud computing service providers, data centre service providers, content delivery network providers, managed service providers, managed security service providers, providers of online market places, of online search engines and of social networking services platforms, and trust service providers (the relevant entities) lays down the technical and the methodological requirements of the measures referred to in Article 21(2) of Directive (EU) 2022/2555 and further specifies the cases in which an incident shall be considered to be significant as referred to in Article 23(3) of Directive (EU) 2022/2555.",
+      "children": []
+    },
+    {
+      "key": "2",
+      "ref": "Art. 2",
+      "heading": "Technical and methodological requirements",
+      "text": "",
+      "children": [
+        {
+          "key": "2.1",
+          "ref": "Art. 2(1)",
+          "heading": null,
+          "text": "For the relevant entities the technical and methodological requirements of cybersecurity risk-management measures referred to in Article 21(2), points (a) to (j), of Directive (EU) 2022/2555 are set out in the Annex to this Regulation.",
+          "children": []
+        },
+        {
+          "key": "2.2",
+          "ref": "Art. 2(2)",
+          "heading": null,
+          "text": "The relevant entities shall ensure a level of security of network and information systems appropriate to the risks posed when implementing and applying the technical and methodological requirements of cybersecurity risk-management measures set out in the Annex to this Regulation. For that purpose, they shall take due account of the degree of their exposure to risks, their size and the likelihood of occurrence of incidents and their severity, including their societal and economic impact, when complying with the technical and methodological requirements of cybersecurity risk-management measures set out in the Annex to this Regulation.\nWhere the Annex to this Regulation provides that a technical or methodological requirement of a cybersecurity risk-management measure shall be applied ‘where appropriate’, ‘where applicable’ or ‘to the extent feasible’, and where a relevant entity considers it not appropriate, not applicable or not feasible for the relevant entity to apply certain such technical and methodological requirements, the relevant entity shall in a comprehensible manner document its reasoning to that effect.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "3",
+      "ref": "Art. 3",
+      "heading": "Significant incidents",
+      "text": "",
+      "children": [
+        {
+          "key": "3.1",
+          "ref": "Art. 3(1)",
+          "heading": null,
+          "text": "An incident shall be considered to be significant for the purposes of Article 23(3) of Directive (EU) 2022/2555 with regard to the relevant entities where one or more of the following criteria are fulfilled:",
+          "children": [
+            {
+              "key": "3.1.a",
+              "ref": "Art. 3(1)(a)",
+              "heading": null,
+              "text": "the incident has caused or is capable of causing direct financial loss for the relevant entity that exceeds EUR 500 000 or 5 % of the relevant entity’s total annual turnover in the preceding financial year, whichever is lower;",
+              "children": []
+            },
+            {
+              "key": "3.1.b",
+              "ref": "Art. 3(1)(b)",
+              "heading": null,
+              "text": "the incident has caused or is capable of causing the exfiltration of trade secrets as set out in Article 2 point (1), of Directive (EU) 2016/943 of the relevant entity;",
+              "children": []
+            },
+            {
+              "key": "3.1.c",
+              "ref": "Art. 3(1)(c)",
+              "heading": null,
+              "text": "the incident has caused or is capable of causing the death of a natural person;",
+              "children": []
+            },
+            {
+              "key": "3.1.d",
+              "ref": "Art. 3(1)(d)",
+              "heading": null,
+              "text": "the incident has caused or is capable of causing considerable damage to a natural person’s health;",
+              "children": []
+            },
+            {
+              "key": "3.1.e",
+              "ref": "Art. 3(1)(e)",
+              "heading": null,
+              "text": "a successful, suspectedly malicious and unauthorised access to network and information systems occurred, which is capable of causing severe operational disruption;",
+              "children": []
+            },
+            {
+              "key": "3.1.f",
+              "ref": "Art. 3(1)(f)",
+              "heading": null,
+              "text": "the incident meets the criteria set out in Article 4;",
+              "children": []
+            },
+            {
+              "key": "3.1.g",
+              "ref": "Art. 3(1)(g)",
+              "heading": null,
+              "text": "the incident meets one or more of the criteria set out in Articles 5 to 14.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "3.2",
+          "ref": "Art. 3(2)",
+          "heading": null,
+          "text": "Scheduled interruptions of service and planned consequences of scheduled maintenance operations carried out by or on behalf of the relevant entities shall not be considered to be significant incidents.",
+          "children": []
+        },
+        {
+          "key": "3.3",
+          "ref": "Art. 3(3)",
+          "heading": null,
+          "text": "When calculating the number of users impacted by an incident for the purpose of Articles 7 and 9 to 14, the relevant entities shall consider all of the following:",
+          "children": [
+            {
+              "key": "3.3.a",
+              "ref": "Art. 3(3)(a)",
+              "heading": null,
+              "text": "the number of customers that have a contract with the relevant entity which grants them access to the relevant entity’s network and information systems or services offered by, or accessible via, those network and information systems;",
+              "children": []
+            },
+            {
+              "key": "3.3.b",
+              "ref": "Art. 3(3)(b)",
+              "heading": null,
+              "text": "the number of natural and legal persons associated with business customers that use the entities’ network and information systems or services offered by, or accessible via, those network and information systems.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "4",
+      "ref": "Art. 4",
+      "heading": "Recurring incidents",
+      "text": "Incidents that individually are not considered a significant incident within the meaning of Article 3, shall be considered collectively as one significant incident where they meet all of the following criteria:",
+      "children": [
+        {
+          "key": "4.a",
+          "ref": "Art. 4(a)",
+          "heading": null,
+          "text": "they have occurred at least twice within 6 months;",
+          "children": []
+        },
+        {
+          "key": "4.b",
+          "ref": "Art. 4(b)",
+          "heading": null,
+          "text": "they have the same apparent root cause;",
+          "children": []
+        },
+        {
+          "key": "4.c",
+          "ref": "Art. 4(c)",
+          "heading": null,
+          "text": "they collectively meet the criteria set out in Article 3(1)(a).",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "5",
+      "ref": "Art. 5",
+      "heading": "Significant incidents with regard to DNS service providers",
+      "text": "With regard to DNS service providers, an incident shall be considered significant under Article 3(1)(g), where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "5.a",
+          "ref": "Art. 5(a)",
+          "heading": null,
+          "text": "a recursive or authoritative domain name resolution service is completely unavailable for more than 30 minutes;",
+          "children": []
+        },
+        {
+          "key": "5.b",
+          "ref": "Art. 5(b)",
+          "heading": null,
+          "text": "for a period of more than one hour, the average response time of a recursive or authoritative domain name resolution service to DNS requests is more than 10 seconds;",
+          "children": []
+        },
+        {
+          "key": "5.c",
+          "ref": "Art. 5(c)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of the authoritative domain name resolution service is compromised, except in cases where the data of fewer than 1 000 domain names managed by the DNS service provider, amounting to no more than 1 % of the domain names managed by the DNS service provider, are not correct because of misconfiguration.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "6",
+      "ref": "Art. 6",
+      "heading": "Significant incidents with regard to TLD name registries",
+      "text": "With regard to TLD name registries, an incident shall be considered significant under Article 3(1)(g) where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "6.a",
+          "ref": "Art. 6(a)",
+          "heading": null,
+          "text": "an authoritative domain name resolution service is completely unavailable;",
+          "children": []
+        },
+        {
+          "key": "6.b",
+          "ref": "Art. 6(b)",
+          "heading": null,
+          "text": "for a period of more than one hour, the average response time of an authoritative domain name resolution service to DNS requests is more than 10 seconds,",
+          "children": []
+        },
+        {
+          "key": "6.c",
+          "ref": "Art. 6(c)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the technical operation of the TLD is compromised.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "7",
+      "ref": "Art. 7",
+      "heading": "Significant incidents with regard to cloud computing service providers",
+      "text": "With regard to cloud computing service providers, an incident shall be considered significant under Article 3(1)(g) where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "7.a",
+          "ref": "Art. 7(a)",
+          "heading": null,
+          "text": "a cloud computing service provided is completely unavailable for more than 30 minutes;",
+          "children": []
+        },
+        {
+          "key": "7.b",
+          "ref": "Art. 7(b)",
+          "heading": null,
+          "text": "the availability of a cloud computing service of a provider is limited for more than 5 % of the cloud computing service’s users in the Union, or for more than 1 million of the cloud computing service’s users in the Union, whichever number is smaller, for a duration of more than one hour;",
+          "children": []
+        },
+        {
+          "key": "7.c",
+          "ref": "Art. 7(c)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a cloud computing service is compromised as a result of a suspectedly malicious action,",
+          "children": []
+        },
+        {
+          "key": "7.d",
+          "ref": "Art. 7(d)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a cloud computing service is compromised with an impact on more than 5 % of that cloud computing service’s users in the Union, or on more than 1 million of that cloud computing service’s users in the Union, whichever number is smaller.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "8",
+      "ref": "Art. 8",
+      "heading": "Significant incidents with regard to data centre service providers",
+      "text": "With regard to data centre service providers, an incident shall be considered significant under Article 3(1)(g) where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "8.a",
+          "ref": "Art. 8(a)",
+          "heading": null,
+          "text": "a data centre service of a data centre operated by the provider is completely unavailable;",
+          "children": []
+        },
+        {
+          "key": "8.b",
+          "ref": "Art. 8(b)",
+          "heading": null,
+          "text": "the availability of a data centre service of a data centre operated by the provider is limited for a duration of more than one hour;",
+          "children": []
+        },
+        {
+          "key": "8.c",
+          "ref": "Art. 8(c)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a data centre service is compromised as a result of a suspectedly malicious action;",
+          "children": []
+        },
+        {
+          "key": "8.d",
+          "ref": "Art. 8(d)",
+          "heading": null,
+          "text": "physical access to a data centre operated by the provider is compromised.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "9",
+      "ref": "Art. 9",
+      "heading": "Significant incidents with regard to content delivery network providers",
+      "text": "With regard to content delivery network providers, an incident shall be considered significant under Article 3(1)(g) where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "9.a",
+          "ref": "Art. 9(a)",
+          "heading": null,
+          "text": "a content delivery network is completely unavailable for more than 30 minutes;",
+          "children": []
+        },
+        {
+          "key": "9.b",
+          "ref": "Art. 9(b)",
+          "heading": null,
+          "text": "the availability of a content delivery network is limited for more than 5 % of the content delivery network’s users in the Union, or for more than 1 million of the content delivery network’s users in the Union, whichever number is smaller, for a duration of more than one hour;",
+          "children": []
+        },
+        {
+          "key": "9.c",
+          "ref": "Art. 9(c)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a content delivery network is compromised as a result of a suspectedly malicious action;",
+          "children": []
+        },
+        {
+          "key": "9.d",
+          "ref": "Art. 9(d)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a content delivery network is compromised with an impact on more than 5 % of that content delivery network’s users in the Union, or on more than 1 million of that content delivery network’s users in the Union, whichever number is smaller.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "10",
+      "ref": "Art. 10",
+      "heading": "Significant incidents with regard to managed service providers and managed security service providers",
+      "text": "With regard to managed service providers and managed security service providers, an incident shall be considered significant under Article 3(1)(g) where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "10.a",
+          "ref": "Art. 10(a)",
+          "heading": null,
+          "text": "a managed service or managed security service is completely unavailable for more than 30 minutes;",
+          "children": []
+        },
+        {
+          "key": "10.b",
+          "ref": "Art. 10(b)",
+          "heading": null,
+          "text": "the availability of a managed service or managed security service is limited for more than 5 % of the service’s users in the Union, or for more than 1 million of the service’s users in the Union, whichever number is smaller, for a duration of more than one hour;",
+          "children": []
+        },
+        {
+          "key": "10.c",
+          "ref": "Art. 10(c)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a managed service or managed security service is compromised as a result of a suspectedly malicious action;",
+          "children": []
+        },
+        {
+          "key": "10.d",
+          "ref": "Art. 10(d)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a managed service or a managed security service, is compromised with an impact on more than 5 % of that managed service’s or that managed security service’s users in the Union, or on more than 1 million of the service users in the Union, whichever number is smaller.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "11",
+      "ref": "Art. 11",
+      "heading": "Significant incidents with regard to providers of online marketplaces",
+      "text": "With regard to providers of online marketplaces, an incident shall be considered significant under Article 3(1)(g) where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "11.a",
+          "ref": "Art. 11(a)",
+          "heading": null,
+          "text": "an online marketplace is completely unavailable for more than 5 % of an online marketplace’s users in the Union, or for more than 1 million of an online marketplace’s users in the Union, whichever number is smaller;",
+          "children": []
+        },
+        {
+          "key": "11.b",
+          "ref": "Art. 11(b)",
+          "heading": null,
+          "text": "more than 5 % of an online marketplace’s users in the Union, or more than 1 million of an online marketplace’s users in the Union, whichever number is smaller, are impacted by limited availability of that online marketplace;",
+          "children": []
+        },
+        {
+          "key": "11.c",
+          "ref": "Art. 11(c)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of an online marketplace is compromised as a result of a suspectedly malicious action;",
+          "children": []
+        },
+        {
+          "key": "11.d",
+          "ref": "Art. 11(d)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of an online marketplace is compromised with an impact on more than 5 % of that online marketplace’s users in the Union, or on more than 1 million of that online marketplace’s users in the Union, whichever number is smaller.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "12",
+      "ref": "Art. 12",
+      "heading": "Significant incidents with regard to providers of online search engines",
+      "text": "With regard to providers of online search engines, an incident shall be considered significant under Article 3(1)(g) where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "12.a",
+          "ref": "Art. 12(a)",
+          "heading": null,
+          "text": "an online search engine is completely unavailable for more than 5 % of that online search engine’s users in the Union, or for more than 1 million of that online search engine’s users in the Union, whichever number is smaller;",
+          "children": []
+        },
+        {
+          "key": "12.b",
+          "ref": "Art. 12(b)",
+          "heading": null,
+          "text": "more than 5 % of an online search engine’s users in the Union, or more than 1 million of an online search engine’s users in the Union, whichever number is smaller, are impacted by limited availability of that online search engine;",
+          "children": []
+        },
+        {
+          "key": "12.c",
+          "ref": "Art. 12(c)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of an online search engine is compromised as a result of a suspectedly malicious action;",
+          "children": []
+        },
+        {
+          "key": "12.d",
+          "ref": "Art. 12(d)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of an online search engine is compromised with an impact on more than 5 % of that online search engine’s users in the Union, or on more than 1 million of that online search engine’s users in the Union, whichever number is smaller.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "13",
+      "ref": "Art. 13",
+      "heading": "Significant incidents with regard to providers of social networking services platforms",
+      "text": "With regard to providers of social networking services platforms, an incident shall be considered significant under Article 3(1)(g) where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "13.a",
+          "ref": "Art. 13(a)",
+          "heading": null,
+          "text": "a social networking service platform is completely unavailable for more than 5 % of that social networking service platform’s users in the Union, or for more than 1 million of that social networking service platform’s users in the Union, whichever number is smaller;",
+          "children": []
+        },
+        {
+          "key": "13.b",
+          "ref": "Art. 13(b)",
+          "heading": null,
+          "text": "more than 5 % of a social networking service platform’s users in the Union, or more than 1 million of a social networking service platform’s users in the Union, whichever number is smaller, are impacted by limited availability of that social networking service platform;",
+          "children": []
+        },
+        {
+          "key": "13.c",
+          "ref": "Art. 13(c)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a social networking service platform is compromised as a result of a suspectedly malicious action;",
+          "children": []
+        },
+        {
+          "key": "13.d",
+          "ref": "Art. 13(d)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a social networking service platform is compromised with an impact on more than 5 % of that social networking service platform’s users in the Union, or on more than 1 million of that social networking service platform’s users in the Union, whichever number is smaller.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "14",
+      "ref": "Art. 14",
+      "heading": "Significant incidents with regard to trust service providers",
+      "text": "With regard to trust service providers, an incident shall be considered significant under Article 3(1)(g) where it fulfils one or more of the following criteria:",
+      "children": [
+        {
+          "key": "14.a",
+          "ref": "Art. 14(a)",
+          "heading": null,
+          "text": "a trust service is completely unavailable for more than 20 minutes;",
+          "children": []
+        },
+        {
+          "key": "14.b",
+          "ref": "Art. 14(b)",
+          "heading": null,
+          "text": "a trust service is unavailable to users, or relying parties, for more than one hour calculated on a calendar week basis;",
+          "children": []
+        },
+        {
+          "key": "14.c",
+          "ref": "Art. 14(c)",
+          "heading": null,
+          "text": "more than 1 % of the users or relying parties in the Union, or more than 200 000 users or relying parties in the Union, whichever number is smaller, are impacted by limited availability of a trust service;",
+          "children": []
+        },
+        {
+          "key": "14.d",
+          "ref": "Art. 14(d)",
+          "heading": null,
+          "text": "physical access to an area where network and information systems are located and to which access is restricted to trusted personnel of the trust service provider, or the protection of such physical access, is compromised;",
+          "children": []
+        },
+        {
+          "key": "14.e",
+          "ref": "Art. 14(e)",
+          "heading": null,
+          "text": "the integrity, confidentiality or authenticity of stored, transmitted or processed data related to the provision of a trust service is compromised with an impact on more than 0,1 % of users or relying parties, or more than 100 of users or relying parties, whichever number is smaller, of the trust service in the Union.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "15",
+      "ref": "Art. 15",
+      "heading": "Repeal",
+      "text": "Commission Implementing Regulation (EU) 2018/151 is repealed.",
+      "children": []
+    },
+    {
+      "key": "16",
+      "ref": "Art. 16",
+      "heading": "Entry into force and application",
+      "text": "This Regulation shall enter into force on the twentieth day following that of its publication in the Official Journal of the European Union.",
+      "children": []
+    },
+    {
+      "key": "annex",
+      "ref": "Annex",
+      "heading": "Technical and methodological requirements referred to in Article 2 of this Regulation",
+      "text": "",
+      "children": [
+        {
+          "key": "annex.1",
+          "ref": "Annex, point 1.",
+          "heading": "Policy on the security of network and information systems (Article 21(2), point (a) of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.1.1",
+              "ref": "Annex, point 1.1.",
+              "heading": "Policy on the security of network and information systems",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.1.2",
+              "ref": "Annex, point 1.2.",
+              "heading": "Roles, responsibilities and authorities",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.2",
+          "ref": "Annex, point 2.",
+          "heading": "Risk management policy (Article 21(2), point (a) of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.2.1",
+              "ref": "Annex, point 2.1.",
+              "heading": "Risk management framework",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.2.2",
+              "ref": "Annex, point 2.2.",
+              "heading": "Compliance monitoring",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.2.3",
+              "ref": "Annex, point 2.3.",
+              "heading": "Independent review of information and network security",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.3",
+          "ref": "Annex, point 3.",
+          "heading": "Incident handling (Article 21(2), point (b), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.3.1",
+              "ref": "Annex, point 3.1.",
+              "heading": "Incident handling policy",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.3.2",
+              "ref": "Annex, point 3.2.",
+              "heading": "Monitoring and logging",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.3.3",
+              "ref": "Annex, point 3.3.",
+              "heading": "Event reporting",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.3.4",
+              "ref": "Annex, point 3.4.",
+              "heading": "Event assessment and classification",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.3.5",
+              "ref": "Annex, point 3.5.",
+              "heading": "Incident response",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.3.6",
+              "ref": "Annex, point 3.6.",
+              "heading": "Post-incident reviews",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.4",
+          "ref": "Annex, point 4.",
+          "heading": "Business continuity and crisis management (Article 21(2), point (c), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.4.1",
+              "ref": "Annex, point 4.1.",
+              "heading": "Business continuity and disaster recovery plan",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.4.2",
+              "ref": "Annex, point 4.2.",
+              "heading": "Backup and redundancy management",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.4.3",
+              "ref": "Annex, point 4.3.",
+              "heading": "Crisis management",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.5",
+          "ref": "Annex, point 5.",
+          "heading": "Supply chain security (Article 21(2), point (d), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.5.1",
+              "ref": "Annex, point 5.1.",
+              "heading": "Supply chain security policy",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.5.2",
+              "ref": "Annex, point 5.2.",
+              "heading": "Directory of suppliers and service providers",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.6",
+          "ref": "Annex, point 6.",
+          "heading": "Security in network and information systems acquisition, development and maintenance (Article 21(2), point (e), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.6.1",
+              "ref": "Annex, point 6.1.",
+              "heading": "Security in acquisition of ICT services or ICT products",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.6.2",
+              "ref": "Annex, point 6.2.",
+              "heading": "Secure development life cycle",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.6.3",
+              "ref": "Annex, point 6.3.",
+              "heading": "Configuration management",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.6.4",
+              "ref": "Annex, point 6.4.",
+              "heading": "Change management, repairs and maintenance",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.6.5",
+              "ref": "Annex, point 6.5.",
+              "heading": "Security testing",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.6.6",
+              "ref": "Annex, point 6.6.",
+              "heading": "Security patch management",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.6.7",
+              "ref": "Annex, point 6.7.",
+              "heading": "Network security",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.6.8",
+              "ref": "Annex, point 6.8.",
+              "heading": "Network segmentation",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.6.9",
+              "ref": "Annex, point 6.9.",
+              "heading": "Protection against malicious and unauthorised software",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.6.10",
+              "ref": "Annex, point 6.10.",
+              "heading": "Vulnerability handling and disclosure",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.7",
+          "ref": "Annex, point 7.",
+          "heading": "Policies and procedures to assess the effectiveness of cybersecurity risk-management measures (Article 21(2), point (f), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "annex.8",
+          "ref": "Annex, point 8.",
+          "heading": "Basic cyber hygiene practices and security training (Article 21(2), point (g), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.8.1",
+              "ref": "Annex, point 8.1.",
+              "heading": "Awareness raising and basic cyber hygiene practices",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.8.2",
+              "ref": "Annex, point 8.2.",
+              "heading": "Security training",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.9",
+          "ref": "Annex, point 9.",
+          "heading": "Cryptography (Article 21(2), point (h), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "annex.10",
+          "ref": "Annex, point 10.",
+          "heading": "Human resources security (Article 21(2), point (i), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.10.1",
+              "ref": "Annex, point 10.1.",
+              "heading": "Human resources security",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.10.2",
+              "ref": "Annex, point 10.2.",
+              "heading": "Verification of background",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.10.3",
+              "ref": "Annex, point 10.3.",
+              "heading": "Termination or change of employment procedures",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.10.4",
+              "ref": "Annex, point 10.4.",
+              "heading": "Disciplinary process",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.11",
+          "ref": "Annex, point 11.",
+          "heading": "Access control (Article 21(2), points (i) and (j), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.11.1",
+              "ref": "Annex, point 11.1.",
+              "heading": "Access control policy",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.11.2",
+              "ref": "Annex, point 11.2.",
+              "heading": "Management of access rights",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.11.3",
+              "ref": "Annex, point 11.3.",
+              "heading": "Privileged accounts and system administration accounts",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.11.4",
+              "ref": "Annex, point 11.4.",
+              "heading": "Administration systems",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.11.5",
+              "ref": "Annex, point 11.5.",
+              "heading": "Identification",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.11.6",
+              "ref": "Annex, point 11.6.",
+              "heading": "Authentication",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.11.7",
+              "ref": "Annex, point 11.7.",
+              "heading": "Multi-factor authentication",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.12",
+          "ref": "Annex, point 12.",
+          "heading": "Asset management (Article 21(2), point (i), of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.12.1",
+              "ref": "Annex, point 12.1.",
+              "heading": "Asset classification",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.12.2",
+              "ref": "Annex, point 12.2.",
+              "heading": "Handling of assets",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.12.3",
+              "ref": "Annex, point 12.3.",
+              "heading": "Removable media policy",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.12.4",
+              "ref": "Annex, point 12.4.",
+              "heading": "Asset inventory",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.12.5",
+              "ref": "Annex, point 12.5.",
+              "heading": "Deposit, return or deletion of assets upon termination of employment",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "annex.13",
+          "ref": "Annex, point 13.",
+          "heading": "Environmental and physical security (Article 21(2), points (c), (e) and (i) of Directive (EU) 2022/2555)",
+          "text": "",
+          "children": [
+            {
+              "key": "annex.13.1",
+              "ref": "Annex, point 13.1.",
+              "heading": "Supporting utilities",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.13.2",
+              "ref": "Annex, point 13.2.",
+              "heading": "Protection against physical and environmental threats",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "annex.13.3",
+              "ref": "Annex, point 13.3.",
+              "heading": "Perimeter and physical access control",
+              "text": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

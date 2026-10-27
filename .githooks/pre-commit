@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Block direct commits to main (plans and specs excepted), staged .env files
+# and staged credentials. Enable with: git config core.hooksPath .githooks
+set -u
+
+fail() { echo "pre-commit: $*" >&2; exit 1; }
+
+branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || echo "")
+if { [ "$branch" = main ] || [ "$branch" = master ]; } && [ "${ALLOW_MAIN_COMMIT:-0}" != 1 ] \
+   && git rev-parse --verify --quiet HEAD >/dev/null; then
+  other=$(git diff --cached --name-only | grep -Ev '^docs/(plans|specs)/' || true)
+  [ -z "$other" ] || fail "no direct commits to $branch except docs/plans and docs/specs. Use a plan/<slug> branch (repo bootstrap by a human: ALLOW_MAIN_COMMIT=1)."
+fi
+
+envfiles=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '(^|/)\.env(\.|$)' | grep -Ev '\.env\.example$' || true)
+[ -z "$envfiles" ] || fail "refusing to commit env files: $envfiles"
+
+added=$(git diff --cached --no-color -U0 --diff-filter=ACMR | grep -E '^\+[^+]' || true)
+check() { # <label> <extended regex>
+  if grep -Eq -- "$2" <<<"$added"; then fail "staged changes contain what looks like $1. Load it from the environment instead."; fi
+}
+check "an AWS access key"         'AKIA[0-9A-Z]{16}'
+check "a private key block"       '-----BEGIN ([A-Z0-9]+ )*PRIVATE KEY( BLOCK)?-----'
+check "an Anthropic API key"      'sk-ant-[A-Za-z0-9_-]{20,}'
+check "a GitHub token"            'gh[pousr]_[A-Za-z0-9]{30,}'
+check "a GitHub fine-grained PAT" 'github_pat_[A-Za-z0-9_]{22,}'
+check "a Stripe live key"         'sk_live_[A-Za-z0-9]{20,}'
+check "a Slack token"             'xox[abpr]-[A-Za-z0-9-]{10,}'
+check "a Google API key"          'AIza[0-9A-Za-z_-]{35}'
+exit 0

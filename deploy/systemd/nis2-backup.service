@@ -1,0 +1,11 @@
+[Unit]
+Description=NIS2 Compass backup (database and uploaded files)
+Wants=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+# Adjust the path to your checkout's deploy directory.
+WorkingDirectory=/opt/nis2-compass/deploy
+Environment=BACKUP_KEEP_DAYS=30
+ExecStart=/opt/nis2-compass/deploy/backup.sh

@@ -1,0 +1,293 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-sans/700.css";
+@import "@fontsource/ibm-plex-sans/400-italic.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * NIS2 Compass design tokens
+ * Fog background, white surfaces, graphite ink. Petrol = compliant / primary action,
+ * brass = targets & gates, alarm red = gaps. Colour is used for meaning, not decoration.
+ */
+:root {
+  --radius: 0.375rem;
+
+  --fog: #f2f4f3;
+  --surface: #ffffff;
+  --ink: #1b2230;
+  --ink-2: #4a5363;
+  --ink-3: #7b8493;
+  --line: #dde2e0;
+  --line-strong: #c7cecb;
+  --petrol: #0d6770;
+  --petrol-600: #0a5259;
+  --petrol-50: #e3f0f0;
+  --brass: #a87b22;
+  --brass-50: #f6eedc;
+  --alarm: #b42318;
+  --alarm-50: #fbe9e7;
+  --amber: #b86e00;
+  --amber-50: #fbf0dc;
+  --sage: #3f7d4e;
+  --sage-50: #e6f1e8;
+
+  --background: var(--fog);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--petrol);
+  --primary-foreground: #ffffff;
+  --secondary: #e8ecea;
+  --secondary-foreground: var(--ink);
+  --muted: #eaeeec;
+  --muted-foreground: var(--ink-3);
+  --accent: #e6ebe9;
+  --accent-foreground: var(--ink);
+  --destructive: var(--alarm);
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--petrol);
+
+  --sidebar: #1b2230;
+  --sidebar-foreground: #c9d0da;
+  --sidebar-muted: #8a93a3;
+  --sidebar-accent: #273044;
+  --sidebar-border: #2c3548;
+
+  /* score scale 0 → 1 */
+  --score-0: #b42318;
+  --score-1: #d4521f;
+  --score-2: #c98a0c;
+  --score-3: #7c9a3a;
+  --score-4: #2f8a6a;
+  --score-5: #0d6770;
+}
+
+.dark {
+  --fog: #0e1317;
+  --surface: #151c21;
+  --ink: #e4e8ea;
+  --ink-2: #b3bcc3;
+  --ink-3: #85909a;
+  --line: #26313a;
+  --line-strong: #34414b;
+  --petrol: #3fb0b8;
+  --petrol-600: #5fc4cb;
+  --petrol-50: #13302f;
+  --brass: #d4a54a;
+  --brass-50: #2e2615;
+  --alarm: #f07065;
+  --alarm-50: #3a1714;
+  --amber: #e6a23c;
+  --amber-50: #33240d;
+  --sage: #6fbf82;
+  --sage-50: #16291b;
+
+  --secondary: #1d262d;
+  --muted: #1b2329;
+  --accent: #202a31;
+  --primary-foreground: #06282b;
+  --sidebar: #0b1014;
+  --sidebar-accent: #172027;
+  --sidebar-border: #1c252c;
+  --score-0: #f07065;
+  --score-1: #f08a4b;
+  --score-2: #e6b43c;
+  --score-3: #a9c35a;
+  --score-4: #5cc39a;
+  --score-5: #3fb0b8;
+}
+
+@theme inline {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-line: var(--line);
+  --color-surface: var(--surface);
+  --color-fog: var(--fog);
+  --color-petrol: var(--petrol);
+  --color-petrol-600: var(--petrol-600);
+  --color-petrol-50: var(--petrol-50);
+  --color-brass: var(--brass);
+  --color-brass-50: var(--brass-50);
+  --color-alarm: var(--alarm);
+  --color-alarm-50: var(--alarm-50);
+  --color-amber: var(--amber);
+  --color-amber-50: var(--amber-50);
+  --color-sage: var(--sage);
+  --color-sage-50: var(--sage-50);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-border: var(--sidebar-border);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    font-feature-settings: "ss02";
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--petrol) 22%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--petrol);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+/* Law / policy text rendering */
+.prose-law {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+.prose-md {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.prose-md p {
+  margin: 0.5em 0;
+}
+.prose-md ul,
+.prose-md ol {
+  margin: 0.4em 0 0.6em 1.3em;
+}
+.prose-md ul {
+  list-style: disc;
+}
+.prose-md ol {
+  list-style: decimal;
+}
+.prose-md li {
+  margin: 0.15em 0;
+}
+.prose-md h1,
+.prose-md h2,
+.prose-md h3 {
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+}
+.prose-md h1 {
+  font-size: 1.25em;
+}
+.prose-md h2 {
+  font-size: 1.1em;
+}
+.prose-md code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--muted);
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+}
+.prose-md table {
+  border-collapse: collapse;
+  margin: 0.5em 0;
+}
+.prose-md th,
+.prose-md td {
+  border: 1px solid var(--line);
+  padding: 0.25em 0.5em;
+}
+.prose-md a {
+  color: var(--petrol);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Thin scrollbars in dense panes */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+}
+
+@media print {
+  :root, .dark {
+    --background: #ffffff;
+    --card: #ffffff;
+    --surface: #ffffff;
+    --fog: #ffffff;
+    --foreground: #1b2230;
+    --card-foreground: #1b2230;
+    --ink: #1b2230;
+    --ink-2: #4a5363;
+    --ink-3: #6b7482;
+    --line: #dde2e0;
+    --line-strong: #c7cecb;
+    --muted: #eef1f0;
+    --petrol: #0d6770;
+    --petrol-50: #e3f0f0;
+    --brass: #a87b22;
+    --brass-50: #f6eedc;
+    --alarm: #b42318;
+    --alarm-50: #fbe9e7;
+    --amber: #b86e00;
+    --amber-50: #fbf0dc;
+    --sage: #3f7d4e;
+    --sage-50: #e6f1e8;
+    --border: #dde2e0;
+  }
+  html { color-scheme: light; }
+  body { background: #fff; font-size: 12px; }
+  main { max-width: none !important; padding: 0 !important; }
+  section, article > * { break-inside: avoid; }
+}

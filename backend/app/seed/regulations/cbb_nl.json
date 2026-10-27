@@ -1,0 +1,1234 @@
+{
+  "code": "CBB",
+  "title": "Besluit van 8 juli 2026, houdende regels ter uitvoering van de Cyberbeveiligingswet en tot vaststelling van het tijdstip van inwerkingtreding van de Cyberbeveiligingswet (Cyberbeveiligingsbesluit)",
+  "short_title": "Cyberbeveiligingsbesluit (Cbb)",
+  "kind": "national_ordinance",
+  "jurisdiction": "NL",
+  "language": "nl",
+  "version_date": "2026-08-15",
+  "source_url": "https://wetten.overheid.nl/BWBR0052875/2026-08-15/0",
+  "status_note": "Besluit van 8 juli 2026 (Stb. 2026, 189), in force 15 August 2026 together with the Cbw. It elaborates the zorgplicht (Art. 5–19, following the structure of the IR 2024/2690 Annex), board training and certificate (Art. 20–22), reporting (Art. 23–26) and registration data (Art. 27). Sector-specific ministerial Cyberbeveiligingsregelingen (Stcrt. 2026) set significant-incident thresholds and designate sector CSIRTs. Consolidated text from wetten.overheid.nl (BWBR0052875), version valid from 15 August 2026.",
+  "license_note": "Officiële tekst via wetten.overheid.nl (Basiswettenbestand, BWB-XML, open data). Wettelijke regelingen zijn niet auteursrechtelijk beschermd (art. 11 Auteurswet).",
+  "provisions": [
+    {
+      "key": "h1",
+      "ref": "Hoofdstuk 1",
+      "heading": "Begripsbepaling",
+      "text": "",
+      "children": [
+        {
+          "key": "1",
+          "ref": "Art. 1",
+          "heading": "begripsbepaling",
+          "text": "In dit besluit en de daarop berustende bepalingen wordt verstaan onder:",
+          "children": [
+            {
+              "key": "1.i1",
+              "ref": "Art. 1, streepje 1",
+              "heading": null,
+              "text": "Uitvoeringsverordening (EU) 2024/2690: Uitvoeringsverordening (EU) 2024/2690 van de Commissie van 17 oktober 2024 tot vaststelling van regels voor de toepassing van Richtlijn (EU) 2022/2555 wat betreft de technische en methodologische vereisten van de maatregelen voor het beheer van cyberbeveiligingsrisico’s en nadere specificatie van de gevallen waarin een incident als significant wordt beschouwd met betrekking tot DNS-dienstverleners, registers voor topleveldomeinnamen, aanbieders van cloudcomputingdiensten, aanbieders van datacentrumdiensten, aanbieders van netwerken voor de levering van inhoud, aanbieders van beheerde diensten, aanbieders van beheerde beveiligingsdiensten, aanbieders van onlinemarktplaatsen, van onlinezoekmachines en van platforms voor socialenetwerkdiensten, en verleners van vertrouwensdiensten (PbEU L 2024/2690);",
+              "children": []
+            },
+            {
+              "key": "1.i2",
+              "ref": "Art. 1, streepje 2",
+              "heading": null,
+              "text": "wet: Cyberbeveiligingswet.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "h2",
+      "ref": "Hoofdstuk 2",
+      "heading": "Aanwijzing CSIRT en coördinator bekendmaking kwetsbaarheden en eisen aan CSIRT’s",
+      "text": "",
+      "children": [
+        {
+          "key": "2",
+          "ref": "Art. 2",
+          "heading": "aanwijzing CSIRT en coördinator bekendmaking kwetsbaarheden",
+          "text": "",
+          "children": [
+            {
+              "key": "2.1",
+              "ref": "Art. 2 lid 1",
+              "heading": null,
+              "text": "Onze Minister wordt voor essentiële entiteiten en belangrijke entiteiten aangewezen als het CSIRT, bedoeld in artikel 16, eerste lid, van de wet.",
+              "children": []
+            },
+            {
+              "key": "2.2",
+              "ref": "Art. 2 lid 2",
+              "heading": null,
+              "text": "Bij regeling van Onze Minister die het aangaat, in overeenstemming met Onze Minister, kan in afwijking van het eerste lid voor essentiële entiteiten en belangrijke entiteiten uit specifieke sectoren en subsectoren, voor specifieke soorten entiteiten en voor specifieke entiteiten een ander dan Onze Minister worden aangewezen als het CSIRT, bedoeld in artikel 16, eerste lid, van de wet.",
+              "children": []
+            },
+            {
+              "key": "2.3",
+              "ref": "Art. 2 lid 3",
+              "heading": null,
+              "text": "Onze Minister is de coördinator met het oog op een gecoördineerde bekendmaking van kwetsbaarheden, bedoeld in artikel 17 van de wet.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "3",
+          "ref": "Art. 3",
+          "heading": "eisen aan CSIRT’s",
+          "text": "",
+          "children": [
+            {
+              "key": "3.1",
+              "ref": "Art. 3 lid 1",
+              "heading": null,
+              "text": "De CSIRT’s, bedoeld in artikel 2, eerste en tweede lid, voldoen aan de volgende eisen:",
+              "children": [
+                {
+                  "key": "3.1.a",
+                  "ref": "Art. 3 lid 1, onderdeel a",
+                  "heading": null,
+                  "text": "de CSIRT’s garanderen een hoge mate van beschikbaarheid van hun communicatiekanalen door zwakke punten te voorkomen, beschikken over middelen waarlangs te allen tijde contact met hen en met anderen kan worden opgenomen, specificeren hun communicatiekanalen duidelijk en delen deze mee aan de entiteiten, instanties en partijen, bedoeld in artikel 16, tweede lid, onderdeel b, van de wet, en de andere instanties waarmee zij samenwerken;",
+                  "children": []
+                },
+                {
+                  "key": "3.1.b",
+                  "ref": "Art. 3 lid 1, onderdeel b",
+                  "heading": null,
+                  "text": "de lokalen en werkruimten van de CSIRT’s en de ondersteunende informatiesystemen bevinden zich op beveiligde locaties;",
+                  "children": []
+                },
+                {
+                  "key": "3.1.c",
+                  "ref": "Art. 3 lid 1, onderdeel c",
+                  "heading": null,
+                  "text": "de CSIRT’s zijn, met het oog op doeltreffende en efficiënte overdrachten, uitgerust met een adequaat systeem voor het beheren en routeren van verzoeken;",
+                  "children": []
+                },
+                {
+                  "key": "3.1.d",
+                  "ref": "Art. 3 lid 1, onderdeel d",
+                  "heading": null,
+                  "text": "de CSIRT’s waarborgen de vertrouwelijkheid en betrouwbaarheid van hun activiteiten;",
+                  "children": []
+                },
+                {
+                  "key": "3.1.e",
+                  "ref": "Art. 3 lid 1, onderdeel e",
+                  "heading": null,
+                  "text": "de CSIRT’s beschikken over voldoende personeel om te allen tijde de beschikbaarheid van hun diensten te garanderen en zorgen ervoor dat hun personeel naar behoren wordt opgeleid; en",
+                  "children": []
+                },
+                {
+                  "key": "3.1.f",
+                  "ref": "Art. 3 lid 1, onderdeel f",
+                  "heading": null,
+                  "text": "de CSIRT’s zijn uitgerust met redundante systemen en reservewerkruimten om de continuïteit van hun diensten te waarborgen.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "3.2",
+              "ref": "Art. 3 lid 2",
+              "heading": null,
+              "text": "Bij regeling van Onze Minister, in overeenstemming met Onze Ministers die het aangaan, kunnen nadere regels worden gesteld over de functionele, technische en organisatorische vereisten ten aanzien van de in artikel 2, eerste en tweede lid, bedoelde CSIRT’s.",
+              "children": []
+            },
+            {
+              "key": "3.3",
+              "ref": "Art. 3 lid 3",
+              "heading": null,
+              "text": "Bij regeling van Onze Minister die het aangaat, na overleg met Onze Minister, kunnen daarnaast nadere regels worden gesteld over de functionele, financiële, technische en organisatorische vereisten ten aanzien van een organisatie die op grond van artikel 2, tweede lid, is aangewezen als CSIRT.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "h3",
+      "ref": "Hoofdstuk 3",
+      "heading": "Toepassingsbereik",
+      "text": "",
+      "children": [
+        {
+          "key": "4",
+          "ref": "Art. 4",
+          "heading": "verhouding tot Uitvoeringsverordening (EU) 2024/2690",
+          "text": "Gelet op artikel 1 van de Uitvoeringsverordening (EU) 2024/2690 zijn de artikelen 6 tot en met 18 niet van toepassing op de volgende essentiële entiteiten en belangrijke entiteiten:",
+          "children": [
+            {
+              "key": "4.a",
+              "ref": "Art. 4, onderdeel a",
+              "heading": null,
+              "text": "DNS-dienstverleners;",
+              "children": []
+            },
+            {
+              "key": "4.b",
+              "ref": "Art. 4, onderdeel b",
+              "heading": null,
+              "text": "registers voor topleveldomeinnamen;",
+              "children": []
+            },
+            {
+              "key": "4.c",
+              "ref": "Art. 4, onderdeel c",
+              "heading": null,
+              "text": "aanbieders van cloudcomputingdiensten;",
+              "children": []
+            },
+            {
+              "key": "4.d",
+              "ref": "Art. 4, onderdeel d",
+              "heading": null,
+              "text": "aanbieders van datacentrumdiensten;",
+              "children": []
+            },
+            {
+              "key": "4.e",
+              "ref": "Art. 4, onderdeel e",
+              "heading": null,
+              "text": "aanbieders van netwerken voor de levering van inhoud;",
+              "children": []
+            },
+            {
+              "key": "4.f",
+              "ref": "Art. 4, onderdeel f",
+              "heading": null,
+              "text": "aanbieders van beheerde diensten;",
+              "children": []
+            },
+            {
+              "key": "4.g",
+              "ref": "Art. 4, onderdeel g",
+              "heading": null,
+              "text": "aanbieders van beheerde beveiligingsdiensten;",
+              "children": []
+            },
+            {
+              "key": "4.h",
+              "ref": "Art. 4, onderdeel h",
+              "heading": null,
+              "text": "aanbieders van onlinemarktplaatsen;",
+              "children": []
+            },
+            {
+              "key": "4.i",
+              "ref": "Art. 4, onderdeel i",
+              "heading": null,
+              "text": "aanbieders van onlinezoekmachines;",
+              "children": []
+            },
+            {
+              "key": "4.j",
+              "ref": "Art. 4, onderdeel j",
+              "heading": null,
+              "text": "aanbieders van platforms voor socialenetwerkdiensten; en",
+              "children": []
+            },
+            {
+              "key": "4.k",
+              "ref": "Art. 4, onderdeel k",
+              "heading": null,
+              "text": "verleners van vertrouwensdiensten.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "h4",
+      "ref": "Hoofdstuk 4",
+      "heading": "Zorgplicht",
+      "text": "",
+      "children": [
+        {
+          "key": "5",
+          "ref": "Art. 5",
+          "heading": "uitvoering van artikel 21 van de wet",
+          "text": "Ter uitvoering van artikel 21 van de wet neemt de essentiële entiteit of belangrijke entiteit ten minste de maatregelen, bedoeld in de artikelen 6 tot en met 18.",
+          "children": []
+        },
+        {
+          "key": "6",
+          "ref": "Art. 6",
+          "heading": "beleid over beveiliging van netwerk- en informatiesystemen",
+          "text": "",
+          "children": [
+            {
+              "key": "6.1",
+              "ref": "Art. 6 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft vastgesteld beleid over de beveiliging van haar netwerk- en informatiesystemen. De entiteit legt dat beleid schriftelijk vast en past dat beleid aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "6.2",
+              "ref": "Art. 6 lid 2",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt in het kader van de toepassing van het beleid, bedoeld in het eerste lid, de rollen, verantwoordelijkheden en bevoegdheden in relatie tot de beveiliging van haar netwerk- en informatiesystemen vast. De entiteit zorgt er zoveel mogelijk voor dat conflicterende rollen, verantwoordelijkheden en bevoegdheden gescheiden worden.",
+              "children": []
+            },
+            {
+              "key": "6.3",
+              "ref": "Art. 6 lid 3",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit verlangt van haar personeel en andere binnen de entiteit werkzame personen dat zij de beveiliging van haar netwerk- en informatiesystemen toepassen overeenkomstig het beleid, bedoeld in het eerste lid.",
+              "children": []
+            },
+            {
+              "key": "6.4",
+              "ref": "Art. 6 lid 4",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit hanteert een managementsystematiek voor de beveiliging van haar netwerk- en informatiesystemen om aantoonbaar te kunnen voldoen aan het bepaalde bij of krachtens artikel 21 van de wet.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "7",
+          "ref": "Art. 7",
+          "heading": "beleid over risicomanagement",
+          "text": "",
+          "children": [
+            {
+              "key": "7.1",
+              "ref": "Art. 7 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft vastgesteld beleid over risicomanagement voor de beveiliging van haar netwerk- en informatiesystemen. De entiteit legt dat beleid schriftelijk vast en past dat beleid aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "7.2",
+              "ref": "Art. 7 lid 2",
+              "heading": null,
+              "text": "Het beleid, bedoeld in het eerste lid, omvat ten minste:",
+              "children": [
+                {
+                  "key": "7.2.a",
+                  "ref": "Art. 7 lid 2, onderdeel a",
+                  "heading": null,
+                  "text": "een risicomanagementmethodiek; en",
+                  "children": []
+                },
+                {
+                  "key": "7.2.b",
+                  "ref": "Art. 7 lid 2, onderdeel b",
+                  "heading": null,
+                  "text": "criteria voor risicoacceptatie.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "7.3",
+              "ref": "Art. 7 lid 3",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt in het kader van de toepassing van het beleid, bedoeld in het eerste lid, processen en procedures vast voor risicoanalyse, risicobeoordeling en risicobehandeling. De entiteit past deze processen en procedures aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "7.4",
+              "ref": "Art. 7 lid 4",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit maakt op basis van de uitgevoerde risicoanalyse een overzicht van de risico’s met betrekking tot de beveiliging van haar netwerk- en informatiesystemen.",
+              "children": []
+            },
+            {
+              "key": "7.5",
+              "ref": "Art. 7 lid 5",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt op basis van het overzicht van de risico’s, bedoeld in het vierde lid, eisen met betrekking tot de beveiliging van haar netwerk- en informatiesystemen. Indien de risicoanalyse hiertoe aanleiding geeft, neemt de entiteit maatregelen om de beveiliging van haar netwerk- en informatiesystemen op structurele en aantoonbare wijze te borgen.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "8",
+          "ref": "Art. 8",
+          "heading": "incidentenbehandeling",
+          "text": "",
+          "children": [
+            {
+              "key": "8.1",
+              "ref": "Art. 8 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft vastgesteld beleid over incidentenbehandeling. De entiteit legt dat beleid schriftelijk vast en past dat beleid aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "8.2",
+              "ref": "Art. 8 lid 2",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt in het kader van de toepassing van het beleid, bedoeld in het eerste lid, de rollen, verantwoordelijkheden en bevoegdheden vast voor:",
+              "children": [
+                {
+                  "key": "8.2.a",
+                  "ref": "Art. 8 lid 2, onderdeel a",
+                  "heading": null,
+                  "text": "het tijdig detecteren van incidenten;",
+                  "children": []
+                },
+                {
+                  "key": "8.2.b",
+                  "ref": "Art. 8 lid 2, onderdeel b",
+                  "heading": null,
+                  "text": "het analyseren en beoordelen van incidenten;",
+                  "children": []
+                },
+                {
+                  "key": "8.2.c",
+                  "ref": "Art. 8 lid 2, onderdeel c",
+                  "heading": null,
+                  "text": "het reageren op, beperken van de gevolgen van, wegnemen van de oorzaak van en herstellen van incidenten;",
+                  "children": []
+                },
+                {
+                  "key": "8.2.d",
+                  "ref": "Art. 8 lid 2, onderdeel d",
+                  "heading": null,
+                  "text": "het documenteren van incidenten;",
+                  "children": []
+                },
+                {
+                  "key": "8.2.e",
+                  "ref": "Art. 8 lid 2, onderdeel e",
+                  "heading": null,
+                  "text": "het rapporteren van incidenten; en",
+                  "children": []
+                },
+                {
+                  "key": "8.2.f",
+                  "ref": "Art. 8 lid 2, onderdeel f",
+                  "heading": null,
+                  "text": "het leren van incidenten.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "8.3",
+              "ref": "Art. 8 lid 3",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt in het kader van de toepassing van het beleid, bedoeld in het eerste lid, processen en procedures vast om relevante gebeurtenissen in haar netwerk- en informatiesystemen te monitoren teneinde incidenten te detecteren, analyseren en classificeren. De entiteit past deze processen en procedures aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "8.4",
+              "ref": "Art. 8 lid 4",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt in het kader van de toepassing van het beleid, bedoeld in het eerste lid, processen en procedures vast voor:",
+              "children": [
+                {
+                  "key": "8.4.a",
+                  "ref": "Art. 8 lid 4, onderdeel a",
+                  "heading": null,
+                  "text": "het tijdig detecteren van incidenten;",
+                  "children": []
+                },
+                {
+                  "key": "8.4.b",
+                  "ref": "Art. 8 lid 4, onderdeel b",
+                  "heading": null,
+                  "text": "het analyseren en beoordelen van incidenten;",
+                  "children": []
+                },
+                {
+                  "key": "8.4.c",
+                  "ref": "Art. 8 lid 4, onderdeel c",
+                  "heading": null,
+                  "text": "het reageren op, beperken van de gevolgen van, wegnemen van de oorzaak van en herstellen van incidenten;",
+                  "children": []
+                },
+                {
+                  "key": "8.4.d",
+                  "ref": "Art. 8 lid 4, onderdeel d",
+                  "heading": null,
+                  "text": "het documenteren van incidenten;",
+                  "children": []
+                },
+                {
+                  "key": "8.4.e",
+                  "ref": "Art. 8 lid 4, onderdeel e",
+                  "heading": null,
+                  "text": "het rapporteren van incidenten; en",
+                  "children": []
+                },
+                {
+                  "key": "8.4.f",
+                  "ref": "Art. 8 lid 4, onderdeel f",
+                  "heading": null,
+                  "text": "het leren van incidenten.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "8.5",
+              "ref": "Art. 8 lid 5",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit past de processen en procedures, bedoeld in het vierde lid, aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "8.6",
+              "ref": "Art. 8 lid 6",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit logt de voor de beveiliging van haar netwerk- en informatiesystemen relevante gebeurtenissen in haar netwerk- en informatiesystemen. De entiteit houdt gedurende een vooraf bepaalde periode deze logbestanden bij en beschermt deze tegen ongeautoriseerde wijzigingen.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "9",
+          "ref": "Art. 9",
+          "heading": "bedrijfscontinuïteit en crisisbeheer",
+          "text": "",
+          "children": [
+            {
+              "key": "9.1",
+              "ref": "Art. 9 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft vastgesteld bedrijfscontinuïteitsbeleid met betrekking tot haar netwerk- en informatiesystemen. De entiteit legt dat beleid schriftelijk vast en past dat beleid aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "9.2",
+              "ref": "Art. 9 lid 2",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt in het kader van de toepassing van het beleid, bedoeld in het eerste lid, processen en procedures vast voor het borgen van haar bedrijfscontinuïteit, waaronder in ieder geval processen en procedures voor het herstellen van haar netwerk- en informatiesystemen en voor het maken en periodiek verifiëren van de betrouwbaarheid van back-ups van software en gegevens. De entiteit past deze processen en procedures aantoonbaar toe en test deze periodiek.",
+              "children": []
+            },
+            {
+              "key": "9.3",
+              "ref": "Art. 9 lid 3",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft een vastgesteld bedrijfscontinuïteitsplan met betrekking tot haar netwerk- en informatiesystemen. De entiteit legt dat plan schriftelijk vast, past dat plan toe in geval van een incident dat de bedrijfscontinuïteit in gevaar brengt, en test dit plan periodiek.",
+              "children": []
+            },
+            {
+              "key": "9.4",
+              "ref": "Art. 9 lid 4",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft een herstelplan. De entiteit legt dat plan schriftelijk vast, past dat plan toe in geval van een incident en test dit plan periodiek.",
+              "children": []
+            },
+            {
+              "key": "9.5",
+              "ref": "Art. 9 lid 5",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft een plan voor crisisbeheer, legt dit plan schriftelijk vast, past dat plan toe in geval van een crisis en test en beoefent dit plan periodiek. Het plan bevat ten minste:",
+              "children": [
+                {
+                  "key": "9.5.a",
+                  "ref": "Art. 9 lid 5, onderdeel a",
+                  "heading": null,
+                  "text": "de taken, verantwoordelijkheden en bevoegdheden ten tijde van crisis voor het personeel en andere binnen de entiteit werkzame personen;",
+                  "children": []
+                },
+                {
+                  "key": "9.5.b",
+                  "ref": "Art. 9 lid 5, onderdeel b",
+                  "heading": null,
+                  "text": "een beschrijving van de communicatiemiddelen ten tijde van crisis; en",
+                  "children": []
+                },
+                {
+                  "key": "9.5.c",
+                  "ref": "Art. 9 lid 5, onderdeel c",
+                  "heading": null,
+                  "text": "wanneer passend, een beschrijving van de beschikbare noodvoorzieningen, waaronder het gebruik van beveiligde noodcommunicatiesystemen ten tijde van crisis.",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "10",
+          "ref": "Art. 10",
+          "heading": "beveiliging van de toeleveringsketen",
+          "text": "",
+          "children": [
+            {
+              "key": "10.1",
+              "ref": "Art. 10 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft vastgesteld beleid over de beveiliging van de toeleveringsketen. De entiteit bepaalt in dat beleid haar omgang met afhankelijkheden van de producten en diensten van haar leveranciers en dienstverleners die invloed kunnen hebben op de beveiliging van haar netwerk- en informatiesystemen. De entiteit legt dat beleid schriftelijk vast en past dat beleid aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "10.2",
+              "ref": "Art. 10 lid 2",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit toetst of haar rechtstreekse leveranciers en rechtstreekse dienstverleners, bedoeld in het eerste lid, voldoen aan de beveiligingseisen, bedoeld in artikel 7, vijfde lid. De entiteit controleert dit periodiek.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "11",
+          "ref": "Art. 11",
+          "heading": "beveiliging bij het verwerven, ontwikkelen en onderhouden van netwerk- en informatiesystemen",
+          "text": "",
+          "children": [
+            {
+              "key": "11.1",
+              "ref": "Art. 11 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft op basis van de beveiligingseisen, bedoeld in artikel 7, vijfde lid, vastgesteld beleid voor het mitigeren en beheersen van risico’s die voortvloeien uit het verwerven van software, hardware of diensten die betrekking hebben op haar netwerk- en informatiesystemen. De entiteit legt dat beleid schriftelijk vast en past dat beleid aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "11.2",
+              "ref": "Art. 11 lid 2",
+              "heading": null,
+              "text": "Indien van toepassing stelt de essentiële entiteit of belangrijke entiteit processen en procedures vast voor de veilige ontwikkeling van haar netwerk- en informatiesystemen. De entiteit past deze processen en procedures aantoonbaar toe. Deze processen en procedures hebben betrekking op alle ontwikkelingsfasen van de netwerk- en informatiesystemen van de entiteit.",
+              "children": []
+            },
+            {
+              "key": "11.3",
+              "ref": "Art. 11 lid 3",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt processen en procedures vast voor het onderhoud en beheer van haar netwerk- en informatiesystemen. De entiteit past deze processen en procedures aantoonbaar toe. Deze processen en procedures hebben ten minste betrekking op het configuratiebeheer en het wijzigingsbeheer van de netwerk- en informatiesystemen van de entiteit.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "12",
+          "ref": "Art. 12",
+          "heading": "basispraktijken op het gebied van cyberhygiëne en opleiding op het gebied van cyberbeveiliging",
+          "text": "",
+          "children": [
+            {
+              "key": "12.1",
+              "ref": "Art. 12 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit zorgt ervoor dat haar personeel en andere binnen de entiteit werkzame personen, voor zover relevant voor hun functie:",
+              "children": [
+                {
+                  "key": "12.1.a",
+                  "ref": "Art. 12 lid 1, onderdeel a",
+                  "heading": null,
+                  "text": "bewust zijn van de risico’s met betrekking tot de netwerk- en informatiesystemen van de entiteit; en",
+                  "children": []
+                },
+                {
+                  "key": "12.1.b",
+                  "ref": "Art. 12 lid 1, onderdeel b",
+                  "heading": null,
+                  "text": "praktijken op het gebied van cyberhygiëne toepassen.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "12.2",
+              "ref": "Art. 12 lid 2",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit wijst het personeel en andere binnen de entiteit werkzame personen aan waarvan de rollen, verantwoordelijkheden en bevoegdheden vaardigheden en deskundigheid vereisen op het gebied van de beveiliging van netwerk- en informatiesystemen en zorgt ervoor dat zij regelmatig opleiding krijgen over de beveiliging van netwerk- en informatiesystemen.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "13",
+          "ref": "Art. 13",
+          "heading": "beleid over het gebruik van cryptografie",
+          "text": "",
+          "children": [
+            {
+              "key": "13.1",
+              "ref": "Art. 13 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft vastgesteld beleid over het gebruik van cryptografie. De entiteit legt dat beleid schriftelijk vast en past dat beleid aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "13.2",
+              "ref": "Art. 13 lid 2",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt in het kader van de toepassing van het beleid, bedoeld in het eerste lid, processen en procedures vast over het gebruik van cryptografie. De entiteit past deze processen en procedures aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "13.3",
+              "ref": "Art. 13 lid 3",
+              "heading": null,
+              "text": "In het beleid en de processen en procedures, bedoeld in het eerste en tweede lid, worden in ieder geval uitgewerkt:",
+              "children": [
+                {
+                  "key": "13.3.a",
+                  "ref": "Art. 13 lid 3, onderdeel a",
+                  "heading": null,
+                  "text": "in welke gevallen cryptografie ingezet wordt;",
+                  "children": []
+                },
+                {
+                  "key": "13.3.b",
+                  "ref": "Art. 13 lid 3, onderdeel b",
+                  "heading": null,
+                  "text": "in voorkomende gevallen, welke typen encryptie worden gebruikt en de wijze waarop deze worden toegepast;",
+                  "children": []
+                },
+                {
+                  "key": "13.3.c",
+                  "ref": "Art. 13 lid 3, onderdeel c",
+                  "heading": null,
+                  "text": "wie binnen de entiteit verantwoordelijk zijn voor de implementatie van cryptografie; en",
+                  "children": []
+                },
+                {
+                  "key": "13.3.d",
+                  "ref": "Art. 13 lid 3, onderdeel d",
+                  "heading": null,
+                  "text": "wie binnen de entiteit verantwoordelijk zijn voor het sleutelbeheer.",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "14",
+          "ref": "Art. 14",
+          "heading": "beveiligingsaspecten ten aanzien van personeel",
+          "text": "",
+          "children": [
+            {
+              "key": "14.1",
+              "ref": "Art. 14 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit wijst het personeel en andere binnen de entiteit werkzame personen aan die worden belast met rollen, verantwoordelijkheden en bevoegdheden met betrekking tot de beveiliging van haar netwerk- en informatiesystemen.",
+              "children": []
+            },
+            {
+              "key": "14.2",
+              "ref": "Art. 14 lid 2",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit evalueert periodiek de aanwijzing, bedoeld in het eerste lid, en werkt deze aanwijzing indien nodig bij.",
+              "children": []
+            },
+            {
+              "key": "14.3",
+              "ref": "Art. 14 lid 3",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt betrouwbaarheidseisen op waaraan haar personeel en andere binnen de entiteit werkzame personen moeten voldoen, voor zover deze passend en noodzakelijk zijn voor hun taakuitoefening met betrekking tot de beveiliging van de netwerk- en informatiesystemen van de entiteit.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "15",
+          "ref": "Art. 15",
+          "heading": "beveiligingsaspecten ten aanzien van toegangsbeleid",
+          "text": "",
+          "children": [
+            {
+              "key": "15.1",
+              "ref": "Art. 15 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft vastgesteld beleid over de logische en fysieke toegang tot haar netwerk- en informatiesystemen. De entiteit legt dat beleid schriftelijk vast en past dat beleid aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "15.2",
+              "ref": "Art. 15 lid 2",
+              "heading": null,
+              "text": "Het beleid, bedoeld in het eerste lid, omvat in ieder geval het uitgeven, monitoren, gebruiken, wijzigen en intrekken van identiteiten en autorisaties, en het beheer van identiteiten en autorisaties.",
+              "children": []
+            },
+            {
+              "key": "15.3",
+              "ref": "Art. 15 lid 3",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit controleert identiteiten, authenticatiemiddelen en autorisaties periodiek op de noodzakelijkheid, juistheid en actualiteit en voert indien nodig wijzigingen door in de identiteiten, authenticatiemiddelen en autorisaties.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "16",
+          "ref": "Art. 16",
+          "heading": "beveiligingsaspecten ten aanzien van beheer van assets",
+          "text": "",
+          "children": [
+            {
+              "key": "16.1",
+              "ref": "Art. 16 lid 1",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft vastgesteld beleid voor het beheer van haar assets die zij voor haar werkzaamheden of voor het verlenen van haar diensten gebruikt. De entiteit legt dat beleid schriftelijk vast en past dat beleid aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "16.2",
+              "ref": "Art. 16 lid 2",
+              "heading": null,
+              "text": "Het beleid, bedoeld in het eerste lid, omvat in ieder geval:",
+              "children": [
+                {
+                  "key": "16.2.a",
+                  "ref": "Art. 16 lid 2, onderdeel a",
+                  "heading": null,
+                  "text": "een systeem om assets op verschillende niveaus te kunnen classificeren, indien van toepassing op basis van de eisen voor vertrouwelijkheid, integriteit en beschikbaarheid; en",
+                  "children": []
+                },
+                {
+                  "key": "16.2.b",
+                  "ref": "Art. 16 lid 2, onderdeel b",
+                  "heading": null,
+                  "text": "regels voor het aanvaardbaar gebruik van haar assets.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "16.3",
+              "ref": "Art. 16 lid 3",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit stelt in het kader van de toepassing van het beleid, bedoeld in het eerste lid, processen en procedures vast voor het beheer van haar assets. De entiteit past deze processen en procedures aantoonbaar toe.",
+              "children": []
+            },
+            {
+              "key": "16.4",
+              "ref": "Art. 16 lid 4",
+              "heading": null,
+              "text": "De essentiële entiteit of belangrijke entiteit heeft een volledige en actuele inventaris van haar assets, en houdt deze bij.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "17",
+          "ref": "Art. 17",
+          "heading": "attenderingen, beveiligingsadviezen en dreigingsinformatie",
+          "text": "",
+          "children": [
+            {
+              "key": "17.1",
+              "ref": "Art. 17 lid 1",
+              "heading": null,
+              "text": "Indien de essentiële entiteit of belangrijke entiteit gericht wordt geattendeerd op voor de beveiliging van haar netwerk- en informatiesystemen relevante kwetsbaarheden of cyberdreigingen, beoordeelt zij of op basis daarvan aanpassingen of aanvullingen nodig zijn van de maatregelen ter uitvoering van artikel 21 van de wet. De entiteit legt de uitkomsten van die beoordeling schriftelijk vast.",
+              "children": []
+            },
+            {
+              "key": "17.2",
+              "ref": "Art. 17 lid 2",
+              "heading": null,
+              "text": "Het eerste lid is van overeenkomstige toepassing op gerichte beveiligingsadviezen en dreigingsinformatie, die relevant zijn voor de beveiliging van de netwerk- en informatiesystemen van de essentiële entiteit of belangrijke entiteit, en zijn ontvangen van relevante organisaties, waaronder CSIRT’s, bevoegde autoriteiten, andere betrokken overheidsinstanties, rechtstreekse leveranciers en rechtstreekse dienstverleners.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "18",
+          "ref": "Art. 18",
+          "heading": "evaluatie",
+          "text": "De essentiële entiteit of belangrijke entiteit evalueert periodiek de doeltreffendheid van de maatregelen die zij heeft genomen op grond van artikel 21, eerste lid, van de wet en de effecten ervan in de praktijk, en legt het resultaat daarvan schriftelijk vast. De entiteit past naar aanleiding van de uitkomst van die evaluaties de maatregelen waar nodig aan.",
+          "children": []
+        },
+        {
+          "key": "19",
+          "ref": "Art. 19",
+          "heading": "nadere regels",
+          "text": "Bij regeling van Onze Minister die het aangaat, na overleg met Onze Minister, kunnen nadere regels worden gesteld over de maatregelen, bedoeld in artikel 21, eerste lid, van de wet, waarbij onderscheid kan worden gemaakt tussen sectoren, subsectoren, soorten entiteiten en entiteiten.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "h5",
+      "ref": "Hoofdstuk 5",
+      "heading": "Training",
+      "text": "",
+      "children": [
+        {
+          "key": "20",
+          "ref": "Art. 20",
+          "heading": "doel van de training",
+          "text": "De training, bedoeld in artikel 24, vijfde lid, van de wet, stelt het lid van het bestuur van de essentiële entiteit of belangrijke entiteit in staat om risico’s voor de beveiliging van netwerk- en informatiesystemen te kunnen identificeren en de gevolgen daarvan voor de diensten die door de entiteit worden verleend te kunnen beoordelen. Ook stelt de training het lid van het bestuur van de entiteit in staat om risicobeheersmaatregelen op het gebied van cyberbeveiliging en de gevolgen daarvan voor de diensten die door de entiteit worden verleend te kunnen beoordelen.",
+          "children": []
+        },
+        {
+          "key": "21",
+          "ref": "Art. 21",
+          "heading": "eisen aan de training",
+          "text": "",
+          "children": [
+            {
+              "key": "21.1",
+              "ref": "Art. 21 lid 1",
+              "heading": null,
+              "text": "Ten behoeve van het verkrijgen van kennis en vaardigheden om risico’s voor de beveiliging van netwerk- en informatiesystemen te kunnen identificeren als bedoeld in artikel 24, tweede lid, onderdeel a, van de wet en de gevolgen van deze risico’s te kunnen beoordelen, bedoeld in artikel 24, tweede lid, onderdeel c, van de wet, behandelt de training, bedoeld in artikel 24, vijfde lid, van de wet, daartoe in ieder geval de volgende onderwerpen:",
+              "children": [
+                {
+                  "key": "21.1.a",
+                  "ref": "Art. 21 lid 1, onderdeel a",
+                  "heading": null,
+                  "text": "de soorten risico’s voor netwerk- en informatiesystemen;",
+                  "children": []
+                },
+                {
+                  "key": "21.1.b",
+                  "ref": "Art. 21 lid 1, onderdeel b",
+                  "heading": null,
+                  "text": "risicomanagementprocessen; en",
+                  "children": []
+                },
+                {
+                  "key": "21.1.c",
+                  "ref": "Art. 21 lid 1, onderdeel c",
+                  "heading": null,
+                  "text": "risicobeoordelingsmethodiek.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "21.2",
+              "ref": "Art. 21 lid 2",
+              "heading": null,
+              "text": "Ten behoeve van het verkrijgen van kennis en vaardigheden om risicobeheersmaatregelen op het gebied van cyberbeveiliging als bedoeld in artikel 24, tweede lid, onderdeel b, van de wet en de gevolgen van risicobeheersmaatregelen te kunnen beoordelen, bedoeld in artikel 24, tweede lid, onderdeel c, van de wet, behandelt de training, bedoeld in artikel 24, vijfde lid, van de wet, in ieder geval de onderwerpen, genoemd in artikel 21, derde lid, onderdelen a tot en met j, van de wet.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "22",
+          "ref": "Art. 22",
+          "heading": "eisen aan het certificaat",
+          "text": "",
+          "children": [
+            {
+              "key": "22.1",
+              "ref": "Art. 22 lid 1",
+              "heading": null,
+              "text": "Het certificaat van de training, bedoeld in artikel 24, vijfde lid, van de wet, bevat in ieder geval:",
+              "children": [
+                {
+                  "key": "22.1.a",
+                  "ref": "Art. 22 lid 1, onderdeel a",
+                  "heading": null,
+                  "text": "de naam van het lid van het bestuur van de essentiële entiteit of belangrijke entiteit;",
+                  "children": []
+                },
+                {
+                  "key": "22.1.b",
+                  "ref": "Art. 22 lid 1, onderdeel b",
+                  "heading": null,
+                  "text": "de datum of data waarop de training is gevolgd;",
+                  "children": []
+                },
+                {
+                  "key": "22.1.c",
+                  "ref": "Art. 22 lid 1, onderdeel c",
+                  "heading": null,
+                  "text": "de behandelde onderwerpen in de training; en",
+                  "children": []
+                },
+                {
+                  "key": "22.1.d",
+                  "ref": "Art. 22 lid 1, onderdeel d",
+                  "heading": null,
+                  "text": "de naam van de aanbieder van de training.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "22.2",
+              "ref": "Art. 22 lid 2",
+              "heading": null,
+              "text": "Het certificaat van de training, bedoeld in artikel 24, vijfde lid, van de wet, is opgesteld in de Nederlandse taal of de Engelse taal.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "h6",
+      "ref": "Hoofdstuk 6",
+      "heading": "Meldingen van significante incidenten, incidenten, bijna-incidenten, significante cyberdreigingen, cyberdreigingen en kwetsbaarheden",
+      "text": "",
+      "children": [
+        {
+          "key": "23",
+          "ref": "Art. 23",
+          "heading": "significante incidenten",
+          "text": "",
+          "children": [
+            {
+              "key": "23.1",
+              "ref": "Art. 23 lid 1",
+              "heading": null,
+              "text": "Bij regeling van Onze Minister die het aangaat, na overleg met Onze Minister, kunnen de criteria worden vastgesteld op basis waarvan wordt bepaald of sprake is van een significant incident als bedoeld in artikel 25, tweede lid, van de wet, waarbij onderscheid kan worden gemaakt tussen sectoren, subsectoren, soorten entiteiten en entiteiten. In plaats van de vaststelling van die criteria bij regeling kan Onze Minister die het aangaat, na overleg met Onze Minister, die criteria ten aanzien van specifieke entiteiten vaststellen bij besluit.",
+              "children": []
+            },
+            {
+              "key": "23.2",
+              "ref": "Art. 23 lid 2",
+              "heading": null,
+              "text": "Ten aanzien van de entiteiten waarvoor in uitvoeringshandelingen op grond van artikel 23, elfde lid, van de NIS2-richtlijn nader is gespecificeerd in welke gevallen een incident bij die entiteiten als significant wordt beschouwd, kunnen bij regeling van Onze Minister die het aangaat, na overleg met Onze Minister, naast de hiervoor bedoelde specificaties in uitvoeringshandelingen, aanvullende criteria worden vastgesteld op basis waarvan wordt bepaald of sprake is van een significant incident als bedoeld in artikel 25, tweede lid, van de wet, waarbij onderscheid kan worden gemaakt tussen sectoren, subsectoren, soorten entiteiten en entiteiten. In plaats van de vaststelling van die aanvullende criteria bij regeling kan Onze Minister die het aangaat, na overleg met Onze Minister, die aanvullende criteria ten aanzien van specifieke entiteiten vaststellen bij besluit.",
+              "children": []
+            },
+            {
+              "key": "23.3",
+              "ref": "Art. 23 lid 3",
+              "heading": null,
+              "text": "Onze Minister die het aangaat evalueert ten minste elke vier jaar de doeltreffendheid van de criteria, bedoeld in het eerste en tweede lid, en de effecten daarvan in de praktijk. Indien nodig past hij de criteria, na overleg met Onze Minister, aan.",
+              "children": []
+            },
+            {
+              "key": "23.4",
+              "ref": "Art. 23 lid 4",
+              "heading": null,
+              "text": "Indien een besluit als bedoeld in het eerste en tweede lid is vastgesteld, dragen de specifieke entiteiten waarop dat besluit betrekking heeft, zorg voor de vertrouwelijke behandeling van dat besluit binnen hun organisatie.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "24",
+          "ref": "Art. 24",
+          "heading": "gegevens waar een vroegtijdige waarschuwing uit moet bestaan",
+          "text": "De vroegtijdige waarschuwing, bedoeld in artikel 26, eerste lid, van de wet, omvat naast de gegevens, genoemd in artikel 26, tweede lid, van de wet, tevens de volgende gegevens:",
+          "children": [
+            {
+              "key": "24.a",
+              "ref": "Art. 24, onderdeel a",
+              "heading": null,
+              "text": "het vermoedelijke tijdstip van de aanvang van het significante incident;",
+              "children": []
+            },
+            {
+              "key": "24.b",
+              "ref": "Art. 24, onderdeel b",
+              "heading": null,
+              "text": "zo mogelijk, een beschrijving van de aard en op dat moment merkbare gevolgen van het incident;",
+              "children": []
+            },
+            {
+              "key": "24.c",
+              "ref": "Art. 24, onderdeel c",
+              "heading": null,
+              "text": "zo mogelijk, een prognose van de hersteltijd; en",
+              "children": []
+            },
+            {
+              "key": "24.d",
+              "ref": "Art. 24, onderdeel d",
+              "heading": null,
+              "text": "zo mogelijk, de door de essentiële entiteit of belangrijke entiteit voorgenomen of genomen maatregelen om de gevolgen van het significante incident te beperken of herhaling hiervan te voorkomen.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "25",
+          "ref": "Art. 25",
+          "heading": "wijze waarop een melding geschiedt",
+          "text": "De melding, bedoeld in artikel 25, eerste lid, van de wet, wordt gedaan bij een hiervoor door Onze Minister ingericht meldpunt.",
+          "children": []
+        },
+        {
+          "key": "26",
+          "ref": "Art. 26",
+          "heading": "nadere regels over meldingen",
+          "text": "Bij regeling van Onze Minister die het aangaat, na overleg met Onze Minister, kunnen regels worden gesteld ter uitwerking van de artikelen 26 tot en met 30, 33 en 34 van de wet.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "h7",
+      "ref": "Hoofdstuk 7",
+      "heading": "Informatieverstrekking ten behoeve van nationaal register",
+      "text": "",
+      "children": [
+        {
+          "key": "27",
+          "ref": "Art. 27",
+          "heading": "informatieverstrekking ten behoeve van nationaal register",
+          "text": "",
+          "children": [
+            {
+              "key": "27.1",
+              "ref": "Art. 27 lid 1",
+              "heading": null,
+              "text": "Naast de informatie, genoemd in artikel 44, eerste lid, onderdelen a tot en met e, van de wet, verstrekt een essentiële entiteit, belangrijke entiteit en entiteit die domeinnaamregistratiediensten verleent tevens aan Onze Minister de volgende informatie ten behoeve van de registratie in het nationaal register, bedoeld in artikel 43 van de wet:",
+              "children": [
+                {
+                  "key": "27.1.a",
+                  "ref": "Art. 27 lid 1, onderdeel a",
+                  "heading": null,
+                  "text": "de vermelding of zij de registratie doet als essentiële entiteit, belangrijke entiteit of entiteit die domeinnaamregistratiediensten verleent; en",
+                  "children": []
+                },
+                {
+                  "key": "27.1.b",
+                  "ref": "Art. 27 lid 1, onderdeel b",
+                  "heading": null,
+                  "text": "het nummer, bedoeld in artikel 9, onderdeel a, van de Handelsregisterwet 2007 of, indien zij niet in het handelsregister, bedoeld in artikel 2 van de Handelsregisterwet 2007, is ingeschreven, een daarmee vergelijkbaar registratienummer van het land waarin zij is gevestigd.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "27.2",
+              "ref": "Art. 27 lid 2",
+              "heading": null,
+              "text": "In afwijking van het eerste lid, onderdeel b, verstrekt een overheidsinstantie, indien zij geregistreerd staat in het Register van Overheidsorganisaties, de identificatiecode waarmee zij geregistreerd staat in het Register van Overheidsorganisaties.",
+              "children": []
+            },
+            {
+              "key": "27.3",
+              "ref": "Art. 27 lid 3",
+              "heading": null,
+              "text": "In aanvulling op de informatie, genoemd in het eerste lid, en indien van toepassing, de informatie, genoemd in het tweede lid, verstrekt een essentiële entiteit of belangrijke entiteit tevens aan Onze Minister de volgende informatie ten behoeve van de registratie in het nationaal register, bedoeld in artikel 43 van de wet:",
+              "children": [
+                {
+                  "key": "27.3.a",
+                  "ref": "Art. 27 lid 3, onderdeel a",
+                  "heading": null,
+                  "text": "indien van toepassing, de soort entiteit, bedoeld in bijlage 1 of 2 van de wet, waartoe zij behoort; en",
+                  "children": []
+                },
+                {
+                  "key": "27.3.b",
+                  "ref": "Art. 27 lid 3, onderdeel b",
+                  "heading": null,
+                  "text": "haar domeinnamen.",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "h8",
+      "ref": "Hoofdstuk 8",
+      "heading": "Aanwijzing autoriteiten",
+      "text": "",
+      "children": [
+        {
+          "key": "28",
+          "ref": "Art. 28",
+          "heading": "aanwijzing autoriteiten",
+          "text": "Bij regeling van Onze Minister die het aangaat, na overleg met Onze Minister, kunnen de autoriteiten, bedoeld in artikel 51, tweede lid, onderdeel i, van de wet, worden aangewezen.",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "h9",
+      "ref": "Hoofdstuk 9",
+      "heading": "Persoonsgegevens",
+      "text": "",
+      "children": [
+        {
+          "key": "29",
+          "ref": "Art. 29",
+          "heading": "bewaring van persoonsgegevens",
+          "text": "",
+          "children": [
+            {
+              "key": "29.1",
+              "ref": "Art. 29 lid 1",
+              "heading": null,
+              "text": "De persoonsgegevens, niet zijnde de persoonsgegevens, bedoeld in artikel 64, tweede lid, van de wet, die door het centrale contactpunt, het CSIRT en Onze Minister bij of krachtens de wet worden verwerkt, worden niet langer bewaard dan noodzakelijk is ter uitvoering van hun taken op grond van de wet, doch uiterlijk binnen 60 maanden na de eerste verwerking verwijderd.",
+              "children": []
+            },
+            {
+              "key": "29.2",
+              "ref": "Art. 29 lid 2",
+              "heading": null,
+              "text": "In afwijking van het eerste lid worden de persoonsgegevens die zijn opgenomen in het nationale register, bedoeld in artikel 43 van de wet, niet langer bewaard dan noodzakelijk is ter uitvoering van de taken van Onze Minister op grond van artikel 43 van de wet, doch uiterlijk binnen 60 maanden na de laatste bevestiging van de juistheid van de betreffende persoonsgegevens verwijderd.",
+              "children": []
+            },
+            {
+              "key": "29.3",
+              "ref": "Art. 29 lid 3",
+              "heading": null,
+              "text": "De persoonsgegevens, niet zijnde de persoonsgegevens, bedoeld in artikel 64, eerste lid, van de wet, die door de bevoegde autoriteit bij of krachtens de wet worden verwerkt, worden niet langer bewaard dan noodzakelijk is ter uitvoering van haar taken op grond van de wet, doch uiterlijk binnen 60 maanden na de eerste verwerking verwijderd.",
+              "children": []
+            },
+            {
+              "key": "29.4",
+              "ref": "Art. 29 lid 4",
+              "heading": null,
+              "text": "In afwijking van het derde lid worden de persoonsgegevens, niet zijnde de persoonsgegevens, bedoeld in artikel 64, eerste lid, van de wet, die door de bevoegde autoriteit bij of krachtens de wet worden verwerkt met het oog op toezichtstrajecten en daarmee samenhangende bestuursrechtelijke procedures, niet langer bewaard dan daarvoor noodzakelijk is, doch uiterlijk binnen 120 maanden na de eerste verwerking verwijderd.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "h10",
+      "ref": "Hoofdstuk 10",
+      "heading": "Slotbepalingen",
+      "text": "",
+      "children": [
+        {
+          "key": "30",
+          "ref": "Art. 30",
+          "heading": "wijziging Besluit EU-verordeningen Wft",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "31",
+          "ref": "Art. 31",
+          "heading": "wijziging Besluit beveiliging en continuïteit openbare elektronische communicatienetwerken en -diensten",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "32",
+          "ref": "Art. 32",
+          "heading": "wijziging Besluit veiligheid en integriteit telecommunicatie",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "33",
+          "ref": "Art. 33",
+          "heading": "wijziging Drinkwaterbesluit",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "34",
+          "ref": "Art. 34",
+          "heading": "intrekking Besluit beveiliging netwerk- en informatiesystemen",
+          "text": "Het Besluit beveiliging netwerk- en informatiesystemen wordt ingetrokken.",
+          "children": []
+        },
+        {
+          "key": "35",
+          "ref": "Art. 35",
+          "heading": "inwerkingtreding",
+          "text": "De Cyberbeveiligingswet en dit besluit treden in werking met ingang van 15 augustus 2026.",
+          "children": []
+        },
+        {
+          "key": "36",
+          "ref": "Art. 36",
+          "heading": "citeertitel",
+          "text": "Dit besluit wordt aangehaald als: Cyberbeveiligingsbesluit.",
+          "children": []
+        }
+      ]
+    }
+  ]
+}

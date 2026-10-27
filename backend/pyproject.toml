@@ -1,0 +1,51 @@
+[project]
+name = "nis2-mgmt"
+version = "1.0.0"
+description = "NIS-2 assessment and implementation management platform"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.141",
+    "uvicorn[standard]>=0.54",
+    "sqlalchemy>=2.1",
+    "alembic>=1.20",
+    "psycopg[binary]>=3.3",
+    "pgvector>=0.5",
+    "pydantic>=2.13",
+    "pydantic-settings>=2.10",
+    "authlib>=1.8",
+    "httpx>=0.28",
+    "itsdangerous>=2.2",
+    "argon2-cffi>=25.1",
+    "python-multipart>=0.0.32",
+    "cryptography>=45",
+    "openai>=3.20",
+    "pypdf>=6.21.2",
+    "python-docx>=1.2",
+    "python-pptx>=1.0",
+    "openpyxl>=3.1.5",
+    "markdown-it-py>=3.0",
+    "beautifulsoup4>=4.13",
+    "reportlab>=4.2",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.4", "pytest-asyncio>=1.1", "ruff>=0.13"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "I", "UP", "S", "SIM"]
+ignore = ["B008", "S101", "B904", "SIM108", "S311", "UP040", "E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "B"]
+"app/seed/*" = ["S"]

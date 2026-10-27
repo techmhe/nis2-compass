@@ -1,0 +1,3 @@
+# One-off `ruff format` of backend/app and backend/tests.
+# Use with: git config blame.ignoreRevsFile .git-blame-ignore-revs
+7c2a1859484e77de9188ea2b1df32f48ede5de11

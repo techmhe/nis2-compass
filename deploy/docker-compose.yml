@@ -1,0 +1,91 @@
+name: nis2-compass
+
+services:
+  db:
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nis2
+      POSTGRES_USER: nis2
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nis2 -d nis2"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks: [internal]
+
+  app:
+    image: ${APP_IMAGE:-nis2-compass:latest}
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      NIS2_DATABASE_URL: postgresql+psycopg://nis2:${POSTGRES_PASSWORD}@db:5432/nis2
+      NIS2_BASE_URL: https://${DOMAIN}
+      # only the reverse proxy may set X-Forwarded-For (client IP for login throttling and the audit log)
+      NIS2_FORWARDED_ALLOW_IPS: ${PROXY_IP:-172.30.64.10}
+    volumes:
+      - appdata:/data
+      # extra CA certificates (*.pem, *.crt) the app trusts for outbound TLS: OIDC issuer, AI endpoint, SMTP
+      - ./certs:/etc/nis2/ca:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+    # "egress" lets the app reach the AI endpoint, the OIDC issuer and SMTP; the database stays internal-only
+    networks: [internal, egress]
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on: [app]
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      DOMAIN: ${DOMAIN:?set DOMAIN in .env}
+      TLS_ISSUER: ${TLS_ISSUER:-default}
+      TLS_MODE: ${TLS_MODE:-internal}
+      ACME_CA_URL: ${ACME_CA_URL:-}
+      ACME_EMAIL: ${ACME_EMAIL:-}
+      ACME_CA_ROOT: ${ACME_CA_ROOT:-acme-ca-root.pem}
+    # EAB credentials for TLS_ISSUER=acme_eab (ACME_EAB_KID, ACME_EAB_HMAC). Kept out of .env so the app
+    # container never sees them.
+    env_file:
+      - path: caddy.env
+        required: false
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./certs:/etc/caddy/certs:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      internal:
+        ipv4_address: ${PROXY_IP:-172.30.64.10}
+      public:
+
+volumes:
+  pgdata:
+  appdata:
+  caddy_data:
+  caddy_config:
+
+networks:
+  internal:
+    internal: true
+    ipam:
+      config:
+        - subnet: ${INTERNAL_SUBNET:-172.30.64.0/24}
+  egress:
+  public:

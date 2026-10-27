@@ -1,0 +1,1003 @@
+{
+  "code": "ISO27001",
+  "title": "ISO/IEC 27001:2022 Information security, cybersecurity and privacy protection — Information security management systems — Requirements",
+  "short_title": "ISO/IEC 27001:2022",
+  "kind": "standard",
+  "jurisdiction": "INT",
+  "language": "en",
+  "version_date": "2022-10-25",
+  "source_url": "https://www.iso.org/standard/27001",
+  "status_note": "Current edition (3rd edition, published 25 October 2022), amended by ISO/IEC 27001:2022/Amd 1:2024 (climate action changes to clauses 4.1 and 4.2; no change to clause or control titles). The transition period for certifications to the 2013 edition ended on 31 October 2025. Voluntary standard; referenced as 'relevant European and international standards' under NIS2 Art. 21(1) and § 30(2) BSIG.",
+  "license_note": "Copyrighted by ISO/IEC. Only clause/control numbers and titles are included (text intentionally empty); the full text must be purchased from ISO (iso.org) or national standards bodies (e.g. DIN/Beuth as DIN EN ISO/IEC 27001:2024, NEN as NEN-EN-ISO/IEC 27001).",
+  "provisions": [
+    {
+      "key": "4",
+      "ref": "ISO/IEC 27001:2022, 4",
+      "heading": "Context of the organization",
+      "text": "",
+      "children": [
+        {
+          "key": "4.1",
+          "ref": "ISO/IEC 27001:2022, 4.1",
+          "heading": "Understanding the organization and its context",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "4.2",
+          "ref": "ISO/IEC 27001:2022, 4.2",
+          "heading": "Understanding the needs and expectations of interested parties",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "4.3",
+          "ref": "ISO/IEC 27001:2022, 4.3",
+          "heading": "Determining the scope of the information security management system",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "4.4",
+          "ref": "ISO/IEC 27001:2022, 4.4",
+          "heading": "Information security management system",
+          "text": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "5",
+      "ref": "ISO/IEC 27001:2022, 5",
+      "heading": "Leadership",
+      "text": "",
+      "children": [
+        {
+          "key": "5.1",
+          "ref": "ISO/IEC 27001:2022, 5.1",
+          "heading": "Leadership and commitment",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "5.2",
+          "ref": "ISO/IEC 27001:2022, 5.2",
+          "heading": "Policy",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "5.3",
+          "ref": "ISO/IEC 27001:2022, 5.3",
+          "heading": "Organizational roles, responsibilities and authorities",
+          "text": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "6",
+      "ref": "ISO/IEC 27001:2022, 6",
+      "heading": "Planning",
+      "text": "",
+      "children": [
+        {
+          "key": "6.1",
+          "ref": "ISO/IEC 27001:2022, 6.1",
+          "heading": "Actions to address risks and opportunities",
+          "text": "",
+          "children": [
+            {
+              "key": "6.1.1",
+              "ref": "ISO/IEC 27001:2022, 6.1.1",
+              "heading": "General",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "6.1.2",
+              "ref": "ISO/IEC 27001:2022, 6.1.2",
+              "heading": "Information security risk assessment",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "6.1.3",
+              "ref": "ISO/IEC 27001:2022, 6.1.3",
+              "heading": "Information security risk treatment",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "6.2",
+          "ref": "ISO/IEC 27001:2022, 6.2",
+          "heading": "Information security objectives and planning to achieve them",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "6.3",
+          "ref": "ISO/IEC 27001:2022, 6.3",
+          "heading": "Planning of changes",
+          "text": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "7",
+      "ref": "ISO/IEC 27001:2022, 7",
+      "heading": "Support",
+      "text": "",
+      "children": [
+        {
+          "key": "7.1",
+          "ref": "ISO/IEC 27001:2022, 7.1",
+          "heading": "Resources",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "7.2",
+          "ref": "ISO/IEC 27001:2022, 7.2",
+          "heading": "Competence",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "7.3",
+          "ref": "ISO/IEC 27001:2022, 7.3",
+          "heading": "Awareness",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "7.4",
+          "ref": "ISO/IEC 27001:2022, 7.4",
+          "heading": "Communication",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "7.5",
+          "ref": "ISO/IEC 27001:2022, 7.5",
+          "heading": "Documented information",
+          "text": "",
+          "children": [
+            {
+              "key": "7.5.1",
+              "ref": "ISO/IEC 27001:2022, 7.5.1",
+              "heading": "General",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "7.5.2",
+              "ref": "ISO/IEC 27001:2022, 7.5.2",
+              "heading": "Creating and updating",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "7.5.3",
+              "ref": "ISO/IEC 27001:2022, 7.5.3",
+              "heading": "Control of documented information",
+              "text": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "8",
+      "ref": "ISO/IEC 27001:2022, 8",
+      "heading": "Operation",
+      "text": "",
+      "children": [
+        {
+          "key": "8.1",
+          "ref": "ISO/IEC 27001:2022, 8.1",
+          "heading": "Operational planning and control",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "8.2",
+          "ref": "ISO/IEC 27001:2022, 8.2",
+          "heading": "Information security risk assessment",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "8.3",
+          "ref": "ISO/IEC 27001:2022, 8.3",
+          "heading": "Information security risk treatment",
+          "text": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "9",
+      "ref": "ISO/IEC 27001:2022, 9",
+      "heading": "Performance evaluation",
+      "text": "",
+      "children": [
+        {
+          "key": "9.1",
+          "ref": "ISO/IEC 27001:2022, 9.1",
+          "heading": "Monitoring, measurement, analysis and evaluation",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "9.2",
+          "ref": "ISO/IEC 27001:2022, 9.2",
+          "heading": "Internal audit",
+          "text": "",
+          "children": [
+            {
+              "key": "9.2.1",
+              "ref": "ISO/IEC 27001:2022, 9.2.1",
+              "heading": "General",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "9.2.2",
+              "ref": "ISO/IEC 27001:2022, 9.2.2",
+              "heading": "Internal audit programme",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "9.3",
+          "ref": "ISO/IEC 27001:2022, 9.3",
+          "heading": "Management review",
+          "text": "",
+          "children": [
+            {
+              "key": "9.3.1",
+              "ref": "ISO/IEC 27001:2022, 9.3.1",
+              "heading": "General",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "9.3.2",
+              "ref": "ISO/IEC 27001:2022, 9.3.2",
+              "heading": "Management review inputs",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "9.3.3",
+              "ref": "ISO/IEC 27001:2022, 9.3.3",
+              "heading": "Management review results",
+              "text": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "10",
+      "ref": "ISO/IEC 27001:2022, 10",
+      "heading": "Improvement",
+      "text": "",
+      "children": [
+        {
+          "key": "10.1",
+          "ref": "ISO/IEC 27001:2022, 10.1",
+          "heading": "Continual improvement",
+          "text": "",
+          "children": []
+        },
+        {
+          "key": "10.2",
+          "ref": "ISO/IEC 27001:2022, 10.2",
+          "heading": "Nonconformity and corrective action",
+          "text": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "key": "annexA",
+      "ref": "ISO/IEC 27001:2022, Annex A",
+      "heading": "Information security controls reference",
+      "text": "",
+      "children": [
+        {
+          "key": "A.5",
+          "ref": "Annex A 5",
+          "heading": "Organizational controls",
+          "text": "",
+          "children": [
+            {
+              "key": "A.5.1",
+              "ref": "Annex A 5.1",
+              "heading": "Policies for information security",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.2",
+              "ref": "Annex A 5.2",
+              "heading": "Information security roles and responsibilities",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.3",
+              "ref": "Annex A 5.3",
+              "heading": "Segregation of duties",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.4",
+              "ref": "Annex A 5.4",
+              "heading": "Management responsibilities",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.5",
+              "ref": "Annex A 5.5",
+              "heading": "Contact with authorities",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.6",
+              "ref": "Annex A 5.6",
+              "heading": "Contact with special interest groups",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.7",
+              "ref": "Annex A 5.7",
+              "heading": "Threat intelligence",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.8",
+              "ref": "Annex A 5.8",
+              "heading": "Information security in project management",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.9",
+              "ref": "Annex A 5.9",
+              "heading": "Inventory of information and other associated assets",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.10",
+              "ref": "Annex A 5.10",
+              "heading": "Acceptable use of information and other associated assets",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.11",
+              "ref": "Annex A 5.11",
+              "heading": "Return of assets",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.12",
+              "ref": "Annex A 5.12",
+              "heading": "Classification of information",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.13",
+              "ref": "Annex A 5.13",
+              "heading": "Labelling of information",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.14",
+              "ref": "Annex A 5.14",
+              "heading": "Information transfer",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.15",
+              "ref": "Annex A 5.15",
+              "heading": "Access control",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.16",
+              "ref": "Annex A 5.16",
+              "heading": "Identity management",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.17",
+              "ref": "Annex A 5.17",
+              "heading": "Authentication information",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.18",
+              "ref": "Annex A 5.18",
+              "heading": "Access rights",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.19",
+              "ref": "Annex A 5.19",
+              "heading": "Information security in supplier relationships",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.20",
+              "ref": "Annex A 5.20",
+              "heading": "Addressing information security within supplier agreements",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.21",
+              "ref": "Annex A 5.21",
+              "heading": "Managing information security in the information and communication technology (ICT) supply chain",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.22",
+              "ref": "Annex A 5.22",
+              "heading": "Monitoring, review and change management of supplier services",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.23",
+              "ref": "Annex A 5.23",
+              "heading": "Information security for use of cloud services",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.24",
+              "ref": "Annex A 5.24",
+              "heading": "Information security incident management planning and preparation",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.25",
+              "ref": "Annex A 5.25",
+              "heading": "Assessment and decision on information security events",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.26",
+              "ref": "Annex A 5.26",
+              "heading": "Response to information security incidents",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.27",
+              "ref": "Annex A 5.27",
+              "heading": "Learning from information security incidents",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.28",
+              "ref": "Annex A 5.28",
+              "heading": "Collection of evidence",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.29",
+              "ref": "Annex A 5.29",
+              "heading": "Information security during disruption",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.30",
+              "ref": "Annex A 5.30",
+              "heading": "ICT readiness for business continuity",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.31",
+              "ref": "Annex A 5.31",
+              "heading": "Legal, statutory, regulatory and contractual requirements",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.32",
+              "ref": "Annex A 5.32",
+              "heading": "Intellectual property rights",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.33",
+              "ref": "Annex A 5.33",
+              "heading": "Protection of records",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.34",
+              "ref": "Annex A 5.34",
+              "heading": "Privacy and protection of personal identifiable information (PII)",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.35",
+              "ref": "Annex A 5.35",
+              "heading": "Independent review of information security",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.36",
+              "ref": "Annex A 5.36",
+              "heading": "Compliance with policies, rules and standards for information security",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.5.37",
+              "ref": "Annex A 5.37",
+              "heading": "Documented operating procedures",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "A.6",
+          "ref": "Annex A 6",
+          "heading": "People controls",
+          "text": "",
+          "children": [
+            {
+              "key": "A.6.1",
+              "ref": "Annex A 6.1",
+              "heading": "Screening",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.6.2",
+              "ref": "Annex A 6.2",
+              "heading": "Terms and conditions of employment",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.6.3",
+              "ref": "Annex A 6.3",
+              "heading": "Information security awareness, education and training",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.6.4",
+              "ref": "Annex A 6.4",
+              "heading": "Disciplinary process",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.6.5",
+              "ref": "Annex A 6.5",
+              "heading": "Responsibilities after termination or change of employment",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.6.6",
+              "ref": "Annex A 6.6",
+              "heading": "Confidentiality or non-disclosure agreements",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.6.7",
+              "ref": "Annex A 6.7",
+              "heading": "Remote working",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.6.8",
+              "ref": "Annex A 6.8",
+              "heading": "Information security event reporting",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "A.7",
+          "ref": "Annex A 7",
+          "heading": "Physical controls",
+          "text": "",
+          "children": [
+            {
+              "key": "A.7.1",
+              "ref": "Annex A 7.1",
+              "heading": "Physical security perimeters",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.2",
+              "ref": "Annex A 7.2",
+              "heading": "Physical entry",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.3",
+              "ref": "Annex A 7.3",
+              "heading": "Securing offices, rooms and facilities",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.4",
+              "ref": "Annex A 7.4",
+              "heading": "Physical security monitoring",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.5",
+              "ref": "Annex A 7.5",
+              "heading": "Protecting against physical and environmental threats",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.6",
+              "ref": "Annex A 7.6",
+              "heading": "Working in secure areas",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.7",
+              "ref": "Annex A 7.7",
+              "heading": "Clear desk and clear screen",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.8",
+              "ref": "Annex A 7.8",
+              "heading": "Equipment siting and protection",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.9",
+              "ref": "Annex A 7.9",
+              "heading": "Security of assets off-premises",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.10",
+              "ref": "Annex A 7.10",
+              "heading": "Storage media",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.11",
+              "ref": "Annex A 7.11",
+              "heading": "Supporting utilities",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.12",
+              "ref": "Annex A 7.12",
+              "heading": "Cabling security",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.13",
+              "ref": "Annex A 7.13",
+              "heading": "Equipment maintenance",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.7.14",
+              "ref": "Annex A 7.14",
+              "heading": "Secure disposal or re-use of equipment",
+              "text": "",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "A.8",
+          "ref": "Annex A 8",
+          "heading": "Technological controls",
+          "text": "",
+          "children": [
+            {
+              "key": "A.8.1",
+              "ref": "Annex A 8.1",
+              "heading": "User endpoint devices",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.2",
+              "ref": "Annex A 8.2",
+              "heading": "Privileged access rights",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.3",
+              "ref": "Annex A 8.3",
+              "heading": "Information access restriction",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.4",
+              "ref": "Annex A 8.4",
+              "heading": "Access to source code",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.5",
+              "ref": "Annex A 8.5",
+              "heading": "Secure authentication",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.6",
+              "ref": "Annex A 8.6",
+              "heading": "Capacity management",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.7",
+              "ref": "Annex A 8.7",
+              "heading": "Protection against malware",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.8",
+              "ref": "Annex A 8.8",
+              "heading": "Management of technical vulnerabilities",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.9",
+              "ref": "Annex A 8.9",
+              "heading": "Configuration management",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.10",
+              "ref": "Annex A 8.10",
+              "heading": "Information deletion",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.11",
+              "ref": "Annex A 8.11",
+              "heading": "Data masking",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.12",
+              "ref": "Annex A 8.12",
+              "heading": "Data leakage prevention",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.13",
+              "ref": "Annex A 8.13",
+              "heading": "Information backup",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.14",
+              "ref": "Annex A 8.14",
+              "heading": "Redundancy of information processing facilities",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.15",
+              "ref": "Annex A 8.15",
+              "heading": "Logging",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.16",
+              "ref": "Annex A 8.16",
+              "heading": "Monitoring activities",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.17",
+              "ref": "Annex A 8.17",
+              "heading": "Clock synchronization",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.18",
+              "ref": "Annex A 8.18",
+              "heading": "Use of privileged utility programs",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.19",
+              "ref": "Annex A 8.19",
+              "heading": "Installation of software on operational systems",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.20",
+              "ref": "Annex A 8.20",
+              "heading": "Networks security",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.21",
+              "ref": "Annex A 8.21",
+              "heading": "Security of network services",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.22",
+              "ref": "Annex A 8.22",
+              "heading": "Segregation of networks",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.23",
+              "ref": "Annex A 8.23",
+              "heading": "Web filtering",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.24",
+              "ref": "Annex A 8.24",
+              "heading": "Use of cryptography",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.25",
+              "ref": "Annex A 8.25",
+              "heading": "Secure development life cycle",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.26",
+              "ref": "Annex A 8.26",
+              "heading": "Application security requirements",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.27",
+              "ref": "Annex A 8.27",
+              "heading": "Secure system architecture and engineering principles",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.28",
+              "ref": "Annex A 8.28",
+              "heading": "Secure coding",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.29",
+              "ref": "Annex A 8.29",
+              "heading": "Security testing in development and acceptance",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.30",
+              "ref": "Annex A 8.30",
+              "heading": "Outsourced development",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.31",
+              "ref": "Annex A 8.31",
+              "heading": "Separation of development, test and production environments",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.32",
+              "ref": "Annex A 8.32",
+              "heading": "Change management",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.33",
+              "ref": "Annex A 8.33",
+              "heading": "Test information",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "A.8.34",
+              "ref": "Annex A 8.34",
+              "heading": "Protection of information systems during audit testing",
+              "text": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

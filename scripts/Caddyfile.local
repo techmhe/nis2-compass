@@ -1,0 +1,18 @@
+# Local HTTPS with Caddy's internal CA (self-signed). Run `caddy trust` once to trust the local CA.
+{
+	admin off
+	auto_https disable_redirects
+	storage file_system {$NIS2_ROOT}/.data/caddy
+}
+
+https://nis2.localhost:8443 {
+	tls internal
+	encode zstd gzip
+	request_body {
+		max_size 60MB
+	}
+	header Strict-Transport-Security "max-age=31536000"
+	reverse_proxy 127.0.0.1:8001 {
+		flush_interval -1
+	}
+}

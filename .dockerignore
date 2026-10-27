@@ -1,0 +1,14 @@
+**/.DS_Store
+**/node_modules
+**/__pycache__
+**/.venv
+**/.pytest_cache
+**/.ruff_cache
+frontend/dist
+backend/data
+backend/.env
+.data
+.git
+deploy/.env
+templates
+tools

@@ -1,0 +1,1972 @@
+{
+  "code": "STOERFALLV",
+  "title": "Zwölfte Verordnung zur Durchführung des Bundes-Immissionsschutzgesetzes (Störfall-Verordnung – 12. BImSchV)",
+  "short_title": "Störfall-Verordnung (12. BImSchV)",
+  "kind": "national_ordinance",
+  "jurisdiction": "DE",
+  "language": "de",
+  "version_date": "2026-05-06",
+  "source_url": "https://www.gesetze-im-internet.de/bimschv_12_2000/",
+  "status_note": "In force; original of 26 April 2000 (BGBl. I S. 603), re-promulgated 15 March 2017 (BGBl. I S. 483), last amended by Art. 7 of the act of 3 July 2024 (BGBl. 2024 I Nr. 225); implements the Seveso-III Directive 2012/18/EU. Included: §§ 1–21 and Anhang II (Sicherheitsbericht) and Anhang III (Sicherheitsmanagementsystem); Anhänge I and IV–VII (substance lists, forms) are omitted. Relevant to OT security via § 3(2) Nr. 3 (Eingriffe Unbefugter), § 8/Anhang III and § 9/Anhang II.",
+  "license_note": "Amtliches Werk; nach § 5 Abs. 1 UrhG gemeinfrei. Quelle: gesetze-im-internet.de (XML-Fassung); Stand laut Quelle: Neugefasst durch Bek. v. 15.3.2017 I 483;; zuletzt geändert durch Art. 7 G v. 3.7.2024 I Nr. 225",
+  "provisions": [
+    {
+      "key": "teil1",
+      "ref": "Erster Teil",
+      "heading": "Allgemeine Vorschriften",
+      "text": "",
+      "children": [
+        {
+          "key": "1",
+          "ref": "§ 1",
+          "heading": "Anwendungsbereich",
+          "text": "",
+          "children": [
+            {
+              "key": "1.1",
+              "ref": "§ 1 Abs. 1",
+              "heading": null,
+              "text": "Die Vorschriften dieser Verordnung mit Ausnahme der §§ 9 bis 12 gelten für Betriebsbereiche der unteren und der oberen Klasse. Für Betriebsbereiche der oberen Klasse gelten außerdem die Vorschriften der §§ 9 bis 12.",
+              "children": []
+            },
+            {
+              "key": "1.2",
+              "ref": "§ 1 Abs. 2",
+              "heading": null,
+              "text": "Die zuständige Behörde kann im Einzelfall dem Betreiber eines Betriebsbereichs der unteren Klasse, soweit es zur Verhinderung von Störfällen oder zur Begrenzung ihrer Auswirkungen erforderlich ist, Pflichten nach den §§ 9 bis 12 auferlegen.",
+              "children": []
+            },
+            {
+              "key": "1.3",
+              "ref": "§ 1 Abs. 3",
+              "heading": null,
+              "text": "Die Absätze 1 und 2 gelten nicht für Einrichtungen, Gefahren und Tätigkeiten, die in Artikel 2 Absatz 2 Unterabsatz 1 der Richtlinie 2012/18/EU des Europäischen Parlaments und des Rates vom 4. Juli 2012 zur Beherrschung der Gefahren schwerer Unfälle mit gefährlichen Stoffen, zur Änderung und anschließenden Aufhebung der Richtlinie 96/82/EG des Rates (ABl. L 197 vom 24.7.2012, S. 1) genannt sind, es sei denn, es handelt sich um eine in Artikel 2 Absatz 2 Unterabsatz 2 der Richtlinie 2012/18/EU genannte Einrichtung, Gefahr oder Tätigkeit.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "2",
+          "ref": "§ 2",
+          "heading": "Begriffsbestimmungen",
+          "text": "Im Sinne dieser Verordnung sind",
+          "children": [
+            {
+              "key": "2.1",
+              "ref": "§ 2 Nr. 1",
+              "heading": null,
+              "text": "Betriebsbereich der unteren Klasse:\nein Betriebsbereich, in dem gefährliche Stoffe in Mengen vorhanden sind, die die in Spalte 4 der Stoffliste in Anhang I genannten Mengenschwellen erreichen oder überschreiten, aber die in Spalte 5 der Stoffliste in Anhang I genannten Mengenschwellen unterschreiten;",
+              "children": []
+            },
+            {
+              "key": "2.2",
+              "ref": "§ 2 Nr. 2",
+              "heading": null,
+              "text": "Betriebsbereich der oberen Klasse:\nein Betriebsbereich, in dem gefährliche Stoffe in Mengen vorhanden sind, die die in Spalte 5 der Stoffliste in Anhang I genannten Mengenschwellen erreichen oder überschreiten;",
+              "children": []
+            },
+            {
+              "key": "2.3",
+              "ref": "§ 2 Nr. 3",
+              "heading": null,
+              "text": "benachbarter Betriebsbereich:\nein Betriebsbereich, der sich so nah bei einem anderen Betriebsbereich befindet, dass dadurch das Risiko oder die Folgen eines Störfalls vergrößert werden;",
+              "children": []
+            },
+            {
+              "key": "2.4",
+              "ref": "§ 2 Nr. 4",
+              "heading": null,
+              "text": "gefährliche Stoffe:\nStoffe oder Gemische, die in Anhang I aufgeführt sind oder die dort festgelegten Kriterien erfüllen, einschließlich in Form von Rohstoffen, Endprodukten, Nebenprodukten, Rückständen oder Zwischenprodukten;",
+              "children": []
+            },
+            {
+              "key": "2.5",
+              "ref": "§ 2 Nr. 5",
+              "heading": null,
+              "text": "Vorhandensein gefährlicher Stoffe:\ndas tatsächliche oder vorgesehene Vorhandensein gefährlicher Stoffe oder ihr Vorhandensein im Betriebsbereich, soweit vernünftigerweise vorhersehbar ist, dass sie bei außer Kontrolle geratenen Prozessen, auch bei Lagerung in einer Anlage innerhalb des Betriebsbereichs, anfallen, und zwar in Mengen, die die in Anhang I genannten Mengenschwellen erreichen oder überschreiten;",
+              "children": []
+            },
+            {
+              "key": "2.6",
+              "ref": "§ 2 Nr. 6",
+              "heading": null,
+              "text": "Ereignis:\nStörung des bestimmungsgemäßen Betriebs in einem Betriebsbereich unter Beteiligung eines oder mehrerer gefährlicher Stoffe;",
+              "children": []
+            },
+            {
+              "key": "2.7",
+              "ref": "§ 2 Nr. 7",
+              "heading": null,
+              "text": "Störfall:\nein Ereignis, das unmittelbar oder später innerhalb oder außerhalb des Betriebsbereichs zu einer ernsten Gefahr oder zu Sachschäden nach Anhang VI Teil 1 Ziffer I Nummer 4 führt;",
+              "children": []
+            },
+            {
+              "key": "2.8",
+              "ref": "§ 2 Nr. 8",
+              "heading": null,
+              "text": "ernste Gefahr:\neine Gefahr, bei der",
+              "children": [
+                {
+                  "key": "2.8.a",
+                  "ref": "§ 2 Nr. 8 Buchst. a",
+                  "heading": null,
+                  "text": "das Leben von Menschen bedroht wird oder schwerwiegende Gesundheitsbeeinträchtigungen von Menschen zu befürchten sind,",
+                  "children": []
+                },
+                {
+                  "key": "2.8.b",
+                  "ref": "§ 2 Nr. 8 Buchst. b",
+                  "heading": null,
+                  "text": "die Gesundheit einer großen Zahl von Menschen beeinträchtigt werden kann oder",
+                  "children": []
+                },
+                {
+                  "key": "2.8.c",
+                  "ref": "§ 2 Nr. 8 Buchst. c",
+                  "heading": null,
+                  "text": "die Umwelt, insbesondere Tiere und Pflanzen, der Boden, das Wasser, die Atmosphäre sowie Kultur- oder sonstige Sachgüter geschädigt werden können, falls durch eine Veränderung ihres Bestandes oder ihrer Nutzbarkeit das Gemeinwohl beeinträchtigt würde;",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "2.9",
+              "ref": "§ 2 Nr. 9",
+              "heading": null,
+              "text": "Überwachungssystem:\numfasst den Überwachungsplan, das Überwachungsprogramm und die Vor-Ort-Besichtigung sowie alle Maßnahmen, die von der zuständigen Behörde oder in ihrem Namen durchgeführt werden, um die Einhaltung der Bestimmungen dieser Verordnung durch die Betriebsbereiche zu überprüfen und zu fördern;",
+              "children": []
+            },
+            {
+              "key": "2.10",
+              "ref": "§ 2 Nr. 10",
+              "heading": null,
+              "text": "Stand der Sicherheitstechnik:\nder Entwicklungsstand fortschrittlicher Verfahren, Einrichtungen und Betriebsweisen, der die praktische Eignung einer Maßnahme zur Verhinderung von Störfällen oder zur Begrenzung ihrer Auswirkungen gesichert erscheinen lässt. Bei der Bestimmung des Standes der Sicherheitstechnik sind insbesondere vergleichbare Verfahren, Einrichtungen oder Betriebsweisen heranzuziehen, die mit Erfolg im Betrieb erprobt worden sind.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "teil2",
+      "ref": "Zweiter Teil",
+      "heading": "Vorschriften für Betriebsbereiche",
+      "text": "",
+      "children": [
+        {
+          "key": "teil2.abschn1",
+          "ref": "Erster Abschnitt",
+          "heading": "Grundpflichten",
+          "text": "",
+          "children": [
+            {
+              "key": "3",
+              "ref": "§ 3",
+              "heading": "Allgemeine Betreiberpflichten",
+              "text": "",
+              "children": [
+                {
+                  "key": "3.1",
+                  "ref": "§ 3 Abs. 1",
+                  "heading": null,
+                  "text": "Der Betreiber hat die nach Art und Ausmaß der möglichen Gefahren erforderlichen Vorkehrungen zu treffen, um Störfälle zu verhindern; Verpflichtungen nach anderen als immissionsschutzrechtlichen Vorschriften bleiben unberührt.",
+                  "children": []
+                },
+                {
+                  "key": "3.2",
+                  "ref": "§ 3 Abs. 2",
+                  "heading": null,
+                  "text": "Bei der Erfüllung der Pflicht nach Absatz 1 sind\nzu berücksichtigen, es sei denn, dass diese Gefahrenquellen oder Eingriffe als Störfallursachen vernünftigerweise ausgeschlossen werden können.",
+                  "children": [
+                    {
+                      "key": "3.2.1",
+                      "ref": "§ 3 Abs. 2 Nr. 1",
+                      "heading": null,
+                      "text": "betriebliche Gefahrenquellen,",
+                      "children": []
+                    },
+                    {
+                      "key": "3.2.2",
+                      "ref": "§ 3 Abs. 2 Nr. 2",
+                      "heading": null,
+                      "text": "umgebungsbedingte Gefahrenquellen, wie Erdbeben oder Hochwasser, und",
+                      "children": []
+                    },
+                    {
+                      "key": "3.2.3",
+                      "ref": "§ 3 Abs. 2 Nr. 3",
+                      "heading": null,
+                      "text": "Eingriffe Unbefugter",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "3.3",
+                  "ref": "§ 3 Abs. 3",
+                  "heading": null,
+                  "text": "Über Absatz 1 hinaus sind vorbeugend Maßnahmen zu treffen, um die Auswirkungen von Störfällen so gering wie möglich zu halten.",
+                  "children": []
+                },
+                {
+                  "key": "3.4",
+                  "ref": "§ 3 Abs. 4",
+                  "heading": null,
+                  "text": "Die Beschaffenheit und der Betrieb der Anlagen des Betriebsbereichs müssen dem Stand der Sicherheitstechnik entsprechen.",
+                  "children": []
+                },
+                {
+                  "key": "3.5",
+                  "ref": "§ 3 Abs. 5",
+                  "heading": null,
+                  "text": "Die Wahrung angemessener Sicherheitsabstände zwischen Betriebsbereich und benachbarten Schutzobjekten stellt keine Betreiberpflicht dar.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "4",
+              "ref": "§ 4",
+              "heading": "Anforderungen zur Verhinderung von Störfällen",
+              "text": "Der Betreiber hat zur Erfüllung der sich aus § 3 Absatz 1 ergebenden Pflicht insbesondere",
+              "children": [
+                {
+                  "key": "4.1",
+                  "ref": "§ 4 Nr. 1",
+                  "heading": null,
+                  "text": "Maßnahmen zu treffen, damit Brände und Explosionen",
+                  "children": [
+                    {
+                      "key": "4.1.a",
+                      "ref": "§ 4 Nr. 1 Buchst. a",
+                      "heading": null,
+                      "text": "innerhalb des Betriebsbereichs vermieden werden,",
+                      "children": []
+                    },
+                    {
+                      "key": "4.1.b",
+                      "ref": "§ 4 Nr. 1 Buchst. b",
+                      "heading": null,
+                      "text": "nicht in einer die Sicherheit beeinträchtigenden Weise von einer Anlage auf andere Anlagen des Betriebsbereichs einwirken können und",
+                      "children": []
+                    },
+                    {
+                      "key": "4.1.c",
+                      "ref": "§ 4 Nr. 1 Buchst. c",
+                      "heading": null,
+                      "text": "nicht in einer die Sicherheit des Betriebsbereichs beeinträchtigenden Weise von außen auf ihn einwirken können,",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "4.1a",
+                  "ref": "§ 4 Nr. 1a",
+                  "heading": null,
+                  "text": "Maßnahmen zu treffen, damit Freisetzungen gefährlicher Stoffe in Luft, Wasser oder Boden vermieden werden,",
+                  "children": []
+                },
+                {
+                  "key": "4.2",
+                  "ref": "§ 4 Nr. 2",
+                  "heading": null,
+                  "text": "den Betriebsbereich mit ausreichenden Warn-, Alarm- und Sicherheitseinrichtungen auszurüsten,",
+                  "children": []
+                },
+                {
+                  "key": "4.3",
+                  "ref": "§ 4 Nr. 3",
+                  "heading": null,
+                  "text": "die Anlagen des Betriebsbereichs mit zuverlässigen Messeinrichtungen und Steuer- oder Regeleinrichtungen auszustatten, die, soweit dies sicherheitstechnisch geboten ist, jeweils mehrfach vorhanden, verschiedenartig und voneinander unabhängig sind,",
+                  "children": []
+                },
+                {
+                  "key": "4.4",
+                  "ref": "§ 4 Nr. 4",
+                  "heading": null,
+                  "text": "die sicherheitsrelevanten Teile des Betriebsbereichs vor Eingriffen Unbefugter zu schützen.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "5",
+              "ref": "§ 5",
+              "heading": "Anforderungen zur Begrenzung von Störfallauswirkungen",
+              "text": "",
+              "children": [
+                {
+                  "key": "5.1",
+                  "ref": "§ 5 Abs. 1",
+                  "heading": null,
+                  "text": "Der Betreiber hat zur Erfüllung der sich aus § 3 Absatz 3 ergebenden Pflicht insbesondere",
+                  "children": [
+                    {
+                      "key": "5.1.1",
+                      "ref": "§ 5 Abs. 1 Nr. 1",
+                      "heading": null,
+                      "text": "Maßnahmen zu treffen, damit durch die Beschaffenheit der Fundamente und der tragenden Gebäudeteile bei Störfällen keine zusätzlichen Gefahren hervorgerufen werden können,",
+                      "children": []
+                    },
+                    {
+                      "key": "5.1.2",
+                      "ref": "§ 5 Abs. 1 Nr. 2",
+                      "heading": null,
+                      "text": "die Anlagen des Betriebsbereichs mit den erforderlichen sicherheitstechnischen Einrichtungen auszurüsten sowie die erforderlichen technischen und organisatorischen Schutzvorkehrungen zu treffen.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "5.2",
+                  "ref": "§ 5 Abs. 2",
+                  "heading": null,
+                  "text": "Der Betreiber hat dafür zu sorgen, dass in einem Störfall die für die Gefahrenabwehr zuständigen Behörden und die Einsatzkräfte unverzüglich, umfassend und sachkundig beraten werden.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "6",
+              "ref": "§ 6",
+              "heading": "Ergänzende Anforderungen",
+              "text": "",
+              "children": [
+                {
+                  "key": "6.1",
+                  "ref": "§ 6 Abs. 1",
+                  "heading": null,
+                  "text": "Der Betreiber hat zur Erfüllung der sich aus § 3 Absatz 1 oder 3 ergebenden Pflichten über die in den §§ 4 und 5 genannten Anforderungen hinaus",
+                  "children": [
+                    {
+                      "key": "6.1.1",
+                      "ref": "§ 6 Abs. 1 Nr. 1",
+                      "heading": null,
+                      "text": "die Errichtung und den Betrieb der sicherheitsrelevanten Anlagenteile zu prüfen sowie die Anlagen des Betriebsbereichs in sicherheitstechnischer Hinsicht ständig zu überwachen und regelmäßig zu warten,",
+                      "children": []
+                    },
+                    {
+                      "key": "6.1.2",
+                      "ref": "§ 6 Abs. 1 Nr. 2",
+                      "heading": null,
+                      "text": "die Wartungs- und Reparaturarbeiten nach dem Stand der Technik durchzuführen,",
+                      "children": []
+                    },
+                    {
+                      "key": "6.1.3",
+                      "ref": "§ 6 Abs. 1 Nr. 3",
+                      "heading": null,
+                      "text": "die erforderlichen sicherheitstechnischen Vorkehrungen zur Vermeidung von Fehlbedienungen zu treffen,",
+                      "children": []
+                    },
+                    {
+                      "key": "6.1.4",
+                      "ref": "§ 6 Abs. 1 Nr. 4",
+                      "heading": null,
+                      "text": "durch geeignete Bedienungs- und Sicherheitsanweisungen und durch Schulung des Personals Fehlverhalten vorzubeugen.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "6.2",
+                  "ref": "§ 6 Abs. 2",
+                  "heading": null,
+                  "text": "Die Betreiber der nach § 15 festgelegten Betriebsbereiche haben im Benehmen mit den zuständigen Behörden",
+                  "children": [
+                    {
+                      "key": "6.2.1",
+                      "ref": "§ 6 Abs. 2 Nr. 1",
+                      "heading": null,
+                      "text": "untereinander alle erforderlichen Informationen auszutauschen, damit sie in ihrem Konzept zur Verhinderung von Störfällen, in ihren Sicherheitsmanagementsystemen, in ihren Sicherheitsberichten und ihren internen Alarm- und Gefahrenabwehrplänen der Art und dem Ausmaß der Gesamtgefahr eines Störfalls Rechnung tragen können, und",
+                      "children": []
+                    },
+                    {
+                      "key": "6.2.2",
+                      "ref": "§ 6 Abs. 2 Nr. 2",
+                      "heading": null,
+                      "text": "zur Information der Öffentlichkeit und benachbarter Betriebsstätten, die nicht unter den Anwendungsbereich dieser Verordnung fallen, sowie zur Übermittlung von Angaben an die für die Erstellung von externen Alarm- und Gefahrenabwehrplänen zuständige Behörde zusammenzuarbeiten.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "6.3",
+                  "ref": "§ 6 Abs. 3",
+                  "heading": null,
+                  "text": "Der Betreiber hat der zuständigen Behörde auf Verlangen genügend Informationen zu liefern, die notwendig sind, damit die Behörde",
+                  "children": [
+                    {
+                      "key": "6.3.1",
+                      "ref": "§ 6 Abs. 3 Nr. 1",
+                      "heading": null,
+                      "text": "die Möglichkeit des Eintritts eines Störfalls in voller Sachkenntnis beurteilen kann,",
+                      "children": []
+                    },
+                    {
+                      "key": "6.3.2",
+                      "ref": "§ 6 Abs. 3 Nr. 2",
+                      "heading": null,
+                      "text": "ermitteln kann, inwieweit sich die Wahrscheinlichkeit des Eintritts eines Störfalls erhöhen kann oder die Auswirkungen eines Störfalls verschlimmern können,",
+                      "children": []
+                    },
+                    {
+                      "key": "6.3.3",
+                      "ref": "§ 6 Abs. 3 Nr. 3",
+                      "heading": null,
+                      "text": "Entscheidungen über die Ansiedlung oder die störfallrelevante Änderung von Betriebsbereichen sowie über Entwicklungen in der Nachbarschaft von Betriebsbereichen treffen kann,",
+                      "children": []
+                    },
+                    {
+                      "key": "6.3.4",
+                      "ref": "§ 6 Abs. 3 Nr. 4",
+                      "heading": null,
+                      "text": "externe Alarm- und Gefahrenabwehrpläne erstellen kann und",
+                      "children": []
+                    },
+                    {
+                      "key": "6.3.5",
+                      "ref": "§ 6 Abs. 3 Nr. 5",
+                      "heading": null,
+                      "text": "Stoffe berücksichtigen kann, die auf Grund ihrer physikalischen Form, ihrer besonderen Merkmale oder des Ortes, an dem sie vorhanden sind, zusätzliche Vorkehrungen erfordern.",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "7",
+              "ref": "§ 7",
+              "heading": "Anzeige",
+              "text": "",
+              "children": [
+                {
+                  "key": "7.1",
+                  "ref": "§ 7 Abs. 1",
+                  "heading": null,
+                  "text": "Der Betreiber hat der zuständigen Behörde mindestens einen Monat vor Beginn der Errichtung eines Betriebsbereichs, oder vor einer störfallrelevanten Änderung nach § 3 Absatz 5b des Bundes-Immissionsschutzgesetzes, Folgendes schriftlich anzuzeigen:",
+                  "children": [
+                    {
+                      "key": "7.1.1",
+                      "ref": "§ 7 Abs. 1 Nr. 1",
+                      "heading": null,
+                      "text": "Name oder Firma des Betreibers sowie vollständige Anschrift des betreffenden Betriebsbereichs,",
+                      "children": []
+                    },
+                    {
+                      "key": "7.1.2",
+                      "ref": "§ 7 Abs. 1 Nr. 2",
+                      "heading": null,
+                      "text": "eingetragener Firmensitz und vollständige Anschrift des Betreibers,",
+                      "children": []
+                    },
+                    {
+                      "key": "7.1.3",
+                      "ref": "§ 7 Abs. 1 Nr. 3",
+                      "heading": null,
+                      "text": "Name und Funktion der für den Betriebsbereich verantwortlichen Person, falls von der unter Nummer 1 genannten Person abweichend,",
+                      "children": []
+                    },
+                    {
+                      "key": "7.1.4",
+                      "ref": "§ 7 Abs. 1 Nr. 4",
+                      "heading": null,
+                      "text": "ausreichende Angaben zur Identifizierung der gefährlichen Stoffe und der Gefahrenkategorie von Stoffen, die gemäß § 2 Nummer 5 vorhanden sind,",
+                      "children": []
+                    },
+                    {
+                      "key": "7.1.5",
+                      "ref": "§ 7 Abs. 1 Nr. 5",
+                      "heading": null,
+                      "text": "Menge und physikalische Form der gefährlichen Stoffe,",
+                      "children": []
+                    },
+                    {
+                      "key": "7.1.6",
+                      "ref": "§ 7 Abs. 1 Nr. 6",
+                      "heading": null,
+                      "text": "Tätigkeit oder beabsichtigte Tätigkeit in den Anlagen des Betriebsbereichs,",
+                      "children": []
+                    },
+                    {
+                      "key": "7.1.7",
+                      "ref": "§ 7 Abs. 1 Nr. 7",
+                      "heading": null,
+                      "text": "Gegebenheiten in der unmittelbaren Umgebung des Betriebsbereichs, die einen Störfall auslösen oder dessen Folgen verschlimmern können, einschließlich, soweit verfügbar, Einzelheiten zu",
+                      "children": [
+                        {
+                          "key": "7.1.7.a",
+                          "ref": "§ 7 Abs. 1 Nr. 7 Buchst. a",
+                          "heading": null,
+                          "text": "benachbarten Betriebsbereichen,",
+                          "children": []
+                        },
+                        {
+                          "key": "7.1.7.b",
+                          "ref": "§ 7 Abs. 1 Nr. 7 Buchst. b",
+                          "heading": null,
+                          "text": "anderen Betriebsstätten, die nicht unter den Anwendungsbereich dieser Verordnung fallen, und",
+                          "children": []
+                        },
+                        {
+                          "key": "7.1.7.c",
+                          "ref": "§ 7 Abs. 1 Nr. 7 Buchst. c",
+                          "heading": null,
+                          "text": "Bereichen und Entwicklungen, von denen ein Störfall ausgehen könnte oder bei denen sich die Wahrscheinlichkeit des Eintritts eines Störfalls erhöhen kann oder die Auswirkungen eines Störfalls und von Domino-Effekten nach § 15 verschlimmern können.",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "key": "7.2",
+                  "ref": "§ 7 Abs. 2",
+                  "heading": null,
+                  "text": "Der Betreiber hat der zuständigen Behörde folgende Änderungen mindestens einen Monat vorher schriftlich anzuzeigen:",
+                  "children": [
+                    {
+                      "key": "7.2.1",
+                      "ref": "§ 7 Abs. 2 Nr. 1",
+                      "heading": null,
+                      "text": "Änderungen der Angaben nach Absatz 1 Nummer 1 bis 3 und",
+                      "children": []
+                    },
+                    {
+                      "key": "7.2.2",
+                      "ref": "§ 7 Abs. 2 Nr. 2",
+                      "heading": null,
+                      "text": "die Einstellung des Betriebs, des Betriebsbereichs oder einer Anlage des Betriebsbereichs.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "7.3",
+                  "ref": "§ 7 Abs. 3",
+                  "heading": null,
+                  "text": "Der Betreiber hat der zuständigen Behörde störfallrelevante Änderungen nach § 3 Absatz 5b des Bundes-Immissionsschutzgesetzes schriftlich anzuzeigen.",
+                  "children": []
+                },
+                {
+                  "key": "7.4",
+                  "ref": "§ 7 Abs. 4",
+                  "heading": null,
+                  "text": "Einer gesonderten Anzeige bedarf es nicht, soweit der Betreiber die entsprechenden Angaben der zuständigen Behörde nach Absatz 1 im Rahmen eines Genehmigungs- oder Anzeigeverfahrens vorgelegt hat.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "8",
+              "ref": "§ 8",
+              "heading": "Konzept zur Verhinderung von Störfällen",
+              "text": "",
+              "children": [
+                {
+                  "key": "8.1",
+                  "ref": "§ 8 Abs. 1",
+                  "heading": null,
+                  "text": "Der Betreiber hat vor Inbetriebnahme ein schriftliches Konzept zur Verhinderung von Störfällen auszuarbeiten und es der zuständigen Behörde auf Verlangen vorzulegen. Bei Betriebsbereichen der oberen Klasse kann das Konzept Bestandteil des Sicherheitsberichts sein.",
+                  "children": []
+                },
+                {
+                  "key": "8.2",
+                  "ref": "§ 8 Abs. 2",
+                  "heading": null,
+                  "text": "Das Konzept soll ein hohes Schutzniveau für die menschliche Gesundheit und die Umwelt gewährleisten und den Gefahren von Störfällen im Betriebsbereich angemessen sein. Es muss die übergeordneten Ziele und Handlungsgrundsätze des Betreibers, die Rolle und die Verantwortung der Leitung des Betriebsbereichs umfassen sowie die Verpflichtung beinhalten, die Beherrschung der Gefahren von Störfällen ständig zu verbessern und ein hohes Schutzniveau zu gewährleisten.",
+                  "children": []
+                },
+                {
+                  "key": "8.3",
+                  "ref": "§ 8 Abs. 3",
+                  "heading": null,
+                  "text": "Der Betreiber hat die Umsetzung des Konzeptes durch angemessene Mittel und Strukturen sowie durch ein Sicherheitsmanagementsystem nach Anhang III sicherzustellen.",
+                  "children": []
+                },
+                {
+                  "key": "8.4",
+                  "ref": "§ 8 Abs. 4",
+                  "heading": null,
+                  "text": "Der Betreiber hat das Konzept, das Sicherheitsmanagementsystem nach Anhang III sowie die Verfahren zu dessen Umsetzung zu überprüfen und soweit erforderlich zu aktualisieren, und zwar",
+                  "children": [
+                    {
+                      "key": "8.4.1",
+                      "ref": "§ 8 Abs. 4 Nr. 1",
+                      "heading": null,
+                      "text": "mindestens alle fünf Jahre nach erstmaliger Erstellung oder Änderung,",
+                      "children": []
+                    },
+                    {
+                      "key": "8.4.2",
+                      "ref": "§ 8 Abs. 4 Nr. 2",
+                      "heading": null,
+                      "text": "vor einer Änderung nach § 7 Absatz 3 und",
+                      "children": []
+                    },
+                    {
+                      "key": "8.4.3",
+                      "ref": "§ 8 Abs. 4 Nr. 3",
+                      "heading": null,
+                      "text": "unverzüglich nach einem Ereignis nach Anhang VI Teil 1.",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "key": "8a",
+              "ref": "§ 8a",
+              "heading": "Information der Öffentlichkeit",
+              "text": "",
+              "children": [
+                {
+                  "key": "8a.1",
+                  "ref": "§ 8a Abs. 1",
+                  "heading": null,
+                  "text": "Der Betreiber hat der Öffentlichkeit die Angaben nach Anhang V Teil 1 ständig zugänglich zu machen, auch auf elektronischem Weg. Die Angaben sind insbesondere bei einer störfallrelevanten Änderung nach § 3 Absatz 5b des Bundes-Immissionsschutzgesetzes auf dem neuesten Stand zu halten. Die Informationspflicht ist mindestens einen Monat vor Inbetriebnahme eines Betriebsbereichs oder vor störfallrelevanten Änderungen nach § 3 Absatz 5b des Bundes-Immissionsschutzgesetzes zu erfüllen. Andere öffentlich-rechtliche Vorschriften zur Information der Öffentlichkeit bleiben unberührt.",
+                  "children": []
+                },
+                {
+                  "key": "8a.2",
+                  "ref": "§ 8a Abs. 2",
+                  "heading": null,
+                  "text": "Mit Zustimmung der zuständigen Behörde darf aus Gründen des Schutzes öffentlicher oder privater Belange nach den Bestimmungen des Bundes und der Länder über den Zugang zu Umweltinformationen von der Veröffentlichung von Informationen gemäß Absatz 1 abgesehen werden.",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "teil2.abschn2",
+          "ref": "Zweiter Abschnitt",
+          "heading": "Erweiterte Pflichten",
+          "text": "",
+          "children": [
+            {
+              "key": "9",
+              "ref": "§ 9",
+              "heading": "Sicherheitsbericht",
+              "text": "",
+              "children": [
+                {
+                  "key": "9.1",
+                  "ref": "§ 9 Abs. 1",
+                  "heading": null,
+                  "text": "Der Betreiber eines Betriebsbereichs der oberen Klasse hat einen Sicherheitsbericht nach Absatz 2 zu erstellen, in dem dargelegt wird, dass",
+                  "children": [
+                    {
+                      "key": "9.1.1",
+                      "ref": "§ 9 Abs. 1 Nr. 1",
+                      "heading": null,
+                      "text": "ein Konzept zur Verhinderung von Störfällen umgesetzt wurde und ein Sicherheitsmanagementsystem zu seiner Anwendung gemäß Anhang III vorhanden ist und umgesetzt wurde,",
+                      "children": []
+                    },
+                    {
+                      "key": "9.1.2",
+                      "ref": "§ 9 Abs. 1 Nr. 2",
+                      "heading": null,
+                      "text": "die Gefahren von Störfällen und mögliche Störfallszenarien ermittelt sowie alle erforderlichen Maßnahmen zur Verhinderung derartiger Störfälle und zur Begrenzung ihrer Auswirkungen auf die menschliche Gesundheit und die Umwelt ergriffen wurden,",
+                      "children": []
+                    },
+                    {
+                      "key": "9.1.3",
+                      "ref": "§ 9 Abs. 1 Nr. 3",
+                      "heading": null,
+                      "text": "die Auslegung, die Errichtung sowie der Betrieb und die Wartung sämtlicher Teile eines Betriebsbereichs, die im Zusammenhang mit der Gefahr von Störfällen im Betriebsbereich stehen, ausreichend sicher und zuverlässig sind,",
+                      "children": []
+                    },
+                    {
+                      "key": "9.1.4",
+                      "ref": "§ 9 Abs. 1 Nr. 4",
+                      "heading": null,
+                      "text": "interne Alarm- und Gefahrenabwehrpläne vorliegen und die erforderlichen Informationen zur Erstellung externer Alarm- und Gefahrenabwehrpläne gegeben werden sowie",
+                      "children": []
+                    },
+                    {
+                      "key": "9.1.5",
+                      "ref": "§ 9 Abs. 1 Nr. 5",
+                      "heading": null,
+                      "text": "ausreichende Informationen bereitgestellt werden, damit die zuständige Behörde Entscheidungen über die Ansiedlung neuer Tätigkeiten oder Entwicklungen in der Nachbarschaft bestehender Betriebsbereiche treffen kann.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "9.2",
+                  "ref": "§ 9 Abs. 2",
+                  "heading": null,
+                  "text": "Der Sicherheitsbericht enthält mindestens die in Anhang II aufgeführten Angaben und Informationen. Er führt die Namen der an der Erstellung des Berichts maßgeblich Beteiligten auf. Er enthält ferner ein Verzeichnis der in dem Betriebsbereich vorhandenen gefährlichen Stoffe auf der Grundlage der Bezeichnungen und Einstufungen in Spalte 2 der Stoffliste des Anhangs I.",
+                  "children": []
+                },
+                {
+                  "key": "9.3",
+                  "ref": "§ 9 Abs. 3",
+                  "heading": null,
+                  "text": "Der Betreiber kann auf Grund anderer Rechtsvorschriften vorzulegende gleichwertige Berichte oder Teile solcher Berichte zu einem einzigen Sicherheitsbericht im Sinne dieses Paragraphen zusammenfassen, sofern alle Anforderungen dieses Paragraphen beachtet werden.",
+                  "children": []
+                },
+                {
+                  "key": "9.4",
+                  "ref": "§ 9 Abs. 4",
+                  "heading": null,
+                  "text": "Der Betreiber hat der zuständigen Behörde den Sicherheitsbericht nach den Absätzen 1 und 2 unbeschadet des § 4b Absatz 2 Satz 1 der Verordnung über das Genehmigungsverfahren innerhalb einer angemessenen, von der zuständigen Behörde gesetzten Frist vor Inbetriebnahme vorzulegen.",
+                  "children": []
+                },
+                {
+                  "key": "9.5",
+                  "ref": "§ 9 Abs. 5",
+                  "heading": null,
+                  "text": "Der Betreiber hat den Sicherheitsbericht zu überprüfen und soweit erforderlich zu aktualisieren, und zwar:\nSoweit sich bei der Überprüfung nach Satz 1 herausstellt, dass sich erhebliche Auswirkungen hinsichtlich der mit einem Störfall verbundenen Gefahren ergeben könnten, hat der Betreiber den Sicherheitsbericht unverzüglich zu aktualisieren. Er hat der zuständigen Behörde die aktualisierten Teile des Sicherheitsberichts in Fällen der Nummern 1, 3 und 4 unverzüglich und in Fällen der Nummer 2 mindestens einen Monat vor Durchführung der Änderung vorzulegen.",
+                  "children": [
+                    {
+                      "key": "9.5.1",
+                      "ref": "§ 9 Abs. 5 Nr. 1",
+                      "heading": null,
+                      "text": "mindestens alle fünf Jahre,",
+                      "children": []
+                    },
+                    {
+                      "key": "9.5.2",
+                      "ref": "§ 9 Abs. 5 Nr. 2",
+                      "heading": null,
+                      "text": "bei einer störfallrelevanten Änderung nach § 3 Absatz 5b des Bundes-Immissionsschutzgesetzes,",
+                      "children": []
+                    },
+                    {
+                      "key": "9.5.3",
+                      "ref": "§ 9 Abs. 5 Nr. 3",
+                      "heading": null,
+                      "text": "nach einem Ereignis nach Anhang VI Teil 1 und",
+                      "children": []
+                    },
+                    {
+                      "key": "9.5.4",
+                      "ref": "§ 9 Abs. 5 Nr. 4",
+                      "heading": null,
+                      "text": "zu jedem anderen Zeitpunkt, wenn neue Umstände dies erfordern, oder um den neuen sicherheitstechnischen Kenntnisstand sowie aktuelle Erkenntnisse zur Beurteilung der Gefahren zu berücksichtigen.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "9.6",
+                  "ref": "§ 9 Abs. 6",
+                  "heading": null,
+                  "text": "(weggefallen)",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "10",
+              "ref": "§ 10",
+              "heading": "Alarm- und Gefahrenabwehrpläne",
+              "text": "",
+              "children": [
+                {
+                  "key": "10.1",
+                  "ref": "§ 10 Abs. 1",
+                  "heading": null,
+                  "text": "Der Betreiber eines Betriebsbereichs der oberen Klasse hat nach Maßgabe des Satzes 2\nDie Pflichten nach Satz 1 sind mindestens einen Monat vor Inbetriebnahme eines Betriebsbereichs oder vor Änderungen der Anlage oder der Tätigkeiten, auf Grund derer der Betriebsbereich unter den Anwendungsbereich dieser Verordnung fällt oder auf Grund derer ein Betriebsbereich der unteren Klasse zu einem Betriebsbereich der oberen Klasse wird, zu erfüllen.",
+                  "children": [
+                    {
+                      "key": "10.1.1",
+                      "ref": "§ 10 Abs. 1 Nr. 1",
+                      "heading": null,
+                      "text": "interne Alarm- und Gefahrenabwehrpläne zu erstellen, die die in Anhang IV aufgeführten Informationen enthalten müssen, und",
+                      "children": []
+                    },
+                    {
+                      "key": "10.1.2",
+                      "ref": "§ 10 Abs. 1 Nr. 2",
+                      "heading": null,
+                      "text": "der zuständigen Behörde die für die Erstellung externer Alarm- und Gefahrenabwehrpläne erforderlichen Informationen zu übermitteln.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "10.2",
+                  "ref": "§ 10 Abs. 2",
+                  "heading": null,
+                  "text": "Wenn das Hoheitsgebiet eines anderen Staates von den Auswirkungen eines Störfalls betroffen werden kann, hat der Betreiber der zuständigen Behörde nach Absatz 1 Nummer 2 entsprechende Mehrausfertigungen der für die Erstellung externer Alarm- und Gefahrenabwehrpläne erforderlichen Informationen zur Weiterleitung an die zuständige Behörde des anderen Staates zu übermitteln.",
+                  "children": []
+                },
+                {
+                  "key": "10.3",
+                  "ref": "§ 10 Abs. 3",
+                  "heading": null,
+                  "text": "Vor der Erstellung der internen Alarm- und Gefahrenabwehrpläne hat der Betreiber die Beschäftigten des Betriebsbereichs über die vorgesehenen Inhalte zu unterrichten und hierzu anzuhören. Er hat die Beschäftigten ferner vor ihrer erstmaligen Beschäftigungsaufnahme und danach mindestens alle drei Jahre über die für sie in den internen Alarm- und Gefahrenabwehrplänen für den Störfall enthaltenen Verhaltensregeln zu unterweisen. Die Pflichten aus den Sätzen 1 und 2 gelten sinngemäß auch gegenüber dem nicht nur vorübergehend beschäftigten Personal von Subunternehmen.",
+                  "children": []
+                },
+                {
+                  "key": "10.4",
+                  "ref": "§ 10 Abs. 4",
+                  "heading": null,
+                  "text": "Der Betreiber hat die internen Alarm- und Gefahrenabwehrpläne in Abständen von höchstens drei Jahren zu überprüfen und zu erproben. Bei der Überprüfung sind Veränderungen im betreffenden Betriebsbereich und in den betreffenden Notdiensten, neue technische Erkenntnisse und Erkenntnisse darüber, wie bei Störfällen zu handeln ist, zu berücksichtigen. Soweit sich bei der Überprüfung nach Satz 1 herausstellt, dass sich erhebliche Auswirkungen hinsichtlich der bei einem Störfall zu treffenden Maßnahmen ergeben könnten, hat der Betreiber die Alarm- und Gefahrenabwehrpläne unverzüglich zu aktualisieren. Absatz 1 Satz 1 Nummer 2 und Absatz 2 gelten entsprechend.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "11",
+              "ref": "§ 11",
+              "heading": "Weitergehende Information der Öffentlichkeit",
+              "text": "",
+              "children": [
+                {
+                  "key": "11.1",
+                  "ref": "§ 11 Abs. 1",
+                  "heading": null,
+                  "text": "Über die Anforderungen des § 8a Absatz 1 hinaus hat der Betreiber eines Betriebsbereichs der oberen Klasse der Öffentlichkeit die Angaben nach Anhang V Teil 2 ständig zugänglich zu machen, auch auf elektronischem Weg. Die Angaben sind auf dem neuesten Stand zu halten, insbesondere bei einer störfallrelevanten Änderung nach § 3 Absatz 5b des Bundes-Immissionsschutzgesetzes. Die Informationspflicht ist mindestens einen Monat vor Inbetriebnahme eines Betriebsbereichs oder vor einer störfallrelevanten Änderung nach § 3 Absatz 5b des Bundes-Immissionsschutzgesetzes zu erfüllen. Andere öffentlich-rechtliche Vorschriften zur Information der Öffentlichkeit bleiben unberührt.",
+                  "children": []
+                },
+                {
+                  "key": "11.2",
+                  "ref": "§ 11 Abs. 2",
+                  "heading": null,
+                  "text": "Mit Zustimmung der zuständigen Behörde darf aus Gründen des Schutzes öffentlicher oder privater Belange nach den Bestimmungen des Bundes und der Länder über den Zugang zu Umweltinformationen von der Veröffentlichung von Informationen gemäß Absatz 1 abgesehen werden.",
+                  "children": []
+                },
+                {
+                  "key": "11.3",
+                  "ref": "§ 11 Abs. 3",
+                  "heading": null,
+                  "text": "Der Betreiber eines Betriebsbereichs hat alle Personen und alle Einrichtungen mit Publikumsverkehr, wie öffentlich genutzte Gebäude und Gebiete, einschließlich Schulen und Krankenhäuser, sowie Betriebsstätten oder benachbarte Betriebsbereiche, die von einem Störfall in diesem Betriebsbereich betroffen sein könnten, vor Inbetriebnahme über die Sicherheitsmaßnahmen und das richtige Verhalten im Fall eines Störfalls in einer auf die speziellen Bedürfnisse der jeweiligen Adressatengruppe abgestimmten Weise zu informieren. Die Informationen enthalten zumindest die in Anhang V Teil 1 und 2 aufgeführten Angaben. Soweit die Informationen zum Schutze der Öffentlichkeit bestimmt sind, sind sie mit den für den Katastrophenschutz und die allgemeine Gefahrenabwehr zuständigen Behörden abzustimmen. Die in diesem Absatz genannten Betreiberpflichten gelten auch gegenüber Personen, der Öffentlichkeit und den zuständigen Behörden in anderen Staaten, deren Hoheitsgebiet von den grenzüberschreitenden Auswirkungen eines Störfalls in dem Betriebsbereich betroffen werden könnte.",
+                  "children": []
+                },
+                {
+                  "key": "11.4",
+                  "ref": "§ 11 Abs. 4",
+                  "heading": null,
+                  "text": "Der Betreiber hat die Informationen nach Absatz 3 zu überprüfen, und zwar\nSoweit sich bei der Überprüfung Änderungen ergeben, die erhebliche Auswirkungen hinsichtlich der mit einem Störfall verbundenen Gefahren haben könnten, hat der Betreiber die Informationen unverzüglich zu aktualisieren und zu wiederholen; Absatz 3 gilt entsprechend. Der Zeitraum, innerhalb dessen die nach Absatz 3 übermittelten Informationen wiederholt werden müssen, darf in keinem Fall fünf Jahre überschreiten.",
+                  "children": [
+                    {
+                      "key": "11.4.1",
+                      "ref": "§ 11 Abs. 4 Nr. 1",
+                      "heading": null,
+                      "text": "mindestens alle drei Jahre und",
+                      "children": []
+                    },
+                    {
+                      "key": "11.4.2",
+                      "ref": "§ 11 Abs. 4 Nr. 2",
+                      "heading": null,
+                      "text": "bei einer störfallrelevanten Änderung nach § 3 Absatz 5b des Bundes-Immissionsschutzgesetzes.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "11.5",
+                  "ref": "§ 11 Abs. 5",
+                  "heading": null,
+                  "text": "Der Betreiber hat der Öffentlichkeit auf Anfrage den Sicherheitsbericht nach § 9 Absatz 1 und 2 oder Absatz 3 unverzüglich zugänglich zu machen.",
+                  "children": []
+                },
+                {
+                  "key": "11.6",
+                  "ref": "§ 11 Abs. 6",
+                  "heading": null,
+                  "text": "Der Betreiber kann von der zuständigen Behörde verlangen, bestimmte Teile des Sicherheitsberichts aus Gründen nach Artikel 4 der Richtlinie 2003/4/EG nicht offenlegen zu müssen. Nach Zustimmung der zuständigen Behörde legt der Betreiber in solchen Fällen der Behörde einen geänderten Sicherheitsbericht vor, in dem die nicht offenzulegenden Teile ausgespart sind und der zumindest allgemeine Informationen über mögliche Auswirkungen eines Störfalls auf die menschliche Gesundheit und die Umwelt umfasst, und macht diesen der Öffentlichkeit auf Anfrage zugänglich.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "12",
+              "ref": "§ 12",
+              "heading": "Sonstige Pflichten",
+              "text": "",
+              "children": [
+                {
+                  "key": "12.1",
+                  "ref": "§ 12 Abs. 1",
+                  "heading": null,
+                  "text": "Der Betreiber eines Betriebsbereichs der oberen Klasse hat",
+                  "children": [
+                    {
+                      "key": "12.1.1",
+                      "ref": "§ 12 Abs. 1 Nr. 1",
+                      "heading": null,
+                      "text": "auf Verlangen der zuständigen Behörde zu einer von ihr benannten, zur Informationsweitergabe geeigneten Stelle der öffentlichen Verwaltung eine jederzeit verfügbare und gegen Missbrauch geschützte Verbindung einzurichten und zu unterhalten sowie",
+                      "children": []
+                    },
+                    {
+                      "key": "12.1.2",
+                      "ref": "§ 12 Abs. 1 Nr. 2",
+                      "heading": null,
+                      "text": "eine Person oder Stelle mit der Begrenzung der Auswirkungen von Störfällen zu beauftragen und diese der zuständigen Behörde zu benennen.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "12.2",
+                  "ref": "§ 12 Abs. 2",
+                  "heading": null,
+                  "text": "Der Betreiber hat Unterlagen über die nach § 6 Absatz 1 Nummer 1 und 2 erforderliche Durchführung\nzu erstellen. Die Unterlagen sind bis zur nächsten Vor-Ort-Besichtigung, jedoch mindestens fünf Jahre ab Erstellung zur Einsicht durch die zuständige Behörde aufzubewahren.",
+                  "children": [
+                    {
+                      "key": "12.2.1",
+                      "ref": "§ 12 Abs. 2 Nr. 1",
+                      "heading": null,
+                      "text": "der Prüfung der Errichtung und des Betriebs der sicherheitsrelevanten Anlagenteile,",
+                      "children": []
+                    },
+                    {
+                      "key": "12.2.2",
+                      "ref": "§ 12 Abs. 2 Nr. 2",
+                      "heading": null,
+                      "text": "der Überwachung und regelmäßigen Wartung der Anlage in sicherheitstechnischer Hinsicht,",
+                      "children": []
+                    },
+                    {
+                      "key": "12.2.3",
+                      "ref": "§ 12 Abs. 2 Nr. 3",
+                      "heading": null,
+                      "text": "der sicherheitsrelevanten Wartungs- und Reparaturarbeiten sowie",
+                      "children": []
+                    },
+                    {
+                      "key": "12.2.4",
+                      "ref": "§ 12 Abs. 2 Nr. 4",
+                      "heading": null,
+                      "text": "der Funktionsprüfungen der Warn-, Alarm- und Sicherheitseinrichtungen",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "teil2.abschn3",
+          "ref": "Dritter Abschnitt",
+          "heading": "Behördenpflichten",
+          "text": "",
+          "children": [
+            {
+              "key": "13",
+              "ref": "§ 13",
+              "heading": "Mitteilungspflicht gegenüber dem Betreiber",
+              "text": "Vor Inbetriebnahme eines Betriebsbereichs und nach einer Aktualisierung des Sicherheitsberichts auf Grund der in § 9 Absatz 5 vorgeschriebenen Überprüfungen hat die zuständige Behörde dem Betreiber die Ergebnisse ihrer Prüfung des Sicherheitsberichts, gegebenenfalls nach Anforderung zusätzlicher Informationen, innerhalb einer angemessenen Frist nach Eingang des Sicherheitsberichts mitzuteilen, soweit der Sicherheitsbericht nicht Gegenstand eines immissionsschutzrechtlichen Genehmigungsverfahrens ist. Satz 1 gilt entsprechend in den Fällen des § 20 Absatz 2 Nummer 1 und Absatz 4 Nummer 1.",
+              "children": []
+            },
+            {
+              "key": "14",
+              "ref": "§ 14",
+              "heading": "(weggefallen)",
+              "text": "",
+              "children": []
+            },
+            {
+              "key": "15",
+              "ref": "§ 15",
+              "heading": "Domino-Effekt",
+              "text": "",
+              "children": [
+                {
+                  "key": "15.1",
+                  "ref": "§ 15 Abs. 1",
+                  "heading": null,
+                  "text": "Die zuständige Behörde hat gegenüber den Betreibern festzustellen, bei welchen Betriebsbereichen oder Gruppen von Betriebsbereichen auf Grund ihrer geographischen Lage, ihres Abstands zueinander und der in ihren Anlagen vorhandenen gefährlichen Stoffe eine erhöhte Wahrscheinlichkeit von Störfällen bestehen kann oder diese Störfälle folgenschwerer sein können. Hierfür hat die zuständige Behörde insbesondere folgende Angaben zu verwenden:",
+                  "children": [
+                    {
+                      "key": "15.1.1",
+                      "ref": "§ 15 Abs. 1 Nr. 1",
+                      "heading": null,
+                      "text": "die Angaben, die der Betreiber in der Anzeige nach § 7 und im Sicherheitsbericht nach § 9 übermittelt hat,",
+                      "children": []
+                    },
+                    {
+                      "key": "15.1.2",
+                      "ref": "§ 15 Abs. 1 Nr. 2",
+                      "heading": null,
+                      "text": "die Angaben, die im Anschluss an ein Ersuchen der zuständigen Behörde um zusätzliche Auskünfte vom Betreiber übermittelt wurden, und",
+                      "children": []
+                    },
+                    {
+                      "key": "15.1.3",
+                      "ref": "§ 15 Abs. 1 Nr. 3",
+                      "heading": null,
+                      "text": "die Informationen, die die zuständige Behörde durch Überwachungsmaßnahmen erlangt hat.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "15.2",
+                  "ref": "§ 15 Abs. 2",
+                  "heading": null,
+                  "text": "Die zuständige Behörde hat Informationen, über die sie zusätzlich zu den vom Betreiber nach § 7 Absatz 1 Nummer 7 übermittelten Angaben verfügt, dem Betreiber unverzüglich zur Verfügung zu stellen, sofern dies für die Zusammenarbeit der Betreiber gemäß § 6 Absatz 2 erforderlich ist.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "16",
+              "ref": "§ 16",
+              "heading": "Überwachungssystem",
+              "text": "",
+              "children": [
+                {
+                  "key": "16.1",
+                  "ref": "§ 16 Abs. 1",
+                  "heading": null,
+                  "text": "Die zuständige Behörde hat unbeschadet des § 13 ein angemessenes Überwachungssystem einzurichten. Das Überwachungssystem hat eine planmäßige und systematische Prüfung der technischen, organisatorischen und managementspezifischen Systeme der betroffenen Betriebsbereiche zu ermöglichen, mit der sich die zuständige Behörde insbesondere vergewissert,",
+                  "children": [
+                    {
+                      "key": "16.1.1",
+                      "ref": "§ 16 Abs. 1 Nr. 1",
+                      "heading": null,
+                      "text": "dass der Betreiber nachweisen kann, dass er im Zusammenhang mit den verschiedenen betriebsspezifischen Tätigkeiten die zur Verhinderung von Störfällen erforderlichen Maßnahmen ergriffen hat,",
+                      "children": []
+                    },
+                    {
+                      "key": "16.1.2",
+                      "ref": "§ 16 Abs. 1 Nr. 2",
+                      "heading": null,
+                      "text": "dass der Betreiber nachweisen kann, dass er angemessene Mittel zur Begrenzung von Störfallauswirkungen innerhalb und außerhalb des Betriebsbereichs vorgesehen hat,",
+                      "children": []
+                    },
+                    {
+                      "key": "16.1.3",
+                      "ref": "§ 16 Abs. 1 Nr. 3",
+                      "heading": null,
+                      "text": "dass die im Sicherheitsbericht oder in anderen vorgelegten Berichten enthaltenen Angaben und Informationen die Gegebenheiten in dem Betriebsbereich zutreffend wiedergeben,",
+                      "children": []
+                    },
+                    {
+                      "key": "16.1.4",
+                      "ref": "§ 16 Abs. 1 Nr. 4",
+                      "heading": null,
+                      "text": "dass die Informationen nach § 8a Absatz 1 und § 11 Absatz 1 der Öffentlichkeit zugänglich gemacht worden sind und dass die Informationen nach § 11 Absatz 3 erfolgt sind.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "16.2",
+                  "ref": "§ 16 Abs. 2",
+                  "heading": null,
+                  "text": "Das Überwachungssystem gewährleistet, dass:",
+                  "children": [
+                    {
+                      "key": "16.2.1",
+                      "ref": "§ 16 Abs. 2 Nr. 1",
+                      "heading": null,
+                      "text": "nach jeder Vor-Ort-Besichtigung von der zuständigen Behörde ein Bericht erstellt wird, welcher die relevanten Feststellungen der Behörde und erforderlichen Folgemaßnahmen enthält,",
+                      "children": []
+                    },
+                    {
+                      "key": "16.2.2",
+                      "ref": "§ 16 Abs. 2 Nr. 2",
+                      "heading": null,
+                      "text": "der Bericht dem Betreiber innerhalb von vier Monaten nach der Vor-Ort-Besichtigung durch die zuständige Behörde übermittelt wird,",
+                      "children": []
+                    },
+                    {
+                      "key": "16.2.3",
+                      "ref": "§ 16 Abs. 2 Nr. 3",
+                      "heading": null,
+                      "text": "baldmöglichst, aber spätestens innerhalb von sechs Monaten, eine Vor-Ort-Besichtigung oder eine sonstige Überwachungsmaßnahme durchgeführt wird, bei",
+                      "children": [
+                        {
+                          "key": "16.2.3.a",
+                          "ref": "§ 16 Abs. 2 Nr. 3 Buchst. a",
+                          "heading": null,
+                          "text": "schwerwiegenden Beschwerden,",
+                          "children": []
+                        },
+                        {
+                          "key": "16.2.3.b",
+                          "ref": "§ 16 Abs. 2 Nr. 3 Buchst. b",
+                          "heading": null,
+                          "text": "Ereignissen nach Anhang VI Teil 1 und",
+                          "children": []
+                        },
+                        {
+                          "key": "16.2.3.c",
+                          "ref": "§ 16 Abs. 2 Nr. 3 Buchst. c",
+                          "heading": null,
+                          "text": "bedeutenden Verstößen gegen Vorschriften dieser Verordnung oder anderer für die Anlagensicherheit relevanter Rechtsvorschriften,",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "key": "16.2.4",
+                      "ref": "§ 16 Abs. 2 Nr. 4",
+                      "heading": null,
+                      "text": "Vor-Ort-Besichtigungen mit Überwachungsmaßnahmen im Rahmen anderer Rechtsvorschriften wenn möglich koordiniert werden.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "16.3",
+                  "ref": "§ 16 Abs. 3",
+                  "heading": null,
+                  "text": "Die zuständige Behörde beteiligt sich im Rahmen ihrer Möglichkeiten aktiv an Maßnahmen und Instrumenten zum Erfahrungsaustausch und zur Wissenskonsolidierung auf dem Gebiet der Überwachung von Betriebsbereichen.",
+                  "children": []
+                },
+                {
+                  "key": "16.4",
+                  "ref": "§ 16 Abs. 4",
+                  "heading": null,
+                  "text": "Die zuständige Behörde kann einen geeigneten Sachverständigen mit Vor-Ort-Besichtigungen oder sonstigen Überwachungsmaßnahmen, der Erstellung des Berichts nach Absatz 2 Nummer 1 und der Überprüfung der Folgemaßnahmen beauftragen. Bestandteil des Auftrags muss es sein, den Bericht nach Absatz 2 Nummer 1 und das Ergebnis der Überprüfung binnen vier Wochen nach Fertigstellung des Berichts oder nach Abschluss der Überprüfung der zuständigen Behörde zu übermitteln. Als Sachverständige sind insbesondere die gemäß § 29b des Bundes-Immissionsschutzgesetzes bekannt gegebenen Sachverständigen geeignet.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "17",
+              "ref": "§ 17",
+              "heading": "Überwachungsplan und Überwachungsprogramm",
+              "text": "",
+              "children": [
+                {
+                  "key": "17.1",
+                  "ref": "§ 17 Abs. 1",
+                  "heading": null,
+                  "text": "Die zuständige Behörde hat im Rahmen des Überwachungssystems einen Überwachungsplan zu erstellen. Der Überwachungsplan muss Folgendes enthalten:\nDie Überwachungspläne sind von der zuständigen Behörde regelmäßig zu überprüfen und, soweit erforderlich, zu aktualisieren.",
+                  "children": [
+                    {
+                      "key": "17.1.1",
+                      "ref": "§ 17 Abs. 1 Nr. 1",
+                      "heading": null,
+                      "text": "den räumlichen Geltungsbereich des Plans,",
+                      "children": []
+                    },
+                    {
+                      "key": "17.1.2",
+                      "ref": "§ 17 Abs. 1 Nr. 2",
+                      "heading": null,
+                      "text": "eine allgemeine Beurteilung der Anlagensicherheit im Geltungsbereich des Plans,",
+                      "children": []
+                    },
+                    {
+                      "key": "17.1.3",
+                      "ref": "§ 17 Abs. 1 Nr. 3",
+                      "heading": null,
+                      "text": "ein Verzeichnis der in den Geltungsbereich des Plans fallenden Betriebsbereiche,",
+                      "children": []
+                    },
+                    {
+                      "key": "17.1.4",
+                      "ref": "§ 17 Abs. 1 Nr. 4",
+                      "heading": null,
+                      "text": "ein Verzeichnis der Gruppen von Betriebsbereichen nach § 15,",
+                      "children": []
+                    },
+                    {
+                      "key": "17.1.5",
+                      "ref": "§ 17 Abs. 1 Nr. 5",
+                      "heading": null,
+                      "text": "ein Verzeichnis der Betriebsbereiche, in denen sich durch besondere umgebungsbedingte Gefahrenquellen die Wahrscheinlichkeit des Eintritts eines Störfalls erhöhen oder die Auswirkungen eines solchen Störfalls verschlimmern können,",
+                      "children": []
+                    },
+                    {
+                      "key": "17.1.6",
+                      "ref": "§ 17 Abs. 1 Nr. 6",
+                      "heading": null,
+                      "text": "die Verfahren für die Aufstellung von Programmen für die regelmäßige Überwachung,",
+                      "children": []
+                    },
+                    {
+                      "key": "17.1.7",
+                      "ref": "§ 17 Abs. 1 Nr. 7",
+                      "heading": null,
+                      "text": "die Verfahren für die Überwachung aus besonderem Anlass,",
+                      "children": []
+                    },
+                    {
+                      "key": "17.1.8",
+                      "ref": "§ 17 Abs. 1 Nr. 8",
+                      "heading": null,
+                      "text": "Bestimmungen für die Zusammenarbeit zwischen Überwachungsbehörden.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "17.2",
+                  "ref": "§ 17 Abs. 2",
+                  "heading": null,
+                  "text": "Auf der Grundlage der Überwachungspläne erstellen und aktualisieren die zuständigen Behörden regelmäßig Überwachungsprogramme, in denen auch die Zeiträume angegeben sind, in denen Vor-Ort-Besichtigungen stattfinden müssen. Der Abstand zwischen zwei Vor-Ort-Besichtigungen darf die folgenden Zeiträume nicht überschreiten:\nes sei denn, die zuständige Behörde hat auf der Grundlage einer systematischen Beurteilung der mit den Betriebsbereichen verbundenen Gefahren von Störfällen andere zeitliche Abstände erarbeitet.",
+                  "children": [
+                    {
+                      "key": "17.2.1",
+                      "ref": "§ 17 Abs. 2 Nr. 1",
+                      "heading": null,
+                      "text": "ein Jahr, bei Betriebsbereichen der oberen Klasse, sowie",
+                      "children": []
+                    },
+                    {
+                      "key": "17.2.2",
+                      "ref": "§ 17 Abs. 2 Nr. 2",
+                      "heading": null,
+                      "text": "drei Jahre, bei Betriebsbereichen der unteren Klasse,",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "17.3",
+                  "ref": "§ 17 Abs. 3",
+                  "heading": null,
+                  "text": "Die systematische Beurteilung der Gefahren von Störfällen nach Absatz 2 muss mindestens folgende Kriterien berücksichtigen:",
+                  "children": [
+                    {
+                      "key": "17.3.1",
+                      "ref": "§ 17 Abs. 3 Nr. 1",
+                      "heading": null,
+                      "text": "mögliche Auswirkungen des Betriebsbereichs auf die menschliche Gesundheit und auf die Umwelt,",
+                      "children": []
+                    },
+                    {
+                      "key": "17.3.2",
+                      "ref": "§ 17 Abs. 3 Nr. 2",
+                      "heading": null,
+                      "text": "die Einhaltung der Anforderungen dieser Verordnung und anderer für die Anlagensicherheit wesentlicher Rechtsvorschriften und",
+                      "children": []
+                    },
+                    {
+                      "key": "17.3.3",
+                      "ref": "§ 17 Abs. 3 Nr. 3",
+                      "heading": null,
+                      "text": "für die Anlagensicherheit wesentliche Ergebnisse von Überwachungsmaßnahmen, die im Rahmen anderer Rechtsvorschriften durchgeführt worden sind.",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "teil2.abschn4",
+          "ref": "Vierter Abschnitt",
+          "heading": "Genehmigungsverfahren nach § 23b des Bundes-Immissionsschutzgesetzes",
+          "text": "",
+          "children": [
+            {
+              "key": "18",
+              "ref": "§ 18",
+              "heading": "Genehmigungsverfahren nach § 23b des Bundes-Immissionsschutzgesetzes",
+              "text": "",
+              "children": [
+                {
+                  "key": "18.1",
+                  "ref": "§ 18 Abs. 1",
+                  "heading": null,
+                  "text": "Der Träger des Vorhabens hat dem Antrag nach § 23b Absatz 1 des Bundes-Immissionsschutzgesetzes alle Unterlagen beizufügen, die für die Prüfung der Genehmigungsvoraussetzungen erforderlich sind. Die zuständige Behörde teilt dem Antragsteller nach Eingang des Antrags und der Unterlagen unverzüglich mit, welche zusätzlichen Unterlagen sie für die Prüfung benötigt. Erfolgt die Antragstellung schriftlich, kann die zuständige Behörde einen elektronischen Antrag verlangen und bezüglich des elektronischen Formats Vorgaben machen. Hat die zuständige Behörde einen Zugang für die elektronische Antragstellung eröffnet, so ist ausschließlich dieser für die elektronische Antragstellung zu nutzen. Erfolgt die Antragstellung elektronisch, kann die zuständige Behörde verlangen, dass die dem Antrag beizufügenden Unterlagen auch in Papierform übermittelt werden, soweit eine Bearbeitung anders nicht möglich ist.",
+                  "children": []
+                },
+                {
+                  "key": "18.2",
+                  "ref": "§ 18 Abs. 2",
+                  "heading": null,
+                  "text": "Hat der Antragsteller den Antrag und die erforderlichen Unterlagen vollständig übermittelt, macht die zuständige Behörde das Vorhaben in ihrem amtlichen Veröffentlichungsblatt, und auf ihrer Internetseite öffentlich bekannt. In der Bekanntmachung ist die Öffentlichkeit über Folgendes zu informieren:\nWeitere Informationen, die für die Entscheidung über die Genehmigung von Bedeutung sein können und die der zuständigen Behörde erst nach Beginn der Auslegung vorliegen, sind der Öffentlichkeit nach den Bestimmungen über den Zugang zu Umweltinformationen zugänglich zu machen. Besteht für das Vorhaben eine UVP-Pflicht, muss die Bekanntmachung darüber hinaus den Anforderungen des § 19 Absatz 1 des Gesetzes über die Umweltverträglichkeitsprüfung entsprechen.",
+                  "children": [
+                    {
+                      "key": "18.2.1",
+                      "ref": "§ 18 Abs. 2 Nr. 1",
+                      "heading": null,
+                      "text": "über den Gegenstand des Vorhabens,",
+                      "children": []
+                    },
+                    {
+                      "key": "18.2.2",
+                      "ref": "§ 18 Abs. 2 Nr. 2",
+                      "heading": null,
+                      "text": "gegebenenfalls über die Feststellung der UVP-Pflicht des Vorhabens nach § 5 des Gesetzes über die Umweltverträglichkeitsprüfung sowie erforderlichenfalls Durchführung einer grenzüberschreitenden Beteiligung nach den §§ 55 und 56 des Gesetzes über die Umweltverträglichkeitsprüfung oder das Bestehen einer grenzüberschreitenden Informationspflicht des Betreibers nach § 11 Absatz 3 Satz 4,",
+                      "children": []
+                    },
+                    {
+                      "key": "18.2.3",
+                      "ref": "§ 18 Abs. 2 Nr. 3",
+                      "heading": null,
+                      "text": "über die Internetseite auf der die Zugänglichmachung erfolgt und über die Möglichkeit, eine leicht zu erreichende Zugangsmöglichkeit zur Verfügung gestellt zu bekommen,",
+                      "children": []
+                    },
+                    {
+                      "key": "18.2.4",
+                      "ref": "§ 18 Abs. 2 Nr. 4",
+                      "heading": null,
+                      "text": "darüber, dass Personen, deren Belange berührt sind, und Vereinigungen, welche die Anforderungen von § 3 Absatz 1 oder § 2 Absatz 2 des Umwelt-Rechtsbehelfsgesetzes erfüllen (betroffene Öffentlichkeit), Einwendungen bei einer in der Bekanntmachung bezeichneten Stelle innerhalb der Frist gemäß § 23b Absatz 2 Satz 3 des Bundes-Immissionsschutzgesetzes erheben können,",
+                      "children": []
+                    },
+                    {
+                      "key": "18.2.5",
+                      "ref": "§ 18 Abs. 2 Nr. 5",
+                      "heading": null,
+                      "text": "die Art möglicher Entscheidungen oder, soweit vorhanden, den Entscheidungsentwurf,",
+                      "children": []
+                    },
+                    {
+                      "key": "18.2.6",
+                      "ref": "§ 18 Abs. 2 Nr. 6",
+                      "heading": null,
+                      "text": "darüber, dass die Zustellung der Entscheidung über die Einwendungen durch öffentliche Bekanntmachung ersetzt werden kann, sowie",
+                      "children": []
+                    },
+                    {
+                      "key": "18.2.7",
+                      "ref": "§ 18 Abs. 2 Nr. 7",
+                      "heading": null,
+                      "text": "gegebenenfalls über weitere Einzelheiten des Verfahrens zur Unterrichtung der Öffentlichkeit und Anhörung der betroffenen Öffentlichkeit.",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "18.3",
+                  "ref": "§ 18 Abs. 3",
+                  "heading": null,
+                  "text": "Die Auslegung ist dadurch zu bewirken, dass die Dokumente auf einer Internetseite der zuständigen Behörde zugänglich gemacht werden. Auf Verlangen eines Beteiligten wird ihm eine leicht zu erreichende Zugangsmöglichkeit zur Verfügung gestellt. Der Vorhabenträger kann der Veröffentlichung im Internet widersprechen, soweit er die Gefährdung von Betriebs- oder Geschäftsgeheimnissen oder wichtiger Sicherheitsbelange befürchtet; in diesem Fall muss die Behörde eine andere Form der Veröffentlichung wählen. Die Einwendungen können bei der Genehmigungsbehörde oder bei der Stelle erhoben werden, bei der Antrag und Unterlagen zur Einsicht ausliegen.",
+                  "children": []
+                },
+                {
+                  "key": "18.4",
+                  "ref": "§ 18 Abs. 4",
+                  "heading": null,
+                  "text": "Der Genehmigungsbescheid ist schriftlich zu erlassen, schriftlich zu begründen und dem Antragsteller und den Personen, die Einwendungen erhoben haben, zuzustellen. In der Begründung sind die wesentlichen tatsächlichen und rechtlichen Gründe, die die Behörde zu ihrer Entscheidung bewogen haben, die Behandlung der Einwendungen sowie Angaben über das Verfahren zur Beteiligung der Öffentlichkeit aufzunehmen. Haben mehr als 50 Personen Einwendungen erhoben, kann die Zustellung durch die öffentliche Bekanntmachung nach Absatz 5 ersetzt werden.",
+                  "children": []
+                },
+                {
+                  "key": "18.5",
+                  "ref": "§ 18 Abs. 5",
+                  "heading": null,
+                  "text": "Der Genehmigungsbescheid ist öffentlich bekannt zu machen. Die öffentliche Bekanntmachung wird dadurch bewirkt, dass der verfügende Teil des Bescheids und die Rechtsbehelfsbelehrung in entsprechender Anwendung des Absatzes 2 Satz 1 bekannt gemacht werden; auf Auflagen ist hinzuweisen. Eine Ausfertigung des gesamten Genehmigungsbescheids ist vom Tage nach der Bekanntmachung an zwei Wochen zur Einsicht auszulegen. Die Auslegung ist dadurch zu bewirken, dass die Dokumente auf einer Internetseite der zuständigen Behörde zugänglich gemacht werden. Auf Verlangen eines Beteiligten wird ihm eine leicht zu erreichende Zugangsmöglichkeit zur Verfügung gestellt. Der Vorhabenträger kann der Veröffentlichung im Internet widersprechen, soweit er die Gefährdung von Betriebs- oder Geschäftsgeheimnissen oder wichtiger Sicherheitsbelange befürchtet; in diesem Fall muss die Behörde eine andere Form der Veröffentlichung wählen. In der öffentlichen Bekanntmachung ist anzugeben, wo und wann der Bescheid und seine Begründung eingesehen und nach Satz 8 angefordert werden können; hierzu ist auch die Angabe der Internetseite auf der die Zugänglichmachung erfolgt, anzugeben. Mit dem Ende der Auslegungsfrist gilt der Bescheid auch gegenüber Dritten, die keine Einwendungen erhoben haben, als zugestellt; darauf ist in der Bekanntmachung hinzuweisen. Nach der öffentlichen Bekanntmachung können der Bescheid und seine Begründung bis zum Ablauf der Widerspruchsfrist von den Personen, die Einwendungen erhoben haben, schriftlich oder elektronisch angefordert werden.",
+                  "children": []
+                },
+                {
+                  "key": "18.6",
+                  "ref": "§ 18 Abs. 6",
+                  "heading": null,
+                  "text": "Die Absätze 1 bis 5 gelten für Vorhaben nach § 23c Satz 1 des Bundes-Immissionsschutzgesetzes entsprechend, soweit § 57d des Bundesberggesetzes dies anordnet.",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "teil3",
+      "ref": "Dritter Teil",
+      "heading": "Meldeverfahren, Schlussvorschriften",
+      "text": "",
+      "children": [
+        {
+          "key": "19",
+          "ref": "§ 19",
+          "heading": "Meldeverfahren",
+          "text": "",
+          "children": [
+            {
+              "key": "19.1",
+              "ref": "§ 19 Abs. 1",
+              "heading": null,
+              "text": "Der Betreiber hat der zuständigen Behörde unverzüglich den Eintritt eines Ereignisses, das die Kriterien des Anhangs VI Teil 1 erfüllt, mitzuteilen.",
+              "children": []
+            },
+            {
+              "key": "19.2",
+              "ref": "§ 19 Abs. 2",
+              "heading": null,
+              "text": "Der Betreiber hat der zuständigen Behörde unverzüglich, spätestens innerhalb einer Woche nach Eintritt eines Ereignisses nach Absatz 1 eine ergänzende schriftliche oder elektronische Mitteilung vorzulegen, die mindestens die Angaben nach Anhang VI Teil 2 enthält. Er hat die Mitteilung bei Vorliegen neuer Erkenntnisse unverzüglich zu ergänzen oder zu berichtigen.",
+              "children": []
+            },
+            {
+              "key": "19.3",
+              "ref": "§ 19 Abs. 3",
+              "heading": null,
+              "text": "Erhält die zuständige Behörde Kenntnis von einem Ereignis nach Anhang VI Teil 1 Ziffer I, hat sie\nZur Erfüllung ihrer Verpflichtungen nach den Nummern 1, 2 und 4 kann die zuständige Behörde auch ein Gutachten vom Betreiber fordern.",
+              "children": [
+                {
+                  "key": "19.3.1",
+                  "ref": "§ 19 Abs. 3 Nr. 1",
+                  "heading": null,
+                  "text": "durch Vor-Ort-Besichtigungen, Untersuchungen oder andere geeignete Mittel die für eine vollständige Analyse der technischen, organisatorischen und managementspezifischen Gesichtspunkte dieses Ereignisses erforderlichen Informationen einzuholen,",
+                  "children": []
+                },
+                {
+                  "key": "19.3.2",
+                  "ref": "§ 19 Abs. 3 Nr. 2",
+                  "heading": null,
+                  "text": "geeignete Maßnahmen zu ergreifen, um sicherzustellen, dass der Betreiber alle erforderlichen Abhilfemaßnahmen trifft,",
+                  "children": []
+                },
+                {
+                  "key": "19.3.3",
+                  "ref": "§ 19 Abs. 3 Nr. 3",
+                  "heading": null,
+                  "text": "die von dem Störfall möglicherweise betroffenen Personen über diesen sowie gegebenenfalls über Maßnahmen zu unterrichten, die ergriffen wurden, um seine Auswirkungen zu mildern, und",
+                  "children": []
+                },
+                {
+                  "key": "19.3.4",
+                  "ref": "§ 19 Abs. 3 Nr. 4",
+                  "heading": null,
+                  "text": "Empfehlungen zu künftigen Verhinderungsmaßnahmen abzugeben, sobald die Analyse nach Nummer 1 vorliegt.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "19.4",
+              "ref": "§ 19 Abs. 4",
+              "heading": null,
+              "text": "Die zuständige Behörde hat dem Bundesministerium für Umwelt, Naturschutz und nukleare Sicherheit über die nach Landesrecht zuständige Behörde unverzüglich eine Kopie der Mitteilung nach Absatz 2 zuzuleiten. Das Bundesministerium für Umwelt, Naturschutz und nukleare Sicherheit unterrichtet die Europäische Kommission, wenn eines der Kriterien des Anhangs VI Teil 1 Ziffer I oder II erfüllt ist. Die Unterrichtung hat so bald wie möglich zu erfolgen, spätestens jedoch bis zum Ablauf eines Jahres nach dem Ereignis.",
+              "children": []
+            },
+            {
+              "key": "19.5",
+              "ref": "§ 19 Abs. 5",
+              "heading": null,
+              "text": "Die zuständige Behörde teilt das Ergebnis der Analyse nach Absatz 3 Nummer 1 und die Empfehlungen nach Absatz 3 Nummer 4 dem Bundesministerium für Umwelt, Naturschutz und nukleare Sicherheit schriftlich oder elektronisch über die nach Landesrecht zuständige Behörde mit. Das Bundesministerium für Umwelt, Naturschutz und nukleare Sicherheit unterrichtet die Europäische Kommission so bald wie möglich, spätestens jedoch bis zum Ablauf eines Jahres nach dem Ereignis, über das Ergebnis der Analyse und die Empfehlungen. Die Informationen sind zu aktualisieren, sobald Ergebnisse weiterer Analysen und Empfehlungen verfügbar sind. Die Unterrichtung darf zurückgestellt werden, wenn der Abschluss gerichtlicher Verfahren durch eine solche Informationsübermittlung beeinträchtigt werden könnte.",
+              "children": []
+            },
+            {
+              "key": "19.6",
+              "ref": "§ 19 Abs. 6",
+              "heading": null,
+              "text": "Der Betreiber hat die Beschäftigten oder deren Personalvertretung über eine Mitteilung nach Absatz 1 unverzüglich zu unterrichten und ihnen auf Verlangen eine Kopie der Mitteilung nach Absatz 2 zugänglich zu machen.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "20",
+          "ref": "§ 20",
+          "heading": "Übergangsvorschriften",
+          "text": "",
+          "children": [
+            {
+              "key": "20.1",
+              "ref": "§ 20 Abs. 1",
+              "heading": null,
+              "text": "Der Betreiber eines Betriebsbereichs, der am 13. Januar 2017 unter den Anwendungsbereich dieser Verordnung fällt und dessen Einstufung als Betriebsbereich der oberen oder unteren Klasse sich ab dem 14. Januar 2017 nicht ändert, hat",
+              "children": [
+                {
+                  "key": "20.1.1",
+                  "ref": "§ 20 Abs. 1 Nr. 1",
+                  "heading": null,
+                  "text": "der zuständigen Behörde die Angaben nach § 7 Absatz 1 bis zum Ablauf des 14. Juli 2017 schriftlich anzuzeigen, sofern der Betreiber der zuständigen Behörde die entsprechenden Angaben nicht bereits übermittelt hat,",
+                  "children": []
+                },
+                {
+                  "key": "20.1.2",
+                  "ref": "§ 20 Abs. 1 Nr. 2",
+                  "heading": null,
+                  "text": "das Konzept nach § 8 Absatz 1 Satz 1 unverzüglich, spätestens jedoch bis zum Ablauf des 14. Juli 2017, zu aktualisieren, soweit dies auf Grund der Anforderungen dieser Verordnung erforderlich ist.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "20.2",
+              "ref": "§ 20 Abs. 2",
+              "heading": null,
+              "text": "Sofern es sich in den Fällen des Absatzes 1 um einen Betriebsbereich der oberen Klasse handelt, hat der Betreiber zusätzlich",
+              "children": [
+                {
+                  "key": "20.2.1",
+                  "ref": "§ 20 Abs. 2 Nr. 1",
+                  "heading": null,
+                  "text": "den Sicherheitsbericht nach § 9 Absatz 1 und 2 oder Absatz 3 bis zum Ablauf des 14. Juli 2017 zu aktualisieren und aktualisierte Teile der zuständigen Behörde bis zu diesem Zeitpunkt vorzulegen,",
+                  "children": []
+                },
+                {
+                  "key": "20.2.2",
+                  "ref": "§ 20 Abs. 2 Nr. 2",
+                  "heading": null,
+                  "text": "die internen Alarm- und Gefahrenabwehrpläne nach § 10 Absatz 1 Satz 1 Nummer 1 zu aktualisieren und den zuständigen Behörden nach § 10 Absatz 1 Satz 1 Nummer 2 unverzüglich, spätestens jedoch zum Ablauf des 14. Juli 2017 Informationen zu übermitteln, sofern nicht die bestehenden internen Alarm- und Gefahrenabwehrpläne sowie die Informationen nach § 10 Absatz 1 Satz 1 Nummer 2 unverändert geblieben sind und den Anforderungen dieser Verordnung entsprechen.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "20.3",
+              "ref": "§ 20 Abs. 3",
+              "heading": null,
+              "text": "Der Betreiber eines Betriebsbereichs, der ab dem 1. Juni 2015 aus anderen Gründen als Änderungen seiner Anlagen oder seiner Tätigkeiten, die eine Änderung ihres Inventars gefährlicher Stoffe zur Folge haben, unter den Anwendungsbereich der Richtlinie 2012/18/EU fällt oder eine Änderung seiner Einstufung als Betriebsbereich der unteren oder oberen Klasse erfährt, hat\nIn den Fällen des Satzes 1 gelten dessen Anforderungen abweichend von Absatz 1, wenn sie vor dem 13. Januar 2017 eintreten.",
+              "children": [
+                {
+                  "key": "20.3.1",
+                  "ref": "§ 20 Abs. 3 Nr. 1",
+                  "heading": null,
+                  "text": "der zuständigen Behörde die Angaben nach § 7 Absatz 1 innerhalb von drei Monaten nach dem Zeitpunkt, zu dem diese Verordnung für den betreffenden Betriebsbereich gilt, schriftlich anzuzeigen, sofern der Betreiber der zuständigen Behörde die entsprechenden Angaben nicht bereits übermittelt hat,",
+                  "children": []
+                },
+                {
+                  "key": "20.3.2",
+                  "ref": "§ 20 Abs. 3 Nr. 2",
+                  "heading": null,
+                  "text": "das Konzept nach § 8 Absatz 1 Satz 1 unverzüglich, spätestens jedoch bis zum Ablauf von sechs Monaten nach dem Zeitpunkt, zu dem diese Verordnung für den betreffenden Betriebsbereich gilt, auszuarbeiten und seine Umsetzung sicherzustellen.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "20.4",
+              "ref": "§ 20 Abs. 4",
+              "heading": null,
+              "text": "Sofern es sich in den Fällen des Absatzes 3 um einen Betriebsbereich der oberen Klasse handelt, hat der Betreiber zusätzlich",
+              "children": [
+                {
+                  "key": "20.4.1",
+                  "ref": "§ 20 Abs. 4 Nr. 1",
+                  "heading": null,
+                  "text": "den Sicherheitsbericht nach § 9 Absatz 1 und 2 unverzüglich, spätestens jedoch bis zum Ablauf eines Jahres nach dem Zeitpunkt, zu dem die Anforderungen an Betriebsbereiche der oberen Klasse für den betreffenden Betriebsbereich gelten, zu erstellen und der zuständigen Behörde vorzulegen, wobei § 9 Absatz 3 entsprechend gilt,",
+                  "children": []
+                },
+                {
+                  "key": "20.4.2",
+                  "ref": "§ 20 Abs. 4 Nr. 2",
+                  "heading": null,
+                  "text": "die Pflichten nach § 10 Absatz 1 Satz 1 unverzüglich, spätestens jedoch bis zum Ablauf eines Jahres nach dem Zeitpunkt, zu dem die Anforderungen an Betriebsbereiche der oberen Klasse für den betreffenden Betriebsbereich gelten, zu erfüllen, wobei § 10 Absatz 2 bis 4 entsprechend gilt.",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "21",
+          "ref": "§ 21",
+          "heading": "Ordnungswidrigkeiten",
+          "text": "",
+          "children": [
+            {
+              "key": "21.1",
+              "ref": "§ 21 Abs. 1",
+              "heading": null,
+              "text": "Ordnungswidrig im Sinne des § 62 Absatz 1 Nummer 2 des Bundes-Immissionsschutzgesetzes handelt, wer vorsätzlich oder fahrlässig",
+              "children": [
+                {
+                  "key": "21.1.1",
+                  "ref": "§ 21 Abs. 1 Nr. 1",
+                  "heading": null,
+                  "text": "einer vollziehbaren Anordnung nach § 1 Absatz 2 zuwiderhandelt,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.2",
+                  "ref": "§ 21 Abs. 1 Nr. 2",
+                  "heading": null,
+                  "text": "entgegen § 6 Absatz 3 eine Information nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig liefert,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.3",
+                  "ref": "§ 21 Abs. 1 Nr. 3",
+                  "heading": null,
+                  "text": "entgegen § 7 Absatz 1, 2 oder 3 oder § 20 Absatz 1 Nummer 1 oder Absatz 3 Nummer 1 eine Anzeige nicht, nicht richtig, nicht vollständig, nicht in der vorgeschriebenen Weise oder nicht rechtzeitig erstattet,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.4",
+                  "ref": "§ 21 Abs. 1 Nr. 4",
+                  "heading": null,
+                  "text": "entgegen § 8 Absatz 3 oder § 20 Absatz 3 Satz 1 Nummer 2 die Umsetzung des Konzepts nicht sicherstellt,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.5",
+                  "ref": "§ 21 Abs. 1 Nr. 5",
+                  "heading": null,
+                  "text": "entgegen § 8 Absatz 4, § 10 Absatz 4 Satz 3 oder § 20 Absatz 1 Nummer 2 ein Konzept oder einen Alarm- oder Gefahrenabwehrplan nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig aktualisiert,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.6",
+                  "ref": "§ 21 Abs. 1 Nr. 6",
+                  "heading": null,
+                  "text": "entgegen § 8a Absatz 1 Satz 1 oder § 11 Absatz 1 Satz 1 oder Absatz 5 Satz 1 eine Angabe oder einen Sicherheitsbericht nicht, nicht richtig, nicht vollständig oder nicht in der vorgeschriebenen Weise zugänglich macht,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.7",
+                  "ref": "§ 21 Abs. 1 Nr. 7",
+                  "heading": null,
+                  "text": "entgegen § 9 Absatz 4 oder 5 Satz 3 oder § 20 Absatz 2 Nummer 1 oder Absatz 4 Nummer 1 oder § 19 Absatz 2 Satz 1 einen Sicherheitsbericht oder dessen aktualisierte Teile oder eine Mitteilung nicht, nicht richtig, nicht vollständig, nicht in der vorgeschriebenen Weise oder nicht rechtzeitig vorlegt,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.8",
+                  "ref": "§ 21 Abs. 1 Nr. 8",
+                  "heading": null,
+                  "text": "entgegen § 10 Absatz 1 Satz 1, auch in Verbindung mit § 20 Absatz 2 Nummer 2 oder Absatz 4 Nummer 2, einen dort genannten Alarm- oder Gefahrenabwehrplan nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig erstellt oder die erforderliche Information nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig übermittelt,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.9",
+                  "ref": "§ 21 Abs. 1 Nr. 9",
+                  "heading": null,
+                  "text": "entgegen § 10 Absatz 3 Satz 1 einen Beschäftigten nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig unterrichtet oder nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig anhört,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.10",
+                  "ref": "§ 21 Abs. 1 Nr. 10",
+                  "heading": null,
+                  "text": "entgegen § 10 Absatz 3 Satz 2 einen Beschäftigten nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig unterweist,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.11",
+                  "ref": "§ 21 Abs. 1 Nr. 11",
+                  "heading": null,
+                  "text": "entgegen § 10 Absatz 4 Satz 1 einen Alarm- oder Gefahrenabwehrplan nicht, nicht richtig oder nicht rechtzeitig erprobt,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.12",
+                  "ref": "§ 21 Abs. 1 Nr. 12",
+                  "heading": null,
+                  "text": "entgegen § 11 Absatz 3 Satz 1 eine Information nicht, nicht richtig, nicht vollständig, nicht in der vorgeschriebenen Weise oder nicht rechtzeitig gibt,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.13",
+                  "ref": "§ 21 Abs. 1 Nr. 13",
+                  "heading": null,
+                  "text": "entgegen § 12 Absatz 1 Nummer 1 eine Verbindung nicht, nicht richtig oder nicht rechtzeitig einrichtet,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.14",
+                  "ref": "§ 21 Abs. 1 Nr. 14",
+                  "heading": null,
+                  "text": "entgegen § 12 Absatz 2 Satz 2 eine Unterlage nicht oder nicht bis zur nächsten Vor-Ort-Besichtigung, jedoch mindestens fünf Jahre aufbewahrt,",
+                  "children": []
+                },
+                {
+                  "key": "21.1.15",
+                  "ref": "§ 21 Abs. 1 Nr. 15",
+                  "heading": null,
+                  "text": "entgegen § 19 Absatz 1 eine Mitteilung nicht, nicht richtig, nicht vollständig oder nicht rechtzeitig macht oder",
+                  "children": []
+                },
+                {
+                  "key": "21.1.16",
+                  "ref": "§ 21 Abs. 1 Nr. 16",
+                  "heading": null,
+                  "text": "entgegen § 19 Absatz 2 Satz 2 eine Mitteilung nicht, nicht richtig oder nicht rechtzeitig ergänzt oder nicht, nicht richtig oder nicht rechtzeitig berichtigt.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "21.2",
+              "ref": "§ 21 Abs. 2",
+              "heading": null,
+              "text": "Ordnungswidrig im Sinne des § 62 Absatz 1 Nummer 7 des Bundes-Immissionsschutzgesetzes handelt, wer vorsätzlich oder fahrlässig eine in Absatz 1 bezeichnete Handlung in Bezug auf eine nicht genehmigungsbedürftige Anlage begeht, die Teil eines Betriebsbereichs ist.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "anhang2",
+      "ref": "Anhang II",
+      "heading": "Mindestangaben im Sicherheitsbericht",
+      "text": "",
+      "children": [
+        {
+          "key": "anhang2.i",
+          "ref": "Anhang II Abschnitt I",
+          "heading": null,
+          "text": "Informationen über das Managementsystem und die Betriebsorganisation im Hinblick auf die Verhinderung von Störfällen\nDiese Informationen müssen die in Anhang III aufgeführten Punkte abdecken.",
+          "children": []
+        },
+        {
+          "key": "anhang2.ii",
+          "ref": "Anhang II Abschnitt II",
+          "heading": null,
+          "text": "Umfeld des Betriebsbereichs",
+          "children": [
+            {
+              "key": "anhang2.ii.1",
+              "ref": "Anhang II Abschnitt II Nr. 1",
+              "heading": null,
+              "text": "Beschreibung des Betriebsbereichs und seines Umfelds einschließlich der geographischen Lage, der meteorologischen, geologischen und hydrographischen Daten sowie gegebenenfalls der Vorgeschichte des Standorts.",
+              "children": []
+            },
+            {
+              "key": "anhang2.ii.2",
+              "ref": "Anhang II Abschnitt II Nr. 2",
+              "heading": null,
+              "text": "Verzeichnis der Anlagen und Tätigkeiten innerhalb des Betriebsbereichs, bei denen die Gefahr eines Störfalls bestehen kann.",
+              "children": []
+            },
+            {
+              "key": "anhang2.ii.3",
+              "ref": "Anhang II Abschnitt II Nr. 3",
+              "heading": null,
+              "text": "Auf der Grundlage verfügbarer Informationen Verzeichnis benachbarter Betriebsbereiche und Betriebsstätten, die nicht in den Geltungsbereich der Verordnung fallen, sowie Bereiche und Entwicklungen außerhalb des Betriebsbereichs, die einen Störfall verursachen oder die Wahrscheinlichkeit des Eintritts eines Störfalls erhöhen oder die Auswirkungen eines Störfalls und von Domino-Effekten verschlimmern können.",
+              "children": []
+            },
+            {
+              "key": "anhang2.ii.4",
+              "ref": "Anhang II Abschnitt II Nr. 4",
+              "heading": null,
+              "text": "Beschreibung der Bereiche, die von einem Störfall betroffen werden könnten.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "anhang2.iii",
+          "ref": "Anhang II Abschnitt III",
+          "heading": null,
+          "text": "Beschreibung der Anlagen des Betriebsbereichs",
+          "children": [
+            {
+              "key": "anhang2.iii.1",
+              "ref": "Anhang II Abschnitt III Nr. 1",
+              "heading": null,
+              "text": "Beschreibung der wichtigsten Tätigkeiten und Produkte der sicherheitsrelevanten Teile des Betriebsbereichs, der Gefahrenquellen, die zu Störfällen führen könnten, sowie der Bedingungen, unter denen der jeweilige Störfall eintreten könnte, und Beschreibung der vorgesehenen Maßnahmen zur Verhinderung von Störfällen.",
+              "children": []
+            },
+            {
+              "key": "anhang2.iii.2",
+              "ref": "Anhang II Abschnitt III Nr. 2",
+              "heading": null,
+              "text": "Beschreibung der Verfahren, insbesondere der Verfahrensabläufe, unter Verwendung von Fließbildern; gegebenenfalls Berücksichtigung verfügbarer Informationen über bewährte Verfahren.",
+              "children": []
+            },
+            {
+              "key": "anhang2.iii.3",
+              "ref": "Anhang II Abschnitt III Nr. 3",
+              "heading": null,
+              "text": "Beschreibung der gefährlichen Stoffe:",
+              "children": [
+                {
+                  "key": "anhang2.iii.3.a",
+                  "ref": "Anhang II Abschnitt III Nr. 3 Buchst. a",
+                  "heading": null,
+                  "text": "Verzeichnis der gefährlichen Stoffe, das Folgendes umfasst:",
+                  "children": [
+                    {
+                      "key": "anhang2.iii.3.a.i1",
+                      "ref": "Anhang II Abschnitt III Nr. 3 Buchst. a Spiegelstrich 1",
+                      "heading": null,
+                      "text": "Angaben zur Feststellung der gefährlichen Stoffe: Angabe ihrer chemischen Bezeichnung, CAS-Nummer, Bezeichnung nach der IUPAC-Nomenklatur,",
+                      "children": []
+                    },
+                    {
+                      "key": "anhang2.iii.3.a.i2",
+                      "ref": "Anhang II Abschnitt III Nr. 3 Buchst. a Spiegelstrich 2",
+                      "heading": null,
+                      "text": "Höchstmenge der vorhandenen gefährlichen Stoffe oder der gefährlichen Stoffe, die vorhanden sein können;",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "key": "anhang2.iii.3.b",
+                  "ref": "Anhang II Abschnitt III Nr. 3 Buchst. b",
+                  "heading": null,
+                  "text": "physikalische, chemische und toxikologische Merkmale sowie Angabe der sich auf die menschliche Gesundheit oder die Umwelt unmittelbar oder später auswirkenden Gefahren;",
+                  "children": []
+                },
+                {
+                  "key": "anhang2.iii.3.c",
+                  "ref": "Anhang II Abschnitt III Nr. 3 Buchst. c",
+                  "heading": null,
+                  "text": "physikalisches und chemisches Verhalten unter normalen Einsatzbedingungen oder bei vorhersehbaren Störungen.",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "key": "anhang2.iv",
+          "ref": "Anhang II Abschnitt IV",
+          "heading": null,
+          "text": "Ermittlung und Analyse der Risiken von Störfällen und Mittel zur Verhinderung solcher Störfälle",
+          "children": [
+            {
+              "key": "anhang2.iv.1",
+              "ref": "Anhang II Abschnitt IV Nr. 1",
+              "heading": null,
+              "text": "Eingehende Beschreibung der Szenarien möglicher Störfälle nebst ihrer Wahrscheinlichkeit oder den Bedingungen für ihr Eintreten, einschließlich einer Zusammenfassung der Vorfälle, die für das Eintreten jedes dieser Szenarien ausschlaggebend sein könnten, unabhängig davon, ob die Ursachen hierfür innerhalb oder außerhalb des Betriebsbereichs liegen, insbesondere unter Berücksichtigung:",
+              "children": [
+                {
+                  "key": "anhang2.iv.1.a",
+                  "ref": "Anhang II Abschnitt IV Nr. 1 Buchst. a",
+                  "heading": null,
+                  "text": "betrieblicher Gefahrenquellen,",
+                  "children": []
+                },
+                {
+                  "key": "anhang2.iv.1.b",
+                  "ref": "Anhang II Abschnitt IV Nr. 1 Buchst. b",
+                  "heading": null,
+                  "text": "umgebungsbedingter Gefahrenquellen, z. B. Erdbeben, Hochwasser oder Einwirkungen die von benachbarten Betriebsbereichen oder Betriebsstätten ausgehen können,",
+                  "children": []
+                },
+                {
+                  "key": "anhang2.iv.1.c",
+                  "ref": "Anhang II Abschnitt IV Nr. 1 Buchst. c",
+                  "heading": null,
+                  "text": "Eingriffe Unbefugter und",
+                  "children": []
+                },
+                {
+                  "key": "anhang2.iv.1.d",
+                  "ref": "Anhang II Abschnitt IV Nr. 1 Buchst. d",
+                  "heading": null,
+                  "text": "anderer Bereiche und Entwicklungen, die einen Störfall verursachen, die Wahrscheinlichkeit des Eintritts eines Störfalls erhöhen oder Auswirkungen eines Störfalls verschlimmern können.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "key": "anhang2.iv.2",
+              "ref": "Anhang II Abschnitt IV Nr. 2",
+              "heading": null,
+              "text": "Abschätzung des Ausmaßes und der Schwere der Folgen der ermittelten Störfälle, einschließlich Karten, Bilder oder gegebenenfalls entsprechender Beschreibungen, aus denen die Bereiche ersichtlich sind, die von derartigen Störfällen betroffen sein können.",
+              "children": []
+            },
+            {
+              "key": "anhang2.iv.3",
+              "ref": "Anhang II Abschnitt IV Nr. 3",
+              "heading": null,
+              "text": "Bewertung vergangener Ereignisse im Zusammenhang mit den gleichen Stoffen und Verfahren, Berücksichtigung der daraus gezogenen Lehren und ausdrückliche Bezugnahme auf die jeweiligen Maßnahmen, die ergriffen wurden, um entsprechende Ereignisse zu verhindern.",
+              "children": []
+            },
+            {
+              "key": "anhang2.iv.4",
+              "ref": "Anhang II Abschnitt IV Nr. 4",
+              "heading": null,
+              "text": "Beschreibung der technischen Parameter sowie Ausrüstungen zur Sicherung der Anlagen.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "key": "anhang2.v",
+          "ref": "Anhang II Abschnitt V",
+          "heading": null,
+          "text": "Schutz- und Notfallmaßnahmen zur Begrenzung der Auswirkungen von Störfällen",
+          "children": [
+            {
+              "key": "anhang2.v.1",
+              "ref": "Anhang II Abschnitt V Nr. 1",
+              "heading": null,
+              "text": "Beschreibung der Einrichtungen, die in der Anlage zur Begrenzung der Auswirkungen von Störfällen vorhanden sind, beispielsweise Melde-/Schutzsysteme und technische Vorrichtungen zur Begrenzung von ungeplanten Stofffreisetzungen, einschließlich Berieselungsanlagen, Dampfabschirmung, Auffangvorrichtungen oder -behälter, Notabsperrventilen, Inertisierungssystemen, Löschwasserrückhaltung.",
+              "children": []
+            },
+            {
+              "key": "anhang2.v.2",
+              "ref": "Anhang II Abschnitt V Nr. 2",
+              "heading": null,
+              "text": "Alarmplan und Organisation der Notfallmaßnahmen.",
+              "children": []
+            },
+            {
+              "key": "anhang2.v.3",
+              "ref": "Anhang II Abschnitt V Nr. 3",
+              "heading": null,
+              "text": "Beschreibung der Mittel, die innerhalb oder außerhalb des Betriebsbereichs für den Notfall zur Verfügung stehen.",
+              "children": []
+            },
+            {
+              "key": "anhang2.v.4",
+              "ref": "Anhang II Abschnitt V Nr. 4",
+              "heading": null,
+              "text": "Beschreibung technischer und nicht technischer Maßnahmen, die für die Begrenzung der Auswirkungen eines Störfalls von Bedeutung sind.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "anhang3",
+      "ref": "Anhang III",
+      "heading": "Sicherheitsmanagementsystem",
+      "text": "",
+      "children": [
+        {
+          "key": "anhang3.1",
+          "ref": "Anhang III Nr. 1",
+          "heading": null,
+          "text": "Das Sicherheitsmanagementsystem ist den Gefahren, Tätigkeiten und der Komplexität der Betriebsorganisation angemessen und beruht auf einer Risikobeurteilung. In das Sicherheitsmanagementsystem ist derjenige Teil des allgemeinen Managementsystems einzugliedern, zu dem Organisationsstruktur, Verantwortungsbereiche, Handlungsweisen, Verfahren, Prozesse und Mittel gehören, also die für die Festlegung und Anwendung des Konzepts zur Verhinderung von Störfällen relevanten Punkte. Insbesondere bei bereits nach § 32 des Umweltauditgesetzes EMAS-registrierten Standorten kann auf deren Managementstrukturen und Vorgehensweisen aufgesetzt werden.",
+          "children": []
+        },
+        {
+          "key": "anhang3.2",
+          "ref": "Anhang III Nr. 2",
+          "heading": null,
+          "text": "Folgende Punkte werden durch das Sicherheitsmanagementsystem geregelt:",
+          "children": [
+            {
+              "key": "anhang3.2.a",
+              "ref": "Anhang III Nr. 2 Buchst. a",
+              "heading": null,
+              "text": "Organisation und Personal\nAufgaben und Verantwortungsbereiche des für die Verhinderung von Störfällen und die Begrenzung ihrer Auswirkungen vorgesehenen Personals auf allen Organisationsebenen; Maßnahmen, die zur Sensibilisierung für die Notwendigkeit ständiger Verbesserungen ergriffen werden. Ermittlung des entsprechenden Ausbildungs- und Schulungsbedarfs sowie Durchführung der erforderlichen Ausbildungs- und Schulungsmaßnahmen. Einbeziehung der Beschäftigten des Betriebsbereichs sowie des im Betriebsbereich beschäftigten Personals von Subunternehmen, soweit dies unter dem Gesichtspunkt der Sicherheit relevant ist.",
+              "children": []
+            },
+            {
+              "key": "anhang3.2.b",
+              "ref": "Anhang III Nr. 2 Buchst. b",
+              "heading": null,
+              "text": "Ermittlung und Bewertung der Gefahren von Störfällen\nFestlegung und Anwendung von Verfahren zur systematischen Ermittlung der Gefahren von Störfällen bei bestimmungsgemäßem und nicht bestimmungsgemäßem Betrieb, einschließlich von Tätigkeiten, die als Unteraufträge vergeben sind, sowie Abschätzung der Wahrscheinlichkeit und der Schwere solcher Störfälle.",
+              "children": []
+            },
+            {
+              "key": "anhang3.2.c",
+              "ref": "Anhang III Nr. 2 Buchst. c",
+              "heading": null,
+              "text": "Überwachung des Betriebs\nFestlegung und Anwendung von Verfahren und Anweisungen für den sicheren Betrieb, einschließlich der Wartung der Anlagen, für Verfahren und Einrichtung sowie für Alarmmanagement und zeitlich begrenzte Unterbrechungen. Berücksichtigung verfügbarer Informationen über bewährte Verfahren zur Überwachung und Prüfung, um die Wahrscheinlichkeit von Systemausfällen zu verringern. Betrachtung und Beherrschung der durch Alterung oder Korrosion von Anlagenteilen im Betriebsbereich entstehenden Risiken.\nDokumentation der Anlagenteile im Betriebsbereich, verbunden mit einer Strategie und Methodik zur Überwachung und Prüfung des Zustands dieser Anlagenteile. Gegebenenfalls Festlegung von erforderlichen Gegenmaßnahmen und angemessenen Folgemaßnahmen.",
+              "children": []
+            },
+            {
+              "key": "anhang3.2.d",
+              "ref": "Anhang III Nr. 2 Buchst. d",
+              "heading": null,
+              "text": "Sichere Durchführung von Änderungen\nFestlegung und Anwendung von Verfahren zur Planung von Änderungen bestehender Anlagen oder Verfahren oder Auslegung einer neuen Anlage oder eines neuen Verfahrens.",
+              "children": []
+            },
+            {
+              "key": "anhang3.2.e",
+              "ref": "Anhang III Nr. 2 Buchst. e",
+              "heading": null,
+              "text": "Planung für Notfälle\nFestlegung und Anwendung von Verfahren zur Ermittlung vorhersehbarer Notfälle auf Grund einer systematischen Analyse und zur Erstellung, Erprobung und Überprüfung der Alarm- und Gefahrenabwehrpläne, um in Notfällen angemessen reagieren und um dem betroffenen Personal eine spezielle Ausbildung erteilen zu können. Diese Ausbildung muss allen Beschäftigten des Betriebsbereichs, einschließlich des relevanten Personals von Subunternehmen, erteilt werden.",
+              "children": []
+            },
+            {
+              "key": "anhang3.2.f",
+              "ref": "Anhang III Nr. 2 Buchst. f",
+              "heading": null,
+              "text": "Überwachung der Leistungsfähigkeit des Sicherheitsmanagementsystems\nFestlegung und Anwendung von Verfahren zur ständigen Bewertung der Erreichung der Ziele, die der Betreiber im Rahmen des Konzepts zur Verhinderung von Störfällen und des Sicherheitsmanagementsystems festgelegt hat, sowie Einrichtung von Mechanismen zur Untersuchung und Korrektur bei Nichterreichung dieser Ziele. Die Verfahren umfassen das System für die Meldung von Ereignissen, insbesondere von solchen, bei denen Schutzmaßnahmen versagt haben, sowie die entsprechenden Untersuchungen und Folgemaßnahmen, bei denen einschlägige Erfahrungen und Erkenntnisse aus innerbetrieblichen und außerbetrieblichen Ereignissen zugrunde zu legen sind. Die Verfahren können auch Leistungsindikatoren wie sicherheitsbezogene Leistungsindikatoren und andere relevante Indikatoren beinhalten.",
+              "children": []
+            },
+            {
+              "key": "anhang3.2.g",
+              "ref": "Anhang III Nr. 2 Buchst. g",
+              "heading": null,
+              "text": "Systematische Überprüfung und Bewertung\nFestlegung und Anwendung von Verfahren zur regelmäßigen systematischen Bewertung des Konzepts zur Verhinderung von Störfällen und der Wirksamkeit und Angemessenheit des Sicherheitsmanagementsystems. Von der Leitung des Betriebsbereichs entsprechend dokumentierte Überprüfung der Leistungsfähigkeit des bestehenden Konzepts und des Sicherheitsmanagementsystems sowie seine Aktualisierung, einschließlich der Erwägung und Einarbeitung notwendiger Änderungen gemäß der systematischen Überprüfung und Bewertung.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

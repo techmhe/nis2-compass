@@ -1,0 +1,172 @@
+{
+  "projectId": "4d950d25-8119-4fe6-936b-14015ab774ef",
+  "pkg": "@nis2-compass/ui",
+  "globalName": "Nis2Compass",
+  "shape": "package",
+  "buildCmd": "npm --prefix frontend run build:ds",
+  "entry": "frontend/ds-dist/index.js",
+  "srcDir": "../src",
+  "cssEntry": "style.css",
+  "tokensPkg": "../ds-dist",
+  "tokensGlob": "tokens.css",
+  "provider": {
+    "component": "DesignSystemProvider"
+  },
+  "componentSrcMap": {
+    "AlertDialogAction": null,
+    "AlertDialogCancel": null,
+    "AlertDialogContent": null,
+    "AlertDialogDescription": null,
+    "AlertDialogFooter": null,
+    "AlertDialogHeader": null,
+    "AlertDialogMedia": null,
+    "AlertDialogOverlay": null,
+    "AlertDialogPortal": null,
+    "AlertDialogTitle": null,
+    "AlertDialogTrigger": null,
+    "AvatarBadge": null,
+    "AvatarFallback": null,
+    "AvatarGroup": null,
+    "AvatarGroupCount": null,
+    "AvatarImage": null,
+    "CardAction": null,
+    "CardContent": null,
+    "CardDescription": null,
+    "CardFooter": null,
+    "CardHeader": null,
+    "CardTitle": null,
+    "CollapsibleContent": null,
+    "CollapsibleTrigger": null,
+    "CommandDialog": null,
+    "CommandEmpty": null,
+    "CommandGroup": null,
+    "CommandInput": null,
+    "CommandItem": null,
+    "CommandList": null,
+    "CommandSeparator": null,
+    "CommandShortcut": null,
+    "DesignSystemProvider": null,
+    "DialogClose": null,
+    "DialogContent": null,
+    "DialogDescription": null,
+    "DialogFooter": null,
+    "DialogHeader": null,
+    "DialogOverlay": null,
+    "DialogPortal": null,
+    "DialogTitle": null,
+    "DialogTrigger": null,
+    "DropdownMenuCheckboxItem": null,
+    "DropdownMenuContent": null,
+    "DropdownMenuGroup": null,
+    "DropdownMenuItem": null,
+    "DropdownMenuLabel": null,
+    "DropdownMenuPortal": null,
+    "DropdownMenuRadioGroup": null,
+    "DropdownMenuRadioItem": null,
+    "DropdownMenuSeparator": null,
+    "DropdownMenuShortcut": null,
+    "DropdownMenuSub": null,
+    "DropdownMenuSubContent": null,
+    "DropdownMenuSubTrigger": null,
+    "DropdownMenuTrigger": null,
+    "HoverCardContent": null,
+    "HoverCardTrigger": null,
+    "PopoverAnchor": null,
+    "PopoverContent": null,
+    "PopoverDescription": null,
+    "PopoverHeader": null,
+    "PopoverTitle": null,
+    "PopoverTrigger": null,
+    "RadioGroupItem": null,
+    "ScrollBar": null,
+    "SelectContent": null,
+    "SelectGroup": null,
+    "SelectItem": null,
+    "SelectLabel": null,
+    "SelectScrollDownButton": null,
+    "SelectScrollUpButton": null,
+    "SelectSeparator": null,
+    "SelectTrigger": null,
+    "SelectValue": null,
+    "SheetClose": null,
+    "SheetContent": null,
+    "SheetDescription": null,
+    "SheetFooter": null,
+    "SheetHeader": null,
+    "SheetTitle": null,
+    "SheetTrigger": null,
+    "TableBody": null,
+    "TableCaption": null,
+    "TableCell": null,
+    "TableFooter": null,
+    "TableHead": null,
+    "TableHeader": null,
+    "TableRow": null,
+    "TabsContent": null,
+    "TabsList": null,
+    "TabsTrigger": null,
+    "ToggleGroupItem": null,
+    "TooltipContent": null,
+    "TooltipProvider": null,
+    "TooltipTrigger": null,
+    "Calendar": "../src/components/ui/calendar.tsx",
+    "KV": null
+  },
+  "docsDir": "../../.design-sync/docs",
+  "extraFonts": [
+    "../node_modules/@fontsource/ibm-plex-sans/400.css",
+    "../node_modules/@fontsource/ibm-plex-sans/500.css",
+    "../node_modules/@fontsource/ibm-plex-sans/600.css",
+    "../node_modules/@fontsource/ibm-plex-sans/700.css",
+    "../node_modules/@fontsource/ibm-plex-sans/400-italic.css",
+    "../node_modules/@fontsource/ibm-plex-mono/400.css",
+    "../node_modules/@fontsource/ibm-plex-mono/500.css"
+  ],
+  "overrides": {
+    "Table": {
+      "cardMode": "column"
+    },
+    "Dialog": {
+      "cardMode": "single",
+      "viewport": "900x620"
+    },
+    "AlertDialog": {
+      "cardMode": "single",
+      "viewport": "900x620"
+    },
+    "Sheet": {
+      "cardMode": "single",
+      "viewport": "900x620"
+    },
+    "Popover": {
+      "cardMode": "single",
+      "viewport": "900x620"
+    },
+    "Tooltip": {
+      "cardMode": "single",
+      "viewport": "900x620"
+    },
+    "HoverCard": {
+      "cardMode": "single",
+      "viewport": "900x620"
+    },
+    "DropdownMenu": {
+      "cardMode": "single",
+      "viewport": "900x620"
+    },
+    "Confirm": {
+      "cardMode": "single",
+      "viewport": "900x620"
+    },
+    "Markdown": {
+      "cardMode": "column"
+    },
+    "Separator": {
+      "cardMode": "column"
+    },
+    "Command": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
