@@ -6,6 +6,15 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-10-27
+
+### Security
+- Authlib 1.9.1 (OIDC login): fixes CVE-2026-96760 in 1.8.0.
+
+### Added
+- Container image `ghcr.io/techmhe/nis2-compass` (linux/amd64), built by CI for every version tag once the checks
+  pass, tagged `X.Y.Z` and `X.Y`, with provenance and SBOM attestations.
+
 ## [1.0.0] - 2026-10-27
 
 Initial release.

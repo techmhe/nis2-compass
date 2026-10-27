@@ -60,6 +60,13 @@ cp .env.example .env           # set DOMAIN, TLS_MODE, POSTGRES_PASSWORD, NIS2_S
 docker compose up -d --build
 ```
 
+Instead of building on the server, use the prebuilt image: set `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>`
+in `.env`, then `docker compose pull && docker compose up -d`. While the package is private, log in once with a
+classic personal access token that has only the `read:packages` scope and an expiry date, typed without it landing
+in the shell history: `read -rs GHCR_TOKEN && echo "$GHCR_TOKEN" | docker login ghcr.io -u <github-user>
+--password-stdin; unset GHCR_TOKEN`. Docker keeps it in `~/.docker/config.json` unless a credential helper is set
+up; that scope can read every package the account can access, so rotate it when it expires.
+
 First-run setup happens in the browser: open `https://<DOMAIN>/` and the setup page creates the administrator and
 the first entities. **Complete it before the server is reachable from the network.** Until setup is done, whoever
 reaches a fresh install first becomes the administrator. On OIDC-only installs the setup administrator remains a
@@ -82,7 +89,8 @@ local break-glass account; keep its password safe. To sign in with it on an OIDC
   `sudo cp deploy/systemd/nis2-backup.* /etc/systemd/system/` (adjust the path in the service file), then
   `sudo systemctl enable --now nis2-backup.timer`. Copy `deploy/backups/` to off-site storage and test a restore
   at least once a year.
-- Updates: `git pull && docker compose up -d --build` (migrations run automatically on start).
+- Updates: `git pull && docker compose up -d --build`, or with the prebuilt image raise the version in `APP_IMAGE`
+  and run `docker compose pull && docker compose up -d` (migrations run automatically on start).
 
 ### Single sign-on (OIDC)
 

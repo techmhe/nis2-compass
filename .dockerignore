@@ -12,3 +12,13 @@ backend/.env
 deploy/.env
 templates
 tools
+# Secrets, as in .gitignore; local builds must not copy them into the image.
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/secrets
+frontend/e2e/.auth
+deploy/caddy.env
+deploy/certs
+deploy/backups

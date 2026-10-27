@@ -1,8 +1,10 @@
-# Same gate the agent runs locally. Runs on every push and pull request.
+# Same gate the agent runs locally. Runs on every push and pull request. A version tag (v*) also builds the
+# container image once the gate is green; workflow_dispatch on a tag rebuilds it.
 name: verify
 on:
   push:
   pull_request:
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
@@ -71,3 +73,44 @@ jobs:
           HEAD_REF: ${{ github.head_ref }}
         run: git switch -c "$HEAD_REF"
       - run: .claude/verify.sh
+
+  image:
+    needs: verify
+    if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      # Third-party actions are pinned to the commit of the named release.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+      - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      # 1.2.3 and 1.2 for a v1.2.3 tag. No latest: a patch on an older line or a re-run on an old tag would
+      # silently move it back.
+      - id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
+        with:
+          images: ghcr.io/${{ github.repository }}
+          flavor: latest=false
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+      # Provenance and SBOM are BuildKit attestations stored with the image; GitHub's own artifact
+      # attestations need Enterprise Cloud for private repositories. No GHA cache: the verify job before it
+      # could write cache entries the release build would take as layers.
+      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          platforms: linux/amd64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          provenance: mode=max
+          sbom: true
