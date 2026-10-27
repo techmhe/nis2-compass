@@ -57,6 +57,7 @@ from app.features.inventory.models import (
     service_suppliers,
 )
 from app.features.inventory.transfer import FIELDS, export_workbook, read_table, run_import, suggest_mapping
+from app.features.suppliers.api import visible_supplier_ids
 from app.features.suppliers.logic import dependency_map, effective_tier
 from app.features.suppliers.models import Supplier
 from app.models import AuditEvent, Entity, Stakeholder, User
@@ -86,10 +87,11 @@ Lifecycle = Literal["planned", "in_operation", "end_of_life", "retired"]
 class Ctx:
     """Lookup tables used to render many objects at once."""
 
-    def __init__(self, db: Session):
+    def __init__(self, db: Session, pr: Principal):
         self.entities = {e.id: e for e in db.scalars(select(Entity))}
         self.stakeholders = {s.id: s for s in db.scalars(select(Stakeholder))}
         self.suppliers = {s.id: s for s in db.scalars(select(Supplier))}
+        self.visible_suppliers = visible_supplier_ids(db, pr)
 
     def entity(self, eid: int | None) -> dict | None:
         e = self.entities.get(eid) if eid else None
@@ -101,11 +103,11 @@ class Ctx:
 
     def supplier(self, sid: int | None) -> dict | None:
         s = self.suppliers.get(sid) if sid else None
-        return (
-            {"id": s.id, "code": s.code, "name": s.name, "status": s.status, "access_type": s.access_type}
-            if s
-            else None
-        )
+        if not s:
+            return None
+        if s.id not in self.visible_suppliers:
+            return {"id": s.id, "hidden": True}
+        return {"id": s.id, "code": s.code, "name": s.name, "status": s.status, "access_type": s.access_type}
 
 
 def _pairs(db: Session, table, a: str, b: str) -> dict[int, list[int]]:
@@ -283,7 +285,7 @@ def _plan_map(db: Session, pr: Principal) -> dict[int, list[dict]]:
 def list_services(
     entity_id: int | None = None, pr: Principal = Depends(require(READ)), db: Session = Depends(get_db)
 ):
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     rows = _visible(pr, list(db.scalars(select(Service).order_by(Service.name))), entity_id)
     s_assets = _pairs(db, service_assets, "service_id", "asset_id")
     s_sups = _pairs(db, service_suppliers, "service_id", "supplier_id")
@@ -335,7 +337,7 @@ def _asset_brief(a: Asset, ctx: Ctx) -> dict:
 
 
 def _service_detail(db: Session, pr: Principal, s: Service) -> dict:
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     all_asset_ids = list(
         db.scalars(select(service_assets.c.asset_id).where(service_assets.c.service_id == s.id))
     )
@@ -473,8 +475,7 @@ def set_service_dependencies(
         if not a or not pr.can_read(READ, a.entity_id):
             raise HTTPException(400, f"Asset {aid} not found")
     for sid in new_s - old_s:
-        if not db.get(Supplier, sid):
-            raise HTTPException(400, f"Supplier {sid} not found")
+        _check_supplier(db, pr, sid)
     db.execute(
         delete(service_assets).where(
             service_assets.c.service_id == s.id, service_assets.c.asset_id.in_(old_a - new_a)
@@ -594,7 +595,7 @@ def _asset_out(a: Asset, ctx: Ctx, pr: Principal, service_ids: list[int]) -> dic
 def list_assets(
     entity_id: int | None = None, pr: Principal = Depends(require(READ)), db: Session = Depends(get_db)
 ):
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     rows = _visible(pr, list(db.scalars(select(Asset).order_by(Asset.name))), entity_id)
     a_svcs = _pairs(db, service_assets, "asset_id", "service_id")
     readable = _readable_ids(db, pr, Service)
@@ -608,7 +609,7 @@ def _load_asset(db: Session, pr: Principal, asset_id: int, write: bool = False) 
 
 
 def _asset_detail(db: Session, pr: Principal, a: Asset) -> dict:
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     svc_ids = list(db.scalars(select(service_assets.c.service_id).where(service_assets.c.asset_id == a.id)))
     svcs = [
         s
@@ -648,17 +649,26 @@ def _asset_detail(db: Session, pr: Principal, a: Asset) -> dict:
     return out
 
 
-def _check_asset_refs(db: Session, body: AssetIn) -> None:
+def _check_supplier(db: Session, pr: Principal, supplier_id: int) -> None:
+    # an invisible supplier answers like a missing one, so ids cannot be probed
+    if supplier_id not in visible_supplier_ids(db, pr):
+        raise HTTPException(400, "unknown supplier")
+
+
+def _check_asset_refs(
+    db: Session, pr: Principal, body: AssetIn, current_supplier_id: int | None = None
+) -> None:
     _ensure_entity(db, body.entity_id)
     _check_owner(db, body.owner_id)
-    if body.supplier_id is not None and not db.get(Supplier, body.supplier_id):
-        raise HTTPException(400, "Supplier not found")
+    # an unchanged link may stay, so editing other fields of an asset linked to a hidden supplier still works
+    if body.supplier_id is not None and body.supplier_id != current_supplier_id:
+        _check_supplier(db, pr, body.supplier_id)
 
 
 @router.post("/assets")
 def create_asset(body: AssetIn, pr: Principal = Depends(get_principal), db: Session = Depends(get_db)):
     pr.ensure(MANAGE, body.entity_id, write=True)
-    _check_asset_refs(db, body)
+    _check_asset_refs(db, pr, body)
     data = body.model_dump()
     data["tags"] = [t.strip()[:40] for t in body.tags if t.strip()]
     a = Asset(code=next_code(db, Asset.code, "AST-"), **data)
@@ -681,7 +691,7 @@ def update_asset(
 ):
     a = _load_asset(db, pr, asset_id, write=True)
     pr.ensure(MANAGE, body.entity_id, write=True)
-    _check_asset_refs(db, body)
+    _check_asset_refs(db, pr, body, a.supplier_id)
     data = body.model_dump()
     data["tags"] = [t.strip()[:40] for t in body.tags if t.strip()]
     diff = apply_changes(a, data)
@@ -762,7 +772,7 @@ def dependencies(
     entity_id: int | None = None, pr: Principal = Depends(require(READ)), db: Session = Depends(get_db)
 ):
     """Service → assets → suppliers tree (plus direct service → supplier dependencies)."""
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     services = _visible(
         pr,
         list(
@@ -782,7 +792,7 @@ def dependencies(
 
     def sup(sid):
         d = ctx.supplier(sid)
-        if d:
+        if d and not d.get("hidden"):
             d["tier"] = tiers.get(sid)
         return d
 
@@ -827,7 +837,7 @@ def consistency(
 ):
     services = _visible(pr, list(db.scalars(select(Service))), entity_id)
     assets = _visible(pr, list(db.scalars(select(Asset))), entity_id)
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     flags = consistency_flags(db, services, assets)
     for f in flags:
         f["entity"] = ctx.entity(f["entity_id"])
@@ -850,7 +860,7 @@ def _test_state(p: ContinuityPlan, today: date) -> str:
 def overview(
     entity_id: int | None = None, pr: Principal = Depends(require(READ)), db: Session = Depends(get_db)
 ):
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     today = date.today()
     services = _visible(
         pr, list(db.scalars(select(Service).order_by(Service.criticality.desc(), Service.name))), entity_id
@@ -948,7 +958,7 @@ def export_inventory(
 ):
     services = _visible(pr, list(db.scalars(select(Service).order_by(Service.code))), entity_id)
     assets = _visible(pr, list(db.scalars(select(Asset).order_by(Asset.code))), entity_id)
-    data = export_workbook(db, services, assets)
+    data = export_workbook(db, pr, services, assets)
     audit(db, pr, "export", "asset", None, "Service and asset inventory", entity_id=entity_id or None)
     db.commit()
     return Response(
@@ -1115,7 +1125,7 @@ def _user_names(db: Session) -> dict[int, str]:
 
 @router.get("/bias")
 def list_bias(pr: Principal = Depends(require(READ)), db: Session = Depends(get_db)):
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     rows = _visible(
         pr,
         list(
@@ -1182,7 +1192,7 @@ def _item_out(
 
 
 def _bia_detail(db: Session, pr: Principal, b: Bia) -> dict:
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     db.refresh(b)
     out = _bia_summary(b, ctx, pr, _user_names(db))
     services = {s.id: s for s in db.scalars(select(Service))}
@@ -1488,7 +1498,7 @@ def _plan_out(p: ContinuityPlan, ctx: Ctx, pr: Principal, today: date, exs: list
 
 @router.get("/plans")
 def list_plans(pr: Principal = Depends(require(READ)), db: Session = Depends(get_db)):
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     today = date.today()
     rows = _visible(
         pr,
@@ -1528,7 +1538,7 @@ def _set_services(db: Session, pr: Principal, obj, ids: list[int], require_all: 
 
 
 def _plan_detail(db: Session, pr: Principal, p: ContinuityPlan) -> dict:
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     exs = _plan_exercises(db, pr, [p.id]).get(p.id, [])
     out = _plan_out(p, ctx, pr, date.today(), exs)
     out["exercises"] = [_exercise_brief(e) for e in exs]
@@ -1723,7 +1733,7 @@ def _exercise_out(
 
 @router.get("/exercises")
 def list_exercises(pr: Principal = Depends(require(READ)), db: Session = Depends(get_db)):
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     plans = {p.id: p for p in db.scalars(select(ContinuityPlan))}
     rows = _visible(
         pr,
@@ -1746,7 +1756,7 @@ def _load_exercise(db: Session, pr: Principal, exercise_id: int, write: bool = F
 
 
 def _exercise_detail(db: Session, pr: Principal, e: Exercise) -> dict:
-    ctx = Ctx(db)
+    ctx = Ctx(db, pr)
     plans = {p.id: p for p in db.scalars(select(ContinuityPlan))}
     out = _exercise_out(db, e, ctx, pr, plans)
     out["documents"] = doc_links_for(db, pr, "exercise", e.id)

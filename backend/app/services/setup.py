@@ -1,8 +1,12 @@
 """First-run setup state: the system needs setup while no user exists."""
 
+import hashlib
+import hmac
+
 from sqlalchemy import select, text
 from sqlalchemy.orm import Session
 
+from app.config import get_settings
 from app.db import SessionLocal
 from app.models import User
 
@@ -36,3 +40,11 @@ def lock_setup(db: Session) -> None:
 def reset_setup_cache() -> None:
     global _done
     _done = False
+
+
+def expected_setup_token() -> str:
+    """NIS2_SETUP_TOKEN, else derived from the secret key so it is stable across restarts and workers."""
+    s = get_settings()
+    if s.setup_token:
+        return s.setup_token
+    return hmac.new(s.secret_key.encode(), b"nis2-setup-token-v1", hashlib.sha256).hexdigest()[:24]

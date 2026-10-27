@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react"
-import { useSearchParams } from "react-router"
+import { Link, useSearchParams } from "react-router"
 import { useQuery } from "@tanstack/react-query"
 import { Check, ChevronsUpDown, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -18,7 +18,8 @@ import { cn } from "@/lib/utils"
 // --- types ----------------------------------------------------------------------------------------------
 
 export interface Owner { id: number; name: string }
-export interface SupplierBrief { id: number; code: string; name: string; status: string; access_type: string; tier?: string | null }
+// `hidden` suppliers are ones the caller may not see; the server then sends only the id.
+export interface SupplierBrief { id: number; code: string; name: string; status: string; access_type: string; tier?: string | null; hidden?: boolean }
 export interface ExerciseBrief {
   id: number; code: string; title: string; exercise_type: string; exercise_date: string; result: string | null
   achieved_rto_hours: number | null; achieved_rpo_hours: number | null
@@ -210,6 +211,11 @@ export function BiaStatePill({ bia }: { bia: ServiceRow["bia"] }) {
   return bia.status === "approved" ? <Pill tone="sage">Approved {bia.period}</Pill> : <Pill tone="brass">Draft {bia.period}</Pill>
 }
 
+export function SupplierRef({ s, className }: { s: SupplierBrief; className?: string }) {
+  if (s.hidden) return <span className="italic text-ink-3">Hidden supplier</span>
+  return <Link to={`/suppliers/${s.id}`} className={className}>{s.name}</Link>
+}
+
 export const TIER_TONE: Record<string, string> = { critical: "alarm", high: "amber", standard: "neutral" }
 export function TierPill({ tier }: { tier: string | null | undefined }) {
   if (!tier) return null
@@ -250,16 +256,18 @@ export function ManagedEntitySelect({ value, onChange, perm = "assets.manage", d
 }
 
 /** Searchable multi-select with removable chips. */
-export function MultiCombo({ value, onChange, items, placeholder = "Add…", disabled, emptyText = "Nothing selected." }: {
+export function MultiCombo({ value, onChange, items, placeholder = "Add…", disabled, emptyText = "Nothing selected.", unknownLabel }: {
   value: number[]
   onChange: (v: number[]) => void
   items: { value: number; label: string; hint?: string }[]
   placeholder?: string
   disabled?: boolean
   emptyText?: string
+  /** Label for a selected id that is not among the options, e.g. one the user may not see. */
+  unknownLabel?: string
 }) {
   const [open, setOpen] = useState(false)
-  const selected = value.map((v) => items.find((i) => i.value === v) ?? { value: v, label: `#${v}` })
+  const selected = value.map((v) => items.find((i) => i.value === v) ?? { value: v, label: unknownLabel ?? `#${v}` })
   const toggle = (v: number) => onChange(value.includes(v) ? value.filter((x) => x !== v) : [...value, v])
   return (
     <div className="space-y-2">

@@ -32,7 +32,7 @@ from app.api import (
 )
 from app.config import get_settings
 from app.db import SessionLocal
-from app.services.setup import setup_needed_now
+from app.services.setup import expected_setup_token, setup_needed_now
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("nis2")
@@ -63,9 +63,25 @@ async def _singleton_loop(lock_id: int, coro_factory):
         await asyncio.sleep(60)
 
 
+def _log_setup_hint() -> None:
+    if settings.setup_token:
+        log.warning("First-run setup is open; use the configured NIS2_SETUP_TOKEN")
+        return
+    log.warning(
+        "First-run setup is open. Setup token: %s (also: docker compose exec app python -m app.setup_token)",
+        expected_setup_token(),
+    )
+    if settings.env != "test" and settings.secret_key.startswith("dev-insecure"):
+        log.warning(
+            "The setup token is predictable because NIS2_SECRET_KEY is the development default; set NIS2_SECRET_KEY"
+        )
+
+
 @contextlib.asynccontextmanager
 async def lifespan(app: FastAPI):
     tasks = []
+    if setup_needed_now():
+        _log_setup_hint()
     if settings.env != "test":
         from app.features.controls.jobs import daily_loop
         from app.services.ai import embedding_loop
@@ -83,7 +99,7 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title=f"{settings.app_name} API",
-    version="1.0.1",
+    version="1.1.0",
     lifespan=lifespan,
     docs_url=None if settings.is_production else "/api/docs",
     redoc_url=None,
@@ -155,7 +171,9 @@ async def validation_handler(request: Request, exc: RequestValidationError):
 
 @app.exception_handler(IntegrityError)
 async def integrity_handler(request: Request, exc: IntegrityError):
-    log.info("integrity error on %s %s: %s", request.method, request.url.path, exc.orig)
+    # the driver message quotes the conflicting values (e-mail addresses, names): log the constraint only
+    constraint = getattr(getattr(exc.orig, "diag", None), "constraint_name", None)
+    log.info("integrity error on %s %s: constraint %s", request.method, request.url.path, constraint)
     return JSONResponse(
         status_code=409,
         content={

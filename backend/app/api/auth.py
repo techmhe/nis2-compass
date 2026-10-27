@@ -282,6 +282,8 @@ def change_password(
     # invalidate all other sessions of this user
     if pr.session:
         db.execute(delete(UserSession).where(UserSession.user_id == u.id, UserSession.id != pr.session.id))
+    else:  # a Bearer token has no session of its own to keep
+        db.execute(delete(UserSession).where(UserSession.user_id == u.id))
     db.execute(delete(ApiToken).where(ApiToken.user_id == u.id))
     audit(db, pr, "password_changed", "user", u.id, u.email, ip=client_ip(request))
     db.commit()
@@ -319,7 +321,7 @@ def revoke_session(session_id: int, pr: Principal = Depends(get_principal), db: 
 
 class TokenIn(BaseModel):
     name: str = Field(min_length=1, max_length=120)
-    expires_in_days: int | None = Field(default=90, ge=1, le=730)
+    expires_in_days: int = Field(default=90, ge=1, le=730)
 
 
 @router.get("/tokens")
@@ -348,7 +350,7 @@ def create_token(body: TokenIn, pr: Principal = Depends(get_principal), db: Sess
         name=body.name,
         token_hash=token_hash(raw),
         prefix=raw[:12],
-        expires_at=utcnow() + timedelta(days=body.expires_in_days) if body.expires_in_days else None,
+        expires_at=utcnow() + timedelta(days=body.expires_in_days),
     )
     db.add(t)
     audit(db, pr, "api_token_created", "user", pr.id, body.name)
@@ -467,7 +469,7 @@ async def oidc_callback(request: Request, db: Session = Depends(get_db)):
             }
             if existing.oidc_subject or privileged:
                 log.warning(
-                    "OIDC login for %s not linked to existing account (privileged or already linked)", email
+                    "OIDC login not linked to existing account %s (privileged or already linked)", existing.id
                 )
                 return RedirectResponse("/login?error=link_denied", status_code=302)
             existing.auth_source = "oidc"
@@ -494,6 +496,19 @@ async def oidc_callback(request: Request, db: Session = Depends(get_db)):
     if not user.is_active:
         return RedirectResponse("/login?error=disabled", status_code=302)
     user.display_name = name
+    claim = s.oidc_groups_claim
+    overage = claim not in claims and (
+        claim in (claims.get("_claim_names") or {}) or (claim == "groups" and claims.get("hasgroups") is True)
+    )
+    if overage:
+        # Entra ID drops the groups claim above ~200 groups. Fail closed: mapped roles go as for a user without
+        # groups (keeping them would let anyone dodge revocation by joining enough groups); say why in the log.
+        log.warning(
+            "OIDC group overage for user %s: %r claim not in the token, mapped roles removed "
+            "(use app roles or 'groups assigned to the application')",
+            user.id,
+            claim,
+        )
     _apply_role_mapping(db, user, [str(g) for g in groups])
     db.flush()
     db.refresh(user)

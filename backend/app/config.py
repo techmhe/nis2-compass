@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     app_name: str = "NIS2 Compass"
     base_url: str = "http://localhost:5173"  # public URL, used for OIDC redirects and links
     secret_key: str = Field(default="dev-insecure-secret-change-me-please-0123456789")
+    setup_token: str | None = None  # first-run setup token; derived from secret_key when unset
 
     database_url: str = "postgresql+psycopg://nis2@127.0.0.1:55432/nis2"
     data_dir: Path = Path(__file__).resolve().parent.parent / "data"
@@ -44,7 +45,7 @@ class Settings(BaseSettings):
     oidc_groups_claim: str = "groups"
     # JSON mapping of IdP group -> role key, e.g. {"nis2-admins":"admin","nis2-isb":"security_officer"}
     oidc_role_mapping: dict[str, str] = Field(default_factory=dict)
-    oidc_default_role: str | None = "viewer"
+    oidc_default_role: str | None = None  # no role unless a group mapping grants one
     oidc_auto_provision: bool = True
     # Treat the IdP's e-mail claim as verified even without email_verified=true (e.g. Entra ID, which omits the
     # claim). Only enable when the IdP guarantees e-mail ownership; used to link pre-provisioned local accounts.
@@ -132,7 +133,8 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     s = Settings()
-    if s.is_production and (s.secret_key.startswith("dev-insecure") or len(s.secret_key) < 32):
+    weak = s.secret_key.startswith("dev-insecure") or "change-me" in s.secret_key.lower()
+    if s.is_production and (weak or len(s.secret_key) < 32):
         raise RuntimeError(
             "NIS2_SECRET_KEY must be set to a random value of at least 32 characters in production"
         )

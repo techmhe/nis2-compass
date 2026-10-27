@@ -1,5 +1,6 @@
 """First-run setup (no authentication): creates the first admin and the group's companies on an empty system."""
 
+import hmac
 import re
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response
@@ -18,7 +19,7 @@ from app.models import Entity, Role, RoleAssignment, User
 from app.services.audit import audit
 from app.services.entities import provision_entity
 from app.services.indexing import index_object
-from app.services.setup import lock_setup, setup_needed
+from app.services.setup import expected_setup_token, lock_setup, setup_needed
 
 router = APIRouter(prefix="/setup", tags=["setup"])
 
@@ -87,6 +88,7 @@ class CompanyIn(BaseModel):
 
 
 class SetupIn(BaseModel):
+    setup_token: str = Field(max_length=200)
     admin: AdminIn
     companies: list[CompanyIn] = Field(min_length=1, max_length=50)
 
@@ -132,6 +134,8 @@ def options():
 def run_setup(body: SetupIn, request: Request, response: Response, db: Session = Depends(get_db)):
     if not setup_needed(db):  # cheap, so that a finished system never pays for the slow hash below
         raise HTTPException(409, "setup already completed")
+    if not hmac.compare_digest(body.setup_token.encode(), expected_setup_token().encode()):
+        raise HTTPException(403, "invalid setup token")
     _check_companies(body.companies)
     password_hash = hash_password(body.admin.password)  # slow; keep it out of the locked section
     lock_setup(db)

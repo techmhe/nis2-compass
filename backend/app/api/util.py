@@ -108,6 +108,8 @@ def check_target(db: Session, pr: Principal, target_type: str, target_id: int, w
         own = obj.assignee_id == pr.id or obj.reporter_id == pr.id
         if not (own or pr.can_read(rperm, ent)):
             raise HTTPException(status.HTTP_403_FORBIDDEN, "No access")
+        if write is True and not (own or pr.can_write(wperm, ent)):
+            raise HTTPException(status.HTTP_403_FORBIDDEN, "No write access")
         return obj
     if not _can(pr, rperm, obj, write=False):
         raise HTTPException(status.HTTP_403_FORBIDDEN, "No access")

@@ -3,7 +3,7 @@
 set -e
 
 # Extra CA certificates (deploy/certs, mounted read-only): trust bundle = default roots + internal CA, used by
-# httpx (OIDC, AI endpoint) and smtplib via SSL_CERT_FILE. Files with private keys are refused.
+# httpx (OIDC, AI endpoint) and smtplib (its default SSL context reads SSL_CERT_FILE). Files with private keys are refused.
 CA_DIR=/etc/nis2/ca
 if [ -d "$CA_DIR" ] && [ -n "$(find "$CA_DIR" -maxdepth 1 -type f \( -name '*.pem' -o -name '*.crt' \) 2>/dev/null)" ]; then
   bundle=/tmp/ca-bundle.pem

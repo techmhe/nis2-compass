@@ -6,9 +6,11 @@ import pytest
 from fastapi.testclient import TestClient
 from sqlalchemy import func, select, text
 
+from app.config import get_settings
 from app.db import get_db
 from app.models import Answer, Assessment, AuditEvent, Entity, RoleAssignment, User
 from app.services import setup as setup_service
+from app.services.setup import expected_setup_token
 from tests.test_seed_base import base_seed  # noqa: F401
 
 PASSWORD = "Setup-Password-2026!"
@@ -29,6 +31,7 @@ def company(code="ATL", **kw):
 
 def payload(companies=None, **admin):
     return {
+        "setup_token": expected_setup_token(),
         "admin": {"display_name": "Ida Isb", "email": "Ida@Example.test", "password": PASSWORD} | admin,
         "companies": companies
         if companies is not None
@@ -239,3 +242,42 @@ def test_post_after_setup_409_without_hashing(client, monkeypatch):
     monkeypatch.setattr("app.api.setup.hash_password", boom)
     r = TestClient(client.app).post("/api/setup", json=payload(email="z@example.test"))
     assert r.status_code == 409 and r.json() == {"detail": "setup already completed"}
+
+
+def test_setup_requires_token(client, empty):
+    body = payload()
+    missing = {k: v for k, v in body.items() if k != "setup_token"}
+    r = client.post("/api/setup", json=missing)
+    assert r.status_code == 422 and ("body", "setup_token") in locs(r)
+    for wrong in ("", "wrong", expected_setup_token().upper(), expected_setup_token() + "0"):
+        r = client.post("/api/setup", json=body | {"setup_token": wrong})
+        assert r.status_code == 403 and r.json() == {"detail": "invalid setup token"}, wrong
+    assert counts(empty) == (0, 0)
+
+
+def test_setup_with_token_succeeds(client, empty):
+    token = expected_setup_token()
+    assert len(token) == 24 and int(token, 16) >= 0
+    assert token == expected_setup_token()
+    assert client.post("/api/setup", json=payload()).status_code == 200
+    assert counts(empty) == (1, 3)
+
+
+def test_setup_token_env_overrides_derived(client, empty, monkeypatch):
+    derived = expected_setup_token()
+    monkeypatch.setattr(get_settings(), "setup_token", "from-the-environment")
+    assert expected_setup_token() == "from-the-environment"
+    assert client.post("/api/setup", json=payload() | {"setup_token": derived}).status_code == 403
+    assert (
+        client.post("/api/setup", json=payload() | {"setup_token": "from-the-environment"}).status_code == 200
+    )
+
+
+def test_setup_token_cli_prints_token(client, capsys):
+    from app import setup_token
+
+    assert setup_token.main() == 0
+    assert capsys.readouterr().out.strip() == expected_setup_token()
+    assert client.post("/api/setup", json=payload()).status_code == 200
+    assert setup_token.main() == 0
+    assert capsys.readouterr().out.strip() == "setup already completed"

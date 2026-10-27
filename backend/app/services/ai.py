@@ -9,6 +9,7 @@ reveal content the user could not open directly.
 import asyncio
 import json
 import logging
+import traceback
 from collections.abc import AsyncIterator
 from dataclasses import dataclass, field
 from datetime import date
@@ -69,10 +70,13 @@ class AIConfig:
 def get_config(db: Session) -> AIConfig:
     s = get_settings()
     vals = {row.key[3:]: row.value for row in db.scalars(select(Setting).where(Setting.key.like("ai.%")))}
+    base_url = vals.get("base_url") or s.ai_base_url
+    # the environment key belongs to the environment's endpoint; never send it to a URL set in the admin UI
+    env_key = s.ai_api_key if (base_url or "").rstrip("/") == (s.ai_base_url or "").rstrip("/") else None
     cfg = AIConfig(
         enabled=bool(vals.get("enabled", False)),
-        base_url=vals.get("base_url") or s.ai_base_url,
-        api_key=decrypt_secret(vals.get("api_key_enc")) or s.ai_api_key,
+        base_url=base_url,
+        api_key=decrypt_secret(vals.get("api_key_enc")) or env_key,
         chat_model=vals.get("chat_model") or s.ai_chat_model,
         embedding_model=vals.get("embedding_model") or s.ai_embedding_model,
         temperature=float(vals.get("temperature", 0.2)),
@@ -777,6 +781,11 @@ def parse_json_object(text: str) -> dict:
     return salvaged or {"text": text}
 
 
+def _redact(cfg: AIConfig, text: str) -> str:
+    key = getattr(cfg, "api_key", None)
+    return text.replace(key, "***") if key else text
+
+
 def test_connection(cfg: AIConfig) -> dict:
     out: dict = {"chat": None, "embeddings": None}
     try:
@@ -784,12 +793,14 @@ def test_connection(cfg: AIConfig) -> dict:
             model=cfg.chat_model, max_tokens=5, messages=[{"role": "user", "content": "Reply with OK"}]
         )
         out["chat"] = {"ok": True, "reply": _text(r.choices[0].message.content)[:50]}
-    except Exception as e:  # noqa: BLE001
-        out["chat"] = {"ok": False, "error": str(e)[:300]}
+    except Exception:  # noqa: BLE001
+        log.warning("AI connection test failed (chat): %s", _redact(cfg, traceback.format_exc()))
+        out["chat"] = {"ok": False, "error": "connection failed"}
     if cfg.embedding_model:
         try:
             v = embed_texts(cfg, ["test"])[0]
             out["embeddings"] = {"ok": True, "dimensions": len(v)}
-        except Exception as e:  # noqa: BLE001
-            out["embeddings"] = {"ok": False, "error": str(e)[:300]}
+        except Exception:  # noqa: BLE001
+            log.warning("AI connection test failed (embeddings): %s", _redact(cfg, traceback.format_exc()))
+            out["embeddings"] = {"ok": False, "error": "connection failed"}
     return out

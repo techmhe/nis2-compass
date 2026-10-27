@@ -14,7 +14,7 @@ from sqlalchemy.orm import Session
 
 from app.config import get_settings
 from app.core.permissions import ALL, BUILTIN_ROLES
-from app.core.security import hash_password
+from app.core.security import hash_password, password_problems
 from app.db import SessionLocal
 from app.models import (
     Activity,
@@ -78,6 +78,10 @@ def bootstrap_admin(db: Session) -> None:
     s = get_settings()
     if not s.bootstrap_admin_password or db.scalar(select(func.count(User.id))):
         return
+    if problems := password_problems(s.bootstrap_admin_password):
+        raise RuntimeError(
+            "NIS2_BOOTSTRAP_ADMIN_PASSWORD does not meet the password policy: needs " + ", ".join(problems)
+        )
     admin = User(
         email=s.bootstrap_admin_email.lower(),
         display_name="Administrator",

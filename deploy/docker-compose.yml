@@ -1,9 +1,17 @@
 name: nis2-compass
 
+# Bounded container logs: the json-file driver keeps growing otherwise
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: "5"
+
 services:
   db:
-    image: pgvector/pgvector:pg17
+    image: pgvector/pgvector:0.8.7-pg17@sha256:ac08538c6f8b9904c33c8224c5e5706dbe760aca29db1d096972b4052c22a75d
     restart: unless-stopped
+    logging: *logging
     environment:
       POSTGRES_DB: nis2
       POSTGRES_USER: nis2
@@ -18,11 +26,10 @@ services:
     networks: [internal]
 
   app:
-    image: ${APP_IMAGE:-nis2-compass:latest}
-    build:
-      context: ..
-      dockerfile: Dockerfile
+    # Prebuilt by CI for every release. To build from a source checkout instead, add docker-compose.build.yml.
+    image: ${APP_IMAGE:-ghcr.io/techmhe/nis2-compass:1.1.0}
     restart: unless-stopped
+    logging: *logging
     depends_on:
       db:
         condition: service_healthy
@@ -30,12 +37,14 @@ services:
     environment:
       NIS2_DATABASE_URL: postgresql+psycopg://nis2:${POSTGRES_PASSWORD}@db:5432/nis2
       NIS2_BASE_URL: https://${DOMAIN}
+      NIS2_SECRET_KEY: ${NIS2_SECRET_KEY:?set NIS2_SECRET_KEY in .env (openssl rand -hex 32)}
       # only the reverse proxy may set X-Forwarded-For (client IP for login throttling and the audit log)
       NIS2_FORWARDED_ALLOW_IPS: ${PROXY_IP:-172.30.64.10}
     volumes:
       - appdata:/data
       # extra CA certificates (*.pem, *.crt) the app trusts for outbound TLS: OIDC issuer, AI endpoint, SMTP
       - ./certs:/etc/nis2/ca:ro
+    mem_limit: 2g
     read_only: true
     tmpfs:
       - /tmp
@@ -46,8 +55,9 @@ services:
     networks: [internal, egress]
 
   caddy:
-    image: caddy:2
+    image: caddy:2.11.7@sha256:504a44d7d74bd2bc28a66afc4774912fc21223ca8a67734af1c54ab2f999b489
     restart: unless-stopped
+    logging: *logging
     depends_on: [app]
     ports:
       - "80:80"
@@ -65,8 +75,10 @@ services:
     env_file:
       - path: caddy.env
         required: false
+    configs:
+      - source: caddyfile
+        target: /etc/caddy/Caddyfile
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - ./certs:/etc/caddy/certs:ro
       - caddy_data:/data
       - caddy_config:/config
@@ -89,3 +101,64 @@ networks:
         - subnet: ${INTERNAL_SUBNET:-172.30.64.0/24}
   egress:
   public:
+
+# Inline, so the server needs only this file and .env. Compose interpolates this text: Caddy's own {$VAR}
+# placeholders are written {$$VAR} so they reach Caddy unchanged.
+configs:
+  caddyfile:
+    content: |
+      # Reverse proxy with automatic HTTPS. The certificate source is chosen with TLS_ISSUER (see deploy/.env.example):
+      #   TLS_ISSUER=default,    TLS_MODE=internal        -> Caddy's local CA, self-signed (testing)
+      #   TLS_ISSUER=default,    TLS_MODE=<your e-mail>   -> Let's Encrypt (public ACME)
+      #   TLS_ISSUER=acme                                 -> your own ACME CA (ACME_CA_URL), trusted via certs/acme-ca-root.pem
+      #   TLS_ISSUER=acme_eab                             -> as "acme", with External Account Binding (caddy.env)
+      {
+          servers {
+              trusted_proxies static private_ranges
+          }
+      }
+
+      (tls_default) {
+          tls {$$TLS_MODE}
+      }
+
+      (tls_acme) {
+          tls {$$ACME_EMAIL} {
+              ca {$$ACME_CA_URL}
+              ca_root /etc/caddy/certs/{$$ACME_CA_ROOT:acme-ca-root.pem}
+          }
+      }
+
+      (tls_acme_eab) {
+          tls {$$ACME_EMAIL} {
+              ca {$$ACME_CA_URL}
+              ca_root /etc/caddy/certs/{$$ACME_CA_ROOT:acme-ca-root.pem}
+              eab {$$ACME_EAB_KID} {$$ACME_EAB_HMAC}
+          }
+      }
+
+      {$$DOMAIN} {
+          import tls_{$$TLS_ISSUER:default}
+          encode zstd gzip
+
+          request_body {
+              max_size {$$MAX_BODY:60MB}
+          }
+
+          header {
+              Strict-Transport-Security "max-age=31536000; includeSubDomains"
+              -Server
+              -Via
+          }
+
+          reverse_proxy app:8000 {
+              # server-sent events (AI assistant) must not be buffered
+              flush_interval -1
+              header_up X-Forwarded-Proto {scheme}
+          }
+
+          log {
+              output stdout
+              format console
+          }
+      }

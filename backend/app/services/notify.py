@@ -3,6 +3,7 @@
 import asyncio
 import logging
 import smtplib
+import ssl
 from datetime import date, timedelta
 from email.message import EmailMessage
 
@@ -60,7 +61,12 @@ def notify(
     )
     user = db.get(User, user_id)
     if user and (user.preferences or {}).get("email_notifications", True):
-        send_mail(user.email, title, (body or "") + (f"\n\n{get_settings().base_url}{link}" if link else ""))
+        send_mail(
+            user.email,
+            title,
+            (body or "") + (f"\n\n{get_settings().base_url}{link}" if link else ""),
+            user_id=user.id,
+        )
     deputy = None if _forwarded else absence_deputy(user)
     if deputy and deputy != user_id:  # copy to the deputy (one level only)
         dep = db.get(User, deputy)
@@ -92,7 +98,7 @@ def notify(
                 )
 
 
-def send_mail(to: str, subject: str, text: str) -> None:
+def send_mail(to: str, subject: str, text: str, user_id: int | None = None) -> None:
     s = get_settings()
     if not s.smtp_host or not s.smtp_from or to.endswith((".local", ".invalid")):
         return
@@ -102,12 +108,13 @@ def send_mail(to: str, subject: str, text: str) -> None:
         msg.set_content(text)
         with smtplib.SMTP(s.smtp_host, s.smtp_port, timeout=15) as smtp:
             if s.smtp_starttls:
-                smtp.starttls()
+                smtp.starttls(context=ssl.create_default_context())
             if s.smtp_user:
                 smtp.login(s.smtp_user, s.smtp_password or "")
             smtp.send_message(msg)
     except Exception as e:  # noqa: BLE001
-        log.warning("mail to %s failed: %s", to, e)
+        # neither the address nor the exception text (refused-recipient errors repeat it) goes to the log
+        log.warning("mail to user %s failed: %s", user_id, type(e).__name__)
 
 
 def stakeholder_user_id(db: Session, stakeholder_id: int | None) -> int | None:

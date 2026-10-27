@@ -50,36 +50,40 @@ Both scripts start a project-local PostgreSQL cluster in `.data/pg` on port 5543
 
 Demo accounts (only with `--demo`): `isb@demo.local`, `pm@demo.local`, `assessor@demo.local`, `it@demo.local`,
 `nl.contact@demo.local` (scoped to the Dutch entities), `viewer@demo.local`, `auditor@demo.local` — password
-`Demo-Password-2026!`. Administrator: with `scripts/dev.sh`, which sets the bootstrap admin `admin@example.local` / `Admin-Password-2026!` (dev only); `scripts/run-local.sh` sets none and shows the setup page on first start.
+`Demo-Password-2026!`. Administrator: with `scripts/dev.sh`, which sets the bootstrap admin `admin@example.local` / `Admin-Password-2026!` (dev only); `scripts/run-local.sh` sets none and shows the setup page on first start; it asks for the setup token from the API
+log (or `cd backend && .venv/bin/python -m app.setup_token`).
 
 ## Deploy on a server (Docker)
 
+A server needs two files from `deploy/`: `docker-compose.yml` and `.env.example`. The app image is published at
+`ghcr.io/techmhe/nis2-compass`, and the compose file of each release points to that release's image.
+
 ```bash
-cd deploy
-cp .env.example .env           # set DOMAIN, TLS_MODE, POSTGRES_PASSWORD, NIS2_SECRET_KEY
-docker compose up -d --build
+mkdir nis2-compass && cd nis2-compass       # put docker-compose.yml and .env.example here
+cp .env.example .env && chmod 600 .env      # set DOMAIN, TLS_MODE, POSTGRES_PASSWORD, NIS2_SECRET_KEY (`openssl rand -hex 32`)
+docker compose up -d
 ```
 
-Instead of building on the server, use the prebuilt image: set `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>`
-in `.env`, then `docker compose pull && docker compose up -d`. While the package is private, log in once with a
-classic personal access token that has only the `read:packages` scope and an expiry date, typed without it landing
-in the shell history: `read -rs GHCR_TOKEN && echo "$GHCR_TOKEN" | docker login ghcr.io -u <github-user>
---password-stdin; unset GHCR_TOKEN`. Docker keeps it in `~/.docker/config.json` unless a credential helper is set
-up; that scope can read every package the account can access, so rotate it when it expires.
+Docker Compose 2.23 or newer is needed (the Caddy configuration is inline in the compose file). To build the
+image from a source checkout instead: `cd deploy && docker compose -f docker-compose.yml -f docker-compose.build.yml
+up -d --build`.
 
 First-run setup happens in the browser: open `https://<DOMAIN>/` and the setup page creates the administrator and
-the first entities. **Complete it before the server is reachable from the network.** Until setup is done, whoever
-reaches a fresh install first becomes the administrator. On OIDC-only installs the setup administrator remains a
+the first entities. The page asks for a setup token, which the server prints once at start while setup is open
+(`docker compose logs app`, or `docker compose exec app python -m app.setup_token`). It is derived from
+`NIS2_SECRET_KEY`; set `NIS2_SETUP_TOKEN` to choose your own. Complete setup soon after the first start anyway: the
+token only keeps out those who cannot read the server log. On OIDC-only installs the setup administrator remains a
 local break-glass account; keep its password safe. To sign in with it on an OIDC-only install, `NIS2_LOCAL_AUTH_ENABLED=true` is needed. `NIS2_BOOTSTRAP_ADMIN_*` is only a hook for tests and automation.
 
 - `TLS_MODE=internal` → self-signed certificate (testing, also works with an IP address as `DOMAIN`).
 - `TLS_MODE=you@example.com` → Let's Encrypt certificate; ports 80/443 must be reachable and `DOMAIN` must resolve to the server.
 - `TLS_ISSUER=acme` → certificate from your **internal ACME CA**:
   set `ACME_CA_URL` (directory URL) and optionally `ACME_EMAIL`, and copy the CA's root certificate to
-  `deploy/certs/acme-ca-root.pem`. The CA must be able to reach the server on port 80 (HTTP-01) or 443 (TLS-ALPN-01).
+  `certs/acme-ca-root.pem` next to the compose file. The CA must be able to reach the server on port 80 (HTTP-01) or 443 (TLS-ALPN-01).
   If the CA requires External Account Binding, use `TLS_ISSUER=acme_eab` and put `ACME_EAB_KID`/`ACME_EAB_HMAC`
-  into `deploy/caddy.env` (see `caddy.env.example`), so that only the proxy sees them.
-- Every `*.pem`/`*.crt` in `deploy/certs/` is also trusted by the app for outgoing TLS (OIDC issuer, AI endpoint, SMTP)
+  into `caddy.env` next to the compose file (copy `deploy/caddy.env.example`, `chmod 600`), so that only the proxy
+  sees them.
+- Every `*.pem`/`*.crt` in `certs/` is also trusted by the app for outgoing TLS (OIDC issuer, AI endpoint, SMTP)
   when these use certificates from the internal CA. Python requires a standards-compliant CA certificate
   (`basicConstraints` CA:TRUE and `keyUsage` keyCertSign).
 - Certificate settings are deliberately environment-only: they are shown read-only in Admin → System but cannot be
@@ -89,28 +93,62 @@ local break-glass account; keep its password safe. To sign in with it on an OIDC
   `sudo cp deploy/systemd/nis2-backup.* /etc/systemd/system/` (adjust the path in the service file), then
   `sudo systemctl enable --now nis2-backup.timer`. Copy `deploy/backups/` to off-site storage and test a restore
   at least once a year.
-- Updates: `git pull && docker compose up -d --build`, or with the prebuilt image raise the version in `APP_IMAGE`
-  and run `docker compose pull && docker compose up -d` (migrations run automatically on start).
+- Updates: replace `docker-compose.yml` with the one from the new release, then `docker compose pull && docker
+  compose up -d`. Migrations run automatically on start. An `APP_IMAGE` in `.env` overrides the compose file's
+  image: update or remove it at the same time. To pin the exact image you checked, append its digest:
+  `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>@sha256:<digest>`.
 
 ### Single sign-on (OIDC)
 
 Register an application at your IdP with redirect URI `https://<DOMAIN>/api/auth/oidc/callback`, then set
 `NIS2_OIDC_*` in `.env`. Map IdP groups to roles with `NIS2_OIDC_ROLE_MAPPING`, e.g.
 `{"nis2-admins":"admin","nis2-isb":"security_officer","nis2-nl":"contributor@ATN,contributor@ATC"}`.
+New SSO users get no role unless a group mapping grants one (`NIS2_OIDC_DEFAULT_ROLE` is empty by default; set it,
+e.g. to `viewer`, to change that), so they see nothing until an administrator assigns a role. With Entra ID set
+"Assignment required = Yes" on the enterprise application so that only assigned people can sign in at all.
 Existing local accounts are linked on first SSO login only when the IdP asserts a verified e-mail (or
 `NIS2_OIDC_TRUST_EMAIL=true`) and never for administrator accounts.
+
+Roles follow the mapping at every login: a user who leaves a mapped group loses that role at the next login. Roles
+assigned by hand to roles that appear nowhere in the mapping are left alone. Signing out of the app does not sign
+out of the IdP, and an account disabled at the IdP keeps an open session until it times out
+(`NIS2_SESSION_IDLE_MINUTES`, default 8 hours idle; `NIS2_SESSION_ABSOLUTE_HOURS`, default 7 days) or an
+administrator deactivates the user in the app.
+
+#### Microsoft Entra ID
+
+1. **App registration** (Entra admin center → App registrations → New registration): single tenant, platform "Web",
+   redirect URI `https://<DOMAIN>/api/auth/oidc/callback`. Create a client secret under "Certificates & secrets" and
+   note when it expires; logins fail after that until a new one is set.
+2. **Roles, recommended: app roles.** Under "App roles" create roles for users, e.g. `nis2.admin`, `nis2.isb`,
+   `nis2.nl`. Assign them to users or groups in the enterprise application (Users and groups). Then set
+   `NIS2_OIDC_GROUPS_CLAIM=roles` and map the values:
+   `NIS2_OIDC_ROLE_MAPPING={"nis2.admin":"admin","nis2.isb":"security_officer","nis2.nl":"contributor@ATN,contributor@ATC"}`.
+   App roles are always in the token, under readable names, and do not depend on how many groups a user is in.
+3. **Alternative: groups.** Under "Token configuration" add a groups claim ("Groups assigned to the application" is
+   best). Entra sends group **object IDs**, not names, so the mapping keys are GUIDs:
+   `{"6f1c…-…":"security_officer"}`. A user in more than about 200 groups gets no groups claim at all ("overage");
+   the app then removes that user's mapped roles, as for a user in no group, and logs a warning. With "Security
+   groups" or "All groups" any user who may create or join groups can cause this, so use app roles or "Groups
+   assigned to the application" for anything privileged.
+4. **Enterprise application → Properties:** "Assignment required = Yes", so only assigned people can sign in.
+5. **`.env`:** `NIS2_OIDC_ISSUER=https://login.microsoftonline.com/<tenant-id>/v2.0` with your tenant ID (`common`
+   and `organizations` are not supported), client ID and secret. Entra omits `email_verified`; set
+   `NIS2_OIDC_TRUST_EMAIL=true` only while accounts created locally before SSO are being linked by e-mail address,
+   and switch it off afterwards: Entra does not verify the `email` attribute, so while it is on any identity in the
+   tenant (guests included) whose e-mail matches a non-administrator local account takes that account over.
 
 ### AI assistant
 
 Administration → AI assistant: base URL of an OpenAI-compatible API (`/v1`), API key, chat model and optionally an
 embedding model (enables semantic search). Tested against the OpenAI API format; works with Azure OpenAI, LiteLLM,
-vLLM, Ollama and similar gateways. The key is stored encrypted. The assistant only ever sees data the asking user is
+vLLM, Ollama and similar gateways. The key is stored encrypted; changing the base URL without entering a key removes the stored one. The assistant only ever sees data the asking user is
 allowed to read. For local testing without an endpoint there is a mock server: `backend/tests/mock_llm.py`.
 
 ### KPI values from other systems
 
 KPI values can be imported as CSV (Controls → KPIs → Import values), also from a scheduled script with an API token
-(Profile → API tokens). Columns: `kpi_code, entity_code, period, value, note`; `entity_code` is `group` for group-wide
+(Profile → API tokens; a token always expires, 1 to 730 days, 90 by default). Columns: `kpi_code, entity_code, period, value, note`; `entity_code` is `group` for group-wide
 KPIs, `period` is `2026-09`, `2026-Q3` or `2026` depending on the KPI's frequency. Example:
 
 ```bash

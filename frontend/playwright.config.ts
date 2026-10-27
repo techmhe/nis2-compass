@@ -66,6 +66,7 @@ export default defineConfig({
         NIS2_BOOTSTRAP_ADMIN_EMAIL: "",
         NIS2_BOOTSTRAP_ADMIN_PASSWORD: "",
         NIS2_SMTP_HOST: "",
+        NIS2_SETUP_TOKEN: "e2e-setup-token", // the first-run spec fills this in
       } as Record<string, string>,
       reuseExistingServer: false,
       timeout: 180_000,

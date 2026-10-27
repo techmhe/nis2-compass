@@ -3,6 +3,8 @@ import type { Locator, Page } from "@playwright/test"
 
 // Runs in the `first-run` project against an API with an empty database (see playwright.config.ts). The tests run in
 // file order on that one database: the layout and error checks stop before "Finish setup", the last test completes it.
+// Must equal NIS2_SETUP_TOKEN of the first-run API in playwright.config.ts.
+const SETUP_TOKEN = "e2e-setup-token"
 const ADMIN = { name: "Ida Isb", email: "ida.isb@example.test", password: "Setup-Password-2026!" }
 
 async function chooseOption(page: Page, trigger: Locator, option: RegExp | string) {
@@ -10,7 +12,8 @@ async function chooseOption(page: Page, trigger: Locator, option: RegExp | strin
   await page.getByRole("option", { name: option }).first().click()
 }
 
-async function fillAdmin(page: Page) {
+async function fillAdmin(page: Page, token = SETUP_TOKEN) {
+  await page.getByLabel("Setup token").fill(token)
   await page.getByLabel("Name", { exact: true }).fill(ADMIN.name)
   await page.getByLabel("E-mail").fill(ADMIN.email)
   await page.getByLabel("Password", { exact: true }).fill(ADMIN.password)
@@ -58,6 +61,17 @@ test("a duplicate company code is reported at the field", async ({ page }) => {
   await expect(second.getByText("Company code is used twice")).toBeVisible()
   await expect(second.getByLabel("Code", { exact: true })).toHaveAttribute("aria-invalid", "true")
   await expect(page.getByRole("button", { name: "Finish setup" })).toHaveCount(0)
+})
+
+test("a wrong setup token is reported at the token field", async ({ page }) => {
+  await page.goto("/setup")
+  await fillAdmin(page, "not-the-token")
+  await fillCompany(page, 1, { name: "Atlas Holding GmbH", code: "ATL", legalForm: "GmbH", country: "Germany", headquarters: true })
+  await page.getByRole("button", { name: "Review" }).click()
+  await page.getByRole("button", { name: "Finish setup" }).click()
+  await expect(page.getByText("The setup token is not correct.")).toBeVisible()
+  await expect(page.getByLabel("Setup token")).toHaveAttribute("aria-invalid", "true")
+  await expect(page).toHaveURL(/\/setup$/)
 })
 
 test("a server-only 422 is shown at the field it names", async ({ page }) => {

@@ -27,8 +27,9 @@ function passwordProblem(pw: string, min: number): string | null {
   return classes < 3 ? "Password needs at least three of: lowercase, uppercase, digit, symbol" : null
 }
 
-function validateAdmin(a: Admin, min: number): Errors {
+function validateAdmin(a: Admin, min: number, token: string): Errors {
   const e: Errors = {}
+  if (!token.trim()) e["setup_token"] = "Enter the setup token"
   if (!a.display_name.trim()) e["admin.display_name"] = "Name is required"
   if (!EMAIL_RE.test(a.email.trim())) e["admin.email"] = "Invalid e-mail address"
   const pw = passwordProblem(a.password, min)
@@ -79,7 +80,7 @@ function ErrorText({ id, children }: { id: string; children?: string }) {
   return children ? <p id={id} role="alert" className="text-[12px] text-alarm">{children}</p> : null
 }
 
-function TextField({ id, label, hint, error, className, ...input }: { id: string; label: string; hint?: string; error?: string; className?: string } & React.ComponentProps<"input">) {
+function TextField({ id, label, hint, error, className, ...input }: { id: string; label: string; hint?: React.ReactNode; error?: string; className?: string } & React.ComponentProps<"input">) {
   return (
     <Field label={label} htmlFor={id} hint={hint} className={className}>
       <Input id={id} aria-invalid={!!error} aria-describedby={error ? `${id}-error` : undefined} {...input} />
@@ -93,6 +94,7 @@ export default function SetupPage() {
   const qc = useQueryClient()
   const navigate = useNavigate()
   const [step, setStep] = useState(0)
+  const [token, setToken] = useState("")
   const [admin, setAdmin] = useState<Admin>({ display_name: "", email: "", password: "", repeat: "" })
   const nextKey = useRef(2)
   const [companies, setCompanies] = useState<Company[]>([])
@@ -126,7 +128,7 @@ export default function SetupPage() {
 
   const next = () => {
     setBanner(null)
-    const e = step === 0 ? validateAdmin(admin, opts.password_min_length) : validateCompanies(companies)
+    const e = step === 0 ? validateAdmin(admin, opts.password_min_length, token) : validateCompanies(companies)
     setErrors(e)
     if (Object.keys(e).length === 0) setStep(step + 1)
   }
@@ -136,6 +138,7 @@ export default function SetupPage() {
     setBanner(null)
     try {
       const me = await api.post<Me>("/setup", {
+        setup_token: token.trim(),
         admin: { display_name: admin.display_name.trim(), email: admin.email.trim(), password: admin.password },
         companies: companies.map(({ key: _key, ...c }) => ({ ...c, name: c.name.trim(), legal_form: c.legal_form.trim() })),
       })
@@ -149,6 +152,9 @@ export default function SetupPage() {
         setErrors(fields)
         setBanner(general)
         setStep(Object.keys(fields).some((k) => k.startsWith("admin.")) ? 0 : 1)
+      } else if (err instanceof ApiError && err.status === 403) {
+        setErrors({ setup_token: "The setup token is not correct." })
+        setStep(0)
       } else {
         setBanner(err instanceof ApiError && err.status === 409 ? "Setup was already completed by someone else. Reload to sign in." : "Setup could not be completed. Nothing was saved. Reload the page and try again.")
       }
@@ -203,6 +209,10 @@ export default function SetupPage() {
             <p className="text-[13px] text-ink-3 sm:col-span-2">
               This account administers the tool: users, roles, entities and settings. Everything else is set up afterwards.
             </p>
+            <TextField id="setup-token" label="Setup token" className="sm:col-span-2 [&_input]:font-mono" value={token} maxLength={200}
+              autoComplete="off" spellCheck={false} error={errors["setup_token"]}
+              hint={<>Shown in the server log: <Code>docker compose logs app</Code></>}
+              onChange={(e) => { setToken(e.target.value); clearError("setup_token") }} />
             <TextField id="adm-name" label="Name" value={admin.display_name} maxLength={200} autoComplete="name" error={errors["admin.display_name"]}
               onChange={(e) => setA("display_name", e.target.value)} />
             <TextField id="adm-email" label="E-mail" type="email" value={admin.email} maxLength={320} autoComplete="username" error={errors["admin.email"]}

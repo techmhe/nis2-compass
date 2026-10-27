@@ -18,11 +18,15 @@ import { api } from "@/lib/api"
 import { fromNow, initials } from "@/lib/format"
 import type { Comment, DocLink, DocumentItem, SearchHit } from "@/lib/types"
 
+// User text must not load images: a same-origin URL such as an export endpoint would run with the viewer's
+// session on every render.
+export const NO_IMAGES = { disallowedElements: ["img"], unwrapDisallowed: true } as const
+
 export function Markdown({ children, className }: { children: string | null | undefined; className?: string }) {
   if (!children) return null
   return (
     <div className={className ?? "prose-md"}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={{
+      <ReactMarkdown remarkPlugins={[remarkGfm]} {...NO_IMAGES} components={{
         a: ({ href, children }) => href?.startsWith("/") && !href.startsWith("//")
           ? <Link to={href}>{children}</Link>
           : <a href={href} target="_blank" rel="noreferrer noopener">{children}</a>,

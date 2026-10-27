@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { Pill } from "@/components/common/basics"
-import { Confirm } from "@/components/common/collab"
+import { Confirm, NO_IMAGES } from "@/components/common/collab"
 import { useAuth } from "@/hooks/useAuth"
 import { api, postStream } from "@/lib/api"
 import { fromNow } from "@/lib/format"
@@ -50,6 +50,7 @@ function AnswerBody({ text, sources }: { text: string; sources: ChatSource[] }) 
     <div className="prose-md text-[14px] leading-relaxed">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
+        {...NO_IMAGES}
         components={{
           a: ({ href, children }) => {
             if (href?.startsWith("#src-")) {

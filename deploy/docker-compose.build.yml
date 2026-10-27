@@ -1,0 +1,8 @@
+# Build the app image from this source checkout instead of pulling the published one:
+#   docker compose -f docker-compose.yml -f docker-compose.build.yml up -d --build
+services:
+  app:
+    image: nis2-compass:local
+    build:
+      context: ..
+      dockerfile: Dockerfile

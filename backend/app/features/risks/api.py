@@ -683,6 +683,8 @@ def export_register(
     db: Session = Depends(get_db),
 ):
     rows, mc = _filtered(db, pr, **f)
+    # risks.read alone does not allow exporting: also limit to the entities reports.export covers
+    rows = [r for r in rows if pr.can_read("reports.export", r.entity_id)]
     ids = [r.id for r in rows]
     acc = _acceptance_map(db, ids)
     wb = openpyxl.Workbook()
@@ -780,7 +782,7 @@ def export_register(
             ", ".join(t.capitalize() for t in (r.treatments or [])),
             _owner(r),
         ]
-        acts = by_risk.get(r.id, [])
+        acts = [lk for lk in by_risk.get(r.id, []) if can_access_target(db, pr, lk.target_type, lk.target_id)]
         if not acts:
             plan.append([*base, None, None, None, None, None, None, None])
         for lk in acts:

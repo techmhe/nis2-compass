@@ -85,12 +85,16 @@ def put_ai_settings(
     pr: Principal = Depends(require_global("settings.manage")),
     db: Session = Depends(get_db),
 ):
-    old_model = aisvc.get_config(db).embedding_model
+    before = aisvc.get_config(db)
+    old_model = before.embedding_model
     data = body.model_dump(exclude={"api_key"})
+    key_dropped = body.api_key is None and (body.base_url or None) != (before.base_url or None)
     for k, v in data.items():
         _set(db, f"ai.{k}", v)
     if body.api_key is not None:
         _set(db, "ai.api_key_enc", encrypt_secret(body.api_key) if body.api_key else None)
+    elif key_dropped:
+        _set(db, "ai.api_key_enc", None)  # a stored key must not follow a new endpoint
     audit(
         db,
         pr,
@@ -101,6 +105,7 @@ def put_ai_settings(
         details={
             **{k: v for k, v in data.items() if k != "system_prompt_extra"},
             "api_key_changed": body.api_key is not None,
+            "api_key_cleared_by_url_change": key_dropped,
         },
     )
     db.commit()

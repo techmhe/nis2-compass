@@ -44,6 +44,8 @@ function AiForm({ initial }: { initial: AiSettings }) {
   const status = useQuery({ queryKey: ["ai", "status"], queryFn: () => api.get<AiStatus>("/ai/status"), refetchInterval: 30_000 })
   const set = <K extends keyof AiSettings>(k: K, v: AiSettings[K]) => setF((s) => ({ ...s, [k]: v }))
   const dirty = JSON.stringify(f) !== JSON.stringify(initial) || !!apiKey || clearKey
+  const urlChanged = (f.base_url?.trim() || null) !== (initial.base_url || null)
+  const keyDropped = urlChanged && initial.has_api_key && !apiKey && !clearKey
   const embeddingChanged = (f.embedding_model || null) !== (initial.embedding_model || null)
 
   const save = useMutation({
@@ -87,7 +89,7 @@ function AiForm({ initial }: { initial: AiSettings }) {
               <Input id="ai-url" type="url" value={f.base_url ?? ""} onChange={(e) => set("base_url", e.target.value)} placeholder="https://…/v1" />
             </Field>
             <Field label="API key" htmlFor="ai-key" className="sm:col-span-2"
-              hint={clearKey ? "The stored key will be removed when you save." : initial.has_api_key ? "Leave empty to keep the stored key. The key is never shown again." : "Stored encrypted; it cannot be read back."}>
+              hint={keyDropped ? <span className="text-amber">The base URL changed, so the stored key will be removed when you save. Enter the key for the new endpoint to replace it.</span> : clearKey ? "The stored key will be removed when you save." : initial.has_api_key ? "Leave empty to keep the stored key. The key is never shown again." : "Stored encrypted; it cannot be read back."}>
               <div className="flex items-center gap-2">
                 <Input id="ai-key" type="password" autoComplete="off" value={apiKey} onChange={(e) => { setApiKey(e.target.value); setClearKey(false) }}
                   placeholder={initial.has_api_key ? "••••••••  (key stored)" : "No key stored"} />

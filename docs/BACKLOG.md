@@ -22,8 +22,10 @@ Deferred items. Keep this list current; remove entries when done.
 ## Manual verification pending (environment needed)
 
 - Opening GAP exports with 1, 4 and about 10 entities in Excel and LibreOffice (dashboard charts, formulas, sheet tabs).
-- Docker Compose deployment with Let's Encrypt on a VM, `deploy/backup.sh` backup and restore.
+- Docker Compose deployment with Let's Encrypt on a VM (setup token flow, `mem_limit: 2g`, pinned image digests),
+  `deploy/backup.sh` backup and restore.
 - Certificate from the internal ACME CA (`TLS_ISSUER=acme`/`acme_eab`) and app trust of `deploy/certs/`.
-- SSO against the real identity provider (tested only against a mock OIDC provider).
-- E-mail notifications via the real SMTP server.
+- SSO against a real Entra ID tenant (tested only against a mock OIDC provider): app roles, group object IDs,
+  overage warning (mapped roles removed), role removal on group exit.
+- E-mail notifications via the real SMTP server, including STARTTLS certificate verification.
 - PDF preview of uploaded documents.

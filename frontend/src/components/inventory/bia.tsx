@@ -18,7 +18,7 @@ import { api } from "@/lib/api"
 import { fmtDate, fmtDateTime } from "@/lib/format"
 import type { DocLink, EntityBrief } from "@/lib/types"
 import { cn } from "@/lib/utils"
-import { CritPill, fmtHours, numOrNull, useInventoryMeta, useOpenSheet, type SupplierBrief } from "./shared"
+import { CritPill, fmtHours, numOrNull, SupplierRef, useInventoryMeta, useOpenSheet, type SupplierBrief } from "./shared"
 
 // --- types ----------------------------------------------------------------------------------------------
 
@@ -481,7 +481,7 @@ function ItemRow({ item, dims, windows, editable, expanded, onToggle, onSaved }:
                   {item.dependent_suppliers.length === 0 ? <p className="text-[12.5px] text-ink-3">No supplier dependencies.</p> : (
                     <ul className="flex flex-wrap gap-1.5">
                       {item.dependent_suppliers.map((s) => (
-                        <li key={s.id}><Link to={`/suppliers/${s.id}`} className="inline-flex rounded-[4px] border bg-card px-2 py-0.5 text-[12.5px] text-ink hover:text-petrol">{s.name}</Link></li>
+                        <li key={s.id} className="inline-flex rounded-[4px] border bg-card px-2 py-0.5 text-[12.5px]"><SupplierRef s={s} className="text-ink hover:text-petrol" /></li>
                       ))}
                     </ul>
                   )}

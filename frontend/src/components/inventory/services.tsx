@@ -20,7 +20,7 @@ import { ImportWizard } from "./import-wizard"
 import {
   BiaStatePill, CoveragePill, CritPill, CRIT_LABEL, EntityFilter, fmtHours, HistoryList, LifecyclePill, ManagedEntitySelect,
   matchesEntity, MultiCombo, numOrNull, ResultPill, SheetSection, tagsFromText, useAssets, useInventoryMeta, useOpenSheet,
-  useParam, useServices, useSupplierOptions, type ServiceDetail, type ServiceRow,
+  useParam, useServices, SupplierRef, useSupplierOptions, type ServiceDetail, type ServiceRow,
 } from "./shared"
 
 export function ServicesTab() {
@@ -359,7 +359,7 @@ function DependenciesEditor({ service, onSaved }: { service: ServiceDetail; onSa
         <Field label="Supporting assets"><MultiCombo value={assetIds} onChange={setAssetIds} items={assetItems} placeholder="Add asset…" emptyText="No assets linked." /></Field>
         {canAny("suppliers.read") && (
           <Field label="Suppliers (direct dependencies)" hint="Suppliers of linked assets count automatically.">
-            <MultiCombo value={supplierIds} onChange={setSupplierIds} items={supplierItems} placeholder="Add supplier…" emptyText="No direct supplier dependencies." />
+            <MultiCombo value={supplierIds} onChange={setSupplierIds} items={supplierItems} unknownLabel="Hidden supplier" placeholder="Add supplier…" emptyText="No direct supplier dependencies." />
           </Field>
         )}
         <div className="flex justify-end gap-2">
@@ -380,7 +380,7 @@ function DependenciesEditor({ service, onSaved }: { service: ServiceDetail; onSa
                   <Code>{a.code}</Code><span className="min-w-0 flex-1 truncate text-ink">{a.name}</span>
                   <span className="text-[12px] text-ink-3">{meta.data?.asset_types[a.asset_type] ?? a.asset_type}</span>
                   {a.lifecycle !== "in_operation" && <LifecyclePill value={a.lifecycle} label={meta.data?.lifecycle[a.lifecycle]} />}
-                  {a.supplier && <span className="truncate text-[12px] text-ink-2">{a.supplier.name}</span>}
+                  {a.supplier && <span className="truncate text-[12px] text-ink-2">{a.supplier.hidden ? "Hidden supplier" : a.supplier.name}</span>}
                 </button>
               </li>
             ))}
@@ -389,7 +389,7 @@ function DependenciesEditor({ service, onSaved }: { service: ServiceDetail; onSa
         {service.suppliers.length > 0 && (
           <div className="flex flex-wrap items-center gap-2 text-[13px]">
             <span className="text-ink-3">Direct suppliers:</span>
-            {service.suppliers.map((s) => <Link key={s.id} to={`/suppliers/${s.id}`} className="text-ink hover:text-petrol">{s.name}</Link>)}
+            {service.suppliers.map((s) => <SupplierRef key={s.id} s={s} className="text-ink hover:text-petrol" />)}
           </div>
         )}
       </div>

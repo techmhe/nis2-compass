@@ -12,7 +12,7 @@ log = logging.getLogger(__name__)
 MAX_TEXT = 2_000_000  # characters kept per version
 
 
-MAX_UNCOMPRESSED = 300 * 1024 * 1024
+MAX_UNCOMPRESSED = 100 * 1024 * 1024
 MAX_RATIO = 150
 
 
@@ -28,7 +28,7 @@ def zip_is_safe(data: bytes) -> bool:
                 if (
                     i.compress_size
                     and i.file_size / i.compress_size > MAX_RATIO
-                    and i.file_size > 10 * 1024 * 1024
+                    and i.file_size > 1024 * 1024
                 ):
                     return False
     except zipfile.BadZipFile:

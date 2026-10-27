@@ -4,7 +4,54 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [1.1.0] - 2026-10-27
+
+### Upgrade notes
+- An install still running the example secret key (`change-me-…`) no longer starts. Set a new `NIS2_SECRET_KEY`
+  (`openssl rand -hex 32`); this signs everyone out, invalidates all API tokens and the stored AI key: re-enter the
+  AI key under Admin → AI and issue new tokens.
+- SMTP STARTTLS now verifies the server certificate: a relay with an internal CA needs its root certificate in
+  `deploy/certs/`, and `NIS2_SMTP_HOST` must be the name in the certificate (not an IP address).
+- An AI API key set via `NIS2_AI_API_KEY` is only used with the base URL from `NIS2_AI_BASE_URL`.
+
+### Security
+- Upload limits are tighter: archives may unpack to 100 MiB, the compression-ratio check covers every member over
+  1 MiB, and the GAP import streams the uploaded workbook instead of loading it whole.
+- First-run setup requires a setup token, printed to the server log while setup is open (derived from
+  `NIS2_SECRET_KEY`, or set `NIS2_SETUP_TOKEN`). Whoever reaches a fresh install first without the token can no
+  longer take it over; anyone who can read the server log still can.
+- Production refuses to start with a secret key containing `change-me`; `deploy/.env.example` ships it empty and
+  the compose file requires it.
+- SMTP STARTTLS verifies the server certificate and host name. Logs carry user ids instead of e-mail addresses, and
+  database conflict errors log only the constraint name.
+- Inventory only links, shows and imports suppliers the user may see: invisible ones are refused like unknown ids
+  and appear as "Hidden supplier" in services, assets, the dependency tree and the BIA.
+- The risk register export lists only risks within the caller's `reports.export` scope, and treatment-plan rows
+  only for action items and work packages the caller may read.
+- Changing the AI base URL without entering a key removes the stored API key, and the AI connection test no longer
+  returns error details (they go to the server log).
+- API tokens always expire (1 to 730 days, default 90); `expires_in_days: null` is refused, and migration 0008
+  gives existing tokens without expiry 90 days. Changing the password
+  with an API token also ends all of the user's sessions.
+- Linking or unlinking a document on a task needs the right to edit that task. Stakeholder names in the GAP export
+  are never written as formulas. A bootstrap admin password that breaks the password policy stops the seed.
+- Markdown written by users (comments, notes, AI answers) no longer renders images, so a crafted image link cannot
+  make a viewer's browser call the app's own export endpoints.
+- Base images (Dockerfile, compose, CI) are pinned by version and digest, the CI actions by commit, and CI's
+  `pip-audit` by version. uv in the image is 0.10.4.
+- `deploy/docker-compose.yml` rotates container logs (10 MB x 5 files per service) and caps the app at 2 GB of memory.
+
+### Fixed
+- OIDC: when Entra ID leaves out the groups claim because a user is in too many groups ("overage"), the login
+  logs a warning that says so. Mapped roles are still removed, as for a user without groups (fail closed).
+
+### Changed
+- New SSO users get no role unless a group mapping grants one (`NIS2_OIDC_DEFAULT_ROLE` defaults to empty, was
+  `viewer`). Set it to keep the old behaviour.
+- `deploy/docker-compose.yml` runs the published image of its release and carries the Caddy configuration inline, so
+  a server needs only that file and `.env` (Docker Compose 2.23 or newer). `deploy/Caddyfile` is gone; building from
+  source uses the new `deploy/docker-compose.build.yml` override.
+- README: step-by-step Microsoft Entra ID setup (app roles recommended, group object IDs, overage, tenant issuer).
 
 ## [1.0.1] - 2026-10-27
 

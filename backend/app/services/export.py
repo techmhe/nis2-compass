@@ -324,8 +324,9 @@ def export_gap(db: Session, round_id: int, entity_ids: set[int] | None) -> bytes
             .order_by(Stakeholder.sort_order, Stakeholder.name)
         )
     ]
+    safe_lists = _SafeSheet(lists)
     for i in range(6, 40):
-        lists[f"S{i}"].value = names[i - 6] if i - 6 < len(names) else None
+        safe_lists[f"S{i}"] = names[i - 6] if i - 6 < len(names) else None
     titles = []
     for idx, ent in enumerate(entities):
         row = 6 + idx
@@ -501,7 +502,7 @@ def import_gap(db: Session, data: bytes, round_id: int, pr, dry_run: bool = True
     """Import answers and action plan rows from a filled GAP workbook into the given round."""
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
-        parsed = parse_gap_workbook(io.BytesIO(data))
+        parsed = parse_gap_workbook(io.BytesIO(data), read_only=True)
     stakeholders = {s.name.lower(): s for s in db.scalars(select(Stakeholder))}
     reqs = {r.number: r for r in db.scalars(select(Requirement))}
     ents = {e.code: e for e in db.scalars(select(Entity))}

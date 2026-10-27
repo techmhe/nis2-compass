@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react"
-import { Link } from "react-router"
 import { useQuery } from "@tanstack/react-query"
 import { ChevronDown, ChevronRight, GitBranch, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -7,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Code, Empty, EntityTag, ErrorState, Loading, Pill } from "@/components/common/basics"
 import { api } from "@/lib/api"
 import { cn } from "@/lib/utils"
-import { CritPill, EntityFilter, fmtHours, LifecyclePill, TierPill, useInventoryMeta, useOpenSheet, useParam, type AssetBrief, type SupplierBrief } from "./shared"
+import { CritPill, EntityFilter, fmtHours, LifecyclePill, SupplierRef, TierPill, useInventoryMeta, useOpenSheet, useParam, type AssetBrief, type SupplierBrief } from "./shared"
 import type { EntityBrief } from "@/lib/types"
 
 interface DepTree {
@@ -23,7 +22,7 @@ interface DepTree {
 function SupplierLink({ s }: { s: SupplierBrief }) {
   return (
     <span className="inline-flex items-center gap-1.5">
-      <Link to={`/suppliers/${s.id}`} className="text-ink hover:text-petrol">{s.name}</Link>
+      <SupplierRef s={s} className="text-ink hover:text-petrol" />
       <TierPill tier={s.tier} />
       {s.status === "offboarded" && <Pill tone="alarm">Offboarded</Pill>}
     </span>
@@ -42,7 +41,7 @@ export function DependenciesTab() {
   })
   const services = useMemo(() => {
     const needle = q.trim().toLowerCase()
-    return (tree.data?.services ?? []).filter((s) => !needle || [s.code, s.name, ...s.assets.map((a) => `${a.code} ${a.name} ${"supplier" in a && a.supplier ? a.supplier.name : ""}`), ...s.suppliers.map((x) => x.name)]
+    return (tree.data?.services ?? []).filter((s) => !needle || [s.code, s.name, ...s.assets.map((a) => `${a.code} ${a.name} ${"supplier" in a && a.supplier ? (a.supplier.name ?? "") : ""}`), ...s.suppliers.map((x) => x.name ?? "")]
       .join(" ").toLowerCase().includes(needle))
   }, [tree.data, q])
   const toggle = (id: number) => setCollapsed((c) => { const n = new Set(c); if (n.has(id)) n.delete(id); else n.add(id); return n })
@@ -110,7 +109,7 @@ export function DependenciesTab() {
                       {s.suppliers.map((x) => (
                         <li key={`s${x.id}`} role="treeitem" className={cn("relative flex flex-wrap items-center gap-2 text-[13px]")}>
                           <span className="absolute top-2.5 -left-5 w-4 border-t" aria-hidden />
-                          <Code>{x.code}</Code><SupplierLink s={x} /><span className="text-[12px] text-ink-3">direct supplier dependency</span>
+                          {!x.hidden && <Code>{x.code}</Code>}<SupplierLink s={x} /><span className="text-[12px] text-ink-3">direct supplier dependency</span>
                         </li>
                       ))}
                     </ul>

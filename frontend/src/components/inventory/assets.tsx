@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react"
-import { Link } from "react-router"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { AlertTriangle, Download, HardDrive, Pencil, Plus, Search, Trash2, Upload, X } from "lucide-react"
 import { toast } from "sonner"
@@ -20,7 +19,7 @@ import { ImportWizard } from "./import-wizard"
 import {
   CiaCells, CIA_LABEL, CritPill, CRIT_LABEL, EntityFilter, HistoryList, LifecyclePill, ManagedEntitySelect, matchesEntity,
   MultiCombo, ResultPill, SheetSection, tagsFromText, useAssets, useInventoryMeta, useOpenSheet, useParam, useServices,
-  useSupplierOptions, type AssetDetail, type AssetRow, type Flag,
+  SupplierRef, useSupplierOptions, type AssetDetail, type AssetRow, type Flag,
 } from "./shared"
 
 export function useFlags(entity?: string | null) {
@@ -133,7 +132,7 @@ export function AssetsTab() {
                       <td className="px-2 py-2"><CritPill value={a.criticality} /></td>
                       <td className="max-w-[180px] truncate px-2 py-2 text-[12.5px] text-ink-2" title={a.ot_zone ?? undefined}>{a.ot_zone ?? <span className="text-ink-3">–</span>}</td>
                       <td className="px-2 py-2" onClick={(e) => e.stopPropagation()}>
-                        {a.supplier ? <Link to={`/suppliers/${a.supplier.id}`} className="text-ink-2 hover:text-petrol">{a.supplier.name}</Link> : <span className="text-ink-3">–</span>}
+                        {a.supplier ? <SupplierRef s={a.supplier} className="text-ink-2 hover:text-petrol" /> : <span className="text-ink-3">–</span>}
                       </td>
                       <td className="px-2 py-2 pr-4"><LifecyclePill value={a.lifecycle} label={meta.data?.lifecycle[a.lifecycle]} /></td>
                     </tr>
@@ -337,7 +336,7 @@ function AssetBody({ id, onClose }: { id: number; onClose: () => void }) {
           <KV label="Site and location">{[a.site, a.location].filter(Boolean).join(", ") || null}</KV>
           <KV label="External ID">{a.external_id ? <Code>{a.external_id}</Code> : null}</KV>
           <KV label="Vendor and product">{a.vendor_product}</KV>
-          <KV label="Supplier">{a.supplier ? <Link to={`/suppliers/${a.supplier.id}`} className="hover:text-petrol">{a.supplier.name}</Link> : null}</KV>
+          <KV label="Supplier">{a.supplier ? <SupplierRef s={a.supplier} className="hover:text-petrol" /> : null}</KV>
           {(a.asset_type === "OT" || a.ot_zone || a.ot_conduit) && <>
             <KV label="OT zone">{a.ot_zone ?? <span className="text-amber">Not assigned</span>}</KV>
             <KV label="OT conduit">{a.ot_conduit}</KV>

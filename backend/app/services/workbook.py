@@ -9,11 +9,56 @@ from pathlib import Path
 from typing import Any
 
 import openpyxl
+from openpyxl.utils import column_index_from_string
 
 TEMPLATE_DIR = Path(__file__).resolve().parent.parent / "seed" / "templates"
 GAP_TEMPLATE = TEMPLATE_DIR / "NIS2_GAP_Analysis_Questionnaire_v2.xlsx"
 PROJECT_TEMPLATE = TEMPLATE_DIR / "NIS2_Implementation_Project_Plan_v2.xlsx"
 MAX_ENTITIES = 50  # Lists rows 6 to 55
+
+
+class _Cell:
+    __slots__ = ("value",)
+
+    def __init__(self, value: Any = None):
+        self.value = value
+
+
+class _Grid:
+    """A sheet read once into memory. Read-only worksheets only stream, so random cell access would rescan.
+
+    Only non-empty rows are kept, and only columns A to T are read (the parsers use nothing further right). The
+    declared sheet dimension is not trusted: an upload can declare a million rows or a one-cell sheet.
+    """
+
+    MAX_COL = 20
+
+    def __init__(self, ws):
+        if hasattr(ws, "reset_dimensions"):
+            ws.reset_dimensions()
+        self._rows: dict[int, tuple] = {}
+        for r, row in enumerate(ws.iter_rows(max_col=self.MAX_COL, values_only=True), start=1):
+            if any(v is not None for v in row):
+                self._rows[r] = row
+        self.max_row = max(self._rows, default=0)
+
+    def __getitem__(self, ref: str) -> _Cell:
+        letters = ref.rstrip("0123456789")
+        row, col = int(ref[len(letters) :]), column_index_from_string(letters)
+        cells = self._rows.get(row, ())
+        return _Cell(cells[col - 1] if col <= len(cells) else None)
+
+
+class _Book:
+    def __init__(self, wb):
+        self.sheetnames = wb.sheetnames
+        self._wb = wb
+        self._grids: dict[str, _Grid] = {}
+
+    def __getitem__(self, name: str) -> _Grid:
+        if name not in self._grids:
+            self._grids[name] = _Grid(self._wb[name])
+        return self._grids[name]
 
 
 def _v(ws, cell: str) -> Any:
@@ -53,8 +98,9 @@ def _col(ws, col: str, start: int, end: int | None = None) -> list[Any]:
     return out
 
 
-def parse_gap_workbook(path: Path | str = GAP_TEMPLATE) -> dict:
-    wb = openpyxl.load_workbook(path, data_only=False)
+def parse_gap_workbook(path: Path | str = GAP_TEMPLATE, read_only: bool = False) -> dict:
+    """read_only streams the sheets instead of building the whole object model; use it for user uploads."""
+    wb = _Book(openpyxl.load_workbook(path, data_only=False, read_only=read_only))
     lists = wb["Lists"]
     entities = []  # only exports list entities; the template ships none
     for r in range(6, 6 + MAX_ENTITIES):

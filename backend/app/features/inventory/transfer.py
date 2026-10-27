@@ -21,6 +21,7 @@ from app.features.inventory.logic import (
     SERVICE_STATUS,
 )
 from app.features.inventory.models import Asset, Service, service_assets, service_suppliers
+from app.features.suppliers.api import visible_supplier_ids
 from app.features.suppliers.models import Supplier
 from app.models import Entity, Stakeholder
 from app.services.audit import audit
@@ -317,7 +318,9 @@ def run_import(
     ents.update({e.name.lower(): e for e in ents.values()})
     stakeholders = {s.name.lower(): s for s in db.scalars(select(Stakeholder))}
     suppliers = {}
-    for s in db.scalars(select(Supplier)):
+    # only suppliers the caller may see, otherwise the import would confirm names of other entities
+    visible = visible_supplier_ids(db, pr)
+    for s in db.scalars(select(Supplier).where(Supplier.id.in_(visible))):
         suppliers[s.name.lower()] = s
         suppliers[s.code.lower()] = s
     model = Asset if kind == "assets" else Service
@@ -588,10 +591,12 @@ def _plain(v):
 # --- export ----------------------------------------------------------------------------------------------
 
 
-def export_workbook(db: Session, services: list[Service], assets: list[Asset]) -> bytes:
+def export_workbook(db: Session, pr: Principal, services: list[Service], assets: list[Asset]) -> bytes:
     ents = {e.id: e.code for e in db.scalars(select(Entity))}
     sts = {s.id: s.name for s in db.scalars(select(Stakeholder))}
-    sups = {s.id: s for s in db.scalars(select(Supplier))}
+    # hidden suppliers are left out: empty cell, no dependency row
+    visible = visible_supplier_ids(db, pr)
+    sups = {s.id: s for s in db.scalars(select(Supplier).where(Supplier.id.in_(visible)))}
     svc_ids = {s.id for s in services}
     ast_ids = {a.id for a in assets}
     svc_assets: dict[int, list[int]] = {}

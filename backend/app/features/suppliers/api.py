@@ -96,6 +96,14 @@ def can_see(pr: Principal, entity_ids: list[int]) -> bool:
     return any(pr.can("suppliers.read", e) for e in entity_ids)
 
 
+def visible_supplier_ids(db: Session, pr: Principal) -> set[int]:
+    """Ids of all suppliers the caller may see (one query, for rendering and validating many at once)."""
+    by_supplier: dict[int, list[int]] = {sid: [] for sid in db.scalars(select(Supplier.id))}
+    for sid, eid in db.execute(select(supplier_entities.c.supplier_id, supplier_entities.c.entity_id)):
+        by_supplier.setdefault(sid, []).append(eid)
+    return {sid for sid, ents in by_supplier.items() if can_see(pr, ents)}
+
+
 def _ensure_see(db: Session, pr: Principal, s: Supplier) -> list[int]:
     ids = _entity_ids(db, s.id)
     if not can_see(pr, ids):
