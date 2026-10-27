@@ -68,6 +68,23 @@ export default function HelpPage() {
           (§ 33 BSIG), management responsibility (§ 38 BSIG) and OT / major-accident aspects.
         </p>
       </Section>
+      <Section title="Disclaimer">
+        <div className="space-y-2 text-[13.5px] text-ink-2">
+          <p>
+            This software is provided as is under the MIT License, without warranty of any kind, and you use it at your
+            own risk. It was developed with the help of AI coding assistants and reviewed and tested before each release,
+            but it can still contain errors.
+          </p>
+          <p>
+            It is not legal advice. Requirements, legal references, deadlines and regulation texts were compiled with care
+            but can be incomplete or out of date; the official texts are authoritative. Whether your organisation is in
+            scope and what it has to do is for you, your legal counsel and the competent authority to decide.
+          </p>
+          <p>
+            Answers and drafts from the AI assistant can be wrong. Check them against the cited sources.
+          </p>
+        </div>
+      </Section>
     </div>
   )
 }

@@ -1,44 +1,61 @@
-# Security
+# Security policy
+
+## Supported versions
+
+Only the latest release gets security fixes. Please check that the issue still exists in it before reporting.
 
 ## Reporting a vulnerability
 
-Report privately to the repository owner. Do not open a public issue.
+Report privately through GitHub: **Security → Report a vulnerability**
+(<https://github.com/techmhe/nis2-compass/security/advisories/new>). Do not open a public issue, pull request or
+discussion for a vulnerability.
 
-## Rules for this repository
+Helpful to include:
+- the version or image digest, and whether you run the Docker deployment or a local setup
+- where it is: API endpoint, page, deploy kit (compose file, Caddy configuration, backup script), container image or CI
+- the steps to reproduce, ideally as a request sequence or a short script
+- which account it needs: none, a read-only viewer, a contributor scoped to one company, an administrator
+- the impact as you see it, and a fix if you have one
 
-- Secrets come from the environment only. `backend/.env`, `deploy/.env` and `deploy/caddy.env` are ignored; the
-  `.env.example` files next to them list the variables with placeholders.
-- Development happens on `plan/<slug>` branches in a private repository. This repository receives one commit per
-  release, built by a publish script that leaves out local-only files (agent settings, plans, specs) and refuses to
-  publish when the snapshot or its metadata match a private list of patterns (names, hosts, home paths). Releases
-  are never force-pushed.
-- `.claude/verify.sh` is the gate: lint including the security rules (ruff `S`), format, the API tests, the
-  frontend type check and the dependency audits: `npm audit` for the frontend (fails on high and critical
-  findings) and, where `pip-audit` is installed, `pip-audit` for the backend. A newly published advisory can turn
-  the gate red without a code change; that is intended.
-- The `.githooks/pre-commit` hook blocks direct commits to `main` and staged credentials.
-- New dependencies need a one-line justification in the pull request.
-- Claude Code runs shell commands in the OS sandbox: writes only inside the repo, network only to the package
-  registries, the model API and localhost (not to the git host), `~/.ssh`, `~/.aws`, the GitHub CLI login and token
-  variables hidden. Only `git fetch`, `git pull` and the publish script run outside it, and the sandbox denies
-  writes to that script, so a session cannot swap it out. The development repository's push URL points nowhere,
-  so a plain `git push` fails. PostgreSQL cannot run inside the sandbox, so a human starts it
-  (`scripts/dev-db.sh start`).
-- One workflow, `.github/workflows/verify.yml`, runs on pushes and pull requests with a read-only token and no
-  secrets. A pull request build is checked out detached; the workflow gives it its branch name for the test-tamper
-  check only when the branch lives in this repository. A pull request from a fork stays detached, so every changed
-  test fails there.
-- A plan authorizes test changes only while its branch is working on it: a plan that is already on `main`
-  unchanged does not count.
-- CI is not a boundary against the author of a pull request. The gate and the workflow run from the pull request's
-  own tree, so a pull request that changes `.claude/`, `.githooks/` or `.github/` changes its own check. Those
-  paths always get a human review before merge.
-- Existing tests are never edited or deleted to get green: `verify.sh` fails unless the active plan names the file.
-- Every authorization fix gets a regression test in `backend/tests/`.
+What to expect: this is a project maintained in spare time, so handling is best effort. You get an acknowledgement
+once the report has been read, and a fix lands in a new release with a note in the CHANGELOG; tell us if you want
+to be credited. Please keep the details private until that release is out, or for 90 days, whichever comes first.
+There is no bug bounty.
+
+## Scope
+
+Especially interesting:
+- a user scoped to one company seeing or changing another company's data
+- a role doing more than its permissions allow (viewer writing, contributor approving, ...)
+- sign-in, sessions, CSRF, API tokens, OIDC
+- injection of any kind, uploads and imports (documents, Excel workbooks, archives)
+- the AI assistant revealing data the asking user may not see
+- the container image and the deploy kit as shipped
+
+Out of scope:
+- issues that need an administrator account, unless they reach the host or another company's data beyond what an
+  administrator may see anyway
+- deployments that depart from the documented setup (for example the app port exposed without the proxy, weak or
+  example secrets)
+- vulnerabilities in dependencies without a demonstrated impact on this application (report them upstream)
+- denial of service by sheer volume, and findings from automated scanners without a working attack
+- demo mode (`--demo`) and its published demo passwords, which are meant for evaluation only
+
+Test only against an installation you run yourself, and do not access, keep or change other people's data.
+
+## How releases are built
+
+- Each release is one commit and one tag in this repository, built from a separate development repository.
+- Every push runs the checks in `.claude/verify.sh` in CI: lint including the security rules, format, the API tests,
+  the frontend type check and the dependency audits (`npm audit`, `pip-audit`).
+- The container image `ghcr.io/techmhe/nis2-compass` is built by CI from the release tag only after those checks
+  pass, with provenance and SBOM attestations. Base images and CI actions are pinned by digest. To pin the image
+  itself, set `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>@sha256:<digest>` in `.env`.
 
 ## Data
 
 The tool stores personal data of its users and of people named in the compliance records: accounts (name, e-mail,
 roles), the audit log, the management body register with training records, and incident records. It lives in
 PostgreSQL and in the upload directory. Access is role-based with entity scope; restricted documents are limited
-further.
+further. Whoever operates an installation is responsible for it under data protection law, including the choice of
+AI provider: text sent to the assistant goes to the provider configured under Administration → AI assistant.

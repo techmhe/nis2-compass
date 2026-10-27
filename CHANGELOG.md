@@ -4,6 +4,16 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [1.1.1] - 2026-10-27
+
+### Added
+- A disclaimer on the Help page and in the README: provided as is, developed with AI coding assistants, not legal
+  advice, AI answers can be wrong.
+
+### Changed
+- `SECURITY.md` is written for reporters: private reporting through GitHub, supported versions, scope and what to
+  expect.
+
 ## [1.1.0] - 2026-10-27
 
 ### Upgrade notes
