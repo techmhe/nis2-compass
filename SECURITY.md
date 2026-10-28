@@ -49,8 +49,9 @@ Test only against an installation you run yourself, and do not access, keep or c
 - Every push runs the checks in `.claude/verify.sh` in CI: lint including the security rules, format, the API tests,
   the frontend type check and the dependency audits (`npm audit`, `pip-audit`).
 - The container image `ghcr.io/techmhe/nis2-compass` is built by CI from the release tag only after those checks
-  pass, with provenance and SBOM attestations. Base images and CI actions are pinned by digest. To pin the image
-  itself, set `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>@sha256:<digest>` in `.env`.
+  pass, with provenance and SBOM attestations, and signed with a GitHub artifact attestation (from 1.1.2;
+  the README shows the `gh attestation verify` command). Base images and CI
+  actions are pinned by digest. To pin the image itself, set `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>@sha256:<digest>` in `.env`.
 
 ## Data
 

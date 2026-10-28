@@ -81,6 +81,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
     steps:
       # Third-party actions are pinned to the commit of the named release.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -102,10 +104,11 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
-      # Provenance and SBOM are BuildKit attestations stored with the image; GitHub's own artifact
-      # attestations need Enterprise Cloud for private repositories. No GHA cache: the verify job before it
-      # could write cache entries the release build would take as layers.
-      - uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+      # Provenance and SBOM are BuildKit attestations stored with the image; the signed GitHub attestation
+      # follows below. No GHA cache: the verify job before it could write cache entries the release build would
+      # take as layers.
+      - id: build
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
         with:
           context: .
           platforms: linux/amd64
@@ -114,3 +117,17 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           provenance: mode=max
           sbom: true
+
+  # Signed SLSA build provenance (Sigstore) for the pushed image index, stored at GitHub (see README for
+  # `gh attestation verify`). A job of its own so that only this one action ever holds the OIDC signing token.
+  attest:
+    needs: image
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-name: ghcr.io/${{ github.repository }}
+          subject-digest: ${{ needs.image.outputs.digest }}

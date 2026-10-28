@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [1.1.2] - 2026-10-28
+
+### Added
+- Release images carry a signed GitHub build provenance attestation (Sigstore). The README shows how to verify an
+  image with `gh attestation verify`, including the signing workflow and the release tag.
+
 ## [1.1.1] - 2026-10-27
 
 ### Added

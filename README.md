@@ -100,6 +100,14 @@ local break-glass account; keep its password safe. To sign in with it on an OIDC
   compose up -d`. Migrations run automatically on start. An `APP_IMAGE` in `.env` overrides the compose file's
   image: update or remove it at the same time. To pin the exact image you checked, append its digest:
   `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>@sha256:<digest>`.
+- Verify an image before you run it (GitHub CLI):
+  ```bash
+  gh attestation verify oci://ghcr.io/techmhe/nis2-compass:<version> -R techmhe/nis2-compass \
+    --signer-workflow techmhe/nis2-compass/.github/workflows/verify.yml --source-ref refs/tags/v<version>
+  ```
+
+  It checks the signed build provenance that CI attaches to every release image from 1.1.2 on: built by this
+  repository's release workflow from the release tag.
 
 ### Single sign-on (OIDC)
 
