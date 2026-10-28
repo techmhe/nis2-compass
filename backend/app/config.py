@@ -1,7 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field, field_validator
+from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -17,6 +17,8 @@ class Settings(BaseSettings):
     setup_token: str | None = None  # first-run setup token; derived from secret_key when unset
 
     database_url: str = "postgresql+psycopg://nis2@127.0.0.1:55432/nis2"
+    # Set apart from the URL so any character works; inserted (escaped) into database_url.
+    database_password: str | None = None
     data_dir: Path = Path(__file__).resolve().parent.parent / "data"
     frontend_dist: Path | None = None  # serve the built SPA from here if set
 
@@ -97,6 +99,15 @@ class Settings(BaseSettings):
     smtp_password: str | None = None
     smtp_from: str | None = None
     smtp_starttls: bool = True
+
+    @model_validator(mode="after")
+    def _insert_database_password(self) -> "Settings":
+        if self.database_password:
+            from sqlalchemy.engine import make_url
+
+            url = make_url(self.database_url).set(password=self.database_password)
+            self.database_url = url.render_as_string(hide_password=False)
+        return self
 
     @field_validator("oidc_role_mapping", mode="before")
     @classmethod

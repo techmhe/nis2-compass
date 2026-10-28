@@ -27,7 +27,7 @@ services:
 
   app:
     # Prebuilt by CI for every release. To build from a source checkout instead, add docker-compose.build.yml.
-    image: ${APP_IMAGE:-ghcr.io/techmhe/nis2-compass:1.1.2}
+    image: ${APP_IMAGE:-ghcr.io/techmhe/nis2-compass:1.1.3}
     restart: unless-stopped
     logging: *logging
     depends_on:
@@ -35,7 +35,9 @@ services:
         condition: service_healthy
     env_file: .env
     environment:
-      NIS2_DATABASE_URL: postgresql+psycopg://nis2:${POSTGRES_PASSWORD}@db:5432/nis2
+      # the password goes separately so that any character works in it
+      NIS2_DATABASE_URL: postgresql+psycopg://nis2@db:5432/nis2
+      NIS2_DATABASE_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
       NIS2_BASE_URL: https://${DOMAIN}
       NIS2_SECRET_KEY: ${NIS2_SECRET_KEY:?set NIS2_SECRET_KEY in .env (openssl rand -hex 32)}
       # only the reverse proxy may set X-Forwarded-For (client IP for login throttling and the audit log)

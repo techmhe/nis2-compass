@@ -13,6 +13,7 @@ FROM python:3.14.10-slim@sha256:fa99b65193ea9dbde3fc2367f43d3a2907571ce2a15213a8
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy \
     UV_PROJECT_ENVIRONMENT=/opt/venv PATH="/opt/venv/bin:$PATH" \
     NIS2_ENV=production NIS2_DATA_DIR=/data NIS2_FRONTEND_DIST=/app/frontend_dist
+# The uv version is also pinned in .github/workflows/verify.yml (setup-uv `version`).
 COPY --from=docker.io/astral/uv:0.10.4@sha256:4cac394b6b72846f8a85a7a0e577c6d61d4e17fe2ccee65d9451a8b3c9efb4ac /uv /usr/local/bin/uv
 WORKDIR /app
 COPY backend/pyproject.toml backend/uv.lock ./

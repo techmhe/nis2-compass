@@ -63,9 +63,22 @@ A server needs two files from `deploy/`: `docker-compose.yml` and `.env.example`
 
 ```bash
 mkdir nis2-compass && cd nis2-compass       # put docker-compose.yml and .env.example here
-cp .env.example .env && chmod 600 .env      # set DOMAIN, TLS_MODE, POSTGRES_PASSWORD, NIS2_SECRET_KEY (`openssl rand -hex 32`)
+cp .env.example .env && chmod 600 .env      # set DOMAIN, TLS_MODE, POSTGRES_PASSWORD (`openssl rand -hex 24`), NIS2_SECRET_KEY (`openssl rand -hex 32`)
 docker compose up -d
 ```
+
+To try it on your own machine (also Docker in WSL 2), set `DOMAIN=localhost` and `TLS_MODE=internal` and open
+`https://localhost`; the browser warns about the self-signed certificate.
+
+**Database password.** The database takes `POSTGRES_PASSWORD` when it is first created and keeps it. Changing it in
+`.env` later does not change the database, and the app can no longer connect (the browser shows 502, the app log
+`password authentication failed`). To change it, set it in the database first, then in `.env`:
+`docker compose exec db psql -U nis2 -d nis2`, there `\password nis2` (asks without echo, leaves nothing in the
+shell history), then edit `.env` and run `docker compose up -d`. On a test install without data, `docker compose down -v` deletes the database instead. The
+password may contain any characters; with a `$` in it, wrap the value in single quotes in `.env`.
+
+A 502 in the browser means the app container is not answering: see `docker compose ps` and
+`docker compose logs --tail 30 app`. On the first start it is still seeding for a minute or two.
 
 Docker Compose 2.23 or newer is needed (the Caddy configuration is inline in the compose file). To build the
 image from a source checkout instead: `cd deploy && docker compose -f docker-compose.yml -f docker-compose.build.yml

@@ -4,6 +4,21 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [1.1.3] - 2026-10-28
+
+### Upgrade notes
+- Replace `docker-compose.yml` with this release's file: the app now gets the database password as
+  `NIS2_DATABASE_PASSWORD` instead of inside the database URL. `.env` stays as it is.
+
+### Fixed
+- A database password with characters such as `/ @ : # ?` (for example from `openssl rand -base64`) broke the
+  database connection, and the browser only showed 502. Any characters work now. README and `.env.example` explain
+  that the database keeps the password it was created with, and how to change it.
+
+### Changed
+- CI uses actions/checkout 7.0.1 and setup-uv 10.3.0 (Node 24) with uv pinned to 0.10.4, and its checkout no longer
+  keeps the job token.
+
 ## [1.1.2] - 2026-10-28
 
 ### Added
