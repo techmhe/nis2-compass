@@ -81,6 +81,10 @@ jobs:
     needs: verify
     if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
+    # Two close tag runs must not reorder their pushes of the floating tags.
+    concurrency:
+      group: image-release
+      cancel-in-progress: false
     permissions:
       contents: read
       packages: write
@@ -90,6 +94,7 @@ jobs:
       # Third-party actions are pinned to the commit of the named release.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          fetch-depth: 0          # all release tags, to find the newest one
           persist-credentials: false
       - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
       - uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
@@ -97,8 +102,26 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      # 1.2.3 and 1.2 for a v1.2.3 tag. No latest: a patch on an older line or a re-run on an old tag would
-      # silently move it back.
+      # Two outputs, both false for pre-releases and re-runs on old tags. newest_major=true when this tag is the
+      # highest stable vX.Y.Z of its own major (moves the major tag, so a patch on 1.x still reaches :1 after 2.0.0).
+      # newest=true when it is the highest stable release overall (moves latest).
+      - id: newest
+        env:
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          stable='^v[0-9]+\.[0-9]+\.[0-9]+$'
+          newest_major=false
+          newest=false
+          if printf '%s' "$REF_NAME" | grep -qE "$stable"; then
+            major="${REF_NAME%%.*}"
+            highest_major=$(git tag -l "${major}.*" --sort=-v:refname | grep -E "$stable" | sed -n 1p)
+            highest=$(git tag -l 'v*' --sort=-v:refname | grep -E "$stable" | sed -n 1p)
+            [ "$REF_NAME" = "$highest_major" ] && newest_major=true
+            [ "$REF_NAME" = "$highest" ] && newest=true
+          fi
+          echo "newest_major=$newest_major" >> "$GITHUB_OUTPUT"
+          echo "newest=$newest" >> "$GITHUB_OUTPUT"
+      # 1.2.3 and 1.2 for every v1.2.3 tag. 1 only for the newest of its major, latest only for the newest overall (see above).
       - id: meta
         uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
         with:
@@ -107,6 +130,8 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}},enable=${{ steps.newest.outputs.newest_major == 'true' }}
+            type=raw,value=latest,enable=${{ steps.newest.outputs.newest == 'true' }}
       # Provenance and SBOM are BuildKit attestations stored with the image; the signed GitHub attestation
       # follows below. No GHA cache: the verify job before it could write cache entries the release build would
       # take as layers.

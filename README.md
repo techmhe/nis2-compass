@@ -131,10 +131,12 @@ the Project and Roles steps.
   `sudo cp deploy/systemd/nis2-backup.* /etc/systemd/system/` (adjust the path in the service file), then
   `sudo systemctl enable --now nis2-backup.timer`. Copy `deploy/backups/` to off-site storage and test a restore
   at least once a year.
-- Updates: replace `docker-compose.yml` with the one from the new release, then `docker compose pull && docker
-  compose up -d`. Migrations run automatically on start. An `APP_IMAGE` in `.env` overrides the compose file's
-  image: update or remove it at the same time. To pin the exact image you checked, append its digest:
-  `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>@sha256:<digest>`.
+- Updates: take a backup (`deploy/backup.sh`), then `docker compose pull && docker compose up -d`. The compose file
+  defaults to the floating tag of the major version (`ghcr.io/techmhe/nis2-compass:1`), which always points to the
+  newest 1.x release. Migrations run automatically on start. Replace `docker-compose.yml` with the one from the new
+  release only when its CHANGELOG section says "Compose change required". An `APP_IMAGE` in `.env` overrides the
+  compose file's image and keeps exactly that image: update or remove it when you want to move on. To pin the exact
+  image you checked, append its digest: `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>@sha256:<digest>`.
 - Verify an image before you run it (GitHub CLI):
   ```bash
   gh attestation verify oci://ghcr.io/techmhe/nis2-compass:<version> -R techmhe/nis2-compass \
@@ -143,6 +145,20 @@ the Project and Roles steps.
 
   It checks the signed build provenance that CI attaches to every release image from 1.1.2 on: built by this
   repository's release workflow from the release tag.
+
+  The default `:1` (no `APP_IMAGE` in `.env`) follows the newest 1.x release on each pull, so verify what it
+  points to before you rely on it:
+  ```bash
+  docker compose pull
+  docker image inspect --format '{{index .RepoDigests 0}}' ghcr.io/techmhe/nis2-compass:1   # …@sha256:<digest>
+  docker image inspect --format '{{index .Config.Labels "org.opencontainers.image.version"}}' \
+    ghcr.io/techmhe/nis2-compass:1                                                        # <version>
+  gh attestation verify oci://ghcr.io/techmhe/nis2-compass@sha256:<digest> -R techmhe/nis2-compass \
+    --signer-workflow techmhe/nis2-compass/.github/workflows/verify.yml --source-ref refs/tags/v<version>
+  ```
+  `<digest>` is the part after `sha256:` of the first command's output. Then pin what you verified:
+  `APP_IMAGE=ghcr.io/techmhe/nis2-compass:<version>@sha256:<digest>`. For production, pin the verified digest; the
+  unpinned `:1` is convenient but moves with every release.
 
 ### Single sign-on (OIDC)
 

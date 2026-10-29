@@ -15,7 +15,7 @@ def _version() -> str:
 def test_compose_defaults_to_the_published_image_of_this_version():
     match = re.search(r"^\s+image: \$\{APP_IMAGE:-([^}]+)\}$", COMPOSE, re.MULTILINE)
     assert match, "app service must use ${APP_IMAGE:-<image>}"
-    assert match.group(1) == f"ghcr.io/techmhe/nis2-compass:{_version()}"
+    assert match.group(1) == f"ghcr.io/techmhe/nis2-compass:{_version().split('.')[0]}"
 
 
 def test_compose_needs_no_source_checkout():

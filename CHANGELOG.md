@@ -6,6 +6,16 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.2.2] - 2026-10-29
+
+### Changed
+- Updating a deployment no longer needs a new `docker-compose.yml`: it defaults to the floating image tag `1`
+  (newest 1.x release) and CI also publishes `latest`. `1` moves for the newest stable release of its major,
+  `latest` for the newest overall, never for a pre-release or a re-run on an old tag. Image jobs run one at a
+  time. The README explains how to verify what `:1` points to and pin the digest. An `APP_IMAGE` in `.env` still
+  pins an exact image. Update with `docker compose pull && docker compose up -d`.
+- Convention: a release that needs a new compose file says "Compose change required" in its section here.
+
 ## [1.2.1] - 2026-10-29
 
 ### Fixed
