@@ -11,6 +11,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Code, Empty, ErrorState, Loading, Pill } from "@/components/common/basics"
 import { Confirm } from "@/components/common/collab"
 import { Field, OptionSelect } from "@/components/common/fields"
+import { LegalFormSelect } from "@/components/common/legal-form-select"
 import { useAuth } from "@/hooks/useAuth"
 import { useEntities, useEntityOptions } from "@/hooks/useRefData"
 import { api } from "@/lib/api"
@@ -132,6 +133,7 @@ function EntityDialog({ entity, onClose, canDelete, onDelete }: { entity: Entity
       const body = {
         ...f,
         code: f.code.trim(), name: f.name.trim(), finding_prefix: f.finding_prefix.trim(),
+        legal_form: f.legal_form?.trim() || null,
       }
       return entity ? api.put<Entity>(`/entities/${entity.id}`, body) : api.post<Entity>("/entities", body)
     },
@@ -170,9 +172,9 @@ function EntityDialog({ entity, onClose, canDelete, onDelete }: { entity: Entity
               options={(options?.jurisdictions ?? []).map((j) => ({ value: j.code, label: j.name }))} />
           </Field>
           <Field label="Legal form" htmlFor="ent-legal_form">
-            <Input id="ent-legal_form" list="ent-legal-forms" value={f.legal_form ?? ""} maxLength={60}
-              onChange={(e) => set("legal_form", str(e.target.value))} />
-            <datalist id="ent-legal-forms">{(options?.jurisdictions.find((j) => j.code === f.country)?.legal_forms ?? []).map((l) => <option key={l} value={l} />)}</datalist>
+            <LegalFormSelect id="ent-legal_form" allowNone country={f.country} value={f.legal_form}
+              forms={options?.jurisdictions.find((j) => j.code === f.country)?.legal_forms ?? []}
+              onChange={(v) => set("legal_form", v)} />
           </Field>
           <Field label="Size class">
             <OptionSelect value={f.size_class} onChange={(v) => set("size_class", v)} allowNone noneLabel="Not set"

@@ -87,12 +87,12 @@ def test_legal_tags_seeded_from_links(login):
     r = isb.get(f"/api/governance/legal/requirements/{rid}")
     assert r.status_code == 200
     rows = {x["jurisdiction"]: x for x in r.json()["rows"]}
-    assert rows["DE"]["status"] == "benchmark" and rows["DE"]["basis_label"] == "§ 30(2) Nr. 1 BSIG"
+    assert rows["DE"]["status"] == "binding" and rows["DE"]["basis_label"] == "§ 30(2) Nr. 1 BSIG"
     assert rows["DE"]["regulation_code"] == "BSIG"
     assert rows["NL"]["status"] == "binding" and rows["NL"]["basis_label"] == "Cbb Art. 6"
     assert rows["EU"]["basis_label"] == "IR 2024/2690 Annex 1.1.1"
     by_ent = {e["entity"]["code"]: e["effective"] for e in r.json()["entities"]}
-    assert by_ent["ATL"]["status"] == "benchmark" and by_ent["ATN"]["status"] == "binding"
+    assert by_ent["ATL"]["status"] == "binding" and by_ent["ATN"]["status"] == "binding"
 
     rows14 = {
         x["jurisdiction"]: x
@@ -109,7 +109,7 @@ def test_legal_tags_seeded_from_links(login):
 
     all_rows = isb.get("/api/governance/legal", params={"jurisdiction": "DE"}).json()
     assert len(all_rows) == len({x["requirement_id"] for x in all_rows}) >= 170
-    assert sum(1 for x in all_rows if x["status"] == "binding") == 9  # chapters 14-16
+    assert sum(1 for x in all_rows if x["status"] == "binding") == 170  # chapters 1-16 with a statutory link
 
 
 def test_ir_profile_makes_annex_binding(login):
@@ -120,7 +120,7 @@ def test_ir_profile_makes_annex_binding(login):
     item = {i["requirement_id"]: i for i in isb.get(f"/api/governance/legal/entities/{ats}").json()["items"]}[
         rid
     ]
-    assert item["status"] == "benchmark" and item["jurisdiction"] == "DE"
+    assert item["status"] == "binding" and item["jurisdiction"] == "DE"
     r = isb.put(
         f"/api/governance/profiles/{ats}",
         json={"nis2_entity_type": "Important – MSP", "ir_2024_2690_applicable": True},
@@ -178,7 +178,7 @@ def test_binding_gaps_scoped(login):
     isb, nl = login("isb@demo.local"), login("nl.contact@demo.local")
     data = isb.get("/api/governance/binding-gaps").json()
     by = {e["entity"]["code"]: e for e in data["entities"]}
-    assert by["ATL"]["binding"] == 9 and by["ATN"]["binding"] > 150
+    assert by["ATL"]["binding"] == 170 and by["ATN"]["binding"] > 150
     assert by["ATL"]["open"] == by["ATL"]["findings"] + by["ATL"]["unanswered"]
     codes = {e["entity"]["code"] for e in nl.get("/api/governance/binding-gaps").json()["entities"]}
     assert codes == {"ATN", "ATC"}

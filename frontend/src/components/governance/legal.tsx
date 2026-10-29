@@ -293,7 +293,7 @@ export function LegalView() {
   return (
     <div className="space-y-5">
       <div className="rounded-md border bg-card px-4 py-3 text-[13px] text-ink-2">
-        <p><span className="font-medium text-ink">Why this matters.</span> The Annex of IR (EU) 2024/2690 binds only digital providers. For the German entities, the catalogue is a benchmark that concretises § 30(2) BSIG; reporting, registration and management duties (chapters 14–16) are binding. For the Dutch entities, Cbb Art. 6–18 and the Cbw duties are binding. The badges show the basis for each requirement and entity.</p>
+        <p><span className="font-medium text-ink">Why this matters.</span> The Annex of IR (EU) 2024/2690 binds only digital providers. For the German entities, the ten topics of § 30(2) BSIG are binding, with the IR annex point showing how the duty can be met; the regulation itself binds only the digital providers named in § 30(3) BSIG. Reporting, registration and management duties (chapters 14–16) are binding too. Chapter 17 is a benchmark for the general duty in § 30(1) BSIG. For the Dutch entities, Cbb Art. 6–18 and the Cbw duties are binding. The badges show the basis for each requirement and entity.</p>
         <p className="mt-1 text-ink-3"><span className="tabular font-medium text-ink">{counts.DE}</span> requirements binding in Germany, <span className="tabular font-medium text-ink">{counts.NL}</span> in the Netherlands.</p>
       </div>
 

@@ -144,13 +144,20 @@ def compute_legal_rows(db: Session) -> list[dict]:
             )
         else:
             basis = [p for p in bsig if p.key.startswith("30.2")]
-            de.update(
-                status="benchmark",
-                provisions=basis,
-                note="Benchmark from the Annex of IR (EU) 2024/2690 that concretises the binding duty in "
-                "§ 30(2) BSIG. The implementing regulation itself does not apply to this entity type "
-                "(§ 30(3) BSIG).",
-            )
+            if basis:
+                de.update(
+                    status="binding",
+                    provisions=basis,
+                    note="Statutory duty under § 30(2) BSIG. The annex point of IR (EU) 2024/2690 shows how the "
+                    "duty can be met; the regulation itself does not apply to this entity type (§ 30(3) BSIG).",
+                )
+            else:
+                de.update(
+                    status="benchmark",
+                    provisions=[p for p in bsig if p.key == "30.1"] or bsig[:1],
+                    note="No § 30(2) BSIG topic is linked; the requirement concretises the general duty in "
+                    "§ 30(1) BSIG (appropriate, proportionate measures).",
+                )
         de["label"] = bsig_label([p.key for p in de["provisions"]]) if de["provisions"] else None
         de["requirement_id"] = req.id
         rows.append(de)

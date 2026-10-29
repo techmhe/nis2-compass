@@ -15,7 +15,6 @@ from app.features.governance.models import (
     Obligation,
     Registration,
     RegistrationChange,
-    RequirementLegal,
     TrainingRecord,
     TrainingRule,
 )
@@ -180,10 +179,8 @@ def ensure_entity_reference(db: Session, entity: Entity) -> None:
 
 
 def seed_reference(db: Session) -> None:
-    if db.scalar(select(func.count(Requirement.id))) and not db.scalar(
-        select(func.count(RequirementLegal.id))
-    ):
-        rebuild_legal(db)
+    if db.scalar(select(func.count(Requirement.id))):
+        rebuild_legal(db)  # refreshes the automatic rows so changed rules reach existing installs
     if not db.scalar(select(func.count(TrainingRule.id))):
         for r in TRAINING_RULES:
             db.add(TrainingRule(**r))

@@ -26,7 +26,7 @@ async function fillCompany(page: Page, n: number, c: { name: string; code: strin
   await g.getByLabel("Company name").fill(c.name)
   await g.getByLabel("Code", { exact: true }).fill(c.code)
   await chooseOption(page, g.getByLabel("Country"), c.country)
-  await g.getByLabel("Legal form").fill(c.legalForm)
+  await chooseOption(page, g.getByLabel("Legal form", { exact: true }), c.legalForm)
   await chooseOption(page, g.getByLabel("Sector"), /machinery/)
   await chooseOption(page, g.getByLabel("Size class"), "Medium")
   if (c.headquarters) await g.getByLabel("Headquarters").check()

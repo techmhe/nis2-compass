@@ -5,6 +5,7 @@ import { AlertTriangle, Check, Plus, Trash2 } from "lucide-react"
 import { Logo } from "@/components/app-shell"
 import { Code, ErrorState, KV, Loading, Pill, Section } from "@/components/common/basics"
 import { Field, OptionSelect } from "@/components/common/fields"
+import { LegalFormSelect } from "@/components/common/legal-form-select"
 import { blankProject, ProjectStep, projectBody, projectProblems, usePlanPreview, type ProjectDraft } from "@/components/setup/project-step"
 import { blankRole, rolesPayload, RolesStep, rowsFromOffered, shownRoles, takesPart, validateRoles, type RoleRow } from "@/components/setup/roles-step"
 import { Button } from "@/components/ui/button"
@@ -299,11 +300,10 @@ export default function SetupPage() {
                         options={opts.jurisdictions.map((j) => ({ value: j.code, label: j.name }))} />
                       <ErrorText id={`${p}-country-error`}>{err("country")}</ErrorText>
                     </Field>
-                    <div className="sm:col-span-4">
-                      <TextField id={`${p}-legal`} label="Legal form" list={`${p}-forms`} value={c.legal_form} maxLength={60}
-                        error={err("legal_form")} onChange={(e) => setC(i, "legal_form", e.target.value)} />
-                      <datalist id={`${p}-forms`}>{forms.map((f) => <option key={f} value={f} />)}</datalist>
-                    </div>
+                    <Field label="Legal form" htmlFor={`${p}-legal`} className="sm:col-span-4">
+                      <LegalFormSelect id={`${p}-legal`} country={c.country} forms={forms} value={c.legal_form}
+                        error={err("legal_form")} onChange={(v) => setC(i, "legal_form", v ?? "")} />
+                    </Field>
                     <Field label="Sector" htmlFor={`${p}-sector`} className="sm:col-span-4">
                       <OptionSelect id={`${p}-sector`} value={c.sector} onChange={(v) => setC(i, "sector", v)}
                         options={opts.sectors.map((s) => ({ value: s.key, label: s.label }))} />

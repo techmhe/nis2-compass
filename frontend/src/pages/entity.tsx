@@ -10,6 +10,7 @@ import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { Code, Empty, EntityTag, ErrorState, KV, Loading, Meter, PageHeader, Pill, PriorityPill, ScoreBar, Section, Stat, StatusPill } from "@/components/common/basics"
 import { Field, OptionSelect } from "@/components/common/fields"
+import { LegalFormSelect } from "@/components/common/legal-form-select"
 import { REGISTRATION_STATUS, useChapters } from "@/components/assess/shared"
 import { EntityGovernanceSection } from "@/components/governance/entity-section"
 import { useAuth } from "@/hooks/useAuth"
@@ -66,8 +67,8 @@ function EditEntityDialog({ entity }: { entity: Entity }) {
           <Field label="Country"><OptionSelect value={f.country} onChange={(v) => set("country", v)} allowNone noneLabel="Not set" options={(entityOptions?.jurisdictions ?? []).map((j) => ({ value: j.code, label: j.name }))} /></Field>
           <Field label="NIS2 classification"><OptionSelect value={f.nis2_classification} onChange={(v) => set("nis2_classification", v)} allowNone noneLabel="Not set" options={CLASS_OPTIONS} /></Field>
           <Field label="Legal form" htmlFor="e-legal">
-            <Input id="e-legal" list="e-legal-forms" value={f.legal_form ?? ""} maxLength={60} onChange={(e) => set("legal_form", e.target.value)} />
-            <datalist id="e-legal-forms">{legalForms.map((x) => <option key={x} value={x} />)}</datalist>
+            <LegalFormSelect id="e-legal" allowNone country={f.country} forms={legalForms} value={f.legal_form}
+              onChange={(v) => set("legal_form", v)} />
           </Field>
           <Field label="Size class"><OptionSelect value={f.size_class} onChange={(v) => set("size_class", v)} allowNone noneLabel="Not set" options={sizeOptions} /></Field>
           <Field label="Activity sector" className="col-span-2 md:col-span-3"><OptionSelect value={f.activity_sector} onChange={(v) => set("activity_sector", v)} allowNone noneLabel="Not set" options={sectorOptions} /></Field>

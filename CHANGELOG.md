@@ -6,6 +6,16 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-10-29
+
+### Fixed
+- The legal form of an entity is a select like the other fields, with "Other…" for forms that are not on the list
+  (setup, Admin → Entities, entity page).
+- Governance → legal basis: German requirements that link to a § 30(2) BSIG topic are now tagged binding (170
+  instead of 9 for Germany), as the Dutch ones are under Cbb Art. 6–18. The IR (EU) 2024/2690 annex point stays the
+  guidance on how to meet the duty. Chapter 17 (OT) stays a benchmark. Existing installs get the corrected tags on
+  the next start; tags edited by hand are kept.
+
 ## [1.2.0] - 2026-10-29
 
 ### Added

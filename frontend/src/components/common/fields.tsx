@@ -22,8 +22,12 @@ export function OptionSelect({
   className,
   size = "default",
   id,
+  invalid,
+  describedBy,
 }: {
   id?: string
+  invalid?: boolean
+  describedBy?: string
   value: string | null | undefined
   onChange: (v: string | null) => void
   options: readonly (string | { value: string; label: ReactNode })[]
@@ -39,7 +43,7 @@ export function OptionSelect({
     // uncontrolled until the first value arrives. "" is never an option, so it is not reported as a choice.
     <Select value={value ?? (allowNone ? NONE : "")} disabled={disabled}
       onValueChange={(v) => { if (v !== "") onChange(v === NONE ? null : v) }}>
-      <SelectTrigger id={id} size={size} className={cn("w-full", className)}>
+      <SelectTrigger id={id} size={size} aria-invalid={invalid || undefined} aria-describedby={describedBy} className={cn("w-full", className)}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
