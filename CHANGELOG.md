@@ -4,6 +4,24 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+## [1.2.0] - 2026-10-29
+
+### Added
+- The first-run setup wizard has the steps Project and Roles. The project plan is scheduled from a start date, an
+  optional end date and four sizing questions, with editable gate dates and a warning when the end date is tight.
+  Project roles can be renamed, deselected or added.
+- With OIDC enabled, roles take an e-mail address; the first OIDC login with a verified e-mail links the role to that
+  person for "My work" and reminders (no permission is granted).
+- API: `POST /api/setup/plan-preview` (schedule for the wizard, no login, only while setup is open) and the new
+  fields `oidc_enabled`, `project_exists` and `roles` on `GET /api/setup/options` (`roles` is empty once setup is
+  done). An end date more than five years after the start is rejected with 422.
+
+### Changed
+- Fresh installs no longer get the fixed 2026-2027 plan from the Excel template. Demo and bootstrap-admin installs get
+  a default plan starting on the Monday of the current week. Existing installs keep their plan.
+
 ## [1.1.3] - 2026-10-28
 
 ### Upgrade notes

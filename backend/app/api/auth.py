@@ -23,6 +23,7 @@ from app.db import get_db, utcnow
 from app.models import ApiToken, Entity, LoginAttempt, Role, RoleAssignment, User, UserSession
 from app.schemas.common import Ok
 from app.services.audit import audit
+from app.services.project_setup import link_stakeholders
 
 log = logging.getLogger(__name__)
 router = APIRouter(prefix="/auth", tags=["auth"])
@@ -496,6 +497,8 @@ async def oidc_callback(request: Request, db: Session = Depends(get_db)):
     if not user.is_active:
         return RedirectResponse("/login?error=disabled", status_code=302)
     user.display_name = name
+    if verified_email:
+        link_stakeholders(db, user, verified_email)
     claim = s.oidc_groups_claim
     overage = claim not in claims and (
         claim in (claims.get("_claim_names") or {}) or (claim == "groups" and claims.get("hasgroups") is True)

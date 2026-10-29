@@ -7,6 +7,18 @@ export interface SetupOptions {
   size_classes: string[]
   password_min_length: number
   local_enabled: boolean
+  oidc_enabled: boolean
+  project_exists: boolean
+  roles: OfferedRole[]
+}
+
+export interface OfferedRole {
+  name: string
+  description: string | null
+  kind: string
+  mandatory: boolean
+  /** Only set for the external advisers: offered when a company in this country is entered. */
+  country: string | null
 }
 
 /** Whether the first-run setup is still due. It never flips back, so it is fetched once per page load. */

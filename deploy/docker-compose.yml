@@ -27,7 +27,7 @@ services:
 
   app:
     # Prebuilt by CI for every release. To build from a source checkout instead, add docker-compose.build.yml.
-    image: ${APP_IMAGE:-ghcr.io/techmhe/nis2-compass:1.1.3}
+    image: ${APP_IMAGE:-ghcr.io/techmhe/nis2-compass:1.2.0}
     restart: unless-stopped
     logging: *logging
     depends_on:

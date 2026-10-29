@@ -6,7 +6,6 @@ Usage:  python -m app.seed.seed [--demo]
 """
 
 import logging
-import re
 import sys
 
 from sqlalchemy import func, select
@@ -17,16 +16,10 @@ from app.core.permissions import ALL, BUILTIN_ROLES
 from app.core.security import hash_password, password_problems
 from app.db import SessionLocal
 from app.models import (
-    Activity,
     AssessmentRound,
     Chapter,
-    Gate,
-    Phase,
+    Entity,
     Project,
-    RaciActivity,
-    RaciCell,
-    RaciColumn,
-    RaidRecord,
     Regulation,
     Requirement,
     RequirementProvision,
@@ -36,20 +29,13 @@ from app.models import (
     Setting,
     Stakeholder,
     User,
-    WorkPackage,
 )
 from app.services import regulations as regsvc
 from app.services.indexing import reindex_all
-from app.services.workbook import parse_gap_workbook, parse_project_workbook
+from app.services.project_setup import create_default_project, seed_project_stakeholders, stakeholder
+from app.services.workbook import parse_gap_workbook
 
 log = logging.getLogger("seed")
-
-STAKEHOLDER_ALIASES = {
-    "DPO": "Data Protection Officer",
-    "DE Adviser": "German External Adviser",
-    "NL Adviser": "Dutch External Adviser",
-    "MSP": "MSP+IT",
-}
 
 
 def sync_roles(db: Session) -> None:
@@ -73,11 +59,12 @@ def sync_roles(db: Session) -> None:
     db.commit()
 
 
-def bootstrap_admin(db: Session) -> None:
-    """Only with NIS2_BOOTSTRAP_ADMIN_PASSWORD set; otherwise the first-run setup creates the administrator."""
+def bootstrap_admin(db: Session) -> bool:
+    """Only with NIS2_BOOTSTRAP_ADMIN_PASSWORD set; otherwise the first-run setup creates the administrator.
+    True when this call created the administrator."""
     s = get_settings()
     if not s.bootstrap_admin_password or db.scalar(select(func.count(User.id))):
-        return
+        return False
     if problems := password_problems(s.bootstrap_admin_password):
         raise RuntimeError(
             "NIS2_BOOTSTRAP_ADMIN_PASSWORD does not meet the password policy: needs " + ", ".join(problems)
@@ -92,21 +79,7 @@ def bootstrap_admin(db: Session) -> None:
     db.flush()
     db.add(RoleAssignment(user_id=admin.id, role_id=db.scalar(select(Role.id).where(Role.key == "admin"))))
     db.commit()
-
-
-def stakeholder(db: Session, name: str | None, cache: dict[str, Stakeholder]) -> Stakeholder | None:
-    if not name:
-        return None
-    name = STAKEHOLDER_ALIASES.get(name.strip(), name.strip())
-    if name in cache:
-        return cache[name]
-    st = db.scalar(select(Stakeholder).where(Stakeholder.name == name))
-    if not st:
-        st = Stakeholder(name=name, kind="external" if "Adviser" in name else "role", sort_order=len(cache))
-        db.add(st)
-        db.flush()
-    cache[name] = st
-    return st
+    return True
 
 
 def seed_catalog_and_assessments(db: Session) -> None:
@@ -157,150 +130,15 @@ def seed_catalog_and_assessments(db: Session) -> None:
     db.commit()
 
 
-def seed_project(db: Session) -> None:
-    if db.scalar(select(func.count(Project.id))):
-        return
-    pp = parse_project_workbook()
-    cache: dict[str, Stakeholder] = {}
-    for name in pp["owners"]:
-        if name != "Assigned Work-Package Owners":
-            stakeholder(db, name, cache)
-    for note in pp["role_notes"]:
-        st = stakeholder(db, note["role"], cache)
-        if st and not st.description:
-            st.description = note["note"]
-
-    ov = {f["field"]: f["value"] for f in pp["overview"]}
-    from datetime import date
-
-    def d(v):
-        return date.fromisoformat(v) if isinstance(v, str) and re.match(r"\d{4}-\d{2}-\d{2}", v) else None
-
-    project = Project(
-        name=ov.get("Project Name") or "NIS2 Group Implementation Project",
-        code="NIS2",
-        status="In Progress",
-        planned_start=d(ov.get("Planned Start")),
-        planned_finish=d(ov.get("Planned Completion")),
-        sponsor=ov.get("Project Sponsor"),
-        description="Group-wide implementation of the NIS2 requirements (Germany and the Netherlands).",
-        overview=[
-            f
-            for f in pp["overview"]
-            if f["field"] not in ("Project Name", "Planned Start", "Planned Completion", "Project Sponsor")
-        ],
-        version_note="Version 1.0 | Status: Draft | Classification: Internal use | Document owner: Information Security Officer",
-    )
-    db.add(project)
-    db.flush()
-    phases = {}
-    for i, name in enumerate(pp["phases"]):
-        ph = Phase(project_id=project.id, name=name, sort_order=i)
-        db.add(ph)
-        phases[name] = ph
-    gates = {}
-    for i, g in enumerate(pp["gates"]):
-        owner = stakeholder(db, g["decision_owner"], cache)
-        gate = Gate(
-            project_id=project.id,
-            code=g["code"],
-            planned_date=g["planned_date"],
-            decision=g["decision"],
-            decision_owner_id=owner.id if owner else None,
-            required_input=g["required_input"],
-            approval_criterion=g["approval_criterion"],
-            status=g["status"],
-            decision_reference=g["decision_reference"],
-            sort_order=i,
-        )
-        db.add(gate)
-        gates[g["code"]] = gate
-    db.flush()
-    acts = {}
-    for i, a in enumerate(pp["activities"]):
-        owner = stakeholder(db, a["owner"], cache)
-        act = Activity(
-            project_id=project.id,
-            phase_id=phases[a["phase"]].id if a["phase"] in phases else None,
-            code=a["code"],
-            title=a["title"],
-            owner_id=owner.id if owner else None,
-            support=a["support"],
-            planned_start=a["planned_start"],
-            planned_finish=a["planned_finish"],
-            deliverable=a["deliverable"],
-            gate_id=gates[a["gate"]].id if a["gate"] in gates else None,
-            status=a["status"],
-            priority=a["priority"],
-            progress=a["progress"],
-            sort_order=i,
-            is_milestone=bool(a["gate"]),
-        )
-        db.add(act)
-        acts[a["code"]] = (act, a["dependency"])
-    db.flush()
-    for act, dep in acts.values():
-        for code in re.findall(r"P\d+\.\d+", dep or ""):
-            if code in acts and acts[code][0] is not act:
-                act.depends_on.append(acts[code][0])
-
-    cols = []
-    for i, name in enumerate(pp["raci_columns"]):
-        st = stakeholder(db, name, cache)
-        col = RaciColumn(project_id=project.id, name=name, stakeholder_id=st.id if st else None, sort_order=i)
-        db.add(col)
-        cols.append(col)
-    db.flush()
-    for i, row in enumerate(pp["raci_rows"]):
-        ra = RaciActivity(project_id=project.id, name=row["activity"], sort_order=i)
-        db.add(ra)
-        db.flush()
-        for col in cols:
-            v = row["cells"].get(col.name)
-            if v:
-                db.add(RaciCell(activity_id=ra.id, column_id=col.id, value=v))
-    for r in pp["raid"]:
-        owner = stakeholder(db, r["owner"], cache)
-        db.add(
-            RaidRecord(
-                project_id=project.id,
-                code=r["code"],
-                type=r["type"],
-                date_raised=r["date_raised"],
-                title=r["title"],
-                impact=r["impact"],
-                probability=r["probability"],
-                severity=r["severity"],
-                owner_id=owner.id if owner else None,
-                mitigation=r["mitigation"],
-                target_date=r["target_date"],
-                status=r["status"],
-                escalation_needed=r["escalation_needed"],
-                resolution=r["resolution"],
-            )
-        )
-    for i, w in enumerate(pp["work_packages"], 1):
-        owner = stakeholder(db, w["owner"], cache)
-        db.add(
-            WorkPackage(
-                project_id=project.id,
-                code=f"WP-{i:03d}",
-                title=w["title"],
-                measure_area=w["measure_area"],
-                central_or_local=w["central_or_local"],
-                priority=w["priority"],
-                owner_stakeholder_id=owner.id if owner else None,
-                planned_start=w["planned_start"],
-                planned_finish=w["planned_finish"],
-                acceptance_criterion=w["acceptance_criterion"],
-                expected_evidence=w["expected_evidence"],
-                dependency=w["dependency"],
-                status=w["status"],
-                progress=w["progress"],
-                progress_mode="manual",
-                comments=w["comments"],
-            )
-        )
+def seed_project(db: Session, create_plan: bool = False) -> None:
+    """The project roles and, when asked (demo and bootstrap runs), the default plan; otherwise the first-run
+    setup creates the plan. Once a project exists its roles belong to the admin (renamed, deactivated, deleted),
+    so a restart or an upgrade leaves them alone."""
+    if not db.scalar(select(func.count(Project.id))):
+        seed_project_stakeholders(db)
+        if create_plan:
+            entities = list(db.scalars(select(Entity).order_by(Entity.sort_order, Entity.id)))
+            create_default_project(db, entities)
     db.commit()
 
 
@@ -355,9 +193,9 @@ def run(demo: bool = False) -> None:
     try:
         fresh_index = not db.scalar(select(func.count(SearchChunk.id)))
         sync_roles(db)
-        bootstrap_admin(db)
+        admin_created = bootstrap_admin(db)
         seed_catalog_and_assessments(db)
-        seed_project(db)
+        seed_project(db, create_plan=admin_created and not demo)  # demo builds its plan after its companies
         seed_regulations(db)
         seed_settings(db)
         if demo:

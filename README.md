@@ -84,12 +84,34 @@ Docker Compose 2.23 or newer is needed (the Caddy configuration is inline in the
 image from a source checkout instead: `cd deploy && docker compose -f docker-compose.yml -f docker-compose.build.yml
 up -d --build`.
 
-First-run setup happens in the browser: open `https://<DOMAIN>/` and the setup page creates the administrator and
-the first entities. The page asks for a setup token, which the server prints once at start while setup is open
+First-run setup happens in the browser: open `https://<DOMAIN>/` and the setup page creates the administrator, the
+first entities and the project plan with its roles (the Project and Roles steps below). The page asks for a setup token, which the server prints once at start while setup is open
 (`docker compose logs app`, or `docker compose exec app python -m app.setup_token`). It is derived from
 `NIS2_SECRET_KEY`; set `NIS2_SETUP_TOKEN` to choose your own. Complete setup soon after the first start anyway: the
 token only keeps out those who cannot read the server log. On OIDC-only installs the setup administrator remains a
 local break-glass account; keep its password safe. To sign in with it on an OIDC-only install, `NIS2_LOCAL_AUTH_ENABLED=true` is needed. `NIS2_BOOTSTRAP_ADMIN_*` is only a hook for tests and automation.
+
+The setup wizard has the steps Administrator, Companies, Project, Roles and Review
+([flow diagram](docs/diagrams/setup-project-plan.html)):
+
+- **Project** builds the project plan for your organisation. Enter a start date, an optional end date and four
+  sizing answers (part-time or dedicated team, assessments one after another or in parallel, starting point
+  none/partial/ISO 27001, external support yes/no). The plan keeps the template's 6 phases, 26 activities and 6 gates;
+  the server schedules the dates (Monday to Friday weeks) and the page shows a timeline with editable gate dates. An
+  end date that leaves less than 75% of the proposed time shows a warning; one that is shorter than the shortest
+  possible plan is rejected, and so is one more than five years after the start (unless the proposed plan itself
+  is longer).
+- **Roles** lists the project roles (Information Security Officer and Management Board are always on). Rename roles,
+  deselect those you do not have, or add your own. A deselected role is kept as inactive; its work goes to the
+  Information Security Officer (gates to the Management Board). External advisers are offered for the countries of the
+  companies you entered.
+- With OIDC enabled, each role takes the e-mail address of the person in it. At that person's first OIDC login with a
+  verified e-mail the role is linked to them, so their items show under "My work". This grants no permission.
+
+Without demo data or `NIS2_BOOTSTRAP_ADMIN_PASSWORD`, a fresh install has no project until setup completes. Demo and bootstrap-admin installs get a
+default plan starting on the Monday of the current week. Existing installs keep their plan; if one exists, setup skips
+the Project and Roles steps.
+
 
 - `TLS_MODE=internal` → self-signed certificate (testing, also works with an IP address as `DOMAIN`).
 - `TLS_MODE=you@example.com` → Let's Encrypt certificate; ports 80/443 must be reachable and `DOMAIN` must resolve to the server.

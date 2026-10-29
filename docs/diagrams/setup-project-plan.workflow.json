@@ -1,0 +1,208 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Project plan from the setup wizard",
+    "output": "docs/diagrams/setup-project-plan.html",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "wizard",
+      "label": "Setup wizard (browser)"
+    },
+    {
+      "id": "planner",
+      "label": "Planner: services/project_plan.py"
+    },
+    {
+      "id": "api",
+      "label": "Setup API"
+    },
+    {
+      "id": "warn",
+      "label": "Warnings",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "ask",
+      "label": "Answers",
+      "fromCol": 0,
+      "toCol": 0
+    },
+    {
+      "id": "compute",
+      "label": "schedule(inputs)",
+      "fromCol": 1,
+      "toCol": 4,
+      "variant": "emphasis"
+    },
+    {
+      "id": "commit",
+      "label": "Review + create",
+      "fromCol": 5,
+      "toCol": 5
+    }
+  ],
+  "mainPath": [
+    "inputs",
+    "scale",
+    "forward",
+    "fit",
+    "gates",
+    "timeline",
+    "create"
+  ],
+  "nodes": [
+    {
+      "id": "inputs",
+      "lane": "wizard",
+      "col": 0,
+      "type": "frontend",
+      "label": "Sizing answers",
+      "sublabel": "dates, capacity, approach",
+      "width": 116
+    },
+    {
+      "id": "template",
+      "lane": "planner",
+      "col": 0,
+      "type": "database",
+      "label": "Template model",
+      "sublabel": "26 activities, lags"
+    },
+    {
+      "id": "scale",
+      "lane": "planner",
+      "col": 1,
+      "type": "backend",
+      "label": "Phase factors",
+      "sublabel": "scale durations"
+    },
+    {
+      "id": "forward",
+      "lane": "planner",
+      "col": 2,
+      "type": "backend",
+      "label": "Forward pass",
+      "sublabel": "dependencies + lags"
+    },
+    {
+      "id": "fit",
+      "lane": "planner",
+      "col": 3,
+      "type": "backend",
+      "label": "Fit to end date",
+      "sublabel": "uniform factor",
+      "width": 116
+    },
+    {
+      "id": "gates",
+      "lane": "planner",
+      "col": 4,
+      "type": "backend",
+      "label": "Weeks + gates",
+      "sublabel": "Mon–Fri, gate = last finish",
+      "width": 116
+    },
+    {
+      "id": "timeline",
+      "lane": "wizard",
+      "col": 5,
+      "type": "frontend",
+      "label": "Timeline",
+      "sublabel": "gate overrides"
+    },
+    {
+      "id": "create",
+      "lane": "api",
+      "col": 5,
+      "type": "database",
+      "label": "Create project",
+      "sublabel": "roles, RACI fallback",
+      "tag": "one transaction"
+    },
+    {
+      "id": "tight",
+      "lane": "warn",
+      "col": 3,
+      "type": "security",
+      "label": "Too tight",
+      "sublabel": "fit factor < 0.75"
+    }
+  ],
+  "edges": [
+    {
+      "from": "inputs",
+      "to": "scale",
+      "label": "plan-preview"
+    },
+    {
+      "from": "template",
+      "to": "scale",
+      "role": "branch"
+    },
+    {
+      "from": "scale",
+      "to": "forward"
+    },
+    {
+      "from": "forward",
+      "to": "fit"
+    },
+    {
+      "from": "fit",
+      "to": "gates"
+    },
+    {
+      "from": "gates",
+      "to": "timeline",
+      "label": "schedule",
+      "variant": "emphasis"
+    },
+    {
+      "from": "timeline",
+      "to": "create",
+      "label": "POST /api/setup",
+      "variant": "emphasis"
+    },
+    {
+      "from": "fit",
+      "to": "tight",
+      "role": "error",
+      "variant": "security",
+      "label": "warning"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Server computes",
+      "items": [
+        "The wizard never calculates dates itself",
+        "Preview and setup use the same schedule()",
+        "Template order and dependencies stay fixed"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Tight end date",
+      "items": [
+        "The plan is fitted to the end date both ways",
+        "Below 75% of the proposed time a warning shows",
+        "Setup still accepts the compressed plan"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Roles",
+      "items": [
+        "Dropped roles become inactive stakeholders",
+        "Their items fall back to the Information Security Officer",
+        "Every RACI row keeps exactly one accountable"
+      ]
+    }
+  ]
+}

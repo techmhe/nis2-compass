@@ -5,13 +5,17 @@ import { AlertTriangle, Check, Plus, Trash2 } from "lucide-react"
 import { Logo } from "@/components/app-shell"
 import { Code, ErrorState, KV, Loading, Pill, Section } from "@/components/common/basics"
 import { Field, OptionSelect } from "@/components/common/fields"
+import { blankProject, ProjectStep, projectBody, projectProblems, usePlanPreview, type ProjectDraft } from "@/components/setup/project-step"
+import { blankRole, rolesPayload, RolesStep, rowsFromOffered, shownRoles, takesPart, validateRoles, type RoleRow } from "@/components/setup/roles-step"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useSetupOptions, type SetupOptions } from "@/hooks/useSetupStatus"
 import { api, ApiError } from "@/lib/api"
+import { fmtDate } from "@/lib/format"
 import type { Me } from "@/lib/types"
 
-const STEPS = ["Administrator", "Companies", "Review"] as const
+const STEPS = ["Administrator", "Companies", "Project", "Roles", "Review"] as const
+type StepName = (typeof STEPS)[number]
 const SIZE_LABEL: Record<string, string> = { micro: "Micro", small: "Small", medium: "Medium", large: "Large" }
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/
 const CODE_RE = /^[A-Za-z0-9_-]+$/
@@ -57,23 +61,32 @@ function validateCompanies(cs: Company[]): Errors {
 }
 
 const FIELD_KEYS = new Set(["name", "code", "legal_form", "country", "sector", "size_class", "is_headquarters"])
+const PROJECT_KEYS = new Set(["name", "start", "end"])
+const ROLE_KEYS = new Set(["name", "rename_to", "email"])
 
 /** The 422 body ({detail, errors: [{loc, msg}]}) to field errors keyed like the client-side ones ("companies.2.code").
  *  What has no field on the page (company list rules, unknown paths) becomes the banner text. */
-function serverErrors(body: unknown): { fields: Errors; general: string | null } {
+function serverErrors(body: unknown): { fields: Errors; general: string | null; generalStep: StepName } {
   const fields: Errors = {}
   const general: string[] = []
+  let generalStep: StepName = "Companies"
   const items = (body as { errors?: unknown } | null)?.errors
   if (Array.isArray(items)) {
     for (const it of items as { loc?: (string | number)[]; msg?: string }[]) {
       const msg = (it.msg ?? "Invalid value").replace(/^Value error, /, "")
       const path = (it.loc ?? []).slice(1)
-      const onPage = path[0] === "admin" ? path.length === 2 : path[0] === "companies" && path.length === 3 && FIELD_KEYS.has(String(path[2]))
-      if (onPage) fields[path.join(".")] = msg
-      else general.push(msg)
+      if (path[0] === "project" && path[1] === "roles" && path.length === 4 && ROLE_KEYS.has(String(path[3]))) {
+        fields[`roles.${path[2]}.${path[3] === "rename_to" ? "name" : path[3]}`] = msg
+      } else if (path[0] === "project" && path[1] === "gates" && path.length === 3) fields[`project.gates.${path[2]}`] = msg
+      else if (path[0] === "project" && path.length === 2 && PROJECT_KEYS.has(String(path[1]))) fields[path.join(".")] = msg
+      else if (path[0] === "admin" ? path.length === 2 : path[0] === "companies" && path.length === 3 && FIELD_KEYS.has(String(path[2]))) fields[path.join(".")] = msg
+      else {
+        general.push(msg)
+        generalStep = path[0] === "project" ? (path[1] === "roles" ? "Roles" : "Project") : "Companies"
+      }
     }
   }
-  return { fields, general: general.length ? general.join(". ") : null }
+  return { fields, general: general.length ? general.join(". ") : null, generalStep }
 }
 
 function ErrorText({ id, children }: { id: string; children?: string }) {
@@ -98,11 +111,21 @@ export default function SetupPage() {
   const [admin, setAdmin] = useState<Admin>({ display_name: "", email: "", password: "", repeat: "" })
   const nextKey = useRef(2)
   const [companies, setCompanies] = useState<Company[]>([])
+  const [project, setProject] = useState<ProjectDraft>(blankProject)
+  const [recalculated, setRecalculated] = useState(false)
+  const nextRoleKey = useRef(1000)
+  const [editedRoles, setRoles] = useState<RoleRow[] | null>(null)
   const [errors, setErrors] = useState<Errors>({})
   const [banner, setBanner] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
   const heading = useRef<HTMLHeadingElement>(null)
   const opts = options.data
+  const withPlan = !!opts && !opts.project_exists
+  const steps: readonly StepName[] = withPlan ? STEPS : ["Administrator", "Companies", "Review"]
+  const stepName = steps[step]
+  const allRoles = editedRoles ?? (opts ? rowsFromOffered(opts.roles) : [])
+  const roles = shownRoles(allRoles, companies.map((c) => c.country))
+  const plan = usePlanPreview(project, companies.length, withPlan && step >= steps.indexOf("Project"))
 
   // The first company starts as headquarters, in the first country of the registry.
   useEffect(() => {
@@ -126,9 +149,28 @@ export default function SetupPage() {
     setErrors({})
   }
 
+  const setProj = (patch: Partial<ProjectDraft>, recalc = false) => {
+    setProject((p) => ({ ...p, ...patch, gates: recalc ? {} : p.gates }))
+    if (recalc) setRecalculated(Object.keys(project.gates).length > 0) // say so only if typed dates were dropped
+    setErrors((e) => Object.fromEntries(Object.entries(e).filter(([k]) => !k.startsWith("project."))))
+  }
+  const setGate = (code: string, date: string) => {
+    setProject((p) => ({ ...p, gates: { ...p.gates, [code]: date } }))
+    setRecalculated(false)
+  }
+  const setRole = (key: number, patch: Partial<RoleRow>) => {
+    setRoles((prev) => (prev ?? rowsFromOffered(opts.roles)).map((r) => (r.key === key ? { ...r, ...patch } : r)))
+    setErrors({})
+  }
+  const addRole = () => setRoles((prev) => [...(prev ?? rowsFromOffered(opts.roles)), blankRole(nextRoleKey.current++)])
+  const removeRole = (key: number) => { setRoles((prev) => (prev ?? []).filter((r) => r.key !== key)); setErrors({}) }
+
   const next = () => {
     setBanner(null)
-    const e = step === 0 ? validateAdmin(admin, opts.password_min_length, token) : validateCompanies(companies)
+    const e = stepName === "Administrator" ? validateAdmin(admin, opts.password_min_length, token)
+      : stepName === "Companies" ? validateCompanies(companies)
+      : stepName === "Project" ? Object.fromEntries(Object.entries(projectProblems(project)).map(([k, v]) => [`project.${k}`, v]))
+      : validateRoles(roles, project.external_support, opts.oidc_enabled)
     setErrors(e)
     if (Object.keys(e).length === 0) setStep(step + 1)
   }
@@ -141,6 +183,7 @@ export default function SetupPage() {
         setup_token: token.trim(),
         admin: { display_name: admin.display_name.trim(), email: admin.email.trim(), password: admin.password },
         companies: companies.map(({ key: _key, ...c }) => ({ ...c, name: c.name.trim(), legal_form: c.legal_form.trim() })),
+        ...(withPlan && { project: { ...projectBody(project), roles: rolesPayload(roles, project.external_support, opts.oidc_enabled) } }),
       })
       qc.setQueryData(["setup-status"], { needed: false })
       qc.setQueryData(["me"], me)
@@ -148,10 +191,16 @@ export default function SetupPage() {
       navigate("/", { replace: true })
     } catch (err) {
       if (err instanceof ApiError && err.status === 422) {
-        const { fields, general } = serverErrors(err.detail)
+        const { fields, general, generalStep } = serverErrors(err.detail)
         setErrors(fields)
         setBanner(general)
-        setStep(Object.keys(fields).some((k) => k.startsWith("admin.")) ? 0 : 1)
+        const at = (name: StepName) => Math.max(steps.indexOf(name), 0)
+        const keys = Object.keys(fields)
+        setStep(keys.some((k) => k.startsWith("admin.")) ? 0
+          : keys.some((k) => k.startsWith("companies.")) ? 1
+          : keys.some((k) => k.startsWith("project.")) ? at("Project")
+          : keys.some((k) => k.startsWith("roles.")) ? at("Roles")
+          : at(generalStep))
       } else if (err instanceof ApiError && err.status === 403) {
         setErrors({ setup_token: "The setup token is not correct." })
         setStep(0)
@@ -178,8 +227,8 @@ export default function SetupPage() {
         </div>
       </header>
       <main className="mx-auto max-w-3xl space-y-5 px-4 py-6">
-        <ol className="grid grid-cols-3 gap-2" aria-label="Setup steps">
-          {STEPS.map((label, i) => (
+        <ol className="grid gap-2" style={{ gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))` }} aria-label="Setup steps">
+          {steps.map((label, i) => (
             <li key={label} aria-current={i === step ? "step" : undefined}
               className={`flex min-w-0 items-center gap-2 border-b-2 pb-2 text-[13px] ${i === step ? "border-petrol font-semibold text-ink" : i < step ? "border-petrol/40 text-ink-2" : "border-line text-ink-3"}`}>
               <span className={`grid size-5 shrink-0 place-items-center rounded-full text-[11px] ${i < step ? "bg-petrol text-white" : i === step ? "border border-petrol text-petrol" : "border border-line-strong"}`}>
@@ -191,9 +240,11 @@ export default function SetupPage() {
         </ol>
 
         <h1 ref={heading} tabIndex={-1} className="text-[20px] font-semibold text-ink outline-none">
-          {step === 0 && "Create the administrator"}
-          {step === 1 && "Add the companies of the group"}
-          {step === 2 && "Review and finish"}
+          {stepName === "Administrator" && "Create the administrator"}
+          {stepName === "Companies" && "Add the companies of the group"}
+          {stepName === "Project" && "Plan the NIS2 project"}
+          {stepName === "Roles" && "Choose the project roles"}
+          {stepName === "Review" && "Review and finish"}
         </h1>
 
         {banner && (
@@ -204,7 +255,7 @@ export default function SetupPage() {
           </div>
         )}
 
-        {step === 0 && (
+        {stepName === "Administrator" && (
           <Section title="Administrator" bodyClassName="grid gap-3 sm:grid-cols-2">
             <p className="text-[13px] text-ink-3 sm:col-span-2">
               This account administers the tool: users, roles, entities and settings. Everything else is set up afterwards.
@@ -225,7 +276,7 @@ export default function SetupPage() {
           </Section>
         )}
 
-        {step === 1 && (
+        {stepName === "Companies" && (
           <div className="space-y-4">
             <p className="text-[13px] text-ink-3">One entry per legal entity. Exactly one is the headquarters. Authority and CSIRT follow from the country.</p>
             {errors["companies"] && <ErrorText id="companies-error">{errors["companies"]}</ErrorText>}
@@ -279,7 +330,16 @@ export default function SetupPage() {
           </div>
         )}
 
-        {step === 2 && (
+        {stepName === "Project" && (
+          <ProjectStep draft={project} plan={plan} errors={errors} recalculated={recalculated} onChange={setProj} onGate={setGate} />
+        )}
+
+        {stepName === "Roles" && (
+          <RolesStep rows={roles} externalSupport={project.external_support} oidc={opts.oidc_enabled} errors={errors}
+            onChange={setRole} onAdd={addRole} onRemove={removeRole} />
+        )}
+
+        {stepName === "Review" && (
           <div className="space-y-4">
             <Section title="Administrator">
               <KV label="Name">{admin.display_name.trim()}</KV>
@@ -298,6 +358,23 @@ export default function SetupPage() {
                 </Section>
               )
             })}
+            {withPlan && (
+              <>
+                <Section title="Project">
+                  <KV label="Name">{project.name.trim()}</KV>
+                  <KV label="Start date">{fmtDate(project.start)}</KV>
+                  <KV label="End date">{plan.data ? fmtDate(plan.data.end) : "Calculating…"}</KV>
+                  {plan.data?.gates.map((g) => <KV key={g.code} label={g.code}>{fmtDate(g.date)}</KV>)}
+                  {plan.data?.warning && <p role="status" className="mt-2 flex items-start gap-2 text-[13px] text-amber"><AlertTriangle className="mt-0.5 size-4 shrink-0" />{plan.data.warning}</p>}
+                  {plan.failure && <p role="alert" className="mt-2 text-[13px] text-alarm">{plan.failure}</p>}
+                </Section>
+                <Section title="Roles">
+                  {roles.filter((r) => takesPart(r, project.external_support)).map((r) => (
+                    <KV key={r.key} label={r.label.trim()}>{r.email.trim() && opts.oidc_enabled ? r.email.trim() : null}</KV>
+                  ))}
+                </Section>
+              </>
+            )}
             <div role="note" className="space-y-2 rounded-md border bg-card px-4 py-3 text-[13px] text-ink-2">
               <p>
                 Every requirement starts as in scope and unanswered. Where a subsidiary relies on the headquarters
@@ -315,10 +392,10 @@ export default function SetupPage() {
 
         <div className="flex items-center justify-between gap-3">
           <Button variant="ghost" disabled={step === 0 || busy} onClick={() => { setErrors({}); setBanner(null); setStep(step - 1) }}>Back</Button>
-          {step < 2 ? (
-            <Button onClick={next}>{step === 0 ? "Next" : "Review"}</Button>
+          {stepName !== "Review" ? (
+            <Button onClick={next} disabled={stepName === "Project" && !plan.ready}>{steps[step + 1] === "Review" ? "Review" : "Next"}</Button>
           ) : (
-            <Button onClick={finish} disabled={busy}>{busy ? "Setting up…" : "Finish setup"}</Button>
+            <Button onClick={finish} disabled={busy || (withPlan && !plan.ready)}>{busy ? "Setting up…" : "Finish setup"}</Button>
           )}
         </div>
       </main>

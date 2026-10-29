@@ -31,6 +31,7 @@ from app.models import (
 from app.services import storage
 from app.services.entities import provision_entity
 from app.services.extract import extract_text
+from app.services.project_setup import create_default_project
 from app.services.scoring import recalc
 
 DEMO_PASSWORD = "Demo-Password-2026!"
@@ -316,6 +317,8 @@ def seed_demo(db: Session) -> None:
     if get_settings().is_production:
         raise RuntimeError("Refusing to load demo data in production")
     ents = seed_demo_entities(db)
+    if not db.scalar(select(func.count(Project.id))):
+        create_default_project(db, list(ents.values()))
     if db.scalar(select(func.count(User.id)).where(User.email.like("%@demo.local"))):
         db.commit()
         return
