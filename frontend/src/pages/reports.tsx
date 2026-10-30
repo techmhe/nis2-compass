@@ -54,7 +54,7 @@ function Tabs() {
     </NavLink>
   )
   return (
-    <div className="mb-5 flex gap-5 border-b print:hidden">
+    <div data-tour="programme.reports" className="mb-5 flex gap-5 border-b print:hidden">
       {tab("/reports/management", "Management report")}
       {tab("/reports/soa", "ISO 27001 applicability")}
       {tab("/reports/evidence", "Evidence pack")}

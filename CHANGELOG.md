@@ -6,6 +6,22 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-10-30
+
+### Added
+- A guided product tour. Every user gets it once, on the first Dashboard load after their first login or after an
+  update that raises the tour version: a welcome card, then chapters that fit the user's role (the security officer
+  sees every area). "Take the tour" in the account menu and on the Help page restarts it. The Help page has a new
+  first section, "Getting started", with a guide per built-in role (what you do, typical work, pages you will use), a
+  "Show me" button for each chapter recommended for that role, and the chapters you have seen.
+- `PATCH /api/auth/me` accepts a validated `tour` preference (`version`, `status`, `chapters_done`); anything else
+  is rejected with 422. Other preferences are unchanged.
+- Writing help: a sparkles button on the long text fields of assessment answers, risks, incidents, audits, audit
+  findings and effectiveness reviews proofreads, writes out bullet points or translates to German, Dutch or
+  English. The suggestion appears next to the original and replaces it only on "Apply". New endpoint
+  `POST /api/ai/assist/text` (needs `ai.use` and write access as for editing the object: 404 if it is not
+  visible, 403 without write access, 423 for a locked assessment, 409 for an approved review).
+
 ## [1.2.2] - 2026-10-29
 
 ### Changed

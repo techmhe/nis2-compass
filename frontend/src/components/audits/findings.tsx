@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { CheckCircle2, ClipboardPlus, ListChecks, Search, X } from "lucide-react"
 import { toast } from "sonner"
+import { WritingHelp } from "@/components/ai/writing-help"
 import { RequirementPicker } from "@/components/controls/requirement-picker"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"
@@ -49,7 +50,7 @@ export function FindingDialog({ open, onOpenChange, auditId, defaultEntity }: {
           <Field label="Entity" hint="Leave empty to inherit the audit's entity"><EntitySelect value={f.entity_id} onChange={(v) => set("entity_id", v)} groupLabel="Same as audit / group-wide" /></Field>
           <Field label="Requirement" className="col-span-2"><RequirementPicker value={f.requirement_id ? [f.requirement_id] : []} onChange={(ids) => set("requirement_id", ids[0] ?? null)} single /></Field>
           <Field label="Due date" htmlFor="f-due"><Input id="f-due" type="date" value={f.due_date} onChange={(e) => set("due_date", e.target.value)} /></Field>
-          <Field label="Description" className="col-span-2" htmlFor="f-desc"><Textarea id="f-desc" rows={4} value={f.description} onChange={(e) => set("description", e.target.value)} /></Field>
+          <Field label="Description" className="col-span-2" htmlFor="f-desc" action={<WritingHelp target={{ type: "audit", id: auditId }} field="finding_description" value={f.description} onApply={(t) => set("description", t)} autosave={false} />}><Textarea id="f-desc" rows={4} value={f.description} onChange={(e) => set("description", e.target.value)} /></Field>
         </div>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>Cancel</Button>
@@ -117,7 +118,8 @@ function CloseFindingDialog({ finding, onOpenChange }: { finding: AuditFinding |
           <DialogTitle>Close finding {finding?.audit_code} {finding?.number}</DialogTitle>
           <DialogDescription>Closing requires either a completed linked action plan item or a closure note explaining why.</DialogDescription>
         </DialogHeader>
-        <Field label="Closure note" hint={finding?.action_item_id && !actionCompleted ? "Required unless the linked action plan item is completed" : undefined} htmlFor="cl-note">
+        <Field label="Closure note" hint={finding?.action_item_id && !actionCompleted ? "Required unless the linked action plan item is completed" : undefined} htmlFor="cl-note"
+          action={finding && <WritingHelp target={{ type: "audit_finding", id: finding.id }} field="closure_note" value={note} onApply={setNote} autosave={false} />}>
           <Textarea id="cl-note" rows={3} value={note} onChange={(e) => setNote(e.target.value)} />
         </Field>
         <DialogFooter>

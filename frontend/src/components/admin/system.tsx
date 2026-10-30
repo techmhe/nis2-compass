@@ -93,6 +93,7 @@ export function SystemSection() {
         </Section>
       </div>
 
+      <div data-tour="admin.sso">
       <Section title="Sign-in and sessions">
         <div className="grid gap-x-8 lg:grid-cols-2">
           <div>
@@ -125,6 +126,7 @@ export function SystemSection() {
           <p className="mt-2 text-[12px] text-ink-3">These values come from the server configuration (environment variables) and are shown read-only.</p>
         </div>
       </Section>
+      </div>
 
       <GeneralSettings />
     </div>

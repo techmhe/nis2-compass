@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Code, EntityTag, ErrorState, KV, Loading, PageHeader, Pill, Section } from "@/components/common/basics"
 import { CommentsPanel, DocumentLinks, Markdown } from "@/components/common/collab"
+import { WritingHelp } from "@/components/ai/writing-help"
 import { Combo, EntitySelect, Field, OptionSelect, StakeholderSelect, UserSelect } from "@/components/common/fields"
 import { ApprovalPanel } from "@/components/approvals/approval-panel"
 import { ApprovalStatePill } from "@/components/approvals/shared"
@@ -203,7 +204,7 @@ function RiskView({ data }: { data: RiskDetail }) {
               <Field label="Title" className="col-span-2" htmlFor="r-title">
                 <Input id="r-title" value={form.title} maxLength={400} disabled={ro} onChange={(e) => set("title", e.target.value)} />
               </Field>
-              <Field label="Scenario" className="col-span-2" htmlFor="r-scen" hint="Threat, vulnerability and consequence for the services of the entity.">
+              <Field label="Scenario" className="col-span-2" htmlFor="r-scen" action={<WritingHelp target={{ type: "risk", id: risk.id }} field="scenario" value={form.scenario} onApply={(t) => set("scenario", t)} autosave={false} disabled={ro} />} hint="Threat, vulnerability and consequence for the services of the entity.">
                 {ro ? <Markdown className="prose-md text-[13.5px]">{risk.scenario || "–"}</Markdown>
                   : <Textarea id="r-scen" rows={5} value={form.scenario} onChange={(e) => set("scenario", e.target.value)} />}
               </Field>
@@ -226,6 +227,7 @@ function RiskView({ data }: { data: RiskDetail }) {
             </div>
           </Section>
 
+          <div data-tour="risks.assessment">
           <Section title="Assessment" actions={<button className="text-[12.5px] text-petrol hover:underline" onClick={() => setMethodOpen(true)}>{method.inherited ? "Group method" : method.name}</button>}>
             <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_260px]">
               <div className="space-y-5">
@@ -234,7 +236,7 @@ function RiskView({ data }: { data: RiskDetail }) {
                   <RatingPicker id="inh-i" label="Impact" scale={method.impact_scale} value={form.inherent_impact} onChange={(v) => set("inherent_impact", v)} disabled={ro} />
                 </RatingBlock>
                 <div className="space-y-2">
-                  <Field label="Existing controls" htmlFor="r-ctrl">
+                  <Field label="Existing controls" htmlFor="r-ctrl" action={<WritingHelp target={{ type: "risk", id: risk.id }} field="existing_controls" value={form.existing_controls} onApply={(t) => set("existing_controls", t)} autosave={false} disabled={ro} />}>
                     {ro ? <Markdown className="prose-md text-[13.5px]">{risk.existing_controls || "–"}</Markdown>
                       : <Textarea id="r-ctrl" rows={3} value={form.existing_controls} onChange={(e) => set("existing_controls", e.target.value)} placeholder="Measures already in place that lower likelihood or impact" />}
                   </Field>
@@ -255,7 +257,9 @@ function RiskView({ data }: { data: RiskDetail }) {
               </div>
             </div>
           </Section>
+          </div>
 
+          <div data-tour="risks.treatment">
           <Section title="Treatment plan">
             <div className="space-y-4">
               <fieldset>
@@ -281,7 +285,7 @@ function RiskView({ data }: { data: RiskDetail }) {
                   Transfer is the only treatment. Under the BSIG a blanket transfer or acceptance of risk is not permitted for risks that affect the services of the entity (BSI guidance on § 30 BSIG). Combine the transfer with measures that reduce the risk.
                 </Warning>
               )}
-              <Field label="Justification" htmlFor="r-just" hint="Why this treatment, and for acceptance: why the residual risk is tolerable">
+              <Field label="Justification" htmlFor="r-just" action={<WritingHelp target={{ type: "risk", id: risk.id }} field="treatment_justification" value={form.treatment_justification} onApply={(t) => set("treatment_justification", t)} autosave={false} disabled={ro} />} hint="Why this treatment, and for acceptance: why the residual risk is tolerable">
                 {ro ? <Markdown className="prose-md text-[13.5px]">{risk.treatment_justification || "–"}</Markdown>
                   : <Textarea id="r-just" rows={3} value={form.treatment_justification} onChange={(e) => set("treatment_justification", e.target.value)} />}
               </Field>
@@ -303,6 +307,7 @@ function RiskView({ data }: { data: RiskDetail }) {
               </div>
             </div>
           </Section>
+          </div>
 
           {(accepting || risk.acceptance_state !== "none") && (
             <Section title="Risk acceptance">
@@ -325,6 +330,7 @@ function RiskView({ data }: { data: RiskDetail }) {
             </Section>
           )}
 
+          <div data-tour="risks.links">
           <Section title="Gaps and affected objects">
             <div className="space-y-4">
               <div>
@@ -337,6 +343,7 @@ function RiskView({ data }: { data: RiskDetail }) {
               </div>
             </div>
           </Section>
+          </div>
 
           <Section title="Comments">
             <CommentsPanel targetType="risk" targetId={risk.id} canComment={risk.entity ? can("risks.manage", risk.entity.id) : canAny("risks.manage")} />

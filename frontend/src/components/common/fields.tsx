@@ -207,10 +207,11 @@ export function answerTone(v: string): string {
   }
 }
 
-export function Field({ label, children, hint, className, htmlFor }: { label: ReactNode; children: ReactNode; hint?: ReactNode; className?: string; htmlFor?: string }) {
+export function Field({ label, children, hint, className, htmlFor, action }: { label: ReactNode; children: ReactNode; hint?: ReactNode; className?: string; htmlFor?: string; action?: ReactNode }) {
+  const labelEl = <Label htmlFor={htmlFor} className="text-[12.5px] font-medium text-ink-2">{label}</Label>
   return (
     <div className={cn("space-y-1.5", className)}>
-      <Label htmlFor={htmlFor} className="text-[12.5px] font-medium text-ink-2">{label}</Label>
+      {action ? <div className="flex items-center justify-between gap-2">{labelEl}{action}</div> : labelEl}
       {children}
       {hint && <p className="text-[12px] text-ink-3">{hint}</p>}
     </div>

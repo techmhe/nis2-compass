@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Textarea } from "@/components/ui/textarea"
+import { WritingHelp } from "@/components/ai/writing-help"
 import { Empty, EntityTag, ErrorState, Loading, Section, Stat } from "@/components/common/basics"
 import { Confirm, DocumentLinks } from "@/components/common/collab"
 import { EntitySelect, Field, OptionSelect } from "@/components/common/fields"
@@ -144,7 +145,10 @@ function ReviewSheet({ reviewId, onClose }: { reviewId: number | null; onClose: 
               </Section>
               <Section title="Overall conclusion">
                 {editable ? (
-                  <Textarea rows={4} value={conclusion} onChange={(e) => setConclusion(e.target.value)} />
+                  <Field label="Conclusion" htmlFor="eff-conclusion"
+                    action={<WritingHelp target={{ type: "effectiveness_review", id: r.id }} field="conclusion" value={conclusion} onApply={setConclusion} autosave={false} />}>
+                    <Textarea id="eff-conclusion" rows={4} value={conclusion} onChange={(e) => setConclusion(e.target.value)} />
+                  </Field>
                 ) : <p className="text-[13px] whitespace-pre-wrap text-ink-2">{r.conclusion}</p>}
               </Section>
               {editable && (

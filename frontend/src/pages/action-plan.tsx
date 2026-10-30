@@ -309,7 +309,7 @@ export default function ActionPlanPage() {
           </>
         } />
 
-      <div className="mb-5 rounded-md border bg-card px-5 py-4">
+      <div data-tour="assess.action-plan" className="mb-5 rounded-md border bg-card px-5 py-4">
         <div className="grid grid-cols-2 gap-x-6 gap-y-4 md:grid-cols-4 xl:grid-cols-7">
           <Stat label="Items" value={stats.total} hint={`${stats.open} open`} />
           <Stat label="Completed" value={stats.byStatus["Completed"] ?? 0} hint={stats.total ? `${Math.round(((stats.byStatus["Completed"] ?? 0) / stats.total) * 100)}% of all items` : undefined} tone="petrol" />

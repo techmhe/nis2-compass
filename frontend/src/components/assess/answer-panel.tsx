@@ -24,12 +24,13 @@ import type { ActionItem, AnswerDetail, AnswerRow, AssessmentDetail } from "@/li
 import { cn } from "@/lib/utils"
 import { EntityLegalBadge } from "@/components/governance/shared"
 import { EvidenceCheckButton } from "@/components/ai/evidence-check"
+import { WritingHelp } from "@/components/ai/writing-help"
 import { EvidenceFreshness } from "./evidence-freshness"
 import { ApprovalPanel } from "@/components/approvals/approval-panel"
 import { CreateRiskFromAnswer } from "@/components/risks/create-risk-from-answer"
 import { ProvisionList } from "./provisions"
 import { CorePill, FIELD_LABEL, IdeTiles, ScopePill, readPref, writePref, type RequirementDetailResp } from "./shared"
-import { answersKey, useTextDrafts, type AnswerChanges, type SaveState } from "./use-answers"
+import { answersKey, useTextDrafts, type AnswerChanges, type SaveState, type TextField } from "./use-answers"
 
 type Patch = (id: number, changes: AnswerChanges) => Promise<AnswerRow | null>
 
@@ -129,6 +130,10 @@ export function AnswerPanel({ row, assessment, canEdit, patch, saveState, onRetr
   const requirement = req.data?.requirement ?? detail.data?.requirement
   const sectionTitle = row.section.replace(/^[\d.]+\s*/, "")
   const set = (c: AnswerChanges) => { if (canEdit) patch(row.id, c) }
+  const help = (field: TextField) => (
+    <WritingHelp target={{ type: "answer", id: row.id }} field={field} value={drafts[field]} autosave disabled={!canEdit}
+      onApply={(text) => { setField(field, text); flush() }} />
+  )
 
   const ai = useMutation({
     mutationFn: () => { flush(); return api.post<Record<string, string | null>>(`/ai/assist/answer/${row.id}`) },
@@ -254,19 +259,21 @@ export function AnswerPanel({ row, assessment, canEdit, patch, saveState, onRetr
           <div className="sticky top-0 z-10 border-b bg-card px-2">
             <TabsList variant="line" className="h-9 w-full justify-start overflow-x-auto scroll-thin">
               <TabsTrigger value="answer" className="flex-none text-[12.5px]">Answer</TabsTrigger>
-              <TabsTrigger value="evidence" className="flex-none text-[12.5px]">Evidence{row.doc_count ? <Count n={row.doc_count} /> : null}</TabsTrigger>
+              <TabsTrigger value="evidence" data-tour="answer.evidence" className="flex-none text-[12.5px]">Evidence{row.doc_count ? <Count n={row.doc_count} /> : null}</TabsTrigger>
               <TabsTrigger value="others" className="flex-none text-[12.5px]">Other entities</TabsTrigger>
               <TabsTrigger value="history" className="flex-none text-[12.5px]">History</TabsTrigger>
-              <TabsTrigger value="comments" className="flex-none text-[12.5px]">Comments{row.comment_count ? <Count n={row.comment_count} /> : null}</TabsTrigger>
+              <TabsTrigger value="comments" data-tour="answer.comments" className="flex-none text-[12.5px]">Comments{row.comment_count ? <Count n={row.comment_count} /> : null}</TabsTrigger>
               <TabsTrigger value="tasks" className="flex-none text-[12.5px]">Tasks{tasks.length ? <Count n={tasks.length} /> : null}</TabsTrigger>
             </TabsList>
           </div>
 
           <TabsContent value="answer" className="space-y-4 px-4 py-4">
-            <FormRow label="Scope">
-              <Segmented size="sm" options={SCOPE_VALUES} value={row.scope} toneOf={scopeTone} disabled={!canEdit} onChange={(v) => v && set({ scope: v })} />
-            </FormRow>
-            <div className={cn("space-y-3", outOfScope && "opacity-60")}>
+            <div data-tour="answer.scope">
+              <FormRow label="Scope">
+                <Segmented size="sm" options={SCOPE_VALUES} value={row.scope} toneOf={scopeTone} disabled={!canEdit} onChange={(v) => v && set({ scope: v })} />
+              </FormRow>
+            </div>
+            <div data-tour="answer.ratings" className={cn("space-y-3", outOfScope && "opacity-60")}>
               <FormRow label="Implemented" hint="Keys 1 to 4">
                 <Segmented size="sm" options={IMPL_VALUES} value={row.implemented} toneOf={answerTone} disabled={!canEdit} onChange={(v) => set({ implemented: v })} />
               </FormRow>
@@ -280,7 +287,7 @@ export function AnswerPanel({ row, assessment, canEdit, patch, saveState, onRetr
             </div>
             {row.scope === "Central at HQ" && <InheritedFromHq others={others} requirementId={row.requirement_id} />}
 
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-1 rounded-md border bg-surface px-3 py-2 text-[12.5px]" aria-live="polite">
+            <div data-tour="assess.finding" className="flex flex-wrap items-center gap-x-5 gap-y-1 rounded-md border bg-surface px-3 py-2 text-[12.5px]" aria-live="polite">
               <span className="flex items-center gap-1.5 text-ink-3">Score <ScoreChip value={row.score} /></span>
               <span className="text-ink-3">Work package required{" "}
                 <span className={cn("font-medium", row.wp_required ? "text-alarm" : row.wp_required === false ? "text-sage" : "text-ink-3")}>
@@ -290,17 +297,17 @@ export function AnswerPanel({ row, assessment, canEdit, patch, saveState, onRetr
               <span className="text-ink-3">Finding {row.finding_id ? <Code className="text-alarm">{row.finding_id}</Code> : <span>–</span>}</span>
             </div>
 
-            <Field label="Evidence and source" htmlFor="f-evidence">
+            <Field label="Evidence and source" htmlFor="f-evidence" action={help("evidence")}>
               <Textarea id="f-evidence" value={drafts.evidence} disabled={!canEdit} rows={2} className="text-[13px]"
                 placeholder="What was shown or referenced, e.g. policy v2.1 section 4, interview with IT lead"
                 onChange={(e) => setField("evidence", e.target.value)} onBlur={flush} />
             </Field>
-            <Field label="Gap description" htmlFor="f-gap">
+            <Field label="Gap description" htmlFor="f-gap" action={help("gap_description")}>
               <Textarea id="f-gap" value={drafts.gap_description} disabled={!canEdit} rows={2} className="text-[13px]"
                 placeholder={row.wp_required ? "Describe what is missing" : "Only needed when a gap was found"}
                 onChange={(e) => setField("gap_description", e.target.value)} onBlur={flush} />
             </Field>
-            <Field label="Recommended action" htmlFor="f-action">
+            <Field label="Recommended action" htmlFor="f-action" action={help("recommended_action")}>
               <Textarea id="f-action" value={drafts.recommended_action} disabled={!canEdit} rows={2} className="text-[13px]"
                 placeholder="Smallest practical action that closes the gap"
                 onChange={(e) => setField("recommended_action", e.target.value)} onBlur={flush} />
@@ -316,11 +323,11 @@ export function AnswerPanel({ row, assessment, canEdit, patch, saveState, onRetr
                 <Segmented size="sm" options={EFFORT_VALUES} value={row.effort} disabled={!canEdit} onChange={(v) => set({ effort: v })} />
               </Field>
             </div>
-            <Field label="Internal notes" hint="Interview notes; not exported to the action plan" htmlFor="f-notes">
+            <Field label="Internal notes" hint="Interview notes; not exported to the action plan" htmlFor="f-notes" action={help("notes")}>
               <Textarea id="f-notes" value={drafts.notes} disabled={!canEdit} rows={2} className="text-[13px]"
                 onChange={(e) => setField("notes", e.target.value)} onBlur={flush} />
             </Field>
-            <label className="flex items-center justify-between gap-3 rounded-md border bg-surface px-3 py-2">
+            <label data-tour="answer.review" className="flex items-center justify-between gap-3 rounded-md border bg-surface px-3 py-2">
               <span>
                 <span className="block text-[13px] font-medium text-ink">Reviewed</span>
                 <span className="block text-[12px] text-ink-3">Mark once a second person has checked this answer.</span>

@@ -211,11 +211,13 @@ export default function MyWorkPage() {
 
   return (
     <div>
+      <div data-tour="welcome.my-work">
       <PageHeader title="My work"
         description={w.stakeholders.length
           ? <>Everything assigned to you or to your roles ({w.stakeholders.join(", ")}), sorted by urgency.</>
           : "Everything assigned to you, sorted by urgency. Ask an administrator to link your user to a stakeholder role to also see role-based items."}
         actions={<Button onClick={() => setNewTask(true)}><Plus /> New task</Button>} />
+      </div>
 
       {w.incidents.length > 0 && (
         <button onClick={() => navigate(`/incidents/${w.incidents[0].id}`)}
@@ -231,7 +233,7 @@ export default function MyWorkPage() {
       <AgendaStrip days={days} agenda={agenda.m} overdue={agenda.overdue} selected={day} onSelect={setDay} />
 
       <div className="mt-5 grid gap-5 lg:grid-cols-[220px_minmax(0,1fr)]">
-        <nav aria-label="Filter by kind" className="lg:sticky lg:top-[72px] lg:self-start">
+        <nav aria-label="Filter by kind" data-tour="answer.my-work" className="lg:sticky lg:top-[72px] lg:self-start">
           <ul className="flex flex-wrap gap-1 lg:flex-col">
             <KindButton active={kind === "all"} onClick={() => setKind("all")} icon={<Inbox />} label="Everything" count={counts.all ?? 0} />
             {KINDS.filter((k) => counts[k.key]).map((k) => (

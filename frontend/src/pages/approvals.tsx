@@ -84,7 +84,7 @@ export default function ApprovalsPage() {
         description="Four-eyes approvals of documents, assessment answers and risk acceptances. Each approval records the version that was approved; later changes are flagged." />
 
       <div className="mb-4 flex flex-wrap items-center gap-2">
-        <div role="tablist" aria-label="Approval lists" className="inline-flex rounded-md border bg-card p-0.5">
+        <div role="tablist" aria-label="Approval lists" data-tour="quality.approvals" className="inline-flex rounded-md border bg-card p-0.5">
           {TABS.map((t) => {
             const n = t.key === "waiting" ? counts?.waiting : t.key === "requested" ? counts?.requested_pending : undefined
             return (
@@ -106,7 +106,8 @@ export default function ApprovalsPage() {
       </div>
 
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_440px]">
-        <Section bodyClassName="p-0">
+        <div data-tour="quality.queue">
+        <Section className="h-full" bodyClassName="p-0">
           {list.isLoading ? <Loading /> : list.error ? <ErrorState error={list.error} className="m-4" /> : rows.length === 0 ? (
             <Empty icon={<Stamp className="size-6" />} title={mine === "waiting" ? "Nothing to approve" : "No approval requests"}>
               {mine === "waiting"
@@ -119,6 +120,7 @@ export default function ApprovalsPage() {
             </ul>
           )}
         </Section>
+        </div>
 
         <div className="xl:sticky xl:top-[72px] xl:self-start">
           {selectedId == null ? (

@@ -1,10 +1,11 @@
 import logging
 from datetime import date, timedelta
+from typing import Annotated, Literal
 
 from authlib.integrations.starlette_client import OAuth, OAuthError
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from fastapi.responses import RedirectResponse
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
@@ -190,8 +191,20 @@ def me(pr: Principal = Depends(get_principal), db: Session = Depends(get_db)):
     return me_payload(db, pr)
 
 
+class TourPreference(BaseModel):
+    # Strict: "1", true or 1.0 as version would be stored and then read as no state, restarting the tour.
+    model_config = ConfigDict(extra="forbid", strict=True)
+
+    version: int = Field(ge=1, le=1000)
+    status: Literal["started", "done", "dismissed"]
+    chapters_done: list[Annotated[str, Field(max_length=40, pattern=r"^[a-z][a-z0-9_-]*$")]] = Field(
+        max_length=30
+    )
+
+
 PREFERENCE_TYPES = {
-    "email_notifications": bool
+    "email_notifications": bool,
+    "tour": dict,
 }  # user-settable preferences; the absence has its own endpoint
 
 
@@ -203,10 +216,16 @@ class ProfileIn(BaseModel):
     @field_validator("preferences")
     @classmethod
     def _known(cls, v: dict | None) -> dict | None:
-        for k, val in (v or {}).items():
+        out = dict(v or {})
+        for k, val in out.items():
             if k not in PREFERENCE_TYPES or not isinstance(val, PREFERENCE_TYPES[k]):
                 raise ValueError(f"Unknown or invalid preference: {k}")
-        return v
+            if k == "tour":
+                try:
+                    out[k] = TourPreference.model_validate(val).model_dump()
+                except ValidationError as e:
+                    raise ValueError(f"Invalid tour preference: {e.error_count()} error(s)") from None
+        return out if v is not None else None
 
 
 @router.patch("/me", response_model=MeOut)

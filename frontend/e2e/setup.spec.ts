@@ -223,6 +223,8 @@ test("setup with two companies ends on the dashboard as the new administrator", 
 
   await expect(page).toHaveURL(/\/$/)
   await expectPageOk(page)
+  // The new administrator is offered the product tour on the first Dashboard load.
+  await page.getByRole("button", { name: "Not now" }).click()
   const me = await (await page.request.get("/api/auth/me")).json()
   expect(me.email).toBe(ADMIN.email)
 

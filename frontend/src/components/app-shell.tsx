@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import {
   Bell, BookOpen, Bot, FileBarChart, Boxes, CalendarCheck, ClipboardList, Landmark, ShieldAlert, Stamp, Truck, CalendarRange, ChevronsLeft, ChevronsRight, ClipboardCheck, FileStack, FolderKanban,
-  Gauge, KeyRound, LayoutList, ListChecks, LogOut, Monitor, Moon, PackageCheck, Scale, Search, Settings, Siren,
+  Compass, Gauge, KeyRound, LayoutList, ListChecks, LogOut, Monitor, Moon, PackageCheck, Scale, Search, Settings, Siren,
   Sun, UserRound,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -20,8 +20,9 @@ import { api } from "@/lib/api"
 import { fromNow } from "@/lib/format"
 import type { NotificationItem, SearchHit } from "@/lib/types"
 import { cn } from "@/lib/utils"
+import { TourProvider, useTour } from "@/tour/TourProvider"
 
-interface NavItem { to: string; label: string; icon: ReactNode; perm?: string; end?: boolean }
+interface NavItem { to: string; label: string; icon: ReactNode; perm?: string; end?: boolean; tour?: string }
 
 function useNav(): { group: string; items: NavItem[] }[] {
   const { project } = useMainProject()
@@ -42,13 +43,13 @@ function useNav(): { group: string; items: NavItem[] }[] {
       { to: "/audits", label: "Audits & reviews", icon: <ClipboardList />, perm: "audits.read" },
       { to: "/risks", label: "Risks", icon: <ShieldAlert />, perm: "risks.read" },
       { to: "/controls", label: "Controls & KPIs", icon: <CalendarCheck />, perm: "controls.read" },
-      { to: "/approvals", label: "Approvals", icon: <Stamp /> },
+      { to: "/approvals", label: "Approvals", icon: <Stamp />, tour: "welcome.approvals" },
       { to: "/checks", label: "Data quality", icon: <ListChecks />, perm: "assessments.read" },
     ] },
     { group: "Implement", items: [
       { to: `/projects/${pid}`, label: "Project", icon: <CalendarRange />, perm: "projects.read" },
       { to: "/work-packages", label: "Work packages", icon: <PackageCheck />, perm: "workpackages.read" },
-      { to: "/tasks", label: "Tasks", icon: <FolderKanban /> },
+      { to: "/tasks", label: "Tasks", icon: <FolderKanban />, tour: "welcome.tasks" },
     ] },
     { group: "Knowledge", items: [
       { to: "/documents", label: "Documents", icon: <FileStack />, perm: "documents.read" },
@@ -68,7 +69,7 @@ function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => 
   const nav = useNav()
   const adminVisible = ["users.manage", "roles.manage", "settings.manage", "audit.read", "entities.manage", "catalog.manage"].some(canAny)
   const item = (it: NavItem) => (
-    <NavLink key={it.to} to={it.to} end={it.end}
+    <NavLink key={it.to} to={it.to} end={it.end} data-tour={it.tour}
       className={({ isActive }) => cn(
         "flex h-8 items-center gap-2.5 rounded-md px-2.5 text-[13.5px] transition-colors [&_svg]:size-4 [&_svg]:shrink-0",
         isActive ? "bg-sidebar-accent text-white" : "text-sidebar-foreground hover:bg-sidebar-accent/60 hover:text-white",
@@ -91,7 +92,7 @@ function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => 
           </div>
         )}
       </Link>
-      <nav className="flex-1 space-y-4 overflow-y-auto px-2 py-2 scroll-thin">
+      <nav data-tour="welcome.sidebar" className="flex-1 space-y-4 overflow-y-auto px-2 py-2 scroll-thin">
         {nav.map((g) => {
           const items = g.items.filter((i) => !i.perm || canAny(i.perm))
           if (!items.length) return null
@@ -191,7 +192,7 @@ function Notifications() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative" aria-label={`Notifications (${unread} unread)`}>
+        <Button variant="ghost" size="icon" className="relative" data-tour="welcome.notifications" aria-label={`Notifications (${unread} unread)`}>
           <Bell />
           {unread > 0 && <span className="tabular absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-alarm px-1 text-[10px] font-semibold text-white">{unread > 9 ? "9+" : unread}</span>}
         </Button>
@@ -223,11 +224,12 @@ function UserMenu() {
   const { me, logout } = useAuth()
   const { theme, setTheme } = useTheme()
   const navigate = useNavigate()
+  const tour = useTour()
   if (!me) return null
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-2 rounded-md px-1.5 py-1 hover:bg-muted" aria-label="Account menu">
+        <button data-tour="welcome.account welcome.help" className="flex items-center gap-2 rounded-md px-1.5 py-1 hover:bg-muted" aria-label="Account menu">
           <UserAvatar name={me.display_name} className="size-7" />
           <span className="hidden text-left leading-tight md:block">
             <span className="block text-[13px] font-medium text-ink">{me.display_name}</span>
@@ -253,6 +255,7 @@ function UserMenu() {
           </DropdownMenuSubContent>
         </DropdownMenuSub>
         <DropdownMenuItem onClick={() => navigate("/help")}><BookOpen /> Help & scoring model</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => tour.start(tour.recommended, { intro: false })}><Compass /> Take the tour</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => logout()}><LogOut /> Sign out</DropdownMenuItem>
       </DropdownMenuContent>
@@ -278,6 +281,7 @@ export function AppShell() {
   const toggle = () => setCollapsed((c) => { try { localStorage.setItem("nis2-sidebar", c ? "0" : "1") } catch { /* ignore */ } return !c })
   const fullBleed = /^\/(assessments\/\d+|assistant)/.test(location.pathname)
   return (
+    <TourProvider>
     <div className="flex min-h-screen">
       <Sidebar collapsed={collapsed} onToggle={toggle} />
       <div className="flex min-w-0 flex-1 flex-col">
@@ -290,7 +294,7 @@ export function AppShell() {
           </button>
           <div className="ml-auto flex items-center gap-1">
             {canAny("ai.use") && (
-              <Button variant="ghost" size="sm" onClick={() => navigate("/assistant")} className="text-ink-2"><Bot /> Assistant</Button>
+              <Button variant="ghost" size="sm" data-tour="welcome.assistant" onClick={() => navigate("/assistant")} className="text-ink-2"><Bot /> Assistant</Button>
             )}
             <Notifications />
             <UserMenu />
@@ -304,5 +308,6 @@ export function AppShell() {
       </div>
       <CommandPalette open={paletteOpen} setOpen={setPaletteOpen} />
     </div>
+    </TourProvider>
   )
 }

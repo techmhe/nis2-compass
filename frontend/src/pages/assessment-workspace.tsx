@@ -265,7 +265,7 @@ export default function AssessmentWorkspace() {
         <div className="ml-auto flex items-center gap-1.5">
           <span className="mr-1 hidden xl:inline"><SaveIndicator state={saveState} onRetry={retry} /></span>
           <Popover>
-            <PopoverTrigger asChild><Button size="icon-sm" variant="ghost" aria-label="Keyboard shortcuts"><Keyboard /></Button></PopoverTrigger>
+            <PopoverTrigger asChild><Button size="icon-sm" variant="ghost" aria-label="Keyboard shortcuts" data-tour="assess.shortcuts"><Keyboard /></Button></PopoverTrigger>
             <PopoverContent align="end" className="w-72">
               <div className="mb-2 text-[13px] font-semibold">Keyboard shortcuts</div>
               <dl className="space-y-1.5 text-[12.5px]">
@@ -328,7 +328,7 @@ export default function AssessmentWorkspace() {
         </nav>
 
         {/* requirement list */}
-        <section aria-label="Requirements" className="flex min-w-0 flex-1 flex-col bg-background">
+        <section aria-label="Requirements" data-tour="answer.list assess.workspace" className="flex min-w-0 flex-1 flex-col bg-background">
           <div className="space-y-2 border-b bg-card px-3 py-2 xl:hidden">
             <div className="flex gap-2">
               <div className="w-56 shrink-0">

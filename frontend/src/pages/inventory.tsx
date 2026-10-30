@@ -48,7 +48,7 @@ export default function InventoryPage() {
       />
       <nav aria-label="Services and continuity sections" className="mb-5 flex gap-1 overflow-x-auto border-b scroll-thin">
         {TABS.map((t) => (
-          <NavLink key={t.path} to={`/inventory${t.path ? `/${t.path}` : ""}${keep}`} end={t.path === ""}
+          <NavLink key={t.path} to={`/inventory${t.path ? `/${t.path}` : ""}${keep}`} end={t.path === ""} data-tour={`inventory.${t.path || "overview"}`}
             className={({ isActive }) => cn(
               "-mb-px border-b-2 px-3 py-2 text-[13.5px] font-medium whitespace-nowrap transition-colors",
               isActive ? "border-petrol text-ink" : "border-transparent text-ink-3 hover:text-ink",

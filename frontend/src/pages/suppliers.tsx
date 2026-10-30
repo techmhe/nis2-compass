@@ -86,7 +86,7 @@ export default function SuppliersPage() {
               </Button>
             )}
             {canCreate && (
-              <SupplierFormDialog trigger={<Button><Plus /> Add supplier</Button>} onSaved={(s) => navigate(`/suppliers/${s.id}`)} />
+              <SupplierFormDialog trigger={<Button data-tour="suppliers.add"><Plus /> Add supplier</Button>} onSaved={(s) => navigate(`/suppliers/${s.id}`)} />
             )}
           </>
         }
@@ -105,7 +105,7 @@ export default function SuppliersPage() {
         </div>
       )}
 
-      <div className="mb-3 flex flex-wrap items-center gap-2">
+      <div data-tour="suppliers.register" className="mb-3 flex flex-wrap items-center gap-2">
         <div className="relative w-full max-w-[280px] min-w-[200px] flex-1">
           <Search className="pointer-events-none absolute top-2.5 left-2.5 size-4 text-ink-3" />
           <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search name, category, products" className="pl-8" aria-label="Search suppliers" />
@@ -127,7 +127,7 @@ export default function SuppliersPage() {
         {filtersActive && (
           <Button variant="ghost" size="sm" onClick={() => { setQ(""); setTier(null); setAccess(null); setStatus(null); setEntity(null) }}><X /> Clear filters</Button>
         )}
-        <div role="tablist" aria-label="View" className="ml-auto inline-flex rounded-md border bg-surface p-0.5">
+        <div role="tablist" aria-label="View" data-tour="suppliers.views" className="ml-auto inline-flex rounded-md border bg-surface p-0.5">
           {([["register", "Register"], ["clauses", "Contract clauses"]] as const).map(([v, label]) => (
             <button key={v} type="button" role="tab" aria-selected={view === v} onClick={() => setView(v)}
               className={cn("h-7 rounded-[4px] px-3 text-[12.5px] font-medium", view === v ? "bg-card text-ink shadow-xs" : "text-ink-3 hover:text-ink")}>

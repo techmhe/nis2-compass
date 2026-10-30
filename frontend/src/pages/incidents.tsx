@@ -88,7 +88,7 @@ export default function IncidentsPage() {
         title="Incidents"
         description="Security incident register with the NIS-2 Art. 23 reporting duties per affected entity and authority: early warning within 24 hours, incident notification within 72 hours and a final report within one month."
         actions={canCreate && (
-          <CreateIncidentDialog onCreated={(i) => navigate(`/incidents/${i.id}`)} trigger={<Button><Plus /> Record incident</Button>} />
+          <CreateIncidentDialog onCreated={(i) => navigate(`/incidents/${i.id}`)} trigger={<Button data-tour="incidents.record"><Plus /> Record incident</Button>} />
         )}
       />
 
@@ -104,7 +104,7 @@ export default function IncidentsPage() {
 
       <RecurringGroups />
 
-      <div className="mb-3 flex flex-wrap items-center gap-2">
+      <div data-tour="incidents.list" className="mb-3 flex flex-wrap items-center gap-2">
         <div className="relative w-full max-w-[300px] min-w-[200px] flex-1">
           <Search className="pointer-events-none absolute top-2.5 left-2.5 size-4 text-ink-3" />
           <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search code, title, category" className="pl-8" aria-label="Search incidents" />

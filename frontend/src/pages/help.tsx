@@ -1,4 +1,5 @@
 import { PageHeader, Section } from "@/components/common/basics"
+import { GettingStarted } from "@/components/help/getting-started"
 
 const ROWS: [string, string][] = [
   ["Scope", "Decide this first. Anything other than \"In Scope\" removes the requirement from coverage, scoring and the work-package logic. Use \"Central at HQ\" where HQ operates the control for a subsidiary, and record the reason in Evidence / Source."],
@@ -14,6 +15,7 @@ export default function HelpPage() {
   return (
     <div className="max-w-4xl space-y-5">
       <PageHeader title="Help & scoring model" description="How assessments are scored and how findings flow into the action plan and the project." />
+      <GettingStarted />
       <Section title="Scoring">
         <p className="text-[13.5px] text-ink-2">
           The score of a requirement is the average of the answers given in Implemented, Documented and Effectiveness.

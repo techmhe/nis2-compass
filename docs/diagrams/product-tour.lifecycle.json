@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Product tour state per user",
+    "output": "docs/diagrams/product-tour.html",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "Tour state"
+    },
+    {
+      "id": "exits",
+      "label": "Stored without finishing"
+    }
+  ],
+  "states": [
+    {
+      "id": "fresh",
+      "type": "start",
+      "label": "No tour state",
+      "sublabel": "or older version",
+      "lane": "main",
+      "col": 0,
+      "step": "01"
+    },
+    {
+      "id": "login",
+      "type": "active",
+      "label": "Logged in",
+      "sublabel": "no pending password",
+      "lane": "main",
+      "col": 1,
+      "step": "02"
+    },
+    {
+      "id": "card",
+      "type": "waiting",
+      "label": "Auto start",
+      "sublabel": "Dashboard loaded",
+      "lane": "main",
+      "col": 2,
+      "step": "03"
+    },
+    {
+      "id": "running",
+      "type": "active",
+      "label": "Tour running",
+      "sublabel": "recommended chapters",
+      "lane": "main",
+      "col": 3,
+      "step": "04"
+    },
+    {
+      "id": "done",
+      "type": "success",
+      "label": "Done",
+      "sublabel": "chapters stored",
+      "lane": "main",
+      "col": 4,
+      "step": "05"
+    },
+    {
+      "id": "dismissed",
+      "type": "neutral",
+      "label": "Dismissed",
+      "sublabel": "status dismissed",
+      "lane": "exits",
+      "col": 0
+    },
+    {
+      "id": "ended",
+      "type": "waiting",
+      "label": "Ended early",
+      "sublabel": "status started",
+      "lane": "exits",
+      "col": 1
+    }
+  ],
+  "transitions": [
+    {
+      "from": "card",
+      "to": "dismissed",
+      "label": "Not now",
+      "variant": "dashed",
+      "route": "straight",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    },
+    {
+      "from": "running",
+      "to": "ended",
+      "label": "End tour / Esc",
+      "variant": "dashed",
+      "route": "straight",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 24
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Starts once",
+      "items": [
+        "Starts by itself on the first Dashboard load",
+        "Not now or End tour stops it for good",
+        "Take the tour in Help restarts any time"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Stored per user",
+      "items": [
+        "preferences.tour on the user account",
+        "Same state on every browser",
+        "A raised version offers the tour once more"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Never stranded",
+      "items": [
+        "Missing anchor or forbidden page: step skipped",
+        "Navigating away ends the tour",
+        "Ending early keeps the chapters seen"
+      ]
+    }
+  ]
+}

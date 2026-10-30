@@ -83,7 +83,7 @@ export default function AdminPage() {
         <ul className="flex flex-wrap gap-1 lg:flex-col lg:gap-0.5">
           {visible.map((s) => (
             <li key={s.key}>
-              <NavLink to={`/admin/${s.key}`}
+              <NavLink to={`/admin/${s.key}`} data-tour={`admin.${s.key}`}
                 className={({ isActive }) => cn("flex h-8 items-center gap-2 rounded-md px-2.5 text-[13px] [&_svg]:size-4 [&_svg]:shrink-0",
                   isActive ? "bg-petrol-50 font-medium text-petrol" : "text-ink-2 hover:bg-muted hover:text-ink")}>
                 {s.icon}{s.label}

@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { Textarea } from "@/components/ui/textarea"
+import { WritingHelp } from "@/components/ai/writing-help"
 import { Code, Empty, EntityTag, ErrorState, Loading, Section } from "@/components/common/basics"
 import { Confirm, DocumentLinks } from "@/components/common/collab"
 import { EntitySelect, Field, OptionSelect, UserSelect } from "@/components/common/fields"
@@ -123,8 +124,8 @@ function AuditDialog({ open, onOpenChange, audit, defaultEntity, programmes }: {
           <Field label="Planned end" htmlFor="a-pe"><Input id="a-pe" type="date" value={f.planned_end} onChange={(e) => set("planned_end", e.target.value)} /></Field>
           <Field label="Actual start" htmlFor="a-as"><Input id="a-as" type="date" value={f.actual_start} onChange={(e) => set("actual_start", e.target.value)} /></Field>
           <Field label="Actual end" htmlFor="a-ae"><Input id="a-ae" type="date" value={f.actual_end} onChange={(e) => set("actual_end", e.target.value)} /></Field>
-          <Field label="Summary" className="col-span-2" htmlFor="a-sum"><Textarea id="a-sum" rows={2} value={f.summary} onChange={(e) => set("summary", e.target.value)} /></Field>
-          <Field label="Conclusion" className="col-span-2" htmlFor="a-conc"><Textarea id="a-conc" rows={2} value={f.conclusion} onChange={(e) => set("conclusion", e.target.value)} /></Field>
+          <Field label="Summary" className="col-span-2" htmlFor="a-sum" action={audit && <WritingHelp target={{ type: "audit", id: audit.id }} field="summary" value={f.summary} onApply={(t) => set("summary", t)} autosave={false} />}><Textarea id="a-sum" rows={2} value={f.summary} onChange={(e) => set("summary", e.target.value)} /></Field>
+          <Field label="Conclusion" className="col-span-2" htmlFor="a-conc" action={audit && <WritingHelp target={{ type: "audit", id: audit.id }} field="conclusion" value={f.conclusion} onApply={(t) => set("conclusion", t)} autosave={false} />}><Textarea id="a-conc" rows={2} value={f.conclusion} onChange={(e) => set("conclusion", e.target.value)} /></Field>
         </div>
         {!allowed && <p className="text-[12.5px] text-alarm">You cannot manage audits for the selected scope.</p>}
         <DialogFooter>

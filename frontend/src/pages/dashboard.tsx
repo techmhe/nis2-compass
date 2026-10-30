@@ -16,6 +16,7 @@ import { fmtDate, pct, scoreColor } from "@/lib/format"
 import type { AssessmentStats } from "@/lib/types"
 import { cn } from "@/lib/utils"
 import { ProgrammeHealth } from "@/components/dashboard-health"
+import { useTourAutoStart } from "@/tour/TourProvider"
 
 interface GapDashboard {
   round_id: number
@@ -133,6 +134,7 @@ export default function DashboardPage() {
     enabled: canAny("assessments.read") && current != null,
   })
   const home = useQuery({ queryKey: ["dash-home"], queryFn: () => api.get<Home>("/dashboard/home") })
+  useTourAutoStart(!rounds.isLoading && !gap.isLoading && !home.isLoading)
 
   const gapRanking = useMemo(
     () => (gap.data?.chapters ?? []).filter((c) => c.gap_to_target != null && c.gap_to_target > 0)
@@ -150,6 +152,7 @@ export default function DashboardPage() {
 
   return (
     <div>
+      <div data-tour="welcome.dashboard">
       <PageHeader
         title={`Good ${new Date().getHours() < 12 ? "morning" : new Date().getHours() < 18 ? "afternoon" : "evening"}, ${me?.display_name.split(" ")[0] ?? ""}`}
         description="Group-wide NIS-2 status: assessment coverage and scores per entity, remediation and project progress."
@@ -167,6 +170,7 @@ export default function DashboardPage() {
           </>
         )}
       />
+      </div>
 
       {gap.data && (
         <div className="mb-5 grid grid-cols-2 gap-x-6 gap-y-4 rounded-md border bg-card px-5 py-4 md:grid-cols-3 xl:grid-cols-6">
@@ -183,9 +187,11 @@ export default function DashboardPage() {
 
       <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
         <div className="space-y-5">
-          <Section title="Compliance matrix" actions={<Link to="/assessments" className="text-[12.5px] text-petrol hover:underline">All assessments</Link>}>
-            {gap.isLoading ? <Loading /> : gap.error ? <ErrorState error={gap.error} /> : gap.data ? <ComplianceMatrix data={gap.data} /> : <Empty title="No assessment data you can see" />}
-          </Section>
+          <div data-tour="programme.matrix">
+            <Section title="Compliance matrix" actions={<Link to="/assessments" className="text-[12.5px] text-petrol hover:underline">All assessments</Link>}>
+              {gap.isLoading ? <Loading /> : gap.error ? <ErrorState error={gap.error} /> : gap.data ? <ComplianceMatrix data={gap.data} /> : <Empty title="No assessment data you can see" />}
+            </Section>
+          </div>
           <ProgrammeHealth />
         </div>
 
@@ -244,20 +250,22 @@ export default function DashboardPage() {
 
       {gap.data && (
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
-          <Section title="Largest gaps to target">
-            {gapRanking.length === 0 ? <Empty title="No chapter below target" /> : (
-              <ResponsiveContainer width="100%" height={260}>
-                <BarChart data={gapRanking} layout="vertical" margin={{ left: 4, right: 16 }}>
-                  <CartesianGrid horizontal={false} stroke="var(--line)" />
-                  <XAxis type="number" unit="%" tick={{ fontSize: 12, fill: "var(--ink-3)" }} stroke="var(--line)" />
-                  <YAxis type="category" dataKey="name" width={28} tick={{ fontSize: 12, fill: "var(--ink-2)", fontFamily: "IBM Plex Mono" }} stroke="var(--line)" />
-                  <RTooltip cursor={{ fill: "var(--muted)" }} contentStyle={{ fontSize: 12, borderRadius: 6, border: "1px solid var(--line)", background: "var(--surface)" }}
-                    formatter={(v) => [`${v} percentage points`, "Gap"]} labelFormatter={(l) => gapRanking.find((g) => g.name === l)?.title ?? l} />
-                  <Bar dataKey="gap" fill="var(--alarm)" radius={[0, 3, 3, 0]} barSize={16} />
-                </BarChart>
-              </ResponsiveContainer>
-            )}
-          </Section>
+          <div data-tour="programme.gaps">
+            <Section title="Largest gaps to target" className="h-full">
+              {gapRanking.length === 0 ? <Empty title="No chapter below target" /> : (
+                <ResponsiveContainer width="100%" height={260}>
+                  <BarChart data={gapRanking} layout="vertical" margin={{ left: 4, right: 16 }}>
+                    <CartesianGrid horizontal={false} stroke="var(--line)" />
+                    <XAxis type="number" unit="%" tick={{ fontSize: 12, fill: "var(--ink-3)" }} stroke="var(--line)" />
+                    <YAxis type="category" dataKey="name" width={28} tick={{ fontSize: 12, fill: "var(--ink-2)", fontFamily: "IBM Plex Mono" }} stroke="var(--line)" />
+                    <RTooltip cursor={{ fill: "var(--muted)" }} contentStyle={{ fontSize: 12, borderRadius: 6, border: "1px solid var(--line)", background: "var(--surface)" }}
+                      formatter={(v) => [`${v} percentage points`, "Gap"]} labelFormatter={(l) => gapRanking.find((g) => g.name === l)?.title ?? l} />
+                    <Bar dataKey="gap" fill="var(--alarm)" radius={[0, 3, 3, 0]} barSize={16} />
+                  </BarChart>
+                </ResponsiveContainer>
+              )}
+            </Section>
+          </div>
           <Section title="Answer distribution (Implemented)">
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={dist} margin={{ left: -12, right: 8 }}>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useId, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { Copy, Trash2 } from "lucide-react"
@@ -29,6 +29,7 @@ export default function ProfilePage() {
   const [pw2, setPw2] = useState("")
   const [newToken, setNewToken] = useState<string | null>(null)
   const [tokenName, setTokenName] = useState("")
+  const pwId = useId()
 
   const sessions = useQuery({ queryKey: ["sessions"], queryFn: () => api.get<any[]>("/auth/sessions"), enabled: !forced })
   const tokens = useQuery({ queryKey: ["tokens"], queryFn: () => api.get<any[]>("/auth/tokens"), enabled: !forced })
@@ -67,12 +68,12 @@ export default function ProfilePage() {
         {me.auth_source === "local" && (
           <Section title={forced ? "Choose a new password" : "Change password"}>
             <form className="grid gap-3 sm:grid-cols-3" onSubmit={(e) => { e.preventDefault(); changePw.mutate() }}>
-              <Field label="Current password"><Input type="password" autoComplete="current-password" value={cur} onChange={(e) => setCur(e.target.value)} required /></Field>
-              <Field label="New password" hint={`At least ${config?.password_min_length ?? 12} characters, three character classes`}>
-                <Input type="password" autoComplete="new-password" value={pw1} onChange={(e) => setPw1(e.target.value)} required />
+              <Field label="Current password" htmlFor={`${pwId}-cur`}><Input id={`${pwId}-cur`} type="password" autoComplete="current-password" value={cur} onChange={(e) => setCur(e.target.value)} required /></Field>
+              <Field label="New password" htmlFor={`${pwId}-new`} hint={`At least ${config?.password_min_length ?? 12} characters, three character classes`}>
+                <Input id={`${pwId}-new`} type="password" autoComplete="new-password" value={pw1} onChange={(e) => setPw1(e.target.value)} required />
               </Field>
-              <Field label="Repeat new password" hint={pwMismatch ? <span className="text-alarm">Passwords differ</span> : undefined}>
-                <Input type="password" autoComplete="new-password" value={pw2} onChange={(e) => setPw2(e.target.value)} required />
+              <Field label="Repeat new password" htmlFor={`${pwId}-repeat`} hint={pwMismatch ? <span className="text-alarm">Passwords differ</span> : undefined}>
+                <Input id={`${pwId}-repeat`} type="password" autoComplete="new-password" value={pw2} onChange={(e) => setPw2(e.target.value)} required />
               </Field>
               <div className="sm:col-span-3"><Button type="submit" disabled={!cur || !pw1 || pwMismatch || changePw.isPending}>Change password</Button></div>
             </form>

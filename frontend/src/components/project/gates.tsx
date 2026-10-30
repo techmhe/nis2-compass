@@ -34,7 +34,7 @@ export function ProjectGates({ projectId }: { projectId: number }) {
         <p className="text-[13px] text-ink-3">Management decision points. A gate is ready when all activities assigned to it are completed.</p>
         {canManage && <Button onClick={() => setEditing("new")}><Plus /> New gate</Button>}
       </div>
-      <div className="overflow-x-auto rounded-md border bg-card scroll-thin">
+      <div data-tour="project.gates" className="overflow-x-auto rounded-md border bg-card scroll-thin">
         {rows.length === 0 ? (
           <Empty title="No gates defined">{canManage ? "Create gates for the key management decisions of the project." : "The project manager has not defined gates yet."}</Empty>
         ) : (

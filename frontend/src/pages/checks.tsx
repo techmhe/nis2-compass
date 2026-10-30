@@ -38,9 +38,9 @@ export default function ChecksPage() {
       <PageHeader
         title="Data quality"
         description="Plausibility checks across assessments, action plan, project and documents. Each finding links to the place where it can be fixed."
-        actions={<Button variant="outline" onClick={() => q.refetch()} disabled={q.isFetching}><RefreshCw className={cn(q.isFetching && "animate-spin")} /> Run again</Button>}
+        actions={<Button variant="outline" data-tour="quality.run" onClick={() => q.refetch()} disabled={q.isFetching}><RefreshCw className={cn(q.isFetching && "animate-spin")} /> Run again</Button>}
       />
-      <div className="mb-4 flex items-center gap-3">
+      <div data-tour="quality.filter" className="mb-4 flex items-center gap-3">
         <div className="w-72">
           <OptionSelect value={entity} onChange={setEntity} allowNone noneLabel="All entities" placeholder="All entities"
             options={entities.map((e) => ({ value: String(e.id), label: `${e.code} ${e.name}` }))} />
@@ -52,7 +52,7 @@ export default function ChecksPage() {
         )}
       </div>
       {q.isLoading ? <Loading /> : q.error ? <ErrorState error={q.error} /> : (
-        <div className="space-y-6">
+        <div data-tour="quality.rules" className="space-y-6">
           {areas.map((area) => (
             <section key={area}>
               <h2 className="mb-2 text-[13.5px] font-semibold text-ink">{area}</h2>

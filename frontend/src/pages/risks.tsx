@@ -91,13 +91,13 @@ export default function RisksPage() {
         description="Risk register and treatment plan of the group and its entities (§ 30(2) no. 1 BSIG, Cbb Art. 7, IR 2024/2690 2.1). Each entity rates risks with its risk method."
         actions={
           <>
-            <Button variant="outline" onClick={() => setMethodOpen(true)}><Settings2 /> Risk method</Button>
+            <Button variant="outline" data-tour="risks.method" onClick={() => setMethodOpen(true)}><Settings2 /> Risk method</Button>
             {canExport && <Button variant="outline" onClick={exportXlsx}><Download /> Export register</Button>}
-            {canCreate && <Button onClick={() => setNewOpen(true)}><Plus /> New risk</Button>}
+            {canCreate && <Button data-tour="risks.new" onClick={() => setNewOpen(true)}><Plus /> New risk</Button>}
           </>
         } />
 
-      <div className="mb-4 flex flex-wrap items-center gap-2">
+      <div data-tour="risks.register" className="mb-4 flex flex-wrap items-center gap-2">
         <div className="w-56">
           <OptionSelect value={scope} onChange={(v) => { setScope(v); setCell(null) }} allowNone noneLabel="All entities and group" placeholder="All entities and group"
             options={[{ value: "group", label: "Group-wide risks" }, ...(entities.data ?? []).map((e) => ({ value: String(e.id), label: <span><span className="font-mono text-[12px] text-ink-3">{e.code}</span> {e.name}</span> }))]} />
@@ -119,7 +119,8 @@ export default function RisksPage() {
 
       {heat.error ? <ErrorState error={heat.error} className="mb-5" /> : null}
       <div className="mb-5 grid gap-5 xl:grid-cols-[minmax(0,560px)_minmax(0,1fr)]">
-        <Section title="Heat map"
+        <div data-tour="risks.heat-map">
+        <Section title="Heat map" className="h-full"
           actions={
             <div role="radiogroup" aria-label="Rating shown" className="inline-flex rounded-md border bg-surface p-0.5">
               {(["inherent", "residual"] as Basis[]).map((b) => (
@@ -142,6 +143,7 @@ export default function RisksPage() {
             </div>
           )}
         </Section>
+        </div>
 
         <Section title="Residual risk overview">
           {!h ? <Loading className="p-0" /> : (

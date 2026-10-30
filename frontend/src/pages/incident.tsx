@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { EntityTag, ErrorState, Loading, PageHeader, Section, StatusPill } from "@/components/common/basics"
 import { CommentsPanel, Confirm, DocumentLinks, UserAvatar } from "@/components/common/collab"
+import { WritingHelp } from "@/components/ai/writing-help"
 import { EntitySelect, Field, OptionSelect, Segmented, UserSelect } from "@/components/common/fields"
 import { ReportingClock } from "@/components/incidents/clock"
 import { FollowUpPanel } from "@/components/incidents/follow-up"
@@ -97,12 +98,15 @@ export default function IncidentPage() {
 
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_380px]">
         <div className="min-w-0 space-y-5">
+          <div data-tour="incidents.significance">
           <Section title="Significance assessment">
             {rep.isLoading ? <Loading /> : rep.error ? <ErrorState error={rep.error} /> : rep.data && (
               <SignificancePanel data={rep.data} awareAt={inc.aware_at} onChanged={rep.update} />
             )}
           </Section>
+          </div>
 
+          <div data-tour="incidents.deadlines incidents.draft">
           <Section title="Reporting to authorities">
             {hasTracks && rep.data ? (
               <TrackCards data={rep.data} onChanged={rep.update} onReload={rep.reload} />
@@ -114,6 +118,7 @@ export default function IncidentPage() {
               </>
             )}
           </Section>
+          </div>
 
           <Section title="Scope and root cause">
             {rep.data ? <ScopePanel key={rep.data.profile.affected_entity_ids.join(",") + (rep.data.profile.root_cause_category ?? "")}
@@ -139,7 +144,7 @@ export default function IncidentPage() {
         </div>
 
         <div className="space-y-5">
-          <Timeline incident={inc} canEdit={can_edit} onAdded={setData} />
+          <div data-tour="incidents.timeline"><Timeline incident={inc} canEdit={can_edit} onAdded={setData} /></div>
           <Section title="Significance and reporting">
             <SignificanceGuidance country={inc.entity?.country} />
           </Section>
@@ -211,8 +216,11 @@ function IncidentForm({ incident, canEdit, hasTracks, onDirtyChange, onSaved }: 
     ? ["BSI (BSI/BBK reporting portal)"]
     : country === "NL" ? ["NCSC (CSIRT)", "Sector CSIRT and competent authority"] : ["BSI (BSI/BBK reporting portal)", "NCSC (CSIRT)"]
   const ro = !canEdit
+  const HELPED: (keyof FormState)[] = ["description", "significance_rationale", "impact", "root_cause", "measures", "lessons_learned"]
   const txt = (k: keyof FormState, label: string, rows = 3, placeholder?: string, className = "col-span-2") => (
-    <Field label={label} className={className} htmlFor={`inc-${k}`}>
+    <Field label={label} className={className} htmlFor={`inc-${k}`} action={HELPED.includes(k) && (
+      <WritingHelp target={{ type: "incident", id: incident.id }} field={k} value={(f[k] as string | null) ?? ""} onApply={(t) => set(k, t as never)} autosave={false} disabled={ro} />
+    )}>
       <Textarea id={`inc-${k}`} rows={rows} value={(f[k] as string | null) ?? ""} onChange={(e) => set(k, e.target.value as never)} disabled={ro} placeholder={placeholder} />
     </Field>
   )

@@ -124,7 +124,7 @@ export function MasterPlan({ projectId }: { projectId: number }) {
         {canManage && <Button onClick={() => setCreating(true)}><Plus /> New activity</Button>}
       </div>
 
-      <div className="overflow-x-auto rounded-md border bg-card scroll-thin">
+      <div data-tour="project.plan" className="overflow-x-auto rounded-md border bg-card scroll-thin">
         <table className="w-full min-w-[1320px] border-separate border-spacing-0 text-[13px]">
           <thead className="sticky top-0 z-10 bg-card">
             <tr className="text-left text-[12px] text-ink-3 [&>th]:border-b [&>th]:px-2.5 [&>th]:py-2 [&>th]:font-medium">

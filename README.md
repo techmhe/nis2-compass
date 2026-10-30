@@ -207,6 +207,12 @@ embedding model (enables semantic search). Tested against the OpenAI API format;
 vLLM, Ollama and similar gateways. The key is stored encrypted; changing the base URL without entering a key removes the stored one. The assistant only ever sees data the asking user is
 allowed to read. For local testing without an endpoint there is a mock server: `backend/tests/mock_llm.py`.
 
+**Writing help.** Users with the `ai.use` permission who can edit the object get a sparkles button on the long text
+fields of assessment answers, risks, incidents, audits, findings and effectiveness reviews. It is not shown in
+"New audit" or for approved reviews. It proofreads, writes out bullet points or
+translates to German, Dutch or English. The suggestion is shown next to the original and replaces the text only
+after "Apply"; the field text is sent to the configured model.
+
 ### KPI values from other systems
 
 KPI values can be imported as CSV (Controls → KPIs → Import values), also from a scheduled script with an API token
@@ -231,6 +237,11 @@ curl -fsS -H "Authorization: Bearer $NIS2_TOKEN" -F file=@kpis.csv \
 | Auditor | internal audit | read only incl. audit log and exports |
 
 Roles can be granted group-wide or for a single legal entity. Custom roles can be created in the UI.
+
+Every user gets a short guided tour once, with chapters that fit their role: on the first Dashboard load after their
+first login, and again after an update that raises the tour version. **Take the tour** in the account menu and the
+**Getting started** section on the Help page start it again; Help also has a guide per built-in role with a
+**Show me** button for each chapter recommended for that role.
 
 ## Development
 

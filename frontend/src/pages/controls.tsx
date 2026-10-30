@@ -28,7 +28,7 @@ export default function ControlsPage() {
       />
       <nav aria-label="Controls sections" className="mb-5 flex gap-1 overflow-x-auto border-b scroll-thin">
         {TABS.map((t) => (
-          <NavLink key={t.path} to={`/controls/${t.path}`}
+          <NavLink key={t.path} to={`/controls/${t.path}`} data-tour={`controls.${t.path}`}
             className={({ isActive }) => cn(
               "-mb-px border-b-2 px-3 py-2 text-[13.5px] font-medium whitespace-nowrap transition-colors",
               isActive ? "border-petrol text-ink" : "border-transparent text-ink-3 hover:text-ink",

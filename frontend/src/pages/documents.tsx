@@ -163,12 +163,12 @@ export default function DocumentsPage() {
         description="Policies, procedures and evidence for the NIS-2 programme. Content is full-text searchable and can be linked to requirements, answers and tasks."
         actions={canUpload && (
           <UploadDialog defaultType="Policy" onDone={(doc) => navigate(`/documents/${doc.id}`)}
-            trigger={<Button><Upload /> Upload document</Button>} />
+            trigger={<Button data-tour="documents.upload"><Upload /> Upload document</Button>} />
         )}
       />
 
       <div className="mb-3 flex flex-wrap items-center gap-2">
-        <div className="relative w-full max-w-[360px] min-w-[220px] flex-1">
+        <div data-tour="documents.search" className="relative w-full max-w-[360px] min-w-[220px] flex-1">
           <Search className="pointer-events-none absolute top-2.5 left-2.5 size-4 text-ink-3" />
           <Input value={qInput} onChange={(e) => setQInput(e.target.value)} placeholder="Search titles and document text"
             className="pr-8 pl-8" aria-label="Search documents" />
@@ -187,7 +187,7 @@ export default function DocumentsPage() {
           options={(entities.data ?? []).map((e) => ({ value: String(e.id), label: <span><span className="font-mono text-[12px] text-ink-3">{e.code}</span> {e.name}</span> }))} />
         <OptionSelect className="w-40" value={tag} onChange={(v) => setParam({ tag: v })} allowNone noneLabel="All tags" placeholder="All tags"
           options={(tags.data ?? []).map((t) => ({ value: t.tag, label: <span>{t.tag} <span className="tabular text-ink-3">{t.count}</span></span> }))} />
-        <div className="flex h-9 items-center gap-2 rounded-md border bg-card px-3">
+        <div data-tour="documents.review" className="flex h-9 items-center gap-2 rounded-md border bg-card px-3">
           <Switch id="overdue-only" checked={overdueOnly} onCheckedChange={(v) => setParam({ overdue: v ? "1" : null })} />
           <Label htmlFor="overdue-only" className="text-[13px] font-normal text-ink-2">Review overdue{overdueCount ? <span className="tabular ml-1 text-alarm">{overdueCount}</span> : null}</Label>
         </div>

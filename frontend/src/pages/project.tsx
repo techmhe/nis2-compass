@@ -45,7 +45,7 @@ export default function ProjectPage() {
           </div>
         }
       />
-      <nav aria-label="Project sections" className="mb-5 flex gap-1 overflow-x-auto border-b scroll-thin">
+      <nav aria-label="Project sections" data-tour="project.tabs" className="mb-5 flex gap-1 overflow-x-auto border-b scroll-thin">
         {TABS.map((t) => (
           <NavLink key={t.path} to={t.path ? `/projects/${pid}/${t.path}` : `/projects/${pid}`} end
             className={({ isActive }) => cn(

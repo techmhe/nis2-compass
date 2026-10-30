@@ -169,11 +169,11 @@ export default function CatalogPage() {
       <Tabs value={tab} onValueChange={(v) => setParam("tab", v === "targets" ? "targets" : null)}>
         <TabsList variant="line" className="mb-4">
           <TabsTrigger value="requirements">Requirements</TabsTrigger>
-          <TabsTrigger value="targets">Chapters and targets</TabsTrigger>
+          <TabsTrigger value="targets" data-tour="assess.targets">Chapters and targets</TabsTrigger>
         </TabsList>
 
         <TabsContent value="requirements">
-          <div className="mb-3 flex flex-wrap items-center gap-2">
+          <div data-tour="assess.catalog" className="mb-3 flex flex-wrap items-center gap-2">
             <div className="w-72">
               <OptionSelect value={chapter != null ? String(chapter) : null} onChange={(v) => setParam("chapter", v)} allowNone noneLabel="All chapters"
                 options={(chaptersQ.data ?? []).map((c) => ({ value: String(c.number), label: `${c.number} ${c.title}` }))} />

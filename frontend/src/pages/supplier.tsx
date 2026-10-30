@@ -124,7 +124,7 @@ export default function SupplierPage() {
 
       <nav aria-label="Supplier sections" role="tablist" className="mb-5 flex gap-1 overflow-x-auto border-b scroll-thin">
         {TABS.map((t) => (
-          <button key={t.key} role="tab" aria-selected={tab === t.key} onClick={() => setTab(t.key)}
+          <button key={t.key} role="tab" data-tour={`suppliers.${t.key}`} aria-selected={tab === t.key} onClick={() => setTab(t.key)}
             className={cn("-mb-px border-b-2 px-3 py-2 text-[13.5px] font-medium whitespace-nowrap transition-colors",
               tab === t.key ? "border-petrol text-ink" : "border-transparent text-ink-3 hover:text-ink")}>
             {t.label}

@@ -10,11 +10,11 @@ import { useAuth } from "@/hooks/useAuth"
 import { cn } from "@/lib/utils"
 
 const TABS = [
-  { path: "obligations", label: "Obligations" },
-  { path: "registrations", label: "Registrations" },
-  { path: "management", label: "Management body" },
-  { path: "trainings", label: "Trainings" },
-  { path: "legal", label: "Legal basis" },
+  { path: "obligations", label: "Obligations", tour: "programme.obligations" },
+  { path: "registrations", label: "Registrations", tour: "programme.registrations" },
+  { path: "management", label: "Management body", tour: "programme.management" },
+  { path: "trainings", label: "Trainings", tour: "programme.trainings" },
+  { path: "legal", label: "Legal basis", tour: "programme.legal" },
 ]
 
 function OverviewStrip() {
@@ -42,7 +42,7 @@ export default function GovernancePage() {
       <OverviewStrip />
       <nav aria-label="Governance sections" className="mb-5 flex gap-1 overflow-x-auto border-b scroll-thin">
         {TABS.map((t) => (
-          <NavLink key={t.path} to={`/governance/${t.path}`}
+          <NavLink key={t.path} to={`/governance/${t.path}`} data-tour={t.tour}
             className={({ isActive }) => cn(
               "-mb-px border-b-2 px-3 py-2 text-[13.5px] font-medium whitespace-nowrap transition-colors",
               isActive ? "border-petrol text-ink" : "border-transparent text-ink-3 hover:text-ink",

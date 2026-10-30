@@ -79,7 +79,7 @@ export default function TasksPage() {
       <PageHeader title="Tasks" description="Plan and track the work behind work packages, findings and assessment answers."
         actions={
           <>
-            <div role="tablist" aria-label="View" className="inline-flex rounded-md border bg-surface p-0.5">
+            <div role="tablist" aria-label="View" data-tour="project.tasks" className="inline-flex rounded-md border bg-surface p-0.5">
               {([["board", "Board", <Columns3 key="b" />], ["list", "List", <List key="l" />]] as const).map(([v, label, icon]) => (
                 <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}
                   className={cn("inline-flex h-7 items-center gap-1.5 rounded-[4px] px-2.5 text-[12.5px] font-medium [&_svg]:size-3.5", view === v ? "bg-petrol text-white" : "text-ink-2 hover:bg-muted")}>

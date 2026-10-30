@@ -1,9 +1,12 @@
 import json
+import logging
 import re
+from typing import Literal
 
+import openai
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
@@ -13,8 +16,10 @@ from app.core.security import encrypt_secret
 from app.db import SessionLocal, get_db, utcnow
 from app.models import Answer, Conversation, Document, Message, SearchChunk, Setting
 from app.services import ai as aisvc
+from app.services import writing_help as wh
 from app.services.audit import audit
 
+log = logging.getLogger(__name__)
 router = APIRouter(prefix="/ai", tags=["ai"])
 
 
@@ -328,6 +333,61 @@ def assist_answer(answer_id: int, pr: Principal = Depends(require("ai.use")), db
             502, "The AI model returned no usable suggestion. Try again or use another model."
         )
     return out
+
+
+class TextTarget(BaseModel):
+    type: Literal["answer", "risk", "incident", "audit", "audit_finding", "effectiveness_review"]
+    id: int
+
+
+class TextAssistIn(BaseModel):
+    mode: Literal["proofread", "expand", "translate"]
+    language: Literal["de", "nl", "en"] | None = None
+    target: TextTarget
+    field: str
+    text: str = Field(max_length=20000)
+
+    @model_validator(mode="after")
+    def _check(self):
+        if self.field not in wh.FIELDS[self.target.type]:
+            raise ValueError("Unknown field for this target")
+        if (self.mode == "translate") != (self.language is not None):
+            raise ValueError("language is required for translate and must be empty otherwise")
+        self.text = self.text.strip()
+        if not 1 <= len(self.text) <= 6000:
+            raise ValueError("The text must have 1 to 6000 characters")
+        return self
+
+
+@router.post("/assist/text")
+def assist_text(
+    body: TextAssistIn, pr: Principal = Depends(require("ai.use")), db: Session = Depends(get_db)
+):
+    """Proofread, write out or translate the text of one field. Returns a suggestion; nothing is stored."""
+    loaded = wh.LOADERS[body.target.type](db, pr, body.target.id)
+    cfg = aisvc.get_config(db)
+    if not cfg.ready:
+        raise HTTPException(503, "AI assistant is not configured")
+    label = wh.FIELDS[body.target.type][body.field]
+    try:
+        result = aisvc.complete_json(
+            cfg,
+            wh.system_prompt(body.mode, body.language),
+            wh.user_prompt(label, loaded.context, body.text),
+            min_tokens=8000,
+        )
+    except openai.APIError as e:
+        # the exception text may echo the request, which holds personal data
+        log.warning(
+            "writing help: the AI provider call failed (%s, status %s)",
+            type(e).__name__,
+            getattr(e, "status_code", None),
+        )
+        result = {}
+    text = wh.clean_text(_as_text(result.get("text")))
+    if not text or wh.is_cut_off(text):
+        raise HTTPException(502, "The AI model returned no usable text. Try again or use another model.")
+    return {"text": text, "model": cfg.chat_model}
 
 
 @router.post("/assist/document/{doc_id}/summary")

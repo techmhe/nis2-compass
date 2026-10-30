@@ -190,7 +190,7 @@ export function RaciMatrix({ projectId }: { projectId: number }) {
       )}
       {canManage && <p className="text-[12.5px] text-ink-3">Click a cell to cycle through R, A, C, I, A/R, - and empty. With keyboard focus type R, A, C, I, Shift+A for A/R, - or Backspace, and use the arrow keys to move.</p>}
 
-      <div className="overflow-auto rounded-md border bg-card scroll-thin max-h-[calc(100vh-280px)]">
+      <div data-tour="project.raci" className="overflow-auto rounded-md border bg-card scroll-thin max-h-[calc(100vh-280px)]">
         {m.rows.length === 0 && m.cols.length === 0 ? (
           <Empty title="The RACI matrix is empty" action={canManage && <div className="flex gap-2"><Button variant="outline" onClick={addCol}><Plus /> Add role</Button><Button onClick={addRow}><Plus /> Add activity</Button></div>}>
             Add roles as columns and activities as rows, then assign responsibilities.

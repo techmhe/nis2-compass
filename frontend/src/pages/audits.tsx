@@ -23,7 +23,7 @@ export default function AuditsPage() {
         description="The audit programme, internal and external audits with their findings, the Cbb Art. 18 effectiveness evaluation and the ISO/IEC 27001 9.3 management review." />
       <nav aria-label="Audits sections" className="mb-5 flex gap-1 overflow-x-auto border-b scroll-thin">
         {TABS.map((t) => (
-          <NavLink key={t.path} to={`/audits/${t.path}`}
+          <NavLink key={t.path} to={`/audits/${t.path}`} data-tour={`audits.${t.path}`}
             className={({ isActive }) => cn(
               "-mb-px border-b-2 px-3 py-2 text-[13.5px] font-medium whitespace-nowrap transition-colors",
               isActive ? "border-petrol text-ink" : "border-transparent text-ink-3 hover:text-ink",

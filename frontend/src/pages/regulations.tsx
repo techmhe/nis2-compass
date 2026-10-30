@@ -117,7 +117,7 @@ export default function RegulationsPage() {
       {list.error ? <ErrorState error={list.error} /> : (
         <div className={cn("grid items-start gap-4",
           regId != null ? "lg:grid-cols-[280px_minmax(0,1fr)] xl:grid-cols-[220px_290px_minmax(0,1fr)]" : "lg:grid-cols-[260px_minmax(0,1fr)]")}>
-          <aside className={cn(PANE, "rounded-md border bg-card", regId != null && "hidden xl:block")} aria-label="Regulations">
+          <aside data-tour="documents.regulations" className={cn(PANE, "rounded-md border bg-card", regId != null && "hidden xl:block")} aria-label="Regulations">
             <RegulationList regulations={regulations} loading={list.isLoading} activeId={regId} />
           </aside>
 

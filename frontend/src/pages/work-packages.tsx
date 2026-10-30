@@ -67,7 +67,7 @@ export default function WorkPackagesPage() {
       <PageHeader title="Work packages" description="Remediation measures that bundle findings from the action plan, across one or several entities."
         actions={
           <>
-            <div role="tablist" aria-label="View" className="inline-flex rounded-md border bg-surface p-0.5">
+            <div role="tablist" aria-label="View" data-tour="project.work-packages" className="inline-flex rounded-md border bg-surface p-0.5">
               {([["table", "Table", <List key="t" />], ["board", "Board", <Columns3 key="b" />]] as const).map(([v, label, icon]) => (
                 <button key={v} role="tab" aria-selected={view === v} onClick={() => changeView(v)}
                   className={cn("inline-flex h-7 items-center gap-1.5 rounded-[4px] px-2.5 text-[12.5px] font-medium [&_svg]:size-3.5", view === v ? "bg-petrol text-white" : "text-ink-2 hover:bg-muted")}>
