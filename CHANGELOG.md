@@ -6,6 +6,12 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-10-30
+
+### Fixed
+- Admin → AI accepts API keys of up to 8192 characters (was 500), for providers such as IONOS whose keys are
+  about 1750 characters long.
+
 ## [1.3.0] - 2026-10-30
 
 ### Added

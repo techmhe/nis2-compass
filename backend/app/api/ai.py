@@ -47,7 +47,8 @@ def status(pr: Principal = Depends(get_principal), db: Session = Depends(get_db)
 class AISettingsIn(BaseModel):
     enabled: bool
     base_url: str | None = Field(default=None, max_length=500, pattern=r"^https?://")
-    api_key: str | None = Field(default=None, max_length=500)  # write-only; empty string clears
+    # write-only; empty string clears. Some providers (IONOS) issue keys of ~1750 characters.
+    api_key: str | None = Field(default=None, max_length=8192)
     chat_model: str | None = Field(default=None, max_length=200)
     embedding_model: str | None = Field(default=None, max_length=200)
     temperature: float = Field(default=0.2, ge=0, le=2)

@@ -8,6 +8,10 @@ Deferred items. Keep this list current; remove entries when done.
   entity to review the service and asset inventory.
 - **Training import from an LMS**: CSV/Excel import of awareness and management training records
   (currently entered manually in Governance → Trainings).
+- **Images and scans in the search index and the assistant**: today only the text layer of documents is indexed
+  (no OCR; images and diagrams are skipped, a scanned PDF indexes as empty). Options: OCR (e.g. Tesseract) for scans
+  and images, and/or an OpenAI-compatible vision or multimodal embedding model that describes or embeds images and
+  diagrams at indexing time.
 - **More browser tests**: SSO login (needs a mock IdP in the test run), approvals, document uploads.
 
 ## Done recently

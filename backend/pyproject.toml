@@ -1,6 +1,6 @@
 [project]
 name = "nis2-mgmt"
-version = "1.3.0"
+version = "1.3.1"
 description = "NIS-2 assessment and implementation management platform"
 requires-python = ">=3.12"
 dependencies = [
