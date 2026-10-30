@@ -20,6 +20,8 @@ import { api } from "@/lib/api"
 import { fromNow } from "@/lib/format"
 import type { NotificationItem, SearchHit } from "@/lib/types"
 import { cn } from "@/lib/utils"
+import { AssistantProvider, useAssistant } from "@/components/assistant/provider"
+import { AssistantLauncher, AssistantWindow } from "@/components/assistant/window"
 import { TourProvider, useTour } from "@/tour/TourProvider"
 
 interface NavItem { to: string; label: string; icon: ReactNode; perm?: string; end?: boolean; tour?: string }
@@ -54,7 +56,6 @@ function useNav(): { group: string; items: NavItem[] }[] {
     { group: "Knowledge", items: [
       { to: "/documents", label: "Documents", icon: <FileStack />, perm: "documents.read" },
       { to: "/regulations", label: "Regulations", icon: <Scale />, perm: "regulations.read" },
-      { to: "/assistant", label: "Assistant", icon: <Bot />, perm: "ai.use" },
     ] },
     { group: "Operate", items: [
       { to: "/incidents", label: "Incidents", icon: <Siren />, perm: "incidents.read" },
@@ -128,6 +129,7 @@ export function Logo({ className }: { className?: string }) {
 function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const [q, setQ] = useState("")
   const navigate = useNavigate()
+  const { openAssistant } = useAssistant()
   const nav = useNav()
   const { canAny } = useAuth()
   const [debounced, setDebounced] = useState("")
@@ -154,7 +156,7 @@ function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (v: boolean
             <CommandEmpty>{isFetching ? "Searching…" : "Nothing found."}</CommandEmpty>
             {canAny("ai.use") && (
               <CommandGroup heading="Ask the assistant">
-                <CommandItem onSelect={() => go(`/assistant?q=${encodeURIComponent(q)}`)}><Bot /> Ask: “{q}”</CommandItem>
+                <CommandItem onSelect={() => { const question = q; setOpen(false); setQ(""); openAssistant({ question, expanded: true }) }}><Bot /> Ask: “{q}”</CommandItem>
               </CommandGroup>
             )}
             {Object.entries(grouped).map(([label, items]) => (
@@ -268,8 +270,6 @@ export function AppShell() {
     try { return localStorage.getItem("nis2-sidebar") === "1" } catch { return false }
   })
   const [paletteOpen, setPaletteOpen] = useState(false)
-  const { canAny } = useAuth()
-  const navigate = useNavigate()
   const location = useLocation()
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -279,8 +279,9 @@ export function AppShell() {
     return () => window.removeEventListener("keydown", onKey)
   }, [])
   const toggle = () => setCollapsed((c) => { try { localStorage.setItem("nis2-sidebar", c ? "0" : "1") } catch { /* ignore */ } return !c })
-  const fullBleed = /^\/(assessments\/\d+|assistant)/.test(location.pathname)
+  const fullBleed = /^\/assessments\/\d+/.test(location.pathname)
   return (
+    <AssistantProvider>
     <TourProvider>
     <div className="flex min-h-screen">
       <Sidebar collapsed={collapsed} onToggle={toggle} />
@@ -293,9 +294,6 @@ export function AppShell() {
             <kbd className="rounded border bg-muted px-1.5 font-mono text-[11px] text-ink-3">⌘K</kbd>
           </button>
           <div className="ml-auto flex items-center gap-1">
-            {canAny("ai.use") && (
-              <Button variant="ghost" size="sm" data-tour="welcome.assistant" onClick={() => navigate("/assistant")} className="text-ink-2"><Bot /> Assistant</Button>
-            )}
             <Notifications />
             <UserMenu />
           </div>
@@ -307,7 +305,10 @@ export function AppShell() {
         </main>
       </div>
       <CommandPalette open={paletteOpen} setOpen={setPaletteOpen} />
+      <AssistantWindow />
+      <AssistantLauncher />
     </div>
     </TourProvider>
+    </AssistantProvider>
   )
 }

@@ -225,7 +225,7 @@ export default function WorkPackagePage() {
       </div>
 
       {canEdit && dirty && (
-        <div className="fixed right-6 bottom-6 z-40 flex items-center gap-3 rounded-md border bg-card px-4 py-2.5 shadow-lg">
+        <div data-unsaved-bar="" className="fixed right-[84px] bottom-6 z-40 flex items-center gap-3 rounded-md border bg-card px-4 py-2.5 shadow-lg">
           <span className="text-[13px] text-ink-2">You have unsaved changes.</span>
           <Button size="sm" variant="outline" onClick={() => setF(toForm(w))}>Discard changes</Button>
           <Button size="sm" disabled={!f.title.trim() || !!dateError || save.isPending} onClick={() => save.mutate()}>{save.isPending ? "Saving…" : "Save changes"}</Button>

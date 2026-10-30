@@ -6,6 +6,17 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-10-30
+
+### Changed
+- The assistant is a floating window instead of a page. A round button at the bottom right opens it on every page;
+  the window can be expanded, keeps its conversation while you move between pages and closes with Esc. The Assistant
+  entries in the sidebar and the top bar are gone, and old `/assistant` links open the window. The product tour
+  closes the window when it starts, and toasts and the unsaved changes bar of a work package make room for it.
+
+### Security
+- `joserfc` updated to 1.7.7 (CVE-2026-119284, used by the OIDC login).
+
 ## [1.3.1] - 2026-10-30
 
 ### Fixed

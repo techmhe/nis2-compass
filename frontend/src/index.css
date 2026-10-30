@@ -291,3 +291,11 @@
   main { max-width: none !important; padding: 0 !important; }
   section, article > * { break-inside: avoid; }
 }
+
+/* Toasts make room for the open assistant window (set on <html> by AssistantProvider). Compact: above it, 16 px
+   edge + 560 px + 12 px. Expanded: the window fills the right column, so toasts sit left of it, 16 + 760 + 12 px. */
+html[data-assistant="compact"] [data-sonner-toaster] { --offset-bottom: 588px !important; }
+html[data-assistant="expanded"] [data-sonner-toaster] { --offset-right: 788px !important; }
+/* The work package's unsaved-changes bar moves left of the open window, 16 px edge + window width + 12 px. */
+html[data-assistant="compact"] [data-unsaved-bar] { right: 428px; }
+html[data-assistant="expanded"] [data-unsaved-bar] { right: 788px; }

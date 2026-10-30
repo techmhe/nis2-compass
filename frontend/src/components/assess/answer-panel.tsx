@@ -16,6 +16,7 @@ import { Code, EntityTag, ErrorState, Loading, Pill, ScoreChip, StatusPill } fro
 import { CommentsPanel, Confirm, DocumentLinks, Markdown } from "@/components/common/collab"
 import { Field, Segmented, StakeholderSelect, UserSelect, answerTone } from "@/components/common/fields"
 import { useAuth } from "@/hooks/useAuth"
+import { useAssistant } from "@/components/assistant/provider"
 import { useEntities, useStakeholders } from "@/hooks/useRefData"
 import { ApiError, api } from "@/lib/api"
 import { EFF_VALUES, EFFORT_VALUES, IMPL_VALUES, SCOPE_VALUES } from "@/lib/constants"
@@ -113,6 +114,7 @@ export function AnswerPanel({ row, assessment, canEdit, patch, saveState, onRetr
 }) {
   const { can, canAny } = useAuth()
   const navigate = useNavigate()
+  const { openAssistant } = useAssistant()
   const qc = useQueryClient()
   const entityId = assessment.entity.id
   const { drafts, setField, flush } = useTextDrafts(row, patch)
@@ -156,7 +158,7 @@ export function AnswerPanel({ row, assessment, canEdit, patch, saveState, onRetr
 
   const askAssistant = () => {
     const q = `Did we already answer requirement ${row.number} for other entities, and which documents cover it?`
-    navigate(`/assistant?q=${encodeURIComponent(q)}`, { state: { context: { type: "requirement", id: row.requirement_id, label: `${row.number} ${sectionTitle}` } } })
+    openAssistant({ question: q, context: { type: "requirement", id: row.requirement_id, label: `${row.number} ${sectionTitle}` }, expanded: true })
   }
 
   const applySuggestion = () => {

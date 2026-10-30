@@ -111,7 +111,6 @@ export const ROLE_GUIDES: RoleGuide[] = [
       { label: "Assessments", to: "/assessments", perm: "assessments.read" },
       { label: "Documents", to: "/documents", perm: "documents.read" },
       { label: "Tasks", to: "/tasks" },
-      { label: "Assistant", to: "/assistant", perm: "ai.use" },
     ],
   },
   {
@@ -129,7 +128,6 @@ export const ROLE_GUIDES: RoleGuide[] = [
       { label: "Governance", to: "/governance", perm: "governance.read" },
       { label: "Documents", to: "/documents", perm: "documents.read" },
       { label: "Regulations", to: "/regulations", perm: "regulations.read" },
-      { label: "Assistant", to: "/assistant", perm: "ai.use" },
     ],
   },
   {

@@ -166,7 +166,9 @@ export default function AssessmentWorkspace() {
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey || e.defaultPrevented) return
       if (isTypingTarget(e.target)) return
-      if (document.querySelector("[role=dialog], [role=alertdialog]")) return
+      // the floating assistant window is non-modal: keys typed inside it are its own, otherwise the page keeps its shortcuts
+      if (e.target instanceof Element && e.target.closest("[data-assistant-window]")) return
+      if (document.querySelector("[role=dialog]:not([data-assistant-window]), [role=alertdialog]")) return
       const k = e.key
       if (k === "j" || k === "ArrowDown") { e.preventDefault(); move(1) }
       else if (k === "k" || k === "ArrowUp") { e.preventDefault(); move(-1) }

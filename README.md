@@ -202,6 +202,11 @@ administrator deactivates the user in the app.
 
 ### AI assistant
 
+Users with the `ai.use` permission get a round launcher at the bottom right of every page. It opens the assistant as a
+floating window that can be expanded; the conversation stays when you change pages, and Esc closes the window. The
+"Ask the assistant" buttons in the application open it with the question or object already filled in, and old
+`/assistant` links open the expanded window on the Dashboard.
+
 Administration → AI assistant: base URL of an OpenAI-compatible API (`/v1`), API key, chat model and optionally an
 embedding model (enables semantic search). Tested against the OpenAI API format; works with Azure OpenAI, LiteLLM,
 vLLM, Ollama and similar gateways. The key is stored encrypted; changing the base URL without entering a key removes the stored one. The assistant only ever sees data the asking user is

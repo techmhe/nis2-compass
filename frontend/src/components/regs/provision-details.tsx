@@ -6,6 +6,7 @@ import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { Code, ErrorState, Loading, Pill, StatusPill } from "@/components/common/basics"
+import { useAssistant } from "@/components/assistant/provider"
 import { useAuth } from "@/hooks/useAuth"
 import { api } from "@/lib/api"
 import { pct, scoreColor } from "@/lib/format"
@@ -28,6 +29,7 @@ export function ProvisionDetails({ provisionId, onSelect, onClose }: {
   onClose: () => void
 }) {
   const { canAny } = useAuth()
+  const { openAssistant } = useAssistant()
   const [showAll, setShowAll] = useState(false)
   const { data, isLoading, error } = useQuery({
     queryKey: ["provision", provisionId],
@@ -55,11 +57,12 @@ export function ProvisionDetails({ provisionId, onSelect, onClose }: {
             </nav>
             <Button size="xs" variant="ghost" onClick={copyLink}><Link2 /> Copy link</Button>
             {canAny("ai.use") && (
-              <Button size="xs" variant="ghost" asChild>
-                <Link to={`/assistant?q=${encodeURIComponent(`Explain ${data.provision.ref} of the ${data.provision.regulation.short_title} and what it requires from us.`)}`}
-                  state={{ context: { type: "provision", id: provisionId, label: `${data.provision.regulation.short_title} ${data.provision.ref}` } }}>
-                  <Bot /> Ask the assistant
-                </Link>
+              <Button size="xs" variant="ghost" onClick={() => openAssistant({
+                question: `Explain ${data.provision.ref} of the ${data.provision.regulation.short_title} and what it requires from us.`,
+                context: { type: "provision", id: provisionId, label: `${data.provision.regulation.short_title} ${data.provision.ref}` },
+                expanded: true,
+              })}>
+                <Bot /> Ask the assistant
               </Button>
             )}
             <Button size="icon-xs" variant="ghost" aria-label="Close details" onClick={onClose}><X /></Button>

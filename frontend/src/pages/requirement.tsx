@@ -14,6 +14,7 @@ import { Field } from "@/components/common/fields"
 import { AddProvisionDialog, ProvisionList } from "@/components/assess/provisions"
 import { CorePill, IdeTiles, ScopePill, useRequirements, type RequirementDetailResp } from "@/components/assess/shared"
 import { RequirementLegalSection } from "@/components/governance/legal"
+import { useAssistant } from "@/components/assistant/provider"
 import { useAuth } from "@/hooks/useAuth"
 import { api } from "@/lib/api"
 import { fmtDate, fromNow, pct } from "@/lib/format"
@@ -97,6 +98,7 @@ export default function RequirementPage() {
   const { id } = useParams()
   const reqId = Number(id)
   const navigate = useNavigate()
+  const { openAssistant } = useAssistant()
   const qc = useQueryClient()
   const { canAny, canGlobal } = useAuth()
   const q = useQuery({ queryKey: ["requirement", reqId], queryFn: () => api.get<RequirementDetailResp>(`/requirements/${reqId}`), enabled: !!reqId })
@@ -120,7 +122,7 @@ export default function RequirementPage() {
 
   const ask = () => {
     const question = `Did we already answer requirement ${r.number} for other entities, and which documents cover it?`
-    navigate(`/assistant?q=${encodeURIComponent(question)}`, { state: { context: { type: "requirement", id: r.id, label: `${r.number} ${sectionTitle}` } } })
+    openAssistant({ question, context: { type: "requirement", id: r.id, label: `${r.number} ${sectionTitle}` }, expanded: true })
   }
 
   return (

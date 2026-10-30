@@ -18,7 +18,7 @@ export const welcome: TourChapter = {
     { name: "approvals", route: "/my-work", title: "Approvals",
       body: "Approvals lists items that wait for someone to approve them. Items waiting for you also show up in My work." },
     { name: "assistant", route: "/my-work", perm: "ai.use", title: "Ask the Assistant",
-      body: "The Assistant answers questions about your programme and the regulations, based on what you are allowed to see." },
+      body: "The Assistant in the bottom-right corner answers questions about your programme and the regulations, based on what you are allowed to see." },
     { name: "notifications", route: "/my-work", title: "Notifications",
       body: "The bell tells you about new assignments, due dates and approvals. Mark them as read when you are done." },
     { name: "account", route: "/my-work", title: "Your account",

@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useLayoutEffect, use
 import { useLocation, useNavigate, useNavigationType } from "react-router"
 import { useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
+import { useAssistant } from "@/components/assistant/provider"
 import { useAuth } from "@/hooks/useAuth"
 import { ApiError, api } from "@/lib/api"
 import type { Me } from "@/lib/types"
@@ -101,6 +102,7 @@ const idleNav = (): EngineNav => ({ target: null, arrived: true, pending: [] })
 export function TourProvider({ children }: { children: ReactNode }) {
   const { me, canAny } = useAuth()
   const qc = useQueryClient()
+  const { close: closeAssistant } = useAssistant()
   const navigate = useNavigate()
   const location = useLocation()
   const [view, setView] = useState<View | null>(null)
@@ -204,11 +206,13 @@ export function TourProvider({ children }: { children: ReactNode }) {
       if (viewRef.current) return
       if (steps.length === 0) { toast("Nothing to show here yet."); return }
       returnFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null
+      // The open window would cover the launcher, which the Assistant step points at; its conversation stays.
+      closeAssistant()
       const present = [...new Set(steps.map((s) => s.chapter))]
       const intro = opts?.intro ? { chapters: present.length, minutes: Math.max(1, Math.ceil(steps.length * MINUTES_PER_STEP)) } : null
       setView({ run: { steps, recommended, intro, ctx }, phase: intro ? "intro" : "locating", index: 0, dir: 1, skipped: [] })
     })()
-  }, [me, canAny, loadContext, recommended])
+  }, [me, canAny, loadContext, recommended, closeAssistant])
 
   const autoStart = useCallback(() => {
     if (!me || me.must_change_password || viewRef.current || autoTried.current === me.id) return
